@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ok-lzr · 数据仪表盘</title>
+  <meta name="description" content="ok-lzr 的个人主页 —— 数据仪表盘风格。">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- ===== 顶栏：品牌 + 主题切换 ===== -->
+  <header class="topbar">
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="展开导航" aria-expanded="false" aria-controls="sidebar">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">▚</span>
+      <span class="brand-text">ok-lzr<em>/ 码上生活</em></span>
+    </div>
+    <div class="topbar-meta">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span class="topbar-clock" id="topClock">--:--:--</span>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">
+        <span class="theme-icon" aria-hidden="true">☾</span>
+        <span class="theme-label">夜间模式</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== 侧边栏导航 ===== -->
+  <nav class="sidebar" id="sidebar" aria-label="页面导航">
+    <p class="sidebar-title">CONTROL PANEL</p>
+    <ul class="nav-list">
+      <li><a class="nav-link" href="#overview"><span class="nav-icon" aria-hidden="true">◈</span>概览</a></li>
+      <li><a class="nav-link" href="#skills"><span class="nav-icon" aria-hidden="true">▤</span>能力指标</a></li>
+      <li><a class="nav-link" href="#projects"><span class="nav-icon" aria-hidden="true">▣</span>项目看板</a></li>
+      <li><a class="nav-link" href="#metrics"><span class="nav-icon" aria-hidden="true">◐</span>运行数据</a></li>
+      <li><a class="nav-link" href="#contact"><span class="nav-icon" aria-hidden="true">✦</span>联系方式</a></li>
+    </ul>
+    <div class="sidebar-foot">
+      <p class="sidebar-foot-label">BUILD</p>
+      <p class="sidebar-foot-value">v2026.09</p>
+    </div>
+  </nav>
+
+  <main class="main">
+    <!-- ===== 概览区：身份 + 实时时钟 ===== -->
+    <section class="section" id="overview">
+      <p class="section-kicker">OVERVIEW / 实时概览</p>
+      <h1 class="hero-title">ok-lzr <span class="hero-sub">/ 码上生活</span></h1>
+      <p class="hero-desc">用数据的方式记录日常，把想法写成能跑起来的页面。</p>
+      <ul class="tag-list">
+        <li class="tag">前端开发</li>
+        <li class="tag">数据可视化</li>
+        <li class="tag">Node 工具链</li>
+        <li class="tag">界面设计</li>
+      </ul>
+
+      <div class="grid grid-hero">
+        <!-- 实时时钟卡 -->
+        <article class="card clock-card">
+          <header class="card-head">
+            <h2 class="card-title">长沙时间</h2>
+            <span class="badge" id="dayPhase">--</span>
+          </header>
+          <p class="clock-time mono" id="clockTime">--:--:--</p>
+          <p class="clock-date mono" id="clockDate">----年--月--日 星期-</p>
+          <p class="clock-note">时区 UTC+8 · 每秒刷新</p>
+          <div class="clock-track" aria-hidden="true">
+            <span class="clock-track-fill" id="clockTrackFill"></span>
+          </div>
+          <p class="clock-note mono" id="clockProgress">今日进度 --%</p>
+        </article>
+
+        <!-- 可用性进度环 -->
+        <article class="card ring-card">
+          <header class="card-head">
+            <h2 class="card-title">在线状态</h2>
+          </header>
+          <div class="ring-wrap">
+            <div class="ring" id="statusRing">
+              <span class="ring-value mono" id="statusRingValue">0%</span>
+            </div>
+          </div>
+          <p class="ring-caption">当前可协作程度</p>
+          <button class="btn btn-ghost" id="ringBoost" type="button">+ 提升活跃度</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 能力指标：技能条 ===== -->
+    <section class="section" id="skills">
+      <p class="section-kicker">SKILLS / 能力指标</p>
+      <h2 class="section-title">技能仪表</h2>
+      <div class="card">
+        <ul class="bar-list">
+          <li class="bar-item">
+            <div class="bar-head"><span class="bar-name">HTML / CSS</span><span class="bar-num mono" data-target="92">0%</span></div>
+            <div class="bar-track"><span class="bar-fill" data-width="92"></span></div>
+          </li>
+          <li class="bar-item">
+            <div class="bar-head"><span class="bar-name">JavaScript</span><span class="bar-num mono" data-target="86">0%</span></div>
+            <div class="bar-track"><span class="bar-fill" data-width="86"></span></div>
+          </li>
+          <li class="bar-item">
+            <div class="bar-head"><span class="bar-name">数据可视化</span><span class="bar-num mono" data-target="78">0%</span></div>
+            <div class="bar-track"><span class="bar-fill" data-width="78"></span></div>
+          </li>
+          <li class="bar-item">
+            <div class="bar-head"><span class="bar-name">Node.js</span><span class="bar-num mono" data-target="74">0%</span></div>
+            <div class="bar-track"><span class="bar-fill" data-width="74"></span></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 项目看板：筛选 + 列表 ===== -->
+    <section class="section" id="projects">
+      <p class="section-kicker">PROJECTS / 项目看板</p>
+      <h2 class="section-title">作品列表</h2>
+
+      <div class="filter-bar" id="filterBar" role="tablist" aria-label="项目筛选">
+        <button class="filter-btn is-active" type="button" role="tab" aria-selected="true" data-filter="all">全部</button>
+        <button class="filter-btn" type="button" role="tab" aria-selected="false" data-filter="web">网页</button>
+        <button class="filter-btn" type="button" role="tab" aria-selected="false" data-filter="data">数据</button>
+        <button class="filter-btn" type="button" role="tab" aria-selected="false" data-filter="tool">工具</button>
+      </div>
+
+      <div class="grid grid-projects" id="projectGrid">
+        <article class="card project-card" data-cat="web tool">
+          <h3 class="project-name">个人导航站</h3>
+          <p class="project-desc">把常用站点、搜索与书签集中到一页，支持分类与快捷唤起。</p>
+          <ul class="chip-list"><li class="chip">HTML</li><li class="chip">CSS</li><li class="chip">JavaScript</li></ul>
+          <p class="project-metric mono">响应耗时 38ms</p>
+        </article>
+        <article class="card project-card" data-cat="data">
+          <h3 class="project-name">长沙天气看板</h3>
+          <p class="project-desc">抓取本地天气数据并以卡片与折线方式呈现未来趋势。</p>
+          <ul class="chip-list"><li class="chip">Canvas</li><li class="chip">Fetch</li><li class="chip">CSS Grid</li></ul>
+          <p class="project-metric mono">数据点 168</p>
+        </article>
+        <article class="card project-card" data-cat="tool">
+          <h3 class="project-name">批量重命名器</h3>
+          <p class="project-desc">命令行批量处理文件名，支持正则匹配与预览确认。</p>
+          <ul class="chip-list"><li class="chip">Node.js</li><li class="chip">CLI</li></ul>
+          <p class="project-metric mono">处理 1.2k 文件</p>
+        </article>
+        <article class="card project-card" data-cat="data web">
+          <h3 class="project-name">记账小面板</h3>
+          <p class="project-desc">本地存储的收支记录，用环形图与柱状图展示月度结构。</p>
+          <ul class="chip-list"><li class="chip">LocalStorage</li><li class="chip">CSS 图表</li></ul>
+          <p class="project-metric mono">记录 436 笔</p>
+        </article>
+        <article class="card project-card" data-cat="tool web">
+          <h3 class="project-name">Markdown 速记</h3>
+          <p class="project-desc">实时预览的极简笔记页，支持快捷键与自动保存草稿。</p>
+          <ul class="chip-list"><li class="chip">JavaScript</li><li class="chip">正则解析</li></ul>
+          <p class="project-metric mono">渲染 12ms</p>
+        </article>
+        <article class="card project-card" data-cat="data tool">
+          <h3 class="project-name">日志分析脚本</h3>
+          <p class="project-desc">汇总访问日志，输出状态码分布与峰值时段报告。</p>
+          <ul class="chip-list"><li class="chip">Node.js</li><li class="chip">Stream</li></ul>
+          <p class="project-metric mono">解析 86MB</p>
+        </article>
+      </div>
+      <p class="filter-empty" id="filterEmpty" hidden>该分类下暂无项目。</p>
+    </section>
+
+    <!-- ===== 运行数据：数字滚动 + 柱状图 ===== -->
+    <section class="section" id="metrics">
+      <p class="section-kicker">METRICS / 运行数据</p>
+      <h2 class="section-title">数据面板</h2>
+      <div class="grid grid-metrics">
+        <article class="card metric-card">
+          <p class="metric-label">累计提交</p>
+          <p class="metric-value mono" data-count="1428">0</p>
+          <p class="metric-unit">commits</p>
+        </article>
+        <article class="card metric-card">
+          <p class="metric-label">完成项目</p>
+          <p class="metric-value mono" data-count="36">0</p>
+          <p class="metric-unit">projects</p>
+        </article>
+        <article class="card metric-card">
+          <p class="metric-label">代码行数</p>
+          <p class="metric-value mono" data-count="86400">0</p>
+          <p class="metric-unit">lines</p>
+        </article>
+        <article class="card metric-card">
+          <p class="metric-label">坚持天数</p>
+          <p class="metric-value mono" data-count="512">0</p>
+          <p class="metric-unit">days</p>
+        </article>
+      </div>
+
+      <div class="card chart-card">
+        <header class="card-head">
+          <h3 class="card-title">近半年活跃度</h3>
+          <span class="badge mono">单位：次</span>
+        </header>
+        <div class="chart" role="img" aria-label="近半年每月活跃次数柱状图">
+          <div class="chart-col"><span class="chart-bar" data-height="52"></span><span class="chart-x mono">4月</span></div>
+          <div class="chart-col"><span class="chart-bar" data-height="68"></span><span class="chart-x mono">5月</span></div>
+          <div class="chart-col"><span class="chart-bar" data-height="44"></span><span class="chart-x mono">6月</span></div>
+          <div class="chart-col"><span class="chart-bar" data-height="81"></span><span class="chart-x mono">7月</span></div>
+          <div class="chart-col"><span class="chart-bar" data-height="72"></span><span class="chart-x mono">8月</span></div>
+          <div class="chart-col"><span class="chart-bar" data-height="95"></span><span class="chart-x mono">9月</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 联系方式：个人数据区 ===== -->
+    <section class="section" id="contact">
+      <p class="section-kicker">CONTACT / 联系方式</p>
+      <h2 class="section-title">个人数据区</h2>
+      <div class="grid grid-contact">
+        <article class="card contact-card">
+          <p class="contact-label">GitHub</p>
+          <a class="contact-value mono" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+        </article>
+        <article class="card contact-card">
+          <p class="contact-label">QQ</p>
+          <a class="contact-value mono" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+        </article>
+        <article class="card contact-card">
+          <p class="contact-label">邮箱 1</p>
+          <a class="contact-value mono" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+        </article>
+        <article class="card contact-card">
+          <p class="contact-label">邮箱 2</p>
+          <a class="contact-value mono" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+        </article>
+        <article class="card contact-card">
+          <p class="contact-label">地点</p>
+          <span class="contact-value mono">湖南省长沙市</span>
+        </article>
+        <article class="card contact-card">
+          <p class="contact-label">时间</p>
+          <span class="contact-value mono" id="contactClock">--:--:--</span>
+          <span class="contact-sub" id="contactDate">----年--月--日 星期-</span>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="footer">
+    <p class="footer-line">© 2026 ok-lzr · 湖南省长沙市</p>
+    <p class="footer-sub">纯原生 HTML / CSS / JavaScript 构建 · 数据仪表盘风格</p>
+  </footer>
+
+  <!-- 返回顶部 -->
+  <button class="to-top" id="toTop" type="button" aria-label="返回顶部">↑</button>
+</body>
+</html>

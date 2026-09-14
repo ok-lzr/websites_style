@@ -1,0 +1,1043 @@
+/* =========================================================
+   23-sketch-handdrawn · 手绘涂鸦风格样式
+   配色 / 圆角 / 间距 统一收敛在 :root 变量里
+   ========================================================= */
+
+/* ===== 设计变量 ===== */
+:root {
+  /* 纸面与铅笔色 */
+  --paper: #fdf6e3;
+  --paper-deep: #f4e8c9;
+  --paper-card: #fffdf2;
+  --ink: #33302b;
+  --ink-soft: #6b6357;
+  --pencil: #8c8375;
+  --line: rgba(51, 48, 43, 0.55);
+  --line-soft: rgba(51, 48, 43, 0.22);
+
+  /* 涂鸦点缀色 */
+  --marker-red: #c0392b;
+  --marker-blue: #2f6fb0;
+  --marker-green: #4a7c48;
+  --tape: rgba(240, 219, 148, 0.85);
+
+  /* 形状 */
+  --radius: 14px 10px 16px 8px / 10px 16px 9px 15px;
+  --radius-sm: 10px 7px 11px 6px / 7px 11px 6px 10px;
+  --gap: 18px;
+  --pad: 20px;
+  --wrap: 1200px;
+
+  /* 手写字体栈（全部为系统自带，不联网加载） */
+  --font-hand: "Segoe Print", "Bradley Hand", "Comic Sans MS", "华文楷体", "STKaiti", "KaiTi", "楷体", cursive;
+  --font-title: "Comic Sans MS", "Segoe Print", "华文楷体", "STKaiti", "KaiTi", "楷体", cursive, sans-serif;
+  --font-body: "Segoe Print", "Comic Sans MS", "华文楷体", "STKaiti", "KaiTi", "楷体", system-ui, sans-serif;
+
+  /* 阴影：像纸片微微翘起 */
+  --shadow: 3px 4px 0 rgba(51, 48, 43, 0.16);
+  --shadow-soft: 2px 3px 0 rgba(51, 48, 43, 0.1);
+
+  /* 纸面纹理（纯 CSS 渐变，无图片文件） */
+  --texture-lines: repeating-linear-gradient(
+    to bottom,
+    transparent 0 27px,
+    rgba(47, 111, 176, 0.13) 27px 28px
+  );
+  --texture-grid: repeating-linear-gradient(
+      to right,
+      rgba(51, 48, 43, 0.05) 0 1px,
+      transparent 1px 30px
+    ),
+    repeating-linear-gradient(to bottom, rgba(51, 48, 43, 0.05) 0 1px, transparent 1px 30px);
+}
+
+/* ===== 夜间黑板模式（JS 切类名） ===== */
+body.theme-dark {
+  --paper: #24262a;
+  --paper-deep: #1b1d21;
+  --paper-card: #2c2f34;
+  --ink: #f2ede0;
+  --ink-soft: #c7c1b3;
+  --pencil: #9a938499;
+  --line: rgba(242, 237, 224, 0.6);
+  --line-soft: rgba(242, 237, 224, 0.22);
+  --marker-red: #ff8a76;
+  --marker-blue: #84bdf0;
+  --marker-green: #9ad39a;
+  --tape: rgba(150, 158, 130, 0.5);
+  --shadow: 3px 4px 0 rgba(0, 0, 0, 0.45);
+  --shadow-soft: 2px 3px 0 rgba(0, 0, 0, 0.35);
+  --texture-lines: repeating-linear-gradient(
+    to bottom,
+    transparent 0 27px,
+    rgba(132, 189, 240, 0.1) 27px 28px
+  );
+  --texture-grid: repeating-linear-gradient(
+      to right,
+      rgba(242, 237, 224, 0.05) 0 1px,
+      transparent 1px 30px
+    ),
+    repeating-linear-gradient(to bottom, rgba(242, 237, 224, 0.05) 0 1px, transparent 1px 30px);
+}
+
+/* ===== 基础重置 ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image: var(--texture-lines);
+  font-size: 17px;
+  line-height: 1.85;
+  /* 用 clip 而不是 hidden：既挡住横向溢出，也不会破坏 sticky 导航 */
+  overflow-x: hidden;
+  overflow-x: clip;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+a {
+  color: var(--marker-blue);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-title);
+  line-height: 1.4;
+}
+
+/* 手绘感标题：红笔在下面划一道 */
+h2 {
+  border-bottom: 3px dashed var(--line);
+  display: inline-block;
+  width: fit-content;
+  padding-bottom: 4px;
+}
+
+/* ===== 通用纸片（歪斜边框便签） ===== */
+.sketch-box {
+  position: relative;
+  background-color: var(--paper-card);
+  background-image: var(--texture-grid);
+  border: 2.5px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--pad);
+  filter: url(#roughPaper);
+}
+
+/* 偶尔用红色蜡笔描边，像改稿 */
+.sketch-box::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1.5px dashed var(--line-soft);
+  border-radius: var(--radius-sm);
+  pointer-events: none;
+}
+
+/* ===== 光标铅笔 & 阅读进度 ===== */
+.pencil-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: 26px;
+  color: var(--marker-red);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-40px, -40px) rotate(-18deg);
+  transition: opacity 0.25s ease;
+  z-index: 90;
+}
+
+.pencil-cursor.is-on {
+  opacity: 0.9;
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 6px;
+  background-color: var(--marker-red);
+  background-image: repeating-linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.45) 0 6px,
+    transparent 6px 12px
+  );
+  z-index: 100;
+}
+
+/* 隐藏的 SVG 滤镜容器：不占位、不被 tab 到、不产生滚动条 */
+svg[aria-hidden="true"] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: -9999px;
+  top: -9999px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* ===== 布局 ===== */
+.section {
+  width: 100%;
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 46px 22px;
+}
+
+.section-title {
+  font-size: clamp(24px, 3.4vw, 34px);
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+
+.title-doodle {
+  font-family: var(--font-hand);
+  font-size: 15px;
+  color: var(--marker-green);
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
+/* ===== 页头 / 导航 ===== */
+.site-header {
+  position: sticky;
+  top: 10px;
+  z-index: 80;
+  max-width: var(--wrap);
+  margin: 12px auto 0;
+  padding: 12px 18px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+  transform: rotate(-0.35deg);
+}
+
+.brand {
+  text-decoration: none;
+  color: var(--ink);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.brand-main {
+  font-family: var(--font-title);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.brand-sub {
+  font-family: var(--font-hand);
+  color: var(--marker-red);
+  font-size: 16px;
+}
+
+.brand-id {
+  font-size: 12px;
+  color: var(--pencil);
+  font-style: normal;
+}
+
+.tab-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* 导航做成手写小标签 */
+.tab-btn {
+  font-family: var(--font-hand);
+  font-size: 15px;
+  color: var(--ink);
+  background-color: transparent;
+  border: 2px dashed var(--line);
+  border-radius: var(--radius-sm);
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.tab-btn:hover,
+.tab-btn:focus-visible {
+  background-color: var(--paper-deep);
+  transform: translateY(-2px) rotate(-1.5deg);
+}
+
+.tab-btn.is-active {
+  background-color: var(--marker-red);
+  color: #fffdf2;
+  border-style: solid;
+  transform: rotate(-2deg);
+}
+
+.theme-toggle {
+  font-family: var(--font-hand);
+  font-size: 15px;
+  color: var(--ink);
+  background-color: var(--tape);
+  border: 2px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.theme-toggle:hover {
+  transform: rotate(2deg) scale(1.03);
+}
+
+/* ===== 首页 / 人物速写 ===== */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 26px;
+  align-items: start;
+  padding-top: 54px;
+}
+
+.hero-card {
+  transform: rotate(-0.4deg);
+}
+
+.hand-label {
+  font-family: var(--font-hand);
+  font-size: 15px;
+  color: var(--marker-green);
+  margin-bottom: 6px;
+}
+
+.hero-card h1 {
+  font-size: clamp(30px, 5vw, 46px);
+  letter-spacing: 1px;
+}
+
+.h1-scribble {
+  display: block;
+  font-size: clamp(16px, 2.4vw, 21px);
+  color: var(--marker-red);
+  transform: rotate(-1deg);
+}
+
+.type-line {
+  margin: 12px 0 6px;
+  font-size: clamp(16px, 2.2vw, 20px);
+  color: var(--marker-blue);
+  min-height: 2.2em;
+}
+
+.prompt-mark {
+  color: var(--marker-red);
+  margin-right: 4px;
+}
+
+.caret {
+  display: inline-block;
+  width: 3px;
+  height: 1.15em;
+  margin-left: 2px;
+  vertical-align: -0.2em;
+  background-color: var(--marker-blue);
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.hero-desc {
+  color: var(--ink-soft);
+  margin: 8px 0 16px;
+}
+
+.tag-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.tag {
+  font-size: 15px;
+  padding: 3px 12px;
+  border: 2px solid var(--line);
+  border-radius: 12px 8px 14px 7px / 8px 13px 7px 12px;
+  background-color: var(--paper-deep);
+  transform: rotate(-1deg);
+}
+
+.tag:nth-child(even) {
+  transform: rotate(1.2deg);
+}
+
+.stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 16px;
+  color: var(--ink-soft);
+  border-top: 2px dashed var(--line-soft);
+  padding-top: 14px;
+}
+
+.stat-num {
+  font-family: var(--font-title);
+  font-size: 26px;
+  color: var(--marker-red);
+  margin-right: 4px;
+}
+
+.dot-sep {
+  color: var(--pencil);
+}
+
+.hand-arrow {
+  font-family: var(--font-hand);
+  color: var(--marker-red);
+  font-size: 15px;
+  margin-top: 12px;
+}
+
+/* 便签纸 + 胶带 */
+.doodle-card {
+  transform: rotate(1.4deg);
+  background-color: #fffbe8;
+}
+
+body.theme-dark .doodle-card {
+  background-color: #2f3339;
+}
+
+.paper-note {
+  background-color: var(--paper-card);
+}
+
+.tape {
+  position: absolute;
+  width: 76px;
+  height: 24px;
+  background-color: var(--tape);
+  border-left: 1px dashed rgba(120, 104, 60, 0.35);
+  border-right: 1px dashed rgba(120, 104, 60, 0.35);
+  opacity: 0.95;
+}
+
+.tape-left {
+  top: -14px;
+  left: 26px;
+  transform: rotate(-8deg);
+}
+
+.tape-right {
+  top: -14px;
+  right: 30px;
+  transform: rotate(7deg);
+}
+
+.side-title {
+  font-size: 20px;
+  border-bottom: none;
+}
+
+.doodle-text {
+  margin: 10px 0 6px;
+  font-family: var(--font-hand);
+  font-size: 18px;
+  color: var(--ink);
+  min-height: 3.4em;
+  cursor: pointer;
+}
+
+.doodle-tip,
+.doodle-sign {
+  font-size: 13px;
+  color: var(--pencil);
+}
+
+.doodle-sign {
+  font-family: var(--font-hand);
+  text-align: right;
+}
+
+/* 手绘分割线：一条弯弯曲曲的铅笔痕 */
+.sketch-divider {
+  height: 12px;
+  margin: 12px 0 6px;
+  background-image: radial-gradient(circle at 6px 6px, var(--line) 2px, transparent 2.5px);
+  background-size: 14px 12px;
+  background-repeat: repeat-x;
+  opacity: 0.65;
+}
+
+/* ===== 技能条 ===== */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--gap);
+  margin-top: 20px;
+}
+
+.skill-box {
+  transform: rotate(-0.3deg);
+}
+
+.skill-box:nth-child(even) {
+  transform: rotate(0.6deg);
+}
+
+.skill-name {
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+
+/* 进度条：铅笔画的框 + 蜡笔填色 */
+.bar {
+  position: relative;
+  height: 18px;
+  border: 2px solid var(--line);
+  border-radius: var(--radius-sm);
+  background-color: var(--paper-deep);
+  overflow: hidden;
+}
+
+.bar-fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  background-color: var(--marker-blue);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.35) 0 6px,
+    transparent 6px 12px
+  );
+  transition: width 1.1s cubic-bezier(0.22, 0.9, 0.3, 1);
+}
+
+.skill-box:nth-child(2n) .bar-fill {
+  background-color: var(--marker-green);
+}
+
+.skill-box:nth-child(3n) .bar-fill {
+  background-color: var(--marker-red);
+}
+
+.bar-note {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-top: 6px;
+}
+
+/* ===== 作品涂鸦墙 ===== */
+.filter-tip,
+.filter-hint {
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+.filter-hint {
+  min-height: 1.8em;
+  color: var(--marker-green);
+  font-family: var(--font-hand);
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0 6px;
+}
+
+.chip {
+  font-family: var(--font-hand);
+  font-size: 15px;
+  color: var(--ink);
+  background-color: var(--paper-card);
+  border: 2px dashed var(--line);
+  border-radius: var(--radius-sm);
+  padding: 4px 14px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.2s ease;
+}
+
+.chip:hover {
+  transform: rotate(-1.5deg);
+}
+
+.chip.is-active {
+  background-color: var(--marker-blue);
+  color: #fffdf2;
+  border-style: solid;
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
+  gap: 24px;
+  margin-top: 18px;
+}
+
+.work-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.35s ease;
+}
+
+/* 便签一张张歪着贴 */
+.work-card:nth-child(3n + 1) {
+  transform: rotate(-1.1deg);
+}
+
+.work-card:nth-child(3n + 2) {
+  transform: rotate(0.9deg);
+}
+
+.work-card:nth-child(3n) {
+  transform: rotate(-0.5deg);
+}
+
+.work-card:hover,
+.work-card:focus-within {
+  transform: rotate(0deg) translateY(-5px);
+  box-shadow: 5px 7px 0 rgba(51, 48, 43, 0.2);
+}
+
+/* 筛选后收起的样子 */
+.work-card.is-hide {
+  display: none;
+}
+
+.work-card.is-faded {
+  opacity: 0;
+  transform: scale(0.94);
+}
+
+.pin {
+  position: absolute;
+  top: -16px;
+  right: 16px;
+  font-size: 22px;
+  transform: rotate(12deg);
+}
+
+.work-name {
+  font-size: 21px;
+  color: var(--ink);
+}
+
+.work-desc {
+  font-size: 15px;
+  color: var(--ink-soft);
+  flex: 1;
+}
+
+.mini-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.mini-tags li {
+  font-size: 13px;
+  padding: 1px 10px;
+  border: 1.5px dashed var(--line);
+  border-radius: 10px 6px 11px 6px / 6px 10px 6px 11px;
+  color: var(--marker-blue);
+}
+
+/* 手绘按钮 */
+.scribble-btn {
+  align-self: flex-start;
+  font-family: var(--font-hand);
+  font-size: 15px;
+  color: var(--ink);
+  background-color: var(--tape);
+  border: 2px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 4px 14px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.2s ease;
+}
+
+.scribble-btn:hover,
+.scribble-btn:focus-visible {
+  transform: rotate(-2deg) scale(1.04);
+  background-color: var(--paper-deep);
+}
+
+/* ===== 个人数据卡 ===== */
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 22px;
+  margin-top: 20px;
+}
+
+.data-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+a.data-card:hover,
+a.data-card:focus-visible {
+  transform: rotate(-1.6deg) translateY(-4px);
+  box-shadow: 6px 8px 0 rgba(51, 48, 43, 0.18);
+}
+
+.data-icon {
+  font-size: 24px;
+}
+
+.data-label {
+  font-family: var(--font-hand);
+  font-size: 14px;
+  color: var(--marker-green);
+  letter-spacing: 1px;
+}
+
+.data-value {
+  font-size: 18px;
+  color: var(--marker-blue);
+  word-break: break-all;
+}
+
+.data-card-static .data-value {
+  color: var(--ink);
+}
+
+.data-card-clock {
+  border-style: dashed;
+}
+
+/* 时钟 */
+.clock-date {
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+
+.clock-time {
+  font-family: var(--font-title);
+  font-size: clamp(28px, 4vw, 36px);
+  color: var(--marker-red);
+  letter-spacing: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.clock-week,
+.clock-theme {
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.clock-theme {
+  font-family: var(--font-hand);
+  color: var(--marker-green);
+}
+
+/* 基线说明 */
+.baseline-note {
+  margin-top: 24px;
+  transform: rotate(0.4deg);
+  border-style: dashed;
+}
+
+.baseline-title {
+  font-size: 19px;
+  margin-bottom: 6px;
+}
+
+.baseline-text {
+  font-size: 15px;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+.baseline-text b {
+  color: var(--marker-red);
+}
+
+code {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.95em;
+  background-color: var(--paper-deep);
+  padding: 0 5px;
+  border-radius: 5px;
+}
+
+/* ===== 联系 ===== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 22px;
+  margin-top: 20px;
+}
+
+.contact-card {
+  text-decoration: none;
+  color: var(--ink);
+  transform: rotate(-0.8deg);
+  transition: transform 0.18s ease;
+}
+
+.contact-card:nth-child(even) {
+  transform: rotate(0.9deg);
+}
+
+.contact-card:hover,
+.contact-card:focus-visible {
+  transform: rotate(0deg) translateY(-4px);
+}
+
+.contact-card h3 {
+  font-size: 18px;
+}
+
+.contact-card p {
+  color: var(--marker-blue);
+  font-size: 16px;
+  word-break: break-all;
+}
+
+.hand-hint {
+  margin-top: 20px;
+  font-family: var(--font-hand);
+  color: var(--ink-soft);
+}
+
+/* ===== 页脚 ===== */
+.site-footer {
+  max-width: var(--wrap);
+  margin: 20px auto 40px;
+  padding: 24px 22px 30px;
+  text-align: center;
+  border-top: 3px dashed var(--line-soft);
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+.footer-tip {
+  font-size: 13px;
+  color: var(--pencil);
+}
+
+/* ===== 便签详情弹窗 ===== */
+.note-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgba(30, 28, 24, 0.55);
+}
+
+.note-modal[hidden] {
+  display: none;
+}
+
+.note-paper {
+  max-width: 460px;
+  width: 100%;
+  transform: rotate(-1.2deg);
+  background-color: #fffbe8;
+  animation: popIn 0.22s ease-out;
+}
+
+body.theme-dark .note-paper {
+  background-color: #30343a;
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: rotate(-1.2deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-1.2deg) scale(1);
+  }
+}
+
+.note-title {
+  font-size: 22px;
+  border-bottom: none;
+}
+
+.note-body {
+  margin: 10px 0;
+  color: var(--ink-soft);
+}
+
+.note-sign {
+  font-family: var(--font-hand);
+  font-size: 14px;
+  color: var(--pencil);
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+/* ===== 滚动进入动画（JS 加 is-visible） ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px) rotate(-1deg);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.9, 0.25, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) rotate(0deg);
+}
+
+/* 进入动画结束后，悬停的“拿起来”效果要盖过 rotate(0)，所以提高一级权重 */
+.work-card.reveal.is-visible:hover,
+.work-card.reveal.is-visible:focus-within {
+  transform: rotate(0deg) translateY(-5px);
+}
+
+a.data-card.reveal.is-visible:hover,
+a.data-card.reveal.is-visible:focus-visible {
+  transform: rotate(-1.6deg) translateY(-4px);
+}
+
+.contact-card.reveal.is-visible:hover,
+.contact-card.reveal.is-visible:focus-visible {
+  transform: rotate(0deg) translateY(-4px);
+}
+
+/* ===== 键盘可访问性 ===== */
+:focus-visible {
+  outline: 3px dashed var(--marker-red);
+  outline-offset: 3px;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .site-header {
+    transform: none;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 16px;
+  }
+
+  .section {
+    padding: 34px 14px;
+  }
+
+  .sketch-box {
+    padding: 16px;
+  }
+
+  .site-header {
+    top: 6px;
+    margin-top: 8px;
+    gap: 8px;
+  }
+
+  .brand-main {
+    font-size: 21px;
+  }
+
+  .tab-btn,
+  .theme-toggle,
+  .chip,
+  .scribble-btn {
+    font-size: 14px;
+    padding: 4px 10px;
+  }
+
+  .work-grid,
+  .data-grid,
+  .contact-grid,
+  .skill-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 380px) {
+  body {
+    font-size: 15px;
+  }
+
+  .brand-id {
+    display: none;
+  }
+
+  .clock-time {
+    font-size: 26px;
+  }
+
+  .tape {
+    width: 56px;
+  }
+}
+
+/* ===== 尊重「减少动画」偏好 ===== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .pencil-cursor {
+    display: none;
+  }
+}

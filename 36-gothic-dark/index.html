@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="night">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#040305">
+  <meta name="author" content="ok-lzr">
+  <meta name="description" content="ok-lzr（码上生活）的哥特暗黑风格个人主页：作品集、技艺刻度、联系方式与长沙实时时钟。">
+  <title>ok-lzr · 码上生活 | 哥特暗黑个人主页</title>
+  <!-- 样式单：所有视觉都在 style.css -->
+  <link rel="stylesheet" href="style.css">
+  <!-- 行为脚本：defer 保证 DOM 解析完成后再执行 -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- ===== 全屏氛围装饰：烛光光晕 + 暗角（纯装饰，不参与交互） ===== -->
+  <div class="ember" id="ember" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <!-- ===== 页头：品牌 / 主导航 / 昼夜切换 ===== -->
+  <header class="site-header" id="top">
+    <div class="wrap header-inner">
+      <a class="brand" href="#hero">
+        <span class="brand-mark" aria-hidden="true">✠</span>
+        <span class="brand-name">ok-lzr</span>
+        <span class="brand-sub">码上生活</span>
+      </a>
+
+      <nav class="site-nav" id="siteNav" aria-label="主导航">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="#hero">序章</a></li>
+          <li><a class="nav-link" href="#craft">技艺</a></li>
+          <li><a class="nav-link" href="#works">圣器</a></li>
+          <li><a class="nav-link" href="#contact">铭文</a></li>
+          <li><a class="nav-link" href="#clock">日晷</a></li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="true">
+        <span class="theme-icon" id="themeIcon" aria-hidden="true">☾</span>
+        <span class="theme-label" id="themeLabel">夜之弥撒</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== 序章（I）：姓名、一句话简介、能力标签 ===== -->
+    <section class="hero" id="hero">
+      <div class="wrap hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow">✦ 哥特暗黑 · 个人主页 ✦</p>
+          <h1 class="hero-name">
+            ok-lzr
+            <span class="hero-name-sub">码上生活</span>
+          </h1>
+          <p class="hero-tagline">在纯黑底上，用暗红与骨白写代码。</p>
+
+          <!-- 打字机效果：内容由 script.js 逐字写入 -->
+          <p class="typewriter" aria-live="polite">
+            <span class="typewriter-text" id="typeText"></span><span class="caret" aria-hidden="true"></span>
+          </p>
+
+          <ul class="tag-list" aria-label="能力标签">
+            <li class="tag">原生 JavaScript</li>
+            <li class="tag">CSS 动效</li>
+            <li class="tag">数据可视化</li>
+            <li class="tag">Node.js 脚本</li>
+          </ul>
+
+          <p class="hero-actions">
+            <a class="btn btn-primary" href="#works">查看圣器</a>
+            <a class="btn btn-ghost" href="#contact">递上铭文</a>
+          </p>
+        </div>
+
+        <!-- 尖拱形窗饰：纯 CSS 裁切出的哥特拱窗 -->
+        <div class="hero-arch">
+          <div class="arch-frame">
+            <div class="arch-inner">
+              <span class="arch-glyph">OL</span>
+              <span class="arch-caption">MMXXVI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ornament" aria-hidden="true"><span>✦</span></div>
+    </section>
+
+    <!-- ===== 技艺（II）：技能刻度与自述 ===== -->
+    <section class="section" id="craft">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <p class="section-kicker">II · 技艺</p>
+          <h2 class="section-title">骨白之技</h2>
+          <p class="section-desc">写给浏览器的手艺：结构干净、样式克制、行为可读。下面是我最常握在手里的几件工具。</p>
+          <div class="rule" aria-hidden="true"></div>
+        </header>
+
+        <div class="craft-grid">
+          <!-- 技能条：滚入视口后由 IntersectionObserver 触发动画 -->
+          <div class="panel reveal">
+            <h3 class="panel-title">技艺刻度</h3>
+            <ul class="skill-list">
+              <li class="skill" data-level="92">
+                <p class="skill-head">
+                  <span class="skill-name">JavaScript / 原生 Web</span>
+                  <span class="skill-value"><span class="count" data-count="92">0</span>%</span>
+                </p>
+                <p class="skill-track"><span class="skill-bar"></span></p>
+              </li>
+              <li class="skill" data-level="88">
+                <p class="skill-head">
+                  <span class="skill-name">CSS 布局与动效</span>
+                  <span class="skill-value"><span class="count" data-count="88">0</span>%</span>
+                </p>
+                <p class="skill-track"><span class="skill-bar"></span></p>
+              </li>
+              <li class="skill" data-level="80">
+                <p class="skill-head">
+                  <span class="skill-name">TypeScript</span>
+                  <span class="skill-value"><span class="count" data-count="80">0</span>%</span>
+                </p>
+                <p class="skill-track"><span class="skill-bar"></span></p>
+              </li>
+              <li class="skill" data-level="74">
+                <p class="skill-head">
+                  <span class="skill-name">Node.js / 构建脚本</span>
+                  <span class="skill-value"><span class="count" data-count="74">0</span>%</span>
+                </p>
+                <p class="skill-track"><span class="skill-bar"></span></p>
+              </li>
+              <li class="skill" data-level="70">
+                <p class="skill-head">
+                  <span class="skill-name">数据可视化</span>
+                  <span class="skill-value"><span class="count" data-count="70">0</span>%</span>
+                </p>
+                <p class="skill-track"><span class="skill-bar"></span></p>
+              </li>
+            </ul>
+          </div>
+
+          <!-- 自述与数字滚动 -->
+          <div class="panel reveal">
+            <h3 class="panel-title">自述铭牌</h3>
+            <blockquote class="creed">
+              白天写页面，夜里改细节。喜欢直角与衬线，喜欢慢一点的动效、
+              快一点的加载，以及不会背叛你的原生 API。
+            </blockquote>
+            <ul class="stat-strip">
+              <li class="stat">
+                <span class="stat-num"><span class="count" data-count="6">0</span></span>
+                <span class="stat-label">线上作品</span>
+              </li>
+              <li class="stat">
+                <span class="stat-num"><span class="count" data-count="5">0</span></span>
+                <span class="stat-label">核心技艺</span>
+              </li>
+              <li class="stat">
+                <span class="stat-num"><span class="count" data-count="1024">0</span></span>
+                <span class="stat-label">深夜提交</span>
+              </li>
+              <li class="stat">
+                <span class="stat-num stat-num-fixed">UTC+8</span>
+                <span class="stat-label">所在时区</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 圣器（III）：作品列表与分类筛选 ===== -->
+    <section class="section" id="works">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <p class="section-kicker">III · 圣器</p>
+          <h2 class="section-title">手作陈列</h2>
+          <p class="section-desc">六件自己动手做的小东西，从导航站到番茄钟，全部跑在浏览器里。</p>
+          <div class="rule" aria-hidden="true"></div>
+        </header>
+
+        <!-- 筛选按钮：点击由 script.js 切换卡片显隐 -->
+        <div class="filters reveal" role="group" aria-label="作品分类筛选">
+          <button class="filter is-active" type="button" data-filter="all" aria-pressed="true">全部</button>
+          <button class="filter" type="button" data-filter="frontend" aria-pressed="false">前端</button>
+          <button class="filter" type="button" data-filter="data" aria-pressed="false">数据</button>
+          <button class="filter" type="button" data-filter="tool" aria-pressed="false">工具</button>
+        </div>
+
+        <ul class="work-grid" id="workGrid">
+          <li class="work-card reveal" data-tags="frontend tool">
+            <h3 class="work-title">夜幕导航站</h3>
+            <p class="work-desc">聚合常用工具与书签的个人起点页，支持模糊搜索、标签分组与本地收藏。</p>
+            <ul class="tech-list">
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>原生 JS</li>
+            </ul>
+            <p class="work-meta">2026 · 在线</p>
+          </li>
+
+          <li class="work-card reveal" data-tags="frontend data">
+            <h3 class="work-title">长沙天气看板</h3>
+            <p class="work-desc">实时天气与七日趋势，自绘温度曲线和降水概率条，手机竖屏也能一屏读完。</p>
+            <ul class="tech-list">
+              <li>Canvas</li>
+              <li>Fetch API</li>
+              <li>响应式</li>
+            </ul>
+            <p class="work-meta">2026 · 在线</p>
+          </li>
+
+          <li class="work-card reveal" data-tags="tool frontend">
+            <h3 class="work-title">骨白笔记</h3>
+            <p class="work-desc">本地优先的 Markdown 笔记，双向链接、全文检索，暗红主题下也不会刺眼。</p>
+            <ul class="tech-list">
+              <li>IndexedDB</li>
+              <li>Markdown</li>
+            </ul>
+            <p class="work-meta">2025 · 维护中</p>
+          </li>
+
+          <li class="work-card reveal" data-tags="tool frontend">
+            <h3 class="work-title">烛火番茄钟</h3>
+            <p class="work-desc">番茄工作法配白噪音，专注进度越深，烛光摇曳越缓，用来把夜晚切成小块。</p>
+            <ul class="tech-list">
+              <li>Web Audio</li>
+              <li>CSS 动画</li>
+            </ul>
+            <p class="work-meta">2025 · 在线</p>
+          </li>
+
+          <li class="work-card reveal" data-tags="tool data">
+            <h3 class="work-title">弥撒清单</h3>
+            <p class="work-desc">待办与习惯打卡，热力日历叠加周报统计，数据只存在浏览器里，不上传服务器。</p>
+            <ul class="tech-list">
+              <li>原生 JS</li>
+              <li>手绘 SVG</li>
+            </ul>
+            <p class="work-meta">2025 · 在线</p>
+          </li>
+
+          <li class="work-card reveal" data-tags="frontend">
+            <h3 class="work-title">尖拱组件库</h3>
+            <p class="work-desc">以尖拱轮廓、花纹装饰线和骨白配色为核心的纯 CSS 组件与图标集合。</p>
+            <ul class="tech-list">
+              <li>CSS Shapes</li>
+              <li>设计令牌</li>
+            </ul>
+            <p class="work-meta">2024 · 开源</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 铭文（IV）：个人数据区，逐项可点击 ===== -->
+    <section class="section" id="contact">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <p class="section-kicker">IV · 铭文</p>
+          <h2 class="section-title">联系方式</h2>
+          <p class="section-desc">以下每一行都可以点：代码在 GitHub，闲聊走 QQ，正式的事写信。</p>
+          <div class="rule" aria-hidden="true"></div>
+        </header>
+
+        <ul class="data-list">
+          <li class="data-item reveal">
+            <a class="data-link" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">
+              <span class="data-icon" aria-hidden="true">◈</span>
+              <span class="data-key">GitHub</span>
+              <span class="data-value">github.com/ok-lzr</span>
+              <span class="data-go" aria-hidden="true">↗</span>
+            </a>
+          </li>
+
+          <li class="data-item reveal">
+            <a class="data-link" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">
+              <span class="data-icon" aria-hidden="true">❖</span>
+              <span class="data-key">QQ</span>
+              <span class="data-value">386477796</span>
+              <span class="data-go" aria-hidden="true">↗</span>
+            </a>
+          </li>
+
+          <li class="data-item reveal">
+            <a class="data-link" href="mailto:csgdnrxg@163.com">
+              <span class="data-icon" aria-hidden="true">✉</span>
+              <span class="data-key">邮箱 · 网易</span>
+              <span class="data-value">csgdnrxg@163.com</span>
+              <span class="data-go" aria-hidden="true">↗</span>
+            </a>
+          </li>
+
+          <li class="data-item reveal">
+            <a class="data-link" href="mailto:3866477796@qq.com">
+              <span class="data-icon" aria-hidden="true">✉</span>
+              <span class="data-key">邮箱 · QQ</span>
+              <span class="data-value">3866477796@qq.com</span>
+              <span class="data-go" aria-hidden="true">↗</span>
+            </a>
+          </li>
+
+          <li class="data-item reveal">
+            <a class="data-link" href="#clock">
+              <span class="data-icon" aria-hidden="true">⚑</span>
+              <span class="data-key">地点</span>
+              <span class="data-value">湖南省长沙市</span>
+              <span class="data-go" aria-hidden="true">↓</span>
+            </a>
+          </li>
+
+          <li class="data-item reveal">
+            <a class="data-link" href="#clock">
+              <span class="data-icon" aria-hidden="true">◷</span>
+              <span class="data-key">长沙时间</span>
+              <span class="data-value" id="contactClock">--:--:--</span>
+              <span class="data-go" aria-hidden="true">↓</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 日晷（V）：长沙实时时钟 ===== -->
+    <section class="section clock-section" id="clock">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <p class="section-kicker">V · 日晷</p>
+          <h2 class="section-title">长沙时间</h2>
+          <p class="section-desc">
+            以浏览器当前时刻换算到 UTC+8，每秒刷新，含年月日、时:分:秒与星期。
+            昼夜主题的初始基准取自参考时刻 2026 年 9 月 14 日 22:07（UTC+8）。
+          </p>
+          <div class="rule" aria-hidden="true"></div>
+        </header>
+
+        <div class="clock-panel reveal">
+          <p class="clock-date" id="clockDate">———— 年 —— 月 —— 日</p>
+          <time class="clock-time" id="clockTime">--:--:--</time>
+          <p class="clock-meta">
+            <span id="clockWeekday">星期—</span>
+            <span class="clock-dot" aria-hidden="true">·</span>
+            <span id="clockZone">UTC+8 · 湖南省长沙市</span>
+          </p>
+          <p class="clock-phase" id="clockPhase">夜之弥撒</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="site-footer">
+    <div class="ornament" aria-hidden="true"><span>❦</span></div>
+    <p class="footer-text">© 2026 ok-lzr · 湖南省长沙市</p>
+    <p class="footer-sub">哥特暗黑 · 纯黑底 / 暗红 / 骨白 · 手写 HTML · CSS · JavaScript</p>
+    <p class="footer-sub"><a class="footer-top" href="#top">回到序章 ↑</a></p>
+  </footer>
+</body>
+</html>

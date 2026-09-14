@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ok-lzr 的个人主页 · 新粗野主义风格 · 湖南省长沙市">
+  <title>ok-lzr / 码上生活 · 个人主页</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- 顶部装饰条：撞色滚动条，纯样式装饰 -->
+  <div class="top-bar" aria-hidden="true"></div>
+
+  <!-- ===== 页头与导航 ===== -->
+  <header class="site-header" id="top">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true">ok</span>
+        <span class="brand-text">ok-lzr<em>码上生活</em></span>
+      </a>
+
+      <nav class="main-nav" aria-label="页面主导航">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="#about">关于我</a></li>
+          <li><a class="nav-link" href="#works">作品集</a></li>
+          <li><a class="nav-link" href="#skill">技能条</a></li>
+          <li><a class="nav-link" href="#contact">联系方式</a></li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">
+        <span class="theme-icon" aria-hidden="true">☀</span>
+        <span class="theme-label">日间</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== 首屏：姓名 / 简介 / 标签 / 实时时钟 ===== -->
+    <section class="hero" id="about" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-main">
+          <p class="sticker sticker-yellow">个人主页 · 新粗野主义</p>
+          <h1 class="hero-title" id="hero-title">
+            <span class="hero-name" id="typeName" data-typing="ok-lzr / 码上生活">ok-lzr / 码上生活</span>
+          </h1>
+          <p class="hero-lead">
+            一个在长沙写前端的普通人：喜欢把想法直接怼成一个能跑的页面，
+            讲究粗描边、硬阴影、撞色，也讲究代码干净、加载够快。
+          </p>
+
+          <ul class="tag-list" aria-label="能力标签">
+            <li class="tag tag-pink">原生 JS</li>
+            <li class="tag tag-blue">CSS 架构</li>
+            <li class="tag tag-yellow">响应式布局</li>
+            <li class="tag tag-green">性能优化</li>
+          </ul>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#works">看看作品 ↓</a>
+            <a class="btn btn-ghost" href="#contact">联系我 →</a>
+          </div>
+        </div>
+
+        <!-- 实时时钟卡片：由 script.js 每秒刷新 -->
+        <aside class="clock-card" aria-labelledby="clock-title">
+          <h2 class="clock-title" id="clock-title">长沙时间</h2>
+          <p class="clock-time" id="clockTime">--:--:--</p>
+          <p class="clock-date" id="clockDate">加载中…</p>
+          <p class="clock-week" id="clockWeek">星期—</p>
+          <div class="clock-foot">
+            <span class="clock-zone" id="clockZone">UTC+8</span>
+            <span class="clock-phase" id="clockPhase">判断中…</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===== 作品集 ===== -->
+    <section class="section" id="works" aria-labelledby="works-title">
+      <div class="wrap">
+        <header class="section-head">
+          <h2 class="section-title" id="works-title">作品集</h2>
+          <p class="section-sub">六件做完就一直在自己用的东西，点标签可以筛选。</p>
+        </header>
+
+        <!-- 筛选按钮：点击由 script.js 处理 -->
+        <div class="filter-bar" id="filterBar" role="group" aria-label="作品筛选">
+          <button class="filter-btn is-active" type="button" data-filter="all">全部</button>
+          <button class="filter-btn" type="button" data-filter="web">网页</button>
+          <button class="filter-btn" type="button" data-filter="tool">工具</button>
+          <button class="filter-btn" type="button" data-filter="data">数据</button>
+        </div>
+
+        <ul class="work-grid" id="workGrid">
+          <li class="work-card reveal" data-cat="web">
+            <span class="work-index" aria-hidden="true">01</span>
+            <h3 class="work-name">个人导航站</h3>
+            <p class="work-desc">把所有常用入口收进一页，支持分组折叠与关键词直达搜索。</p>
+            <ul class="chip-list">
+              <li class="chip">HTML</li>
+              <li class="chip">CSS Grid</li>
+              <li class="chip">原生 JS</li>
+            </ul>
+          </li>
+
+          <li class="work-card reveal" data-cat="data">
+            <span class="work-index" aria-hidden="true">02</span>
+            <h3 class="work-name">长沙天气看板</h3>
+            <p class="work-desc">抓取本地天气接口，用大字号卡片展示温度、湿度与未来三小时趋势。</p>
+            <ul class="chip-list">
+              <li class="chip">Fetch</li>
+              <li class="chip">Canvas</li>
+              <li class="chip">响应式</li>
+            </ul>
+          </li>
+
+          <li class="work-card reveal" data-cat="tool">
+            <span class="work-index" aria-hidden="true">03</span>
+            <h3 class="work-name">番茄钟 · 粗糙版</h3>
+            <p class="work-desc">25 分钟专注计时，带 Web Audio 提示音与本地记录统计。</p>
+            <ul class="chip-list">
+              <li class="chip">Web Audio</li>
+              <li class="chip">LocalStorage</li>
+            </ul>
+          </li>
+
+          <li class="work-card reveal" data-cat="web">
+            <span class="work-index" aria-hidden="true">04</span>
+            <h3 class="work-name">博客静态站</h3>
+            <p class="work-desc">自写的 Markdown 构建脚本，把文章编译成纯静态页面并自动生成目录。</p>
+            <ul class="chip-list">
+              <li class="chip">Node</li>
+              <li class="chip">Markdown</li>
+              <li class="chip">SEO</li>
+            </ul>
+          </li>
+
+          <li class="work-card reveal" data-cat="tool">
+            <span class="work-index" aria-hidden="true">05</span>
+            <h3 class="work-name">颜色对比度检查器</h3>
+            <p class="work-desc">输入前景与背景色，实时算出 WCAG 对比度并给出可读性结论。</p>
+            <ul class="chip-list">
+              <li class="chip">色彩</li>
+              <li class="chip">可访问性</li>
+            </ul>
+          </li>
+
+          <li class="work-card reveal" data-cat="data">
+            <span class="work-index" aria-hidden="true">06</span>
+            <h3 class="work-name">命令行记账本</h3>
+            <p class="work-desc">敲一行命令记一笔账，月底自动输出分类汇总与柱状图。</p>
+            <ul class="chip-list">
+              <li class="chip">CLI</li>
+              <li class="chip">JSON</li>
+              <li class="chip">统计</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p class="filter-empty" id="filterEmpty" hidden>这个分类下暂时没有作品。</p>
+      </div>
+    </section>
+
+    <!-- ===== 技能条：滚动进入视口后动画 ===== -->
+    <section class="section section-alt" id="skill" aria-labelledby="skill-title">
+      <div class="wrap">
+        <header class="section-head">
+          <h2 class="section-title" id="skill-title">技能条</h2>
+          <p class="section-sub">数字是我给自己的主观打分，滚到这儿就会动起来。</p>
+        </header>
+
+        <ul class="skill-list" id="skillList">
+          <li class="skill-item">
+            <div class="skill-meta">
+              <span class="skill-name">JavaScript / TypeScript</span>
+              <span class="skill-val" data-target="88">0%</span>
+            </div>
+            <div class="skill-track"><span class="skill-fill" data-value="88"></span></div>
+          </li>
+          <li class="skill-item">
+            <div class="skill-meta">
+              <span class="skill-name">CSS / 布局与动效</span>
+              <span class="skill-val" data-target="92">0%</span>
+            </div>
+            <div class="skill-track"><span class="skill-fill" data-value="92"></span></div>
+          </li>
+          <li class="skill-item">
+            <div class="skill-meta">
+              <span class="skill-name">HTML / 语义与可访问性</span>
+              <span class="skill-val" data-target="85">0%</span>
+            </div>
+            <div class="skill-track"><span class="skill-fill" data-value="85"></span></div>
+          </li>
+          <li class="skill-item">
+            <div class="skill-meta">
+              <span class="skill-name">构建工具 / Node 脚本</span>
+              <span class="skill-val" data-target="74">0%</span>
+            </div>
+            <div class="skill-track"><span class="skill-fill" data-value="74"></span></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 个人数据区：逐项可点击 ===== -->
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <header class="section-head">
+          <h2 class="section-title" id="contact-title">个人数据</h2>
+          <p class="section-sub">想聊技术、换友链或者约个长沙的咖啡，随便挑一个入口。</p>
+        </header>
+
+        <ul class="data-grid">
+          <li class="data-card reveal">
+            <span class="data-icon" aria-hidden="true">🐙</span>
+            <h3 class="data-label">GitHub</h3>
+            <a class="data-link" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+          </li>
+
+          <li class="data-card reveal">
+            <span class="data-icon" aria-hidden="true">🐧</span>
+            <h3 class="data-label">QQ</h3>
+            <a class="data-link" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+          </li>
+
+          <li class="data-card reveal">
+            <span class="data-icon" aria-hidden="true">✉</span>
+            <h3 class="data-label">邮箱 · 163</h3>
+            <a class="data-link" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+          </li>
+
+          <li class="data-card reveal">
+            <span class="data-icon" aria-hidden="true">✉</span>
+            <h3 class="data-label">邮箱 · QQ</h3>
+            <a class="data-link" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+          </li>
+
+          <li class="data-card reveal">
+            <span class="data-icon" aria-hidden="true">📍</span>
+            <h3 class="data-label">地点</h3>
+            <a class="data-link" href="https://www.amap.com/search?query=%E6%B9%96%E5%8D%97%E7%9C%81%E9%95%BF%E6%B2%99%E5%B8%82" target="_blank" rel="noopener noreferrer">湖南省长沙市</a>
+          </li>
+
+          <li class="data-card data-card-clock reveal">
+            <span class="data-icon" aria-hidden="true">⏰</span>
+            <h3 class="data-label">时间</h3>
+            <a class="data-link" href="#top">长沙时间 · <span id="dataClock">--:--:--</span></a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p class="footer-copy">© 2026 ok-lzr · 湖南省长沙市</p>
+      <p class="footer-note">纯原生 HTML / CSS / JavaScript 手写 · 无任何外部依赖</p>
+      <a class="back-top" href="#top">回到顶部 ↑</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ok-lzr / 码上生活 · 亚克力 Fluent 个人主页</title>
+<meta name="description" content="ok-lzr 的个人主页 —— 亚克力 Fluent 风格，层次亚克力材质、圆角、蓝色强调色与细微高光边。">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<!-- ===== 背景亚克力光斑层（纯装饰，不参与语义） ===== -->
+<div class="backdrop" aria-hidden="true">
+  <span class="blob blob-a"></span>
+  <span class="blob blob-b"></span>
+  <span class="blob blob-c"></span>
+  <span class="grid-lines"></span>
+</div>
+
+<!-- ===== 页面头部：身份牌 + 导航条 ===== -->
+<header class="site-header" id="top">
+  <nav class="nav acrylic" aria-label="主导航">
+    <a class="nav-brand" href="#top">
+      <span class="brand-mark" aria-hidden="true">◈</span>
+      <span class="brand-text">ok-lzr</span>
+    </a>
+    <!-- 桌面端导航链接；移动端收进汉堡菜单 -->
+    <ul class="nav-links" id="navLinks">
+      <li><a class="nav-link" href="#about">关于</a></li>
+      <li><a class="nav-link" href="#works">作品</a></li>
+      <li><a class="nav-link" href="#data">资料</a></li>
+      <li><a class="nav-link" href="#contact">联系</a></li>
+    </ul>
+    <div class="nav-tools">
+      <!-- 交互：深浅色（昼/夜）主题切换 -->
+      <button class="icon-btn" id="themeToggle" type="button" aria-pressed="false" title="切换昼 / 夜亚克力主题">
+        <span class="icon-btn-glyph" aria-hidden="true">☾</span>
+        <span class="sr-only">切换昼 / 夜主题</span>
+      </button>
+      <button class="icon-btn menu-btn" id="menuToggle" type="button" aria-expanded="false" aria-controls="navLinks" title="展开导航菜单">
+        <span class="icon-btn-glyph" aria-hidden="true">☰</span>
+        <span class="sr-only">展开导航菜单</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main class="page">
+  <!-- ===== 首屏 Hero：姓名 / 简介 / 技能标签 / 实时时钟 ===== -->
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="hero-card acrylic" data-reveal>
+      <p class="eyebrow">亚克力 Fluent · 个人主页</p>
+      <h1 class="hero-title" id="heroTitle">
+        <span class="hero-id">ok-lzr</span>
+        <span class="hero-slash" aria-hidden="true">/</span>
+        <span class="hero-alias">码上生活</span>
+      </h1>
+      <!-- 交互：打字机效果的目标容器 -->
+      <p class="hero-tagline">
+        <span id="typed">把想法做成能用的东西</span><span class="caret" aria-hidden="true"></span>
+      </p>
+      <ul class="tag-list" aria-label="技能标签">
+        <li class="tag">前端工程</li>
+        <li class="tag">数据可视化</li>
+        <li class="tag">静态站点生成</li>
+        <li class="tag">交互体验</li>
+      </ul>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#works">看看我的作品</a>
+        <a class="btn btn-ghost" href="#contact">与我联系</a>
+      </div>
+    </div>
+
+    <!-- 时钟卡片：长沙时间实时钟 + 昼/夜判定 -->
+    <aside class="clock-card acrylic" data-reveal aria-labelledby="clockTitle">
+      <header class="clock-head">
+        <h2 class="clock-title" id="clockTitle">
+          <span class="clock-dot" aria-hidden="true"></span>长沙时间
+        </h2>
+        <p class="clock-phase" id="clockPhase">正在读取…</p>
+      </header>
+      <p class="clock-time" id="clockTime">--:--:--</p>
+      <p class="clock-date" id="clockDate">————</p>
+      <dl class="clock-meta">
+        <div class="clock-meta-row">
+          <dt>时区</dt>
+          <dd>UTC+8 · 亚洲/上海</dd>
+        </div>
+        <div class="clock-meta-row">
+          <dt>光照</dt>
+          <dd id="clockSun">—</dd>
+        </div>
+      </dl>
+      <p class="clock-note">时钟由 <code>new Date()</code> 每秒实时驱动。基线参考时刻：2026-09-14（周一）22:07</p>
+    </aside>
+  </section>
+
+  <!-- ===== 关于：一句话简介 + 技能条（滚动进入动画触发） ===== -->
+  <section class="section" id="about" aria-labelledby="aboutTitle">
+    <header class="section-head" data-reveal>
+      <p class="section-kicker">01 · 关于</p>
+      <h2 class="section-title" id="aboutTitle">层次清楚的界面，才装得下复杂的事</h2>
+      <p class="section-sub">喜欢把散乱的信息整理成一块块有厚度、有高光的亚克力面板。</p>
+    </header>
+
+    <div class="about-grid">
+      <article class="card acrylic" data-reveal>
+        <h3 class="card-title">一句话简介</h3>
+        <p class="card-text">
+          我在长沙写前端：把日常里的小需求做成小工具，让界面像亚克力一样——
+          半透明地露出信息层次，又始终有清楚的边界。
+        </p>
+        <ul class="bullet-list">
+          <li>偏爱原生 HTML / CSS / JS，能不用依赖就不用</li>
+          <li>关注响应式、可读性与深色模式的真实体验</li>
+          <li>习惯先把结构拆干净，再谈视觉</li>
+        </ul>
+      </article>
+
+      <article class="card acrylic" data-reveal>
+        <h3 class="card-title">能力刻度</h3>
+        <ul class="skills" id="skills">
+          <li class="skill" data-value="92">
+            <div class="skill-head"><span class="skill-name">前端工程</span><span class="skill-num">0%</span></div>
+            <div class="skill-track"><span class="skill-fill"></span></div>
+          </li>
+          <li class="skill" data-value="86">
+            <div class="skill-head"><span class="skill-name">CSS 视觉与动效</span><span class="skill-num">0%</span></div>
+            <div class="skill-track"><span class="skill-fill"></span></div>
+          </li>
+          <li class="skill" data-value="78">
+            <div class="skill-head"><span class="skill-name">数据可视化</span><span class="skill-num">0%</span></div>
+            <div class="skill-track"><span class="skill-fill"></span></div>
+          </li>
+          <li class="skill" data-value="83">
+            <div class="skill-head"><span class="skill-name">交互体验设计</span><span class="skill-num">0%</span></div>
+            <div class="skill-track"><span class="skill-fill"></span></div>
+          </li>
+        </ul>
+      </article>
+    </div>
+
+    <!-- 数字滚动统计条 -->
+    <ul class="stats acrylic" data-reveal aria-label="个人数据概览">
+      <li class="stat">
+        <span class="stat-num" data-count="5">0</span>
+        <span class="stat-label">在维护的小项目</span>
+      </li>
+      <li class="stat">
+        <span class="stat-num" data-count="1460">0</span>
+        <span class="stat-label">写代码的天数</span>
+      </li>
+      <li class="stat">
+        <span class="stat-num" data-count="12">0</span>
+        <span class="stat-label">常读的技术方向</span>
+      </li>
+      <li class="stat">
+        <span class="stat-num" data-count="100">0</span>
+        <span class="stat-label">响应式及格分</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== 作品：可筛选的项目列表 ===== -->
+  <section class="section" id="works" aria-labelledby="worksTitle">
+    <header class="section-head" data-reveal>
+      <p class="section-kicker">02 · 作品</p>
+      <h2 class="section-title" id="worksTitle">做过的一些东西</h2>
+      <p class="section-sub">点击标签筛选项目，卡片会带着亚克力高光重新浮现。</p>
+    </header>
+
+    <!-- 交互：项目筛选按钮组 -->
+    <div class="filter-bar acrylic" data-reveal role="group" aria-label="作品筛选">
+      <button class="chip is-active" type="button" data-filter="all">全部</button>
+      <button class="chip" type="button" data-filter="web">网页</button>
+      <button class="chip" type="button" data-filter="tool">工具</button>
+      <button class="chip" type="button" data-filter="data">数据</button>
+    </div>
+
+    <ul class="work-grid" id="workGrid">
+      <li class="work-card acrylic" data-cat="web" data-reveal>
+        <div class="work-top">
+          <span class="work-icon" aria-hidden="true">▣</span>
+          <span class="work-cat">网页</span>
+        </div>
+        <h3 class="work-title">个人导航站</h3>
+        <p class="work-desc">把常用站点、订阅源与自建服务收在一页里，支持分组折叠与关键词直搜。</p>
+        <ul class="work-stack" aria-label="技术栈">
+          <li>HTML</li><li>CSS Grid</li><li>localStorage</li>
+        </ul>
+      </li>
+
+      <li class="work-card acrylic" data-cat="data" data-reveal>
+        <div class="work-top">
+          <span class="work-icon" aria-hidden="true">◔</span>
+          <span class="work-cat">数据</span>
+        </div>
+        <h3 class="work-title">长沙天气看板</h3>
+        <p class="work-desc">按小时展示气温与降水概率，昼夜用两套配色，早起一眼看清要不要带伞。</p>
+        <ul class="work-stack" aria-label="技术栈">
+          <li>原生 JS</li><li>Canvas</li><li>响应式</li>
+        </ul>
+      </li>
+
+      <li class="work-card acrylic" data-cat="tool" data-reveal>
+        <div class="work-top">
+          <span class="work-icon" aria-hidden="true">⌘</span>
+          <span class="work-cat">工具</span>
+        </div>
+        <h3 class="work-title">亚克力主题工坊</h3>
+        <p class="work-desc">拖动滑块实时调透明度、模糊半径与高光边，导出一份 CSS 变量文件。</p>
+        <ul class="work-stack" aria-label="技术栈">
+          <li>CSS 变量</li><li>backdrop-filter</li><li>表单交互</li>
+        </ul>
+      </li>
+
+      <li class="work-card acrylic" data-cat="tool" data-reveal>
+        <div class="work-top">
+          <span class="work-icon" aria-hidden="true">✎</span>
+          <span class="work-cat">工具</span>
+        </div>
+        <h3 class="work-title">Markdown 便签墙</h3>
+        <p class="work-desc">离线可用的小便签板，支持快捷语法与自动保存，关掉浏览器也不丢内容。</p>
+        <ul class="work-stack" aria-label="技术栈">
+          <li>IndexedDB</li><li>正则解析</li><li>键盘快捷键</li>
+        </ul>
+      </li>
+
+      <li class="work-card acrylic" data-cat="web" data-reveal>
+        <div class="work-top">
+          <span class="work-icon" aria-hidden="true">◈</span>
+          <span class="work-cat">网页</span>
+        </div>
+        <h3 class="work-title">像素色彩实验场</h3>
+        <p class="work-desc">从图片里抽主色并生成渐变色卡，顺手检查文字与背景的对比度是否达标。</p>
+        <ul class="work-stack" aria-label="技术栈">
+          <li>Canvas</li><li>色彩算法</li><li>无障碍</li>
+        </ul>
+      </li>
+
+      <li class="work-card acrylic" data-cat="data" data-reveal>
+        <div class="work-top">
+          <span class="work-icon" aria-hidden="true">▤</span>
+          <span class="work-cat">数据</span>
+        </div>
+        <h3 class="work-title">通勤时间记录仪</h3>
+        <p class="work-desc">每天记一笔从家到公司的耗时，月底自动结算平均值与最堵的那一天。</p>
+        <ul class="work-stack" aria-label="技术栈">
+          <li>本地存储</li><li>统计图表</li><li>PWA 思路</li>
+        </ul>
+      </li>
+    </ul>
+    <p class="filter-empty" id="filterEmpty" hidden>这个分类下暂时还没有项目。</p>
+  </section>
+
+  <!-- ===== 个人数据区：全部资料逐项可点击 ===== -->
+  <section class="section" id="data" aria-labelledby="dataTitle">
+    <header class="section-head" data-reveal>
+      <p class="section-kicker">03 · 资料</p>
+      <h2 class="section-title" id="dataTitle">个人数据</h2>
+      <p class="section-sub">每一项都可以直接点击：仓库、聊天、写信或看地图。</p>
+    </header>
+
+    <ul class="info-grid">
+      <li class="info-card acrylic" data-reveal>
+        <span class="info-icon" aria-hidden="true">◎</span>
+        <span class="info-key">GitHub</span>
+        <a class="info-value" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+      </li>
+      <li class="info-card acrylic" data-reveal>
+        <span class="info-icon" aria-hidden="true">✆</span>
+        <span class="info-key">QQ</span>
+        <a class="info-value" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+      </li>
+      <li class="info-card acrylic" data-reveal>
+        <span class="info-icon" aria-hidden="true">✉</span>
+        <span class="info-key">邮箱 1</span>
+        <a class="info-value" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+      </li>
+      <li class="info-card acrylic" data-reveal>
+        <span class="info-icon" aria-hidden="true">✉</span>
+        <span class="info-key">邮箱 2</span>
+        <a class="info-value" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+      </li>
+      <li class="info-card acrylic" data-reveal>
+        <span class="info-icon" aria-hidden="true">⌖</span>
+        <span class="info-key">地点</span>
+        <a class="info-value" href="https://www.openstreetmap.org/search?query=%E9%95%BF%E6%B2%99%E5%B8%82" target="_blank" rel="noopener noreferrer">湖南省长沙市</a>
+      </li>
+      <li class="info-card acrylic" data-reveal>
+        <span class="info-icon" aria-hidden="true">◷</span>
+        <span class="info-key">当刻时间</span>
+        <a class="info-value" href="#top" id="infoClock">长沙时间加载中…</a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== 联系：留言表单（本地校验，不发请求） ===== -->
+  <section class="section" id="contact" aria-labelledby="contactTitle">
+    <header class="section-head" data-reveal>
+      <p class="section-kicker">04 · 联系</p>
+      <h2 class="section-title" id="contactTitle">说点什么</h2>
+      <p class="section-sub">表单只在本地校验，不联网、不发送数据；真正的投递请走上面的邮箱。</p>
+    </header>
+
+    <div class="contact-grid">
+      <form class="card acrylic contact-form" id="contactForm" data-reveal novalidate>
+        <div class="field">
+          <label class="field-label" for="nameInput">怎么称呼你</label>
+          <input class="field-input" id="nameInput" name="name" type="text" autocomplete="name" placeholder="例如：长沙的朋友" required>
+        </div>
+        <div class="field">
+          <label class="field-label" for="mailInput">邮箱</label>
+          <input class="field-input" id="mailInput" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+        </div>
+        <div class="field">
+          <label class="field-label" for="msgInput">想说的话</label>
+          <textarea class="field-input field-area" id="msgInput" name="message" rows="4" placeholder="聊聊合作、项目或者长沙的天气。" required></textarea>
+        </div>
+        <div class="form-foot">
+          <button class="btn btn-primary" type="submit">本地校验一下</button>
+          <p class="form-status" id="formStatus" role="status">等待输入…</p>
+        </div>
+      </form>
+
+      <aside class="card acrylic contact-side" data-reveal>
+        <h3 class="card-title">更快的几条路</h3>
+        <ul class="contact-list">
+          <li>
+            <span class="contact-key">GitHub</span>
+            <a class="contact-val" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+          </li>
+          <li>
+            <span class="contact-key">QQ</span>
+            <a class="contact-val" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+          </li>
+          <li>
+            <span class="contact-key">邮箱</span>
+            <a class="contact-val" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+          </li>
+          <li>
+            <span class="contact-key">备用邮箱</span>
+            <a class="contact-val" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+          </li>
+          <li>
+            <span class="contact-key">所在地</span>
+            <span class="contact-val contact-val-plain">湖南省长沙市 · UTC+8</span>
+          </li>
+        </ul>
+        <p class="contact-hint">通常在晚上回复消息，白天可能在写代码。</p>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="site-footer">
+  <div class="footer-inner acrylic">
+    <p class="footer-copy">© 2026 ok-lzr · 湖南省长沙市</p>
+    <p class="footer-meta">原生 HTML / CSS / JS 构建 · 亚克力 Fluent 风格</p>
+    <!-- 回到顶部：平滑滚动交互 -->
+    <button class="btn btn-ghost btn-top" id="toTop" type="button">回到顶部 ↑</button>
+  </div>
+</footer>
+
+<!-- 滚动进度高光条（JS 驱动宽度） -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+</body>
+</html>

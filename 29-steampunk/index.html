@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ok-lzr / 码上生活 · 蒸汽朋克工坊</title>
+<meta name="description" content="ok-lzr 的个人主页 —— 黄铜齿轮与代码构成的蒸汽朋克工坊">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<!-- ===== 顶部导航（黄铜仪表盘） ===== -->
+<header class="site-header">
+  <nav class="nav" aria-label="主导航">
+    <a class="brand" href="#hero">
+      <span class="brand-gear" aria-hidden="true">⚙</span>
+      <span class="brand-text">ok-lzr <em>/ 码上生活</em></span>
+    </a>
+    <ul class="nav-list">
+      <li><a class="nav-link" href="#about">工坊简介</a></li>
+      <li><a class="nav-link" href="#works">机械作品</a></li>
+      <li><a class="nav-link" href="#data">铭牌数据</a></li>
+    </ul>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">
+      <span class="theme-icon" aria-hidden="true">☀</span>
+      <span class="theme-label">白昼模式</span>
+    </button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ===== 首屏：姓名 + 简介 + 技能标签 ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="hero-plate rivets reveal">
+        <p class="hero-kicker">蒸汽朋克 · 黄铜工坊 No.29</p>
+        <h1 class="hero-name">
+          <span class="type-target" id="typeName">ok-lzr</span><span class="caret" aria-hidden="true"></span>
+        </h1>
+        <p class="hero-sub">码上生活 · 让齿轮与代码一同转动</p>
+        <p class="hero-desc">
+          一句话简介：我是一名在黄铜管道与像素光晕之间写代码的工程师，
+          喜欢把复杂的系统拆成一颗颗可维护的齿轮，再让它们安静而精准地咬合。
+        </p>
+        <ul class="tag-list" aria-label="能力标签">
+          <li class="tag">前端工程</li>
+          <li class="tag">数据可视化</li>
+          <li class="tag">自动化脚本</li>
+          <li class="tag">界面设计</li>
+        </ul>
+        <div class="hero-actions">
+          <a class="btn btn-brass" href="#works">查看作品</a>
+          <a class="btn btn-iron" href="#data">铭牌数据</a>
+        </div>
+      </div>
+
+      <!-- 纯 CSS 绘制的齿轮机芯 -->
+      <div class="hero-machine reveal" aria-hidden="true">
+        <div class="gear gear-lg"><span class="gear-hub"></span></div>
+        <div class="gear gear-md"><span class="gear-hub"></span></div>
+        <div class="gear gear-sm"><span class="gear-hub"></span></div>
+        <div class="glow-core"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 工坊简介 + 技能条 ===== -->
+  <section class="section" id="about">
+    <h2 class="section-title"><span class="title-deco" aria-hidden="true">⚙</span> 工坊简介</h2>
+    <div class="about-grid">
+      <article class="about-card rivets reveal">
+        <h3 class="card-title">关于这台机器</h3>
+        <p>
+          工坊不大，铺满铜管与图纸。日常工作是搭建稳定、易读、可持续演进的前端界面，
+          并用脚本把重复劳动交给机器。信奉"结构先于装饰，可读先于聪明"。
+        </p>
+        <p>
+          闲时研究配色与排版，偶尔把长沙的天气、日程和各种数据做成一块块看板，
+          挂在墙上像仪表盘一样缓慢转动。
+        </p>
+      </article>
+
+      <article class="about-card rivets reveal">
+        <h3 class="card-title">阀门压力表（技能）</h3>
+        <ul class="skill-list" id="skillList">
+          <li class="skill" data-level="92">
+            <div class="skill-head"><span class="skill-name">HTML / CSS</span><span class="skill-num">0%</span></div>
+            <div class="skill-track"><div class="skill-bar"></div></div>
+          </li>
+          <li class="skill" data-level="86">
+            <div class="skill-head"><span class="skill-name">JavaScript</span><span class="skill-num">0%</span></div>
+            <div class="skill-track"><div class="skill-bar"></div></div>
+          </li>
+          <li class="skill" data-level="78">
+            <div class="skill-head"><span class="skill-name">数据可视化</span><span class="skill-num">0%</span></div>
+            <div class="skill-track"><div class="skill-bar"></div></div>
+          </li>
+          <li class="skill" data-level="70">
+            <div class="skill-head"><span class="skill-name">后端与自动化</span><span class="skill-num">0%</span></div>
+            <div class="skill-track"><div class="skill-bar"></div></div>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== 机械作品列表 ===== -->
+  <section class="section" id="works">
+    <h2 class="section-title"><span class="title-deco" aria-hidden="true">⚙</span> 机械作品</h2>
+    <p class="section-lead">下面这些装置都已通电运转，可按下铜制按钮筛选类别。</p>
+
+    <div class="filter-bar" id="filterBar" role="group" aria-label="作品筛选">
+      <button class="filter-btn is-active" type="button" data-filter="all">全部装置</button>
+      <button class="filter-btn" type="button" data-filter="web">界面</button>
+      <button class="filter-btn" type="button" data-filter="data">看板</button>
+      <button class="filter-btn" type="button" data-filter="tool">工具</button>
+    </div>
+
+    <ul class="work-grid" id="workGrid">
+      <li class="work-card rivets reveal" data-cat="web">
+        <h3 class="work-title">个人导航站</h3>
+        <p class="work-desc">把常去的站点收进一只黄铜抽屉，支持分组、模糊搜索与键盘快速跳转。</p>
+        <ul class="stack"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+      </li>
+      <li class="work-card rivets reveal" data-cat="data">
+        <h3 class="work-title">长沙天气看板</h3>
+        <p class="work-desc">挂在墙上的城市仪表：气温曲线、湿度与空气质量的实时读盘。</p>
+        <ul class="stack"><li>JavaScript</li><li>Canvas</li><li>API</li></ul>
+      </li>
+      <li class="work-card rivets reveal" data-cat="tool">
+        <h3 class="work-title">齿轮构建流水线</h3>
+        <p class="work-desc">一条自动跑的打包脚本，压缩、校验、发布一次完成，减少手工扳手操作。</p>
+        <ul class="stack"><li>Node.js</li><li>CLI</li></ul>
+      </li>
+      <li class="work-card rivets reveal" data-cat="web">
+        <h3 class="work-title">旧报纸主题博客</h3>
+        <p class="work-desc">把文章排版成十九世纪铅字报纸，衬线字体、分栏与首字下沉。</p>
+        <ul class="stack"><li>CSS Grid</li><li>排版</li></ul>
+      </li>
+      <li class="work-card rivets reveal" data-cat="data">
+        <h3 class="work-title">习惯蒸汽机</h3>
+        <p class="work-desc">用连续打卡给锅炉加压，中断则泄压，一年下来的热力图便是成绩单。</p>
+        <ul class="stack"><li>JavaScript</li><li>LocalStorage</li></ul>
+      </li>
+      <li class="work-card rivets reveal" data-cat="tool">
+        <h3 class="work-title">配色试验台</h3>
+        <p class="work-desc">输入一组主色，自动推导完整的明暗阶与对比度报告，专治配色犹豫。</p>
+        <ul class="stack"><li>CSS 变量</li><li>色彩计算</li></ul>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== 铭牌数据：联系方式 + 实时时钟 ===== -->
+  <section class="section" id="data">
+    <h2 class="section-title"><span class="title-deco" aria-hidden="true">⚙</span> 铭牌数据</h2>
+
+    <div class="data-grid">
+      <div class="plate rivets reveal">
+        <h3 class="card-title">联络管道</h3>
+        <ul class="contact-list">
+          <li class="contact-item">
+            <span class="contact-icon" aria-hidden="true">⌘</span>
+            <span class="contact-key">GitHub</span>
+            <a class="contact-val" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+          </li>
+          <li class="contact-item">
+            <span class="contact-icon" aria-hidden="true">✆</span>
+            <span class="contact-key">QQ</span>
+            <a class="contact-val" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+          </li>
+          <li class="contact-item">
+            <span class="contact-icon" aria-hidden="true">✉</span>
+            <span class="contact-key">邮箱 1</span>
+            <a class="contact-val" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+          </li>
+          <li class="contact-item">
+            <span class="contact-icon" aria-hidden="true">✉</span>
+            <span class="contact-key">邮箱 2</span>
+            <a class="contact-val" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+          </li>
+          <li class="contact-item">
+            <span class="contact-icon" aria-hidden="true">◎</span>
+            <span class="contact-key">地点</span>
+            <span class="contact-val is-static">湖南省长沙市</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="plate rivets reveal">
+        <h3 class="card-title">长沙时间</h3>
+        <div class="clock" id="clock">
+          <p class="clock-date" id="clockDate">——</p>
+          <p class="clock-time" id="clockTime">--:--:--</p>
+          <p class="clock-week" id="clockWeek">星期—</p>
+        </div>
+        <p class="clock-zone">时区 UTC+8 · 实时驱动</p>
+        <p class="clock-mode" id="clockMode">正在判断昼夜……</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="site-footer">
+  <div class="footer-gear" aria-hidden="true">⚙</div>
+  <p>© 2026 ok-lzr · 湖南省长沙市</p>
+  <p class="footer-note">由黄铜、齿轮与原生 HTML / CSS / JavaScript 手工打造</p>
+</footer>
+
+</body>
+</html>

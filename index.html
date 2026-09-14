@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<!--
+  主导航页：50 种风格个人主页总入口
+  结构：页头（身份 + 长沙实时时钟 + 联系方式）→ 工具栏（搜索 / 分类 / 预览密度）→ 50 张风格卡片 → 关于与联系 → 页脚
+  每个风格都是独立小文件夹：index.html + style.css + script.js（结构、样式、行为严格分文件）
+  预览图为 previews/*.png（由本机无头浏览器渲染的真实截图）
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>50 种风格个人主页 · 风格导航 | ok-lzr</title>
+  <meta name="description" content="ok-lzr 的 50 种风格个人主页合集导航：霓虹赛博朋克、日式极简、玻璃拟态、粗野主义…… 每张卡片含风格名称、简介与样式预览。坐标湖南省长沙市。">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- 背景装饰层（纯 CSS 绘制的径向光斑与渐变） -->
+  <div class="bg" aria-hidden="true"></div>
+
+  <!-- ===== 页头：身份、简介、联系方式与长沙实时时钟 ===== -->
+  <header class="site-head">
+    <div class="wrap">
+      <nav class="topbar" aria-label="页面导航">
+        <a class="brand" href="#top"><span class="brand__mark" aria-hidden="true">◆</span> ok-lzr <span class="brand__sub">/ 50 Styles</span></a>
+        <ul class="topnav">
+          <li><a href="#gallery">风格画廊</a></li>
+          <li><a href="#about">关于与联系</a></li>
+          <li><a href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        </ul>
+        <button class="themebtn" id="themeBtn" type="button" aria-pressed="false">
+          <span id="themeIcon" aria-hidden="true">☀</span><span id="themeText">浅色</span>
+        </button>
+      </nav>
+
+      <div class="hero" id="top">
+        <div class="hero__main">
+          <p class="hero__kicker">个人主页风格合集 · 纯原生 HTML / CSS / JS · 共 <strong>50</strong> 种风格</p>
+          <h1 class="hero__title">50 种风格，<em>同一个我</em></h1>
+          <p class="hero__desc">
+            同一份个人信息（ok-lzr · <a href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a> · 湖南省长沙市），
+            被写成了 50 套完全不同的视觉语言：到底哪一种最像我？点开任意一张卡片，直接进入对应风格的主页。
+          </p>
+
+          <ul class="facts">
+            <li class="fact"><span class="fact__k">GitHub</span><a class="fact__v" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a></li>
+            <li class="fact"><span class="fact__k">QQ</span><a class="fact__v" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a></li>
+            <li class="fact"><span class="fact__k">邮箱 1</span><a class="fact__v" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a></li>
+            <li class="fact"><span class="fact__k">邮箱 2</span><a class="fact__v" href="mailto:3866477796@qq.com">3866477796@qq.com</a></li>
+            <li class="fact"><span class="fact__k">地点</span><span class="fact__v">湖南省长沙市</span></li>
+            <li class="fact"><span class="fact__k">长沙时间</span><span class="fact__v" id="clockInline">加载中…</span></li>
+          </ul>
+        </div>
+
+        <aside class="hero__clock" aria-label="长沙实时时钟">
+          <div class="clock__row">
+            <span class="clock__led" id="clockLed" aria-hidden="true"></span>
+            <span class="clock__label">长沙时间 · UTC+8</span>
+            <span class="clock__mode" id="clockMode">—</span>
+          </div>
+          <p class="clock__time" id="clockTime">--:--:--</p>
+          <p class="clock__date" id="clockDate">—</p>
+          <p class="clock__week" id="clockWeek">—</p>
+          <p class="clock__note">参考基线（网络查询）：2026-09-14（星期一）22:07 UTC+8，仅用于昼夜主题初值；时钟本身按本地时间实时刷新。</p>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- ===== 工具栏：分类筛选、关键词搜索、预览密度 ===== -->
+    <section class="toolbar" aria-label="筛选与搜索">
+      <div class="filters" id="filters" role="group" aria-label="按风格类别筛选">
+        <button class="filter is-active" type="button" data-filter="all">全部 <span class="filter__n">50</span></button>
+        <button class="filter" type="button" data-filter="future">未来科技 <span class="filter__n">6</span></button>
+        <button class="filter" type="button" data-filter="minimal">极简留白 <span class="filter__n">5</span></button>
+        <button class="filter" type="button" data-filter="color">色彩撞色 <span class="filter__n">7</span></button>
+        <button class="filter" type="button" data-filter="retro">复古怀旧 <span class="filter__n">6</span></button>
+        <button class="filter" type="button" data-filter="dark">暗黑深沉 <span class="filter__n">5</span></button>
+        <button class="filter" type="button" data-filter="design">设计主义 <span class="filter__n">6</span></button>
+        <button class="filter" type="button" data-filter="editorial">排版印刷 <span class="filter__n">4</span></button>
+        <button class="filter" type="button" data-filter="nature">自然有机 <span class="filter__n">5</span></button>
+        <button class="filter" type="button" data-filter="material">材质拟物 <span class="filter__n">6</span></button>
+      </div>
+
+      <div class="tools">
+        <label class="search">
+          <span class="search__icon" aria-hidden="true">⌕</span>
+          <span class="sr">按名称或文件夹搜索风格</span>
+          <input type="search" id="search" placeholder="搜索风格名 / 文件夹，如 玻璃、pixel、deco（按 / 快速聚焦）" autocomplete="off">
+        </label>
+        <div class="density" role="group" aria-label="预览密度">
+          <button class="dbtn" type="button" data-cols="2">大图</button>
+          <button class="dbtn is-active" type="button" data-cols="3">标准</button>
+          <button class="dbtn" type="button" data-cols="4">紧凑</button>
+        </div>
+      </div>
+      <p class="result" id="result" role="status" aria-live="polite">共 50 种风格</p>
+    </section>
+
+    <!-- ===== 风格画廊：每张卡片 = 风格名称 + 简介 + 样式预览 ===== -->
+    <section class="gallery" id="gallery" aria-label="风格画廊">
+
+      <article class="card" data-cat="future" data-name="霓虹赛博朋克 00-neon-cyberpunk" style="--accent: #38f0ff">
+        <a class="card__preview" href="00-neon-cyberpunk/index.html" title="打开「霓虹赛博朋克」风格主页">
+          <img class="card__img" alt="霓虹赛博朋克风格主页预览图" decoding="async" src="previews/00-neon-cyberpunk.png">
+          <span class="card__num">00</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">未来科技</p>
+          <h2 class="card__name">霓虹赛博朋克</h2>
+          <p class="card__desc">深黑底配青与品红霓虹发光、扫描线与等宽字体，故障描边像深夜的控制台。</p>
+          <p class="card__path">00-neon-cyberpunk/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="00-neon-cyberpunk/index.html">进入主页</a>
+          <a class="btn" href="00-neon-cyberpunk/style.css">CSS</a>
+          <a class="btn" href="00-neon-cyberpunk/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="minimal" data-name="日式极简禅意 01-minimal-japanese" style="--accent: #c0392b">
+        <a class="card__preview" href="01-minimal-japanese/index.html" title="打开「日式极简禅意」风格主页">
+          <img class="card__img" alt="日式极简禅意风格主页预览图" decoding="async" src="previews/01-minimal-japanese.png">
+          <span class="card__num">01</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">极简留白</p>
+          <h2 class="card__name">日式极简禅意</h2>
+          <p class="card__desc">大面积留白、墨黑与米白、细线分隔，一点朱红点睛，安静而克制。</p>
+          <p class="card__path">01-minimal-japanese/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="01-minimal-japanese/index.html">进入主页</a>
+          <a class="btn" href="01-minimal-japanese/style.css">CSS</a>
+          <a class="btn" href="01-minimal-japanese/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="color" data-name="玻璃拟态 02-glassmorphism" style="--accent: #7db9ff">
+        <a class="card__preview" href="02-glassmorphism/index.html" title="打开「玻璃拟态」风格主页">
+          <img class="card__img" alt="玻璃拟态风格主页预览图" decoding="async" src="previews/02-glassmorphism.png">
+          <span class="card__num">02</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">色彩撞色</p>
+          <h2 class="card__name">玻璃拟态</h2>
+          <p class="card__desc">彩色流体渐变之上叠放磨砂玻璃卡片，模糊、半透明与柔光描边。</p>
+          <p class="card__path">02-glassmorphism/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="02-glassmorphism/index.html">进入主页</a>
+          <a class="btn" href="02-glassmorphism/style.css">CSS</a>
+          <a class="btn" href="02-glassmorphism/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="design" data-name="粗野主义 03-brutalist-raw" style="--accent: #ff5c39">
+        <a class="card__preview" href="03-brutalist-raw/index.html" title="打开「粗野主义」风格主页">
+          <img class="card__img" alt="粗野主义风格主页预览图" decoding="async" src="previews/03-brutalist-raw.png">
+          <span class="card__num">03</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">设计主义</p>
+          <h2 class="card__name">粗野主义</h2>
+          <p class="card__desc">粗黑描边、饱和撞色、超大粗体标题与硬阴影，拒绝一切圆角。</p>
+          <p class="card__path">03-brutalist-raw/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="03-brutalist-raw/index.html">进入主页</a>
+          <a class="btn" href="03-brutalist-raw/style.css">CSS</a>
+          <a class="btn" href="03-brutalist-raw/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="dark" data-name="深色科技感 04-dark-tech" style="--accent: #35d6f5">
+        <a class="card__preview" href="04-dark-tech/index.html" title="打开「深色科技感」风格主页">
+          <img class="card__img" alt="深色科技感风格主页预览图" decoding="async" src="previews/04-dark-tech.png">
+          <span class="card__num">04</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">暗黑深沉</p>
+          <h2 class="card__name">深色科技感</h2>
+          <p class="card__desc">深蓝灰底配克制的青色高光与网格背景，数据看板式的信息密度。</p>
+          <p class="card__path">04-dark-tech/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="04-dark-tech/index.html">进入主页</a>
+          <a class="btn" href="04-dark-tech/style.css">CSS</a>
+          <a class="btn" href="04-dark-tech/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="minimal" data-name="苹果风 05-apple-clean" style="--accent: #0a84ff">
+        <a class="card__preview" href="05-apple-clean/index.html" title="打开「苹果风」风格主页">
+          <img class="card__img" alt="苹果风风格主页预览图" decoding="async" src="previews/05-apple-clean.png">
+          <span class="card__num">05</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">极简留白</p>
+          <h2 class="card__name">苹果风</h2>
+          <p class="card__desc">大量留白、细腻渐变、系统无衬线字体与圆角卡片，克制而顺滑。</p>
+          <p class="card__path">05-apple-clean/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="05-apple-clean/index.html">进入主页</a>
+          <a class="btn" href="05-apple-clean/style.css">CSS</a>
+          <a class="btn" href="05-apple-clean/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="editorial" data-name="杂志排版 06-magazine-editorial" style="--accent: #d8452f">
+        <a class="card__preview" href="06-magazine-editorial/index.html" title="打开「杂志排版」风格主页">
+          <img class="card__img" alt="杂志排版风格主页预览图" decoding="async" src="previews/06-magazine-editorial.png">
+          <span class="card__num">06</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">排版印刷</p>
+          <h2 class="card__name">杂志排版</h2>
+          <p class="card__desc">衬线大标题、多栏网格、首字下沉与引文块，像翻阅一本设计杂志。</p>
+          <p class="card__path">06-magazine-editorial/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="06-magazine-editorial/index.html">进入主页</a>
+          <a class="btn" href="06-magazine-editorial/style.css">CSS</a>
+          <a class="btn" href="06-magazine-editorial/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="design" data-name="扁平 Material 07-flat-material" style="--accent: #6200ee">
+        <a class="card__preview" href="07-flat-material/index.html" title="打开「扁平 Material」风格主页">
+          <img class="card__img" alt="扁平 Material 风格主页预览图" decoding="async" src="previews/07-flat-material.png">
+          <span class="card__num">07</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">设计主义</p>
+          <h2 class="card__name">扁平 Material</h2>
+          <p class="card__desc">Material 配色、卡片阴影层级、圆形悬浮按钮与点击涟漪反馈。</p>
+          <p class="card__path">07-flat-material/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="07-flat-material/index.html">进入主页</a>
+          <a class="btn" href="07-flat-material/style.css">CSS</a>
+          <a class="btn" href="07-flat-material/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="color" data-name="新粗野主义 08-neubrutalism" style="--accent: #ffd93d">
+        <a class="card__preview" href="08-neubrutalism/index.html" title="打开「新粗野主义」风格主页">
+          <img class="card__img" alt="新粗野主义风格主页预览图" decoding="async" src="previews/08-neubrutalism.png">
+          <span class="card__num">08</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">色彩撞色</p>
+          <h2 class="card__name">新粗野主义</h2>
+          <p class="card__desc">明黄、粉与蓝的高饱和撞色，黑描边、位移硬阴影与贴纸标签。</p>
+          <p class="card__path">08-neubrutalism/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="08-neubrutalism/index.html">进入主页</a>
+          <a class="btn" href="08-neubrutalism/style.css">CSS</a>
+          <a class="btn" href="08-neubrutalism/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="retro" data-name="绿色终端 09-terminal-green" style="--accent: #39ff88">
+        <a class="card__preview" href="09-terminal-green/index.html" title="打开「绿色终端」风格主页">
+          <img class="card__img" alt="绿色终端风格主页预览图" decoding="async" src="previews/09-terminal-green.png">
+          <span class="card__num">09</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">复古怀旧</p>
+          <h2 class="card__name">绿色终端</h2>
+          <p class="card__desc">纯黑底磷光绿等宽字、命令行提示符与打字机输出，黑客气氛。</p>
+          <p class="card__path">09-terminal-green/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="09-terminal-green/index.html">进入主页</a>
+          <a class="btn" href="09-terminal-green/style.css">CSS</a>
+          <a class="btn" href="09-terminal-green/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="retro" data-name="90 年代复古 10-retro-90s" style="--accent: #ff2ee6">
+        <a class="card__preview" href="10-retro-90s/index.html" title="打开「90 年代复古」风格主页">
+          <img class="card__img" alt="90 年代复古风格主页预览图" decoding="async" src="previews/10-retro-90s.png">
+          <span class="card__num">10</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">复古怀旧</p>
+          <h2 class="card__name">90 年代复古</h2>
+          <p class="card__desc">银河紫渐变、跑马灯字幕、访客计数器与荧光下划线链接。</p>
+          <p class="card__path">10-retro-90s/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="10-retro-90s/index.html">进入主页</a>
+          <a class="btn" href="10-retro-90s/style.css">CSS</a>
+          <a class="btn" href="10-retro-90s/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="editorial" data-name="瑞士国际主义 11-swiss-grid" style="--accent: #e30613">
+        <a class="card__preview" href="11-swiss-grid/index.html" title="打开「瑞士国际主义」风格主页">
+          <img class="card__img" alt="瑞士国际主义风格主页预览图" decoding="async" src="previews/11-swiss-grid.png">
+          <span class="card__num">11</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">排版印刷</p>
+          <h2 class="card__name">瑞士国际主义</h2>
+          <p class="card__desc">严格十二列网格、红黑白三色、无衬线大字与克制的对齐秩序。</p>
+          <p class="card__path">11-swiss-grid/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="11-swiss-grid/index.html">进入主页</a>
+          <a class="btn" href="11-swiss-grid/style.css">CSS</a>
+          <a class="btn" href="11-swiss-grid/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="retro" data-name="蒸汽波 12-vaporwave" style="--accent: #ff6ad5">
+        <a class="card__preview" href="12-vaporwave/index.html" title="打开「蒸汽波」风格主页">
+          <img class="card__img" alt="蒸汽波风格主页预览图" decoding="async" src="previews/12-vaporwave.png">
+          <span class="card__num">12</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">复古怀旧</p>
+          <h2 class="card__name">蒸汽波</h2>
+          <p class="card__desc">粉紫青渐变、落日圆盘、透视网格地平线与日文假名装饰。</p>
+          <p class="card__path">12-vaporwave/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="12-vaporwave/index.html">进入主页</a>
+          <a class="btn" href="12-vaporwave/style.css">CSS</a>
+          <a class="btn" href="12-vaporwave/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="design" data-name="装饰艺术 13-art-deco" style="--accent: #d4af37">
+        <a class="card__preview" href="13-art-deco/index.html" title="打开「装饰艺术」风格主页">
+          <img class="card__img" alt="装饰艺术风格主页预览图" decoding="async" src="previews/13-art-deco.png">
+          <span class="card__num">13</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">设计主义</p>
+          <h2 class="card__name">装饰艺术</h2>
+          <p class="card__desc">黑金配色、对称几何纹样与金色细线框，典礼般的庄重感。</p>
+          <p class="card__path">13-art-deco/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="13-art-deco/index.html">进入主页</a>
+          <a class="btn" href="13-art-deco/style.css">CSS</a>
+          <a class="btn" href="13-art-deco/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="future" data-name="未来科幻 HUD 14-futuristic-hud" style="--accent: #37e0ff">
+        <a class="card__preview" href="14-futuristic-hud/index.html" title="打开「未来科幻 HUD」风格主页">
+          <img class="card__img" alt="未来科幻 HUD 风格主页预览图" decoding="async" src="previews/14-futuristic-hud.png">
+          <span class="card__num">14</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">未来科技</p>
+          <h2 class="card__name">未来科幻 HUD</h2>
+          <p class="card__desc">六边形网格、环形仪表与角标括号，像机甲驾驶舱的抬头显示。</p>
+          <p class="card__path">14-futuristic-hud/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="14-futuristic-hud/index.html">进入主页</a>
+          <a class="btn" href="14-futuristic-hud/style.css">CSS</a>
+          <a class="btn" href="14-futuristic-hud/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="color" data-name="液态渐变 15-liquid-gradient" style="--accent: #8b5cf6">
+        <a class="card__preview" href="15-liquid-gradient/index.html" title="打开「液态渐变」风格主页">
+          <img class="card__img" alt="液态渐变风格主页预览图" decoding="async" src="previews/15-liquid-gradient.png">
+          <span class="card__num">15</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">色彩撞色</p>
+          <h2 class="card__name">液态渐变</h2>
+          <p class="card__desc">整屏流动的渐变光斑与圆润 blob 形状，柔和失焦、轻盈流动。</p>
+          <p class="card__path">15-liquid-gradient/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="15-liquid-gradient/index.html">进入主页</a>
+          <a class="btn" href="15-liquid-gradient/style.css">CSS</a>
+          <a class="btn" href="15-liquid-gradient/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="retro" data-name="复古报纸 16-newspaper" style="--accent: #a8341f">
+        <a class="card__preview" href="16-newspaper/index.html" title="打开「复古报纸」风格主页">
+          <img class="card__img" alt="复古报纸风格主页预览图" decoding="async" src="previews/16-newspaper.png">
+          <span class="card__num">16</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">复古怀旧</p>
+          <h2 class="card__name">复古报纸</h2>
+          <p class="card__desc">泛黄纸色、分栏正文、报头大字与印刷颗粒，油墨味扑面而来。</p>
+          <p class="card__path">16-newspaper/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="16-newspaper/index.html">进入主页</a>
+          <a class="btn" href="16-newspaper/style.css">CSS</a>
+          <a class="btn" href="16-newspaper/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="nature" data-name="视差山景 17-parallax-mountain" style="--accent: #ffb86b">
+        <a class="card__preview" href="17-parallax-mountain/index.html" title="打开「视差山景」风格主页">
+          <img class="card__img" alt="视差山景风格主页预览图" decoding="async" src="previews/17-parallax-mountain.png">
+          <span class="card__num">17</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">自然有机</p>
+          <h2 class="card__name">视差山景</h2>
+          <p class="card__desc">层叠远山剪影与日出渐变天空，滚动时产生纵深与雾气。</p>
+          <p class="card__path">17-parallax-mountain/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="17-parallax-mountain/index.html">进入主页</a>
+          <a class="btn" href="17-parallax-mountain/style.css">CSS</a>
+          <a class="btn" href="17-parallax-mountain/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="color" data-name="几何图形 18-geometric" style="--accent: #e03a2f">
+        <a class="card__preview" href="18-geometric/index.html" title="打开「几何图形」风格主页">
+          <img class="card__img" alt="几何图形风格主页预览图" decoding="async" src="previews/18-geometric.png">
+          <span class="card__num">18</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">色彩撞色</p>
+          <h2 class="card__name">几何图形</h2>
+          <p class="card__desc">纯 CSS 的圆、三角与方块拼贴，包豪斯三原色与模块化网格。</p>
+          <p class="card__path">18-geometric/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="18-geometric/index.html">进入主页</a>
+          <a class="btn" href="18-geometric/style.css">CSS</a>
+          <a class="btn" href="18-geometric/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="nature" data-name="自然有机 19-nature-organic" style="--accent: #6fae7d">
+        <a class="card__preview" href="19-nature-organic/index.html" title="打开「自然有机」风格主页">
+          <img class="card__img" alt="自然有机风格主页预览图" decoding="async" src="previews/19-nature-organic.png">
+          <span class="card__num">19</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">自然有机</p>
+          <h2 class="card__name">自然有机</h2>
+          <p class="card__desc">森林绿与大地色、圆润不规则形状、手写标题与叶片点缀。</p>
+          <p class="card__path">19-nature-organic/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="19-nature-organic/index.html">进入主页</a>
+          <a class="btn" href="19-nature-organic/style.css">CSS</a>
+          <a class="btn" href="19-nature-organic/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="future" data-name="合成波 20-synthwave" style="--accent: #ff3ea5">
+        <a class="card__preview" href="20-synthwave/index.html" title="打开「合成波」风格主页">
+          <img class="card__img" alt="合成波风格主页预览图" decoding="async" src="previews/20-synthwave.png">
+          <span class="card__num">20</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">未来科技</p>
+          <h2 class="card__name">合成波</h2>
+          <p class="card__desc">深紫底配青粉霓虹、发光边框与镭射网格地平线，复古未来。</p>
+          <p class="card__path">20-synthwave/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="20-synthwave/index.html">进入主页</a>
+          <a class="btn" href="20-synthwave/style.css">CSS</a>
+          <a class="btn" href="20-synthwave/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="material" data-name="柔和拟物 21-neumorphism" style="--accent: #8ea6c8">
+        <a class="card__preview" href="21-neumorphism/index.html" title="打开「柔和拟物」风格主页">
+          <img class="card__img" alt="柔和拟物风格主页预览图" decoding="async" src="previews/21-neumorphism.png">
+          <span class="card__num">21</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">材质拟物</p>
+          <h2 class="card__name">柔和拟物</h2>
+          <p class="card__desc">同色系凸起与凹陷阴影、低对比浅灰，像可触摸的软胶按键。</p>
+          <p class="card__path">21-neumorphism/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="21-neumorphism/index.html">进入主页</a>
+          <a class="btn" href="21-neumorphism/style.css">CSS</a>
+          <a class="btn" href="21-neumorphism/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="material" data-name="亚克力 Fluent 22-fluent-acrylic" style="--accent: #4da3ff">
+        <a class="card__preview" href="22-fluent-acrylic/index.html" title="打开「亚克力 Fluent」风格主页">
+          <img class="card__img" alt="亚克力 Fluent 风格主页预览图" decoding="async" src="previews/22-fluent-acrylic.png">
+          <span class="card__num">22</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">材质拟物</p>
+          <h2 class="card__name">亚克力 Fluent</h2>
+          <p class="card__desc">多层亚克力材质、圆角与高光描边，光影层次细腻。</p>
+          <p class="card__path">22-fluent-acrylic/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="22-fluent-acrylic/index.html">进入主页</a>
+          <a class="btn" href="22-fluent-acrylic/style.css">CSS</a>
+          <a class="btn" href="22-fluent-acrylic/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="material" data-name="手绘涂鸦 23-sketch-handdrawn" style="--accent: #4a4a4a">
+        <a class="card__preview" href="23-sketch-handdrawn/index.html" title="打开「手绘涂鸦」风格主页">
+          <img class="card__img" alt="手绘涂鸦风格主页预览图" decoding="async" src="previews/23-sketch-handdrawn.png">
+          <span class="card__num">23</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">材质拟物</p>
+          <h2 class="card__name">手绘涂鸦</h2>
+          <p class="card__desc">纸面纹理、手写字体、歪斜边框与铅笔涂鸦箭头便签。</p>
+          <p class="card__path">23-sketch-handdrawn/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="23-sketch-handdrawn/index.html">进入主页</a>
+          <a class="btn" href="23-sketch-handdrawn/style.css">CSS</a>
+          <a class="btn" href="23-sketch-handdrawn/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="minimal" data-name="黑白极简 24-monochrome" style="--accent: #cfd4da">
+        <a class="card__preview" href="24-monochrome/index.html" title="打开「黑白极简」风格主页">
+          <img class="card__img" alt="黑白极简风格主页预览图" decoding="async" src="previews/24-monochrome.png">
+          <span class="card__num">24</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">极简留白</p>
+          <h2 class="card__name">黑白极简</h2>
+          <p class="card__desc">只用黑白色阶与超大字重对比，大量负空间，安静而有力。</p>
+          <p class="card__path">24-monochrome/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="24-monochrome/index.html">进入主页</a>
+          <a class="btn" href="24-monochrome/style.css">CSS</a>
+          <a class="btn" href="24-monochrome/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="color" data-name="马卡龙梦幻 25-pastel-dream" style="--accent: #ff9ec4">
+        <a class="card__preview" href="25-pastel-dream/index.html" title="打开「马卡龙梦幻」风格主页">
+          <img class="card__img" alt="马卡龙梦幻风格主页预览图" decoding="async" src="previews/25-pastel-dream.png">
+          <span class="card__num">25</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">色彩撞色</p>
+          <h2 class="card__name">马卡龙梦幻</h2>
+          <p class="card__desc">粉紫薄荷低饱和、圆润可爱的气泡与柔和渐变，甜而不腻。</p>
+          <p class="card__path">25-pastel-dream/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="25-pastel-dream/index.html">进入主页</a>
+          <a class="btn" href="25-pastel-dream/style.css">CSS</a>
+          <a class="btn" href="25-pastel-dream/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="dark" data-name="高对比大胆 26-high-contrast" style="--accent: #eaff00">
+        <a class="card__preview" href="26-high-contrast/index.html" title="打开「高对比大胆」风格主页">
+          <img class="card__img" alt="高对比大胆风格主页预览图" decoding="async" src="previews/26-high-contrast.png">
+          <span class="card__num">26</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">暗黑深沉</p>
+          <h2 class="card__name">高对比大胆</h2>
+          <p class="card__desc">纯黑底配荧光黄、巨大字号与斜切色块，强烈的视觉冲击。</p>
+          <p class="card__path">26-high-contrast/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="26-high-contrast/index.html">进入主页</a>
+          <a class="btn" href="26-high-contrast/style.css">CSS</a>
+          <a class="btn" href="26-high-contrast/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="color" data-name="网格渐变 27-gradient-mesh" style="--accent: #7c5cff">
+        <a class="card__preview" href="27-gradient-mesh/index.html" title="打开「网格渐变」风格主页">
+          <img class="card__img" alt="网格渐变风格主页预览图" decoding="async" src="previews/27-gradient-mesh.png">
+          <span class="card__num">27</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">色彩撞色</p>
+          <h2 class="card__name">网格渐变</h2>
+          <p class="card__desc">多彩网格渐变背景配半透明卡片，现代 SaaS 式的柔和光晕。</p>
+          <p class="card__path">27-gradient-mesh/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="27-gradient-mesh/index.html">进入主页</a>
+          <a class="btn" href="27-gradient-mesh/style.css">CSS</a>
+          <a class="btn" href="27-gradient-mesh/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="design" data-name="包豪斯 28-bauhaus" style="--accent: #d62828">
+        <a class="card__preview" href="28-bauhaus/index.html" title="打开「包豪斯」风格主页">
+          <img class="card__img" alt="包豪斯风格主页预览图" decoding="async" src="previews/28-bauhaus.png">
+          <span class="card__num">28</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">设计主义</p>
+          <h2 class="card__name">包豪斯</h2>
+          <p class="card__desc">红黄蓝三原色与基本几何形，非对称平衡的现代主义构图。</p>
+          <p class="card__path">28-bauhaus/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="28-bauhaus/index.html">进入主页</a>
+          <a class="btn" href="28-bauhaus/style.css">CSS</a>
+          <a class="btn" href="28-bauhaus/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="material" data-name="蒸汽朋克 29-steampunk" style="--accent: #c9a227">
+        <a class="card__preview" href="29-steampunk/index.html" title="打开「蒸汽朋克」风格主页">
+          <img class="card__img" alt="蒸汽朋克风格主页预览图" decoding="async" src="previews/29-steampunk.png">
+          <span class="card__num">29</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">材质拟物</p>
+          <h2 class="card__name">蒸汽朋克</h2>
+          <p class="card__desc">黄铜棕与暗金、齿轮装饰、做旧纹理与铆钉边框的机械浪漫。</p>
+          <p class="card__path">29-steampunk/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="29-steampunk/index.html">进入主页</a>
+          <a class="btn" href="29-steampunk/style.css">CSS</a>
+          <a class="btn" href="29-steampunk/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="nature" data-name="水墨中国 30-zen-ink" style="--accent: #9b1c1c">
+        <a class="card__preview" href="30-zen-ink/index.html" title="打开「水墨中国」风格主页">
+          <img class="card__img" alt="水墨中国风格主页预览图" decoding="async" src="previews/30-zen-ink.png">
+          <span class="card__num">30</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">自然有机</p>
+          <h2 class="card__name">水墨中国</h2>
+          <p class="card__desc">宣纸米色、墨色晕染、水墨笔触与印章红，竖排标题留白。</p>
+          <p class="card__path">30-zen-ink/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="30-zen-ink/index.html">进入主页</a>
+          <a class="btn" href="30-zen-ink/style.css">CSS</a>
+          <a class="btn" href="30-zen-ink/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="dark" data-name="宇宙星空 31-cosmic-space" style="--accent: #8f7bff">
+        <a class="card__preview" href="31-cosmic-space/index.html" title="打开「宇宙星空」风格主页">
+          <img class="card__img" alt="宇宙星空风格主页预览图" decoding="async" src="previews/31-cosmic-space.png">
+          <span class="card__num">31</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">暗黑深沉</p>
+          <h2 class="card__name">宇宙星空</h2>
+          <p class="card__desc">深空黑蓝、闪烁星场、行星光晕与银河渐变，静谧辽阔。</p>
+          <p class="card__path">31-cosmic-space/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="31-cosmic-space/index.html">进入主页</a>
+          <a class="btn" href="31-cosmic-space/style.css">CSS</a>
+          <a class="btn" href="31-cosmic-space/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="nature" data-name="植物插画 32-botanical" style="--accent: #5f8c62">
+        <a class="card__preview" href="32-botanical/index.html" title="打开「植物插画」风格主页">
+          <img class="card__img" alt="植物插画风格主页预览图" decoding="async" src="previews/32-botanical.png">
+          <span class="card__num">32</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">自然有机</p>
+          <h2 class="card__name">植物插画</h2>
+          <p class="card__desc">米白底与植物绿、藤蔓线条装帧，像一本手工植物图鉴。</p>
+          <p class="card__path">32-botanical/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="32-botanical/index.html">进入主页</a>
+          <a class="btn" href="32-botanical/style.css">CSS</a>
+          <a class="btn" href="32-botanical/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="retro" data-name="琥珀终端 33-cyber-terminal-amber" style="--accent: #ffb347">
+        <a class="card__preview" href="33-cyber-terminal-amber/index.html" title="打开「琥珀终端」风格主页">
+          <img class="card__img" alt="琥珀终端风格主页预览图" decoding="async" src="previews/33-cyber-terminal-amber.png">
+          <span class="card__num">33</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">复古怀旧</p>
+          <h2 class="card__name">琥珀终端</h2>
+          <p class="card__desc">黑底琥珀橙单色、CRT 曲面暗角与命令行界面，老机房的温度。</p>
+          <p class="card__path">33-cyber-terminal-amber/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="33-cyber-terminal-amber/index.html">进入主页</a>
+          <a class="btn" href="33-cyber-terminal-amber/style.css">CSS</a>
+          <a class="btn" href="33-cyber-terminal-amber/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="material" data-name="拟物皮革 34-skeuomorphic" style="--accent: #a9713f">
+        <a class="card__preview" href="34-skeuomorphic/index.html" title="打开「拟物皮革」风格主页">
+          <img class="card__img" alt="拟物皮革风格主页预览图" decoding="async" src="previews/34-skeuomorphic.png">
+          <span class="card__num">34</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">材质拟物</p>
+          <h2 class="card__name">拟物皮革</h2>
+          <p class="card__desc">皮革木纹纹理、缝线边框与金属按钮，真实材质与阴影。</p>
+          <p class="card__path">34-skeuomorphic/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="34-skeuomorphic/index.html">进入主页</a>
+          <a class="btn" href="34-skeuomorphic/style.css">CSS</a>
+          <a class="btn" href="34-skeuomorphic/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="design" data-name="等距立体 35-isometric" style="--accent: #4fa3ff">
+        <a class="card__preview" href="35-isometric/index.html" title="打开「等距立体」风格主页">
+          <img class="card__img" alt="等距立体风格主页预览图" decoding="async" src="previews/35-isometric.png">
+          <span class="card__num">35</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">设计主义</p>
+          <h2 class="card__name">等距立体</h2>
+          <p class="card__desc">CSS 变换出的等距 3D 方块与轴测网格，立体卡片堆叠。</p>
+          <p class="card__path">35-isometric/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="35-isometric/index.html">进入主页</a>
+          <a class="btn" href="35-isometric/style.css">CSS</a>
+          <a class="btn" href="35-isometric/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="dark" data-name="哥特暗黑 36-gothic-dark" style="--accent: #a31621">
+        <a class="card__preview" href="36-gothic-dark/index.html" title="打开「哥特暗黑」风格主页">
+          <img class="card__img" alt="哥特暗黑风格主页预览图" decoding="async" src="previews/36-gothic-dark.png">
+          <span class="card__num">36</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">暗黑深沉</p>
+          <h2 class="card__name">哥特暗黑</h2>
+          <p class="card__desc">纯黑底、暗红与骨白、哥特衬线与尖拱形花纹，阴郁庄严。</p>
+          <p class="card__path">36-gothic-dark/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="36-gothic-dark/index.html">进入主页</a>
+          <a class="btn" href="36-gothic-dark/style.css">CSS</a>
+          <a class="btn" href="36-gothic-dark/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="color" data-name="活泼多彩 37-playful-colorful" style="--accent: #ff4d9d">
+        <a class="card__preview" href="37-playful-colorful/index.html" title="打开「活泼多彩」风格主页">
+          <img class="card__img" alt="活泼多彩风格主页预览图" decoding="async" src="previews/37-playful-colorful.png">
+          <span class="card__num">37</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">色彩撞色</p>
+          <h2 class="card__name">活泼多彩</h2>
+          <p class="card__desc">高饱和多色、圆角泡泡与弹性动画，波浪分隔与贴纸元素。</p>
+          <p class="card__path">37-playful-colorful/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="37-playful-colorful/index.html">进入主页</a>
+          <a class="btn" href="37-playful-colorful/style.css">CSS</a>
+          <a class="btn" href="37-playful-colorful/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="future" data-name="数据仪表盘 38-data-dashboard" style="--accent: #22d3a6">
+        <a class="card__preview" href="38-data-dashboard/index.html" title="打开「数据仪表盘」风格主页">
+          <img class="card__img" alt="数据仪表盘风格主页预览图" decoding="async" src="previews/38-data-dashboard.png">
+          <span class="card__num">38</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">未来科技</p>
+          <h2 class="card__name">数据仪表盘</h2>
+          <p class="card__desc">侧边栏加指标卡，纯 CSS 绘制进度环与柱状图，等宽数字。</p>
+          <p class="card__path">38-data-dashboard/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="38-data-dashboard/index.html">进入主页</a>
+          <a class="btn" href="38-data-dashboard/style.css">CSS</a>
+          <a class="btn" href="38-data-dashboard/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="editorial" data-name="字体排印 39-typographic" style="--accent: #f4f2ed">
+        <a class="card__preview" href="39-typographic/index.html" title="打开「字体排印」风格主页">
+          <img class="card__img" alt="字体排印风格主页预览图" decoding="async" src="previews/39-typographic.png">
+          <span class="card__num">39</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">排版印刷</p>
+          <h2 class="card__name">字体排印</h2>
+          <p class="card__desc">以文字为主角：超大字号、字距行高实验，文字本身就是图形。</p>
+          <p class="card__path">39-typographic/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="39-typographic/index.html">进入主页</a>
+          <a class="btn" href="39-typographic/style.css">CSS</a>
+          <a class="btn" href="39-typographic/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="minimal" data-name="柔和 UI 40-soft-ui" style="--accent: #7b8cff">
+        <a class="card__preview" href="40-soft-ui/index.html" title="打开「柔和 UI」风格主页">
+          <img class="card__img" alt="柔和 UI 风格主页预览图" decoding="async" src="previews/40-soft-ui.png">
+          <span class="card__num">40</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">极简留白</p>
+          <h2 class="card__name">柔和 UI</h2>
+          <p class="card__desc">浅色柔和阴影、胶囊按钮与浅紫蓝配色，细腻的微交互。</p>
+          <p class="card__path">40-soft-ui/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="40-soft-ui/index.html">进入主页</a>
+          <a class="btn" href="40-soft-ui/style.css">CSS</a>
+          <a class="btn" href="40-soft-ui/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="design" data-name="盖茨比奢华 41-art-deco-gatsby" style="--accent: #d4af37">
+        <a class="card__preview" href="41-art-deco-gatsby/index.html" title="打开「盖茨比奢华」风格主页">
+          <img class="card__img" alt="盖茨比奢华风格主页预览图" decoding="async" src="previews/41-art-deco-gatsby.png">
+          <span class="card__num">41</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">设计主义</p>
+          <h2 class="card__name">盖茨比奢华</h2>
+          <p class="card__desc">黑金 Art Deco、放射纹样与香槟金质感，爵士年代的纸醉金迷。</p>
+          <p class="card__path">41-art-deco-gatsby/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="41-art-deco-gatsby/index.html">进入主页</a>
+          <a class="btn" href="41-art-deco-gatsby/style.css">CSS</a>
+          <a class="btn" href="41-art-deco-gatsby/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="dark" data-name="雨天窗景 42-rainy-window" style="--accent: #7fb0e0">
+        <a class="card__preview" href="42-rainy-window/index.html" title="打开「雨天窗景」风格主页">
+          <img class="card__img" alt="雨天窗景风格主页预览图" decoding="async" src="previews/42-rainy-window.png">
+          <span class="card__num">42</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">暗黑深沉</p>
+          <h2 class="card__name">雨天窗景</h2>
+          <p class="card__desc">灰蓝冷调、雨滴滑落动画与玻璃模糊，室内暖光形成对比。</p>
+          <p class="card__path">42-rainy-window/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="42-rainy-window/index.html">进入主页</a>
+          <a class="btn" href="42-rainy-window/style.css">CSS</a>
+          <a class="btn" href="42-rainy-window/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="retro" data-name="像素 8-bit 43-pixel-8bit" style="--accent: #57e389">
+        <a class="card__preview" href="43-pixel-8bit/index.html" title="打开「像素 8-bit」风格主页">
+          <img class="card__img" alt="像素 8-bit 风格主页预览图" decoding="async" src="previews/43-pixel-8bit.png">
+          <span class="card__num">43</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">复古怀旧</p>
+          <h2 class="card__name">像素 8-bit</h2>
+          <p class="card__desc">像素化等宽字体、方块边框与游戏血条，复古主机的像素美学。</p>
+          <p class="card__path">43-pixel-8bit/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="43-pixel-8bit/index.html">进入主页</a>
+          <a class="btn" href="43-pixel-8bit/style.css">CSS</a>
+          <a class="btn" href="43-pixel-8bit/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="minimal" data-name="竖向侧栏 44-sidebar-vertical" style="--accent: #b08d57">
+        <a class="card__preview" href="44-sidebar-vertical/index.html" title="打开「竖向侧栏」风格主页">
+          <img class="card__img" alt="竖向侧栏风格主页预览图" decoding="async" src="previews/44-sidebar-vertical.png">
+          <span class="card__num">44</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">极简留白</p>
+          <h2 class="card__name">竖向侧栏</h2>
+          <p class="card__desc">固定左侧竖导航配右侧滚动内容，竖排文字与细分隔线。</p>
+          <p class="card__path">44-sidebar-vertical/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="44-sidebar-vertical/index.html">进入主页</a>
+          <a class="btn" href="44-sidebar-vertical/style.css">CSS</a>
+          <a class="btn" href="44-sidebar-vertical/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="nature" data-name="暖阳暖色 45-material-you-warm" style="--accent: #ff7a45">
+        <a class="card__preview" href="45-material-you-warm/index.html" title="打开「暖阳暖色」风格主页">
+          <img class="card__img" alt="暖阳暖色风格主页预览图" decoding="async" src="previews/45-material-you-warm.png">
+          <span class="card__num">45</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">自然有机</p>
+          <h2 class="card__name">暖阳暖色</h2>
+          <p class="card__desc">暖橙珊瑚与奶油配色、大圆角卡片，亲和而温暖的氛围。</p>
+          <p class="card__path">45-material-you-warm/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="45-material-you-warm/index.html">进入主页</a>
+          <a class="btn" href="45-material-you-warm/style.css">CSS</a>
+          <a class="btn" href="45-material-you-warm/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="editorial" data-name="印刷粗野 46-brutalist-print" style="--accent: #c8ff00">
+        <a class="card__preview" href="46-brutalist-print/index.html" title="打开「印刷粗野」风格主页">
+          <img class="card__img" alt="印刷粗野风格主页预览图" decoding="async" src="previews/46-brutalist-print.png">
+          <span class="card__num">46</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">排版印刷</p>
+          <h2 class="card__name">印刷粗野</h2>
+          <p class="card__desc">黑白加一抹荧光色、半调网点与错位叠印，粗暴的大字排版。</p>
+          <p class="card__path">46-brutalist-print/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="46-brutalist-print/index.html">进入主页</a>
+          <a class="btn" href="46-brutalist-print/style.css">CSS</a>
+          <a class="btn" href="46-brutalist-print/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="material" data-name="黏土拟态 47-claymorphism" style="--accent: #a78bfa">
+        <a class="card__preview" href="47-claymorphism/index.html" title="打开「黏土拟态」风格主页">
+          <img class="card__img" alt="黏土拟态风格主页预览图" decoding="async" src="previews/47-claymorphism.png">
+          <span class="card__num">47</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">材质拟物</p>
+          <h2 class="card__name">黏土拟态</h2>
+          <p class="card__desc">黏土 3D 质感、厚实圆角与糖果配色，像捏出来的界面。</p>
+          <p class="card__path">47-claymorphism/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="47-claymorphism/index.html">进入主页</a>
+          <a class="btn" href="47-claymorphism/style.css">CSS</a>
+          <a class="btn" href="47-claymorphism/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="future" data-name="复古未来 48-retro-futurism" style="--accent: #d9622b">
+        <a class="card__preview" href="48-retro-futurism/index.html" title="打开「复古未来」风格主页">
+          <img class="card__img" alt="复古未来风格主页预览图" decoding="async" src="previews/48-retro-futurism.png">
+          <span class="card__num">48</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">未来科技</p>
+          <h2 class="card__name">复古未来</h2>
+          <p class="card__desc">七十年代太空时代：橙棕米色、圆角电视造型与航天徽标线条。</p>
+          <p class="card__path">48-retro-futurism/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="48-retro-futurism/index.html">进入主页</a>
+          <a class="btn" href="48-retro-futurism/style.css">CSS</a>
+          <a class="btn" href="48-retro-futurism/script.js">JS</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="future" data-name="霓虹网格街 49-synthwave-neon" style="--accent: #ff4fd8">
+        <a class="card__preview" href="49-synthwave-neon/index.html" title="打开「霓虹网格街」风格主页">
+          <img class="card__img" alt="霓虹网格街风格主页预览图" decoding="async" src="previews/49-synthwave-neon.png">
+          <span class="card__num">49</span>
+        </a>
+        <div class="card__body">
+          <p class="chip">未来科技</p>
+          <h2 class="card__name">霓虹网格街</h2>
+          <p class="card__desc">夜幕城市霓虹、粉紫青光斑与地面倒影，招牌式发光文字。</p>
+          <p class="card__path">49-synthwave-neon/ · index.html + style.css + script.js</p>
+        </div>
+        <div class="card__acts">
+          <a class="btn btn--main" href="49-synthwave-neon/index.html">进入主页</a>
+          <a class="btn" href="49-synthwave-neon/style.css">CSS</a>
+          <a class="btn" href="49-synthwave-neon/script.js">JS</a>
+        </div>
+      </article>
+
+      <p class="empty" id="empty" hidden>没有匹配的风格，换个关键词试试。</p>
+    </section>
+
+    <!-- ===== 关于与联系：说明 + 个人信息汇总 ===== -->
+    <section class="about" id="about">
+      <div class="about__card">
+        <h2>关于这份合集</h2>
+        <p>
+          50 个文件夹，50 套设计：每个文件夹里都是独立的 <code>index.html</code>、<code>style.css</code>、<code>script.js</code>，
+          结构、样式与行为严格分文件，仅保留适量注释；全部零外部依赖（没有 CDN、没有网络字体、没有 JS 库），双击即可离线打开。
+          卡片预览来自本机无头浏览器对真实页面的截图，点开卡片即是可交互的完整页面。
+        </p>
+        <p class="about__hint">提示：卡片上的「CSS / JS」按钮可直接查看该风格的样式表与脚本源码；按 <kbd>/</kbd> 可快速聚焦搜索框。</p>
+      </div>
+
+      <div class="about__card">
+        <h2>联系方式</h2>
+        <ul class="links">
+          <li><a href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>github.com/ok-lzr</strong></a></li>
+          <li><a href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer"><span>QQ</span><strong>386477796</strong></a></li>
+          <li><a href="mailto:csgdnrxg@163.com"><span>邮箱 1</span><strong>csgdnrxg@163.com</strong></a></li>
+          <li><a href="mailto:3866477796@qq.com"><span>邮箱 2</span><strong>3866477796@qq.com</strong></a></li>
+          <li><span class="static"><span>地点</span><strong>湖南省长沙市</strong></span></li>
+          <li><span class="static"><span>时间</span><strong id="clockFoot">长沙时间 --:--:--</strong></span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="site-foot">
+    <div class="wrap foot__inner">
+      <p>© 2026 ok-lzr · 湖南省长沙市 · 50 种风格个人主页合集</p>
+      <p class="foot__note">纯原生 HTML + CSS + JavaScript · 无外部依赖 · 预览图由本机无头浏览器渲染</p>
+    </div>
+  </footer>
+</body>
+</html>

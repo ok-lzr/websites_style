@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ok-lzr / 码上生活 — 包豪斯个人主页</title>
+<meta name="description" content="ok-lzr 的个人主页，包豪斯风格：红黄蓝三原色、基本几何形、非对称平衡构图。">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<!-- ===== 顶部导航：几何方块标记 + 平滑滚动锚点 ===== -->
+<header class="site-header" id="top">
+  <a class="brand" href="#top">
+    <span class="brand-mark" aria-hidden="true">
+      <i class="sq sq-red"></i><i class="sq sq-yellow"></i><i class="sq sq-blue"></i>
+    </span>
+    <span class="brand-text">ok-lzr<span class="brand-slash">/</span>码上生活</span>
+  </a>
+
+  <nav class="site-nav" aria-label="主导航">
+    <ul class="nav-list">
+      <li><a class="nav-link" href="#about">关于</a></li>
+      <li><a class="nav-link" href="#works">作品</a></li>
+      <li><a class="nav-link" href="#skills">能力</a></li>
+      <li><a class="nav-link" href="#contact">联系</a></li>
+    </ul>
+  </nav>
+
+  <button class="theme-btn" id="themeBtn" type="button" aria-pressed="false">
+    <span class="theme-icon" aria-hidden="true">◐</span>
+    <span class="theme-label">夜间模式</span>
+  </button>
+</header>
+
+<main>
+
+  <!-- ===== 主视觉：非对称三原色构成 ===== -->
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="hero-kicker">包豪斯 · BAUHAUS · 1919</p>
+        <h1 class="hero-title" id="heroTitle">
+          <span class="type-line" id="typeLine" aria-live="polite"></span>
+          <span class="type-caret" aria-hidden="true"></span>
+        </h1>
+        <p class="hero-desc">
+          用形状说话，用代码造型。把红黄蓝装进浏览器，把长沙的夜色写进控制台。
+        </p>
+        <ul class="tag-list" aria-label="能力标签">
+          <li class="tag tag-red">前端工程</li>
+          <li class="tag tag-yellow">视觉设计</li>
+          <li class="tag tag-blue">数据可视化</li>
+          <li class="tag tag-ink">Node 工具链</li>
+        </ul>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <span class="art-circle"></span>
+        <span class="art-bar"></span>
+        <span class="art-square"></span>
+        <span class="art-tri"></span>
+        <span class="art-dot"></span>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num" data-count="6">0</span>
+        <span class="stat-label">年写码</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="24">0</span>
+        <span class="stat-label">个作品</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="360">0</span>
+        <span class="stat-label">次提交/月</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 关于 ===== -->
+  <section class="section section-about" id="about" aria-labelledby="aboutTitle">
+    <div class="section-head">
+      <span class="section-index">01</span>
+      <h2 class="section-title" id="aboutTitle">关于我</h2>
+    </div>
+    <div class="section-body about-body reveal">
+      <p class="about-text">
+        我是 ok-lzr，一个在长沙写前端的造形者。相信包豪斯的老话——形式追随功能：
+        先想清楚要解决什么，再决定它长什么样。喜欢把复杂交互拆成最基础的圆形、方形与三角，
+        用最少的颜色讲最清楚的事。
+      </p>
+      <ul class="about-points">
+        <li><span class="bullet bullet-red"></span>把设计规范写成 CSS 变量，团队协作不跑偏</li>
+        <li><span class="bullet bullet-yellow"></span>零依赖的原生实现，包体越小越可靠</li>
+        <li><span class="bullet bullet-blue"></span>关注可访问性与对比度，让人人都能读</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== 作品列表：筛选交互 ===== -->
+  <section class="section section-works" id="works" aria-labelledby="worksTitle">
+    <div class="section-head">
+      <span class="section-index">02</span>
+      <h2 class="section-title" id="worksTitle">作品构成</h2>
+    </div>
+
+    <div class="filter-bar" role="group" aria-label="作品筛选">
+      <button class="filter-btn is-active" type="button" data-filter="all">全部</button>
+      <button class="filter-btn" type="button" data-filter="web">网页</button>
+      <button class="filter-btn" type="button" data-filter="tool">工具</button>
+      <button class="filter-btn" type="button" data-filter="data">数据</button>
+    </div>
+
+    <ul class="work-list" id="workList">
+      <li class="work-card reveal" data-cat="web">
+        <span class="work-shape shape-red" aria-hidden="true"></span>
+        <h3 class="work-name">个人导航站</h3>
+        <p class="work-desc">把常用站点按三原色分区收纳，支持自定义排序与本地持久化。</p>
+        <ul class="stack-list">
+          <li>HTML</li><li>CSS Grid</li><li>localStorage</li>
+        </ul>
+      </li>
+      <li class="work-card reveal" data-cat="data">
+        <span class="work-shape shape-blue" aria-hidden="true"></span>
+        <h3 class="work-name">长沙天气看板</h3>
+        <p class="work-desc">把未来七天的温湿与风向量化成几何图形，配色随天气自动切换。</p>
+        <ul class="stack-list">
+          <li>Canvas</li><li>Fetch API</li><li>SVG</li>
+        </ul>
+      </li>
+      <li class="work-card reveal" data-cat="tool">
+        <span class="work-shape shape-yellow" aria-hidden="true"></span>
+        <h3 class="work-name">色彩对比检查器</h3>
+        <p class="work-desc">输入前景背景色，实时给出 WCAG 对比度评级与改进建议。</p>
+        <ul class="stack-list">
+          <li>Web Worker</li><li>原生 JS</li>
+        </ul>
+      </li>
+      <li class="work-card reveal" data-cat="web">
+        <span class="work-shape shape-ink" aria-hidden="true"></span>
+        <h3 class="work-name">包豪斯海报生成器</h3>
+        <p class="work-desc">基于几何随机算法生成海报版式，可导出为高清 PNG。</p>
+        <ul class="stack-list">
+          <li>Canvas</li><li>CSS 变量</li><li>File API</li>
+        </ul>
+      </li>
+      <li class="work-card reveal" data-cat="tool">
+        <span class="work-shape shape-red" aria-hidden="true"></span>
+        <h3 class="work-name">提交信息规范器</h3>
+        <p class="work-desc">命令行小工具，校验并修正 Git commit message 的中英混排格式。</p>
+        <ul class="stack-list">
+          <li>Node.js</li><li>Commander</li>
+        </ul>
+      </li>
+      <li class="work-card reveal" data-cat="data">
+        <span class="work-shape shape-blue" aria-hidden="true"></span>
+        <h3 class="work-name">阅读时长统计</h3>
+        <p class="work-desc">把一年的阅读记录做成同心圆图，一眼看出读书的节奏起伏。</p>
+        <ul class="stack-list">
+          <li>SVG</li><li>IntersectionObserver</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== 能力条：滚动进入后动画 ===== -->
+  <section class="section section-skills" id="skills" aria-labelledby="skillsTitle">
+    <div class="section-head">
+      <span class="section-index">03</span>
+      <h2 class="section-title" id="skillsTitle">能力刻度</h2>
+    </div>
+    <ul class="skill-list reveal">
+      <li class="skill-item">
+        <div class="skill-top"><span class="skill-name">HTML / CSS 架构</span><span class="skill-pct">92%</span></div>
+        <div class="skill-track"><span class="skill-fill fill-red" data-level="92"></span></div>
+      </li>
+      <li class="skill-item">
+        <div class="skill-top"><span class="skill-name">原生 JavaScript</span><span class="skill-pct">88%</span></div>
+        <div class="skill-track"><span class="skill-fill fill-yellow" data-level="88"></span></div>
+      </li>
+      <li class="skill-item">
+        <div class="skill-top"><span class="skill-name">数据可视化</span><span class="skill-pct">80%</span></div>
+        <div class="skill-track"><span class="skill-fill fill-blue" data-level="80"></span></div>
+      </li>
+      <li class="skill-item">
+        <div class="skill-top"><span class="skill-name">Node 工具链</span><span class="skill-pct">74%</span></div>
+        <div class="skill-track"><span class="skill-fill fill-ink" data-level="74"></span></div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== 个人数据：逐项可点击 ===== -->
+  <section class="section section-contact" id="contact" aria-labelledby="contactTitle">
+    <div class="section-head">
+      <span class="section-index">04</span>
+      <h2 class="section-title" id="contactTitle">个人数据</h2>
+    </div>
+
+    <dl class="data-grid reveal">
+      <div class="data-item">
+        <dt class="data-key"><span class="key-shape key-red" aria-hidden="true"></span>GitHub</dt>
+        <dd class="data-val"><a href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a></dd>
+      </div>
+      <div class="data-item">
+        <dt class="data-key"><span class="key-shape key-yellow" aria-hidden="true"></span>QQ</dt>
+        <dd class="data-val"><a href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a></dd>
+      </div>
+      <div class="data-item">
+        <dt class="data-key"><span class="key-shape key-blue" aria-hidden="true"></span>邮箱 · 一</dt>
+        <dd class="data-val"><a href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a></dd>
+      </div>
+      <div class="data-item">
+        <dt class="data-key"><span class="key-shape key-blue" aria-hidden="true"></span>邮箱 · 二</dt>
+        <dd class="data-val"><a href="mailto:3866477796@qq.com">3866477796@qq.com</a></dd>
+      </div>
+      <div class="data-item">
+        <dt class="data-key"><span class="key-shape key-ink" aria-hidden="true"></span>地点</dt>
+        <dd class="data-val"><span class="plain-val">湖南省长沙市</span></dd>
+      </div>
+      <div class="data-item data-item-clock">
+        <dt class="data-key"><span class="key-shape key-red" aria-hidden="true"></span>长沙时间</dt>
+        <dd class="data-val">
+          <time class="clock" id="clock" datetime="">--</time>
+          <span class="clock-note" id="clockNote">实时更新中</span>
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="site-footer">
+  <p class="foot-main">© 2026 ok-lzr · 湖南省长沙市</p>
+  <p class="foot-sub">包豪斯风格 · 纯原生三文件构建 · 无外部依赖</p>
+</footer>
+
+<!-- 回到顶部：JS 绑定滚动显隐 -->
+<button class="to-top" id="toTop" type="button" aria-label="回到顶部">▲</button>
+
+</body>
+</html>

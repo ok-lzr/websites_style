@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ok-lzr 的个人主页 · 盖茨比奢华 Art Deco 风格">
+  <title>ok-lzr · 码上生活 | 盖茨比奢华</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <!-- ===== 页面装饰层：放射纹样与金箔噪点 ===== -->
+  <div class="deco-rays" aria-hidden="true"></div>
+  <div class="deco-grain" aria-hidden="true"></div>
+
+  <!-- ===== 顶部导航 ===== -->
+  <header class="site-header" id="top">
+    <div class="shell header-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true">◈</span>
+        <span class="brand-name">OK-LZR</span>
+      </a>
+
+      <nav class="site-nav" aria-label="主导航">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="#hero">序章</a></li>
+          <li><a class="nav-link" href="#works">作品</a></li>
+          <li><a class="nav-link" href="#profile">档案</a></li>
+          <li><a class="nav-link" href="#contact">联络</a></li>
+        </ul>
+      </nav>
+
+      <!-- 昼 / 夜 主题开关 -->
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换昼间与夜间主题">
+        <span class="theme-icon" id="themeIcon" aria-hidden="true">☾</span>
+        <span class="theme-text" id="themeText">夜之宴</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== 首屏：姓名、简介、能力标签、实时时钟 ===== -->
+    <section class="hero" id="hero">
+      <div class="shell hero-grid">
+
+        <div class="hero-copy reveal">
+          <p class="eyebrow">THE GREAT · 个人主页</p>
+          <h1 class="hero-title">
+            <span class="hero-line">ok-lzr</span>
+            <span class="hero-sub">码上生活</span>
+          </h1>
+
+          <div class="rule" aria-hidden="true">
+            <span class="rule-line"></span>
+            <span class="rule-gem">◆</span>
+            <span class="rule-line"></span>
+          </div>
+
+          <p class="hero-intro">
+            在代码与霓虹之间搭一座金箔舞池 —— 我把想法写成可运行的页面，让每一次点击都像推开通往长岛宴厅的铜门。
+          </p>
+
+          <ul class="tag-list" aria-label="能力标签">
+            <li class="tag">前端工程</li>
+            <li class="tag">视觉设计</li>
+            <li class="tag">数据可视化</li>
+            <li class="tag">动效交互</li>
+          </ul>
+
+          <div class="hero-actions">
+            <a class="btn btn-solid" href="#works">欣赏作品</a>
+            <a class="btn btn-ghost" href="#contact">与我联络</a>
+          </div>
+        </div>
+
+        <!-- 实时时钟卡片 -->
+        <aside class="clock-card reveal" aria-label="长沙实时时间">
+          <p class="clock-label">CHANGSHA TIME</p>
+          <h2 class="clock-title">长沙时间</h2>
+
+          <p class="clock-time" id="clockTime">00:00:00</p>
+          <p class="clock-date" id="clockDate">加载中…</p>
+
+          <div class="clock-meta">
+            <span class="clock-chip" id="clockWeekday">星期一</span>
+            <span class="clock-chip" id="clockPhase">夜间</span>
+          </div>
+
+          <p class="clock-note">UTC+8 · 每秒钟自动校准</p>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- ===== 作品列表 ===== -->
+    <section class="section" id="works">
+      <div class="shell">
+        <header class="section-head reveal">
+          <p class="eyebrow">SELECTED WORKS</p>
+          <h2 class="section-title">作品陈列</h2>
+          <div class="rule rule-left" aria-hidden="true">
+            <span class="rule-gem">◆</span>
+            <span class="rule-line"></span>
+          </div>
+        </header>
+
+        <!-- 作品筛选（交互） -->
+        <div class="filter-bar reveal" role="group" aria-label="作品筛选">
+          <button class="filter-btn is-active" type="button" data-filter="all">全部</button>
+          <button class="filter-btn" type="button" data-filter="web">网站</button>
+          <button class="filter-btn" type="button" data-filter="tool">工具</button>
+          <button class="filter-btn" type="button" data-filter="visual">视觉</button>
+        </div>
+
+        <ul class="work-grid" id="workGrid">
+          <li class="work-card reveal" data-cat="web">
+            <span class="work-index">01</span>
+            <h3 class="work-name">鎏金导航站</h3>
+            <p class="work-desc">自用的网址聚合首页，支持分组折叠、模糊搜索与本地收藏，打开浏览器即是自己的舞池。</p>
+            <ul class="chip-list">
+              <li class="chip">HTML</li>
+              <li class="chip">CSS</li>
+              <li class="chip">JavaScript</li>
+            </ul>
+          </li>
+
+          <li class="work-card reveal" data-cat="visual">
+            <span class="work-index">02</span>
+            <h3 class="work-name">长沙天气看板</h3>
+            <p class="work-desc">把湘江边的阴晴做成图表，逐小时温度曲线配昼夜配色，一眼看清要不要带伞。</p>
+            <ul class="chip-list">
+              <li class="chip">Canvas</li>
+              <li class="chip">Fetch API</li>
+              <li class="chip">响应式</li>
+            </ul>
+          </li>
+
+          <li class="work-card reveal" data-cat="tool">
+            <span class="work-index">03</span>
+            <h3 class="work-name">极简倒计时器</h3>
+            <p class="work-desc">为专注与截止日期设计的多任务倒计时，支持键盘快捷键与浏览器通知提醒。</p>
+            <ul class="chip-list">
+              <li class="chip">JavaScript</li>
+              <li class="chip">LocalStorage</li>
+            </ul>
+          </li>
+
+          <li class="work-card reveal" data-cat="web">
+            <span class="work-index">04</span>
+            <h3 class="work-name">夜莺博客主题</h3>
+            <p class="work-desc">深色阅读优先的静态博客主题，正文排版细腻，代码块自带金色高亮与行号。</p>
+            <ul class="chip-list">
+              <li class="chip">CSS 变量</li>
+              <li class="chip">暗色模式</li>
+              <li class="chip">排版</li>
+            </ul>
+          </li>
+
+          <li class="work-card reveal" data-cat="tool">
+            <span class="work-index">05</span>
+            <h3 class="work-name">表单校验工坊</h3>
+            <p class="work-desc">零依赖的前端表单校验小库，规则可组合，错误提示文案可完全自定义。</p>
+            <ul class="chip-list">
+              <li class="chip">JavaScript</li>
+              <li class="chip">正则</li>
+            </ul>
+          </li>
+
+          <li class="work-card reveal" data-cat="visual">
+            <span class="work-index">06</span>
+            <h3 class="work-name">胶片相册墙</h3>
+            <p class="work-desc">瀑布流照片墙，点击放大带平滑过渡，为旅行照片提供一块安静的展示墙。</p>
+            <ul class="chip-list">
+              <li class="chip">Grid</li>
+              <li class="chip">动效</li>
+              <li class="chip">响应式</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p class="filter-empty" id="filterEmpty" hidden>此类目暂无陈列作品。</p>
+      </div>
+    </section>
+
+    <!-- ===== 档案：技能条 + 数据统计 ===== -->
+    <section class="section section-alt" id="profile">
+      <div class="shell profile-grid">
+
+        <div class="profile-skills reveal">
+          <header class="section-head">
+            <p class="eyebrow">CAPABILITIES</p>
+            <h2 class="section-title">技艺清单</h2>
+          </header>
+
+          <ul class="skill-list" id="skillList">
+            <li class="skill">
+              <div class="skill-top"><span class="skill-name">前端工程</span><span class="skill-val">92%</span></div>
+              <div class="skill-track"><span class="skill-fill" data-level="92"></span></div>
+            </li>
+            <li class="skill">
+              <div class="skill-top"><span class="skill-name">视觉设计</span><span class="skill-val">85%</span></div>
+              <div class="skill-track"><span class="skill-fill" data-level="85"></span></div>
+            </li>
+            <li class="skill">
+              <div class="skill-top"><span class="skill-name">数据可视化</span><span class="skill-val">78%</span></div>
+              <div class="skill-track"><span class="skill-fill" data-level="78"></span></div>
+            </li>
+            <li class="skill">
+              <div class="skill-top"><span class="skill-name">动效交互</span><span class="skill-val">88%</span></div>
+              <div class="skill-track"><span class="skill-fill" data-level="88"></span></div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="profile-stats reveal">
+          <header class="section-head">
+            <p class="eyebrow">IN NUMBERS</p>
+            <h2 class="section-title">私人统计</h2>
+          </header>
+
+          <ul class="stat-grid">
+            <li class="stat">
+              <span class="stat-num" data-target="6">0</span>
+              <span class="stat-label">上线作品</span>
+            </li>
+            <li class="stat">
+              <span class="stat-num" data-target="1280">0</span>
+              <span class="stat-label">提交记录</span>
+            </li>
+            <li class="stat">
+              <span class="stat-num" data-target="42">0</span>
+              <span class="stat-label">咖啡杯数</span>
+            </li>
+            <li class="stat">
+              <span class="stat-num" data-target="2026">0</span>
+              <span class="stat-label">当前年份</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== 联络信息：GitHub / QQ / 邮箱 / 地点 ===== -->
+    <section class="section" id="contact">
+      <div class="shell">
+        <header class="section-head reveal">
+          <p class="eyebrow">GET IN TOUCH</p>
+          <h2 class="section-title">私人联络簿</h2>
+          <div class="rule rule-left" aria-hidden="true">
+            <span class="rule-gem">◆</span>
+            <span class="rule-line"></span>
+          </div>
+        </header>
+
+        <ul class="contact-grid">
+          <li class="contact-card reveal">
+            <span class="contact-icon" aria-hidden="true">⌘</span>
+            <h3 class="contact-label">GitHub</h3>
+            <a class="contact-value" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+          </li>
+
+          <li class="contact-card reveal">
+            <span class="contact-icon" aria-hidden="true">✆</span>
+            <h3 class="contact-label">QQ</h3>
+            <a class="contact-value" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+          </li>
+
+          <li class="contact-card reveal">
+            <span class="contact-icon" aria-hidden="true">✉</span>
+            <h3 class="contact-label">邮箱 · 一</h3>
+            <a class="contact-value" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+          </li>
+
+          <li class="contact-card reveal">
+            <span class="contact-icon" aria-hidden="true">✉</span>
+            <h3 class="contact-label">邮箱 · 二</h3>
+            <a class="contact-value" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+          </li>
+
+          <li class="contact-card reveal">
+            <span class="contact-icon" aria-hidden="true">⌖</span>
+            <h3 class="contact-label">地点</h3>
+            <span class="contact-value">湖南省长沙市</span>
+          </li>
+
+          <li class="contact-card reveal">
+            <span class="contact-icon" aria-hidden="true">◷</span>
+            <h3 class="contact-label">长沙时间</h3>
+            <span class="contact-value" id="contactClock">00:00:00</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="rule" aria-hidden="true">
+        <span class="rule-line"></span>
+        <span class="rule-gem">◆</span>
+        <span class="rule-line"></span>
+      </div>
+      <p class="footer-text">© 2026 ok-lzr · 湖南省长沙市</p>
+      <p class="footer-sub">盖茨比奢华 · Art Deco 黑金之夜</p>
+    </div>
+  </footer>
+
+</body>
+</html>

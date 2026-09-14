@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="crt-on">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ok-lzr // AMBER-TERMINAL 琥珀终端</title>
+  <meta name="description" content="ok-lzr 的个人主页 · 琥珀终端风格 · 码上生活 · 湖南省长沙市">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- 页面根节点：data-theme / .crt-on 由 script.js 动态切换 -->
+  <div class="page" id="page">
+
+    <!-- ===== 玻璃反光 + CRT 曲面暗角（纯装饰层，不参与交互） ===== -->
+    <div class="crt-overlay" aria-hidden="true"></div>
+    <div class="crt-vignette" aria-hidden="true"></div>
+    <canvas class="matrix-layer" id="matrix" aria-hidden="true"></canvas>
+
+    <!-- ===== 顶栏：品牌 + 导航 + 终端控制 ===== -->
+    <header class="topbar" id="top">
+      <div class="wrap topbar__inner">
+        <a class="brand" href="#page">
+          <span class="brand__dot" aria-hidden="true">&#9679;</span>
+          <span class="brand__name">ok-lzr</span>
+          <span class="brand__tag">// 琥珀终端</span>
+        </a>
+
+        <nav class="nav" aria-label="站点导航">
+          <ul class="nav__list" id="navList">
+            <li><a class="nav__link" href="#about">关于</a></li>
+            <li><a class="nav__link" href="#projects">作品</a></li>
+            <li><a class="nav__link" href="#data">索引</a></li>
+            <li><a class="nav__link" href="#contact">联络</a></li>
+          </ul>
+        </nav>
+
+        <div class="term-ctrl">
+          <button class="crt-btn" id="themeToggle" type="button" aria-pressed="false">
+            <span class="crt-btn__ico" aria-hidden="true">&#9788;</span>
+            <span class="crt-btn__txt">日间模式</span>
+          </button>
+          <button class="crt-btn" id="crtToggle" type="button" aria-pressed="true">
+            <span class="crt-btn__ico" aria-hidden="true">&#9635;</span>
+            <span class="crt-btn__txt">CRT 扫描线</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap" id="main">
+
+      <!-- ===== HERO：姓名 ID + 一句话简介 + 打字机终端 ===== -->
+      <section class="hero" id="hero" aria-labelledby="heroTitle">
+        <p class="hero__boot">
+          <span class="prompt">ok-lzr@changsha</span><span class="prompt-sep">:</span><span class="path">~</span><span class="prompt-sep">$</span>
+          <span class="cmd">whoami</span>
+        </p>
+
+        <h1 class="hero__title" id="heroTitle">
+          ok-lzr <span class="hero__slash">/</span> <span class="hero__cn">码上生活</span>
+        </h1>
+
+        <p class="hero__lead">
+          一句话简介：白天写页面，夜里调终端 —— 我住在 <strong>湖南省长沙市</strong>，
+          用原生三件套把想法敲成能打开的网页。
+        </p>
+
+        <div class="typebar" aria-live="off">
+          <span class="typebar__prompt" aria-hidden="true">&gt;</span>
+          <span class="typebar__text" id="typeText"></span>
+          <span class="caret" aria-hidden="true"></span>
+        </div>
+
+        <ul class="chips" aria-label="能力标签">
+          <li class="chip">原生 HTML/CSS/JS</li>
+          <li class="chip">响应式布局</li>
+          <li class="chip">终端与脚本</li>
+          <li class="chip">数据可视化</li>
+        </ul>
+
+        <div class="hero__actions">
+          <a class="btn btn--solid" href="#projects">查看作品 &rarr;</a>
+          <a class="btn btn--ghost" href="#contact">建立联络</a>
+        </div>
+
+        <!-- 终端风格状态行：系统时间由 JS 注入 -->
+        <p class="hero__meta">
+          <span class="ok">[OK]</span> 系统已就绪 &middot;
+          <span class="dim">本地会话</span> <span id="sessionId">----</span> &middot;
+          <span class="dim">载入时刻</span> <span id="bootTime">--:--:--</span>
+        </p>
+      </section>
+
+      <!-- ===== 关于：技能条 + 自述 ===== -->
+      <section class="section reveal" id="about" aria-labelledby="aboutTitle">
+        <h2 class="section__title" id="aboutTitle"><span class="hash">##</span> 关于 / about</h2>
+
+        <div class="about">
+          <div class="panel about__text">
+            <p class="kv"><span class="kv__k">ID</span><span class="kv__v">ok-lzr</span></p>
+            <p class="kv"><span class="kv__k">定位</span><span class="kv__v">前端 · 静态站点 · 终端美学</span></p>
+            <p class="kv"><span class="kv__k">坐标</span><span class="kv__v">湖南省长沙市 (UTC+8)</span></p>
+            <p class="kv"><span class="kv__k">信条</span><span class="kv__v">能用原生写，就不加依赖</span></p>
+            <p class="about__note">
+              喜欢黑底橙字的命令行界面：信息密度高、层级清楚、暗光下不刺眼。
+              这个小站没有任何外部依赖，全部由 HTML / CSS / JS 手写。
+            </p>
+          </div>
+
+          <div class="panel about__skills">
+            <h3 class="panel__title">技能矩阵</h3>
+            <!-- 技能条：宽度由 CSS 变量驱动，进入视口时由 JS 从 0 动画到目标值 -->
+            <ul class="bars">
+              <li class="bar" data-value="92">
+                <div class="bar__head"><span class="bar__name">HTML / 语义结构</span><span class="bar__val">92%</span></div>
+                <div class="bar__track"><span class="bar__fill"></span></div>
+              </li>
+              <li class="bar" data-value="86">
+                <div class="bar__head"><span class="bar__name">CSS / 布局与动效</span><span class="bar__val">86%</span></div>
+                <div class="bar__track"><span class="bar__fill"></span></div>
+              </li>
+              <li class="bar" data-value="78">
+                <div class="bar__head"><span class="bar__name">JavaScript / 交互</span><span class="bar__val">78%</span></div>
+                <div class="bar__track"><span class="bar__fill"></span></div>
+              </li>
+              <li class="bar" data-value="70">
+                <div class="bar__head"><span class="bar__name">Shell / 自动化脚本</span><span class="bar__val">70%</span></div>
+                <div class="bar__track"><span class="bar__fill"></span></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 作品：筛选标签 + 项目列表 ===== -->
+      <section class="section reveal" id="projects" aria-labelledby="projTitle">
+        <h2 class="section__title" id="projTitle"><span class="hash">##</span> 作品 / projects</h2>
+
+        <div class="filters" role="group" aria-label="作品筛选" id="projFilters">
+          <button class="filter is-active" type="button" data-filter="all" aria-pressed="true">全部</button>
+          <button class="filter" type="button" data-filter="web" aria-pressed="false">网页</button>
+          <button class="filter" type="button" data-filter="tool" aria-pressed="false">工具</button>
+          <button class="filter" type="button" data-filter="data" aria-pressed="false">数据</button>
+        </div>
+
+        <p class="filter-hint" id="filterHint">共 5 条记录 &middot; 当前显示：全部</p>
+
+        <ul class="projects" id="projectList">
+          <li class="card" data-cat="web">
+            <div class="card__head">
+              <span class="card__idx">001</span>
+              <h3 class="card__title">个人导航站</h3>
+              <span class="card__cat">web</span>
+            </div>
+            <p class="card__desc">把常用站点、在线工具与自建服务收进一屏，纯静态、零依赖，按分类折叠存放。</p>
+            <ul class="tags">
+              <li class="tag">HTML</li><li class="tag">CSS Grid</li><li class="tag">localStorage</li>
+            </ul>
+          </li>
+
+          <li class="card" data-cat="data">
+            <div class="card__head">
+              <span class="card__idx">002</span>
+              <h3 class="card__title">长沙天气看板</h3>
+              <span class="card__cat">data</span>
+            </div>
+            <p class="card__desc">按小时展示气温曲线与降水概率，配色跟随昼夜自动切换，适合挂在副屏常驻。</p>
+            <ul class="tags">
+              <li class="tag">Canvas</li><li class="tag">SVG</li><li class="tag">响应式</li>
+            </ul>
+          </li>
+
+          <li class="card" data-cat="tool">
+            <div class="card__head">
+              <span class="card__idx">003</span>
+              <h3 class="card__title">终端便签墙</h3>
+              <span class="card__cat">tool</span>
+            </div>
+            <p class="card__desc">模仿命令行交互的便签工具，支持 add / done / drop 指令，数据只存在浏览器里。</p>
+            <ul class="tags">
+              <li class="tag">JavaScript</li><li class="tag">Keyboard</li><li class="tag">a11y</li>
+            </ul>
+          </li>
+
+          <li class="card" data-cat="tool">
+            <div class="card__head">
+              <span class="card__idx">004</span>
+              <h3 class="card__title">图片批处理小工具</h3>
+              <span class="card__cat">tool</span>
+            </div>
+            <p class="card__desc">本地完成压缩、改尺寸与重命名，全程离线处理，生成 JSON 清单方便二次校验。</p>
+            <ul class="tags">
+              <li class="tag">Node</li><li class="tag">Sharp</li><li class="tag">CLI</li>
+            </ul>
+          </li>
+
+          <li class="card" data-cat="web">
+            <div class="card__head">
+              <span class="card__idx">005</span>
+              <h3 class="card__title">CRT 风格博客皮肤</h3>
+              <span class="card__cat">web</span>
+            </div>
+            <p class="card__desc">黑底琥珀单色主题，含扫描线、暗角与光标闪烁，可一键切到日间纸质配色。</p>
+            <ul class="tags">
+              <li class="tag">CSS 变量</li><li class="tag">暗色主题</li><li class="tag">无依赖</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===== 索引：个人数据区（可点击链接 + 实时长沙时间） ===== -->
+      <section class="section reveal" id="data" aria-labelledby="dataTitle">
+        <h2 class="section__title" id="dataTitle"><span class="hash">##</span> 索引 / index</h2>
+
+        <div class="tabs" role="tablist" aria-label="数据分类">
+          <button class="tab is-active" id="tabContact" type="button" role="tab" data-tab="contact" aria-selected="true" aria-controls="panelContact">联系通道</button>
+          <button class="tab" id="tabClock" type="button" role="tab" data-tab="clock" aria-selected="false" aria-controls="panelClock">长沙时间</button>
+        </div>
+
+        <!-- 面板一：联系通道 -->
+        <div class="panel tab-panel is-active" id="panelContact" role="tabpanel" aria-labelledby="tabContact">
+          <ul class="links">
+            <li class="link-row">
+              <span class="link-row__k">GitHub</span>
+              <a class="link-row__v" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+            </li>
+            <li class="link-row">
+              <span class="link-row__k">QQ</span>
+              <a class="link-row__v" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+            </li>
+            <li class="link-row">
+              <span class="link-row__k">邮箱 1</span>
+              <a class="link-row__v" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+            </li>
+            <li class="link-row">
+              <span class="link-row__k">邮箱 2</span>
+              <a class="link-row__v" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+            </li>
+            <li class="link-row">
+              <span class="link-row__k">地点</span>
+              <span class="link-row__v link-row__v--plain">湖南省长沙市</span>
+            </li>
+          </ul>
+
+          <div class="copy-zone">
+            <p class="copy-zone__tip">点击下方按钮把联系信息复制到剪贴板：</p>
+            <div class="copy-zone__btns">
+              <button class="btn btn--ghost" type="button" data-copy="csgdnrxg@163.com">复制 163 邮箱</button>
+              <button class="btn btn--ghost" type="button" data-copy="3866477796@qq.com">复制 QQ 邮箱</button>
+              <button class="btn btn--ghost" type="button" data-copy="386477796">复制 QQ 号</button>
+            </div>
+            <p class="copy-zone__status" id="copyStatus" role="status" aria-live="polite">等待指令&hellip;</p>
+          </div>
+        </div>
+
+        <!-- 面板二：长沙实时时间 -->
+        <div class="panel tab-panel" id="panelClock" role="tabpanel" aria-labelledby="tabClock" hidden>
+          <p class="clock__label">长沙时间 &middot; UTC+8</p>
+          <p class="clock__main" id="clockTime">--:--:--</p>
+          <p class="clock__date" id="clockDate">----年--月--日 星期-</p>
+          <p class="clock__foot">
+            昼夜判定：<span class="badge" id="clockPhase">计算中</span>
+            <span class="dim">（基线参考 2026-09-14 星期一 22:07 &middot; 参考值仅用于主题判断）</span>
+          </p>
+          <p class="clock__foot dim" id="clockIso">--</p>
+        </div>
+      </section>
+
+      <!-- ===== 联络 / 页脚 ===== -->
+      <section class="section reveal" id="contact" aria-labelledby="contactTitle">
+        <h2 class="section__title" id="contactTitle"><span class="hash">##</span> 联络 / contact</h2>
+        <div class="panel cta">
+          <p class="cta__line"><span class="prompt">$</span> mail -s "hello" ok-lzr</p>
+          <p class="cta__desc">项目协作、页面外包、或者只是想聊聊终端配色，都可以直接找我。</p>
+          <div class="cta__btns">
+            <a class="btn btn--solid" href="mailto:csgdnrxg@163.com">发送邮件</a>
+            <a class="btn btn--ghost" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">访问 GitHub</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer__inner">
+        <p class="footer__copy">&copy; 2026 ok-lzr &middot; 湖南省长沙市</p>
+        <p class="footer__note">琥珀终端 &middot; 原生 HTML / CSS / JS &middot; 无外部依赖</p>
+        <p class="footer__status"><span class="ok">[EOF]</span> 会话结束 &middot; 按 <kbd>Home</kbd> 回到顶部</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ok-lzr / 码上生活 · 瑞士国际主义</title>
+<meta name="description" content="ok-lzr 的个人主页 —— 12 列网格、红黑白、严格对齐的瑞士国际主义风格。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== 顶部固定栏：编号 + 姓名 + 主导航 ===== -->
+<header class="masthead" id="top">
+  <div class="grid masthead__inner">
+    <div class="masthead__mark col-3">
+      <span class="mark-box">ok</span><span class="mark-text">网格计划 Nº11</span>
+    </div>
+    <nav class="nav col-9" aria-label="页面主导航">
+      <a class="nav__link" href="#about">01 简介</a>
+      <a class="nav__link" href="#work">02 作品</a>
+      <a class="nav__link" href="#skills">03 能力</a>
+      <a class="nav__link" href="#data">04 数据</a>
+      <a class="nav__link" href="#contact">05 联系</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== 首屏：大号数字 + 红块 + 实时时钟 ===== -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="grid hero__grid">
+      <div class="hero__lead col-8">
+        <p class="eyebrow">个人主页 / PERSONAL INDEX / 2026</p>
+        <h1 class="hero__title" id="hero-title">
+          <span class="hero__name">ok-lzr</span>
+          <span class="hero__slash">/</span>
+          <span class="hero__cn">码上生活</span>
+        </h1>
+        <p class="hero__intro">
+          一句话简介：用<strong>极简的网格</strong>把代码、数据与生活对齐到同一套秩序里，
+          在长沙写前端，也写一点点后端与工具。
+        </p>
+        <ul class="tags" aria-label="能力标签">
+          <li class="tag">前端工程</li>
+          <li class="tag">数据可视化</li>
+          <li class="tag">静态站点生成</li>
+          <li class="tag">交互设计</li>
+        </ul>
+      </div>
+
+      <aside class="hero__clock col-4" aria-labelledby="clock-title">
+        <div class="swatch" aria-hidden="true">
+          <span class="swatch__red"></span>
+          <span class="swatch__black"></span>
+          <span class="swatch__white"></span>
+        </div>
+        <h2 class="clock__title" id="clock-title">长沙时间 / CHANGSHA</h2>
+        <p class="clock__time" id="clock-time" role="timer" aria-live="off">--:--:--</p>
+        <p class="clock__date" id="clock-date">载入中…</p>
+        <p class="clock__meta">UTC+8 · <span id="clock-phase">昼夜判断中</span></p>
+        <p class="clock__baseline">参考基线：2026-09-14 星期一 22:07</p>
+      </aside>
+    </div>
+
+    <div class="rule" aria-hidden="true"></div>
+  </section>
+
+  <!-- ===== 01 简介 ===== -->
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="grid">
+      <header class="section__head col-12">
+        <span class="section__num">01</span>
+        <h2 class="section__title" id="about-title">简介 / ABOUT</h2>
+      </header>
+
+      <div class="col-6 about__text">
+        <p>
+          我是 ok-lzr，一名以浏览器为主要工作面的开发者。相信版式即逻辑：
+          把信息拆成列、把列对齐成网格、把网格交给内容去填充。
+        </p>
+        <p>
+          日常关注可访问性、加载性能与原生技术栈的实际边界；
+          喜欢用最少的依赖做出最稳的界面。
+        </p>
+      </div>
+
+      <div class="col-6 about__facts">
+        <dl class="facts">
+          <div class="facts__row">
+            <dt>坐标</dt><dd>湖南省长沙市 / Changsha</dd>
+          </div>
+          <div class="facts__row">
+            <dt>方向</dt><dd>前端 · 数据可视化 · 工具链</dd>
+          </div>
+          <div class="facts__row">
+            <dt>原则</dt><dd>结构先行，样式收敛，行为独立</dd>
+          </div>
+          <div class="facts__row">
+            <dt>状态</dt><dd><span class="dot" aria-hidden="true"></span>可接受新的合作</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule" aria-hidden="true"></div>
+
+  <!-- ===== 02 作品 ===== -->
+  <section class="section" id="work" aria-labelledby="work-title">
+    <div class="grid">
+      <header class="section__head col-12">
+        <span class="section__num">02</span>
+        <h2 class="section__title" id="work-title">作品 / SELECTED WORK</h2>
+      </header>
+
+      <!-- 筛选按钮：由 JS 绑定 data-filter -->
+      <div class="col-12 filter" id="work-filter" role="group" aria-label="作品筛选">
+        <button class="filter__btn is-active" type="button" data-filter="all">全部</button>
+        <button class="filter__btn" type="button" data-filter="web">前端</button>
+        <button class="filter__btn" type="button" data-filter="data">数据</button>
+        <button class="filter__btn" type="button" data-filter="tool">工具</button>
+      </div>
+
+      <ol class="works col-12" id="work-list">
+        <li class="work reveal" data-cat="web">
+          <span class="work__index">01</span>
+          <div class="work__body">
+            <h3 class="work__name">个人导航站</h3>
+            <p class="work__desc">把所有常用入口收进一页，支持分类折叠与键盘快速检索。</p>
+          </div>
+          <ul class="work__stack">
+            <li>HTML</li><li>CSS Grid</li><li>原生 JS</li>
+          </ul>
+        </li>
+
+        <li class="work reveal" data-cat="data">
+          <span class="work__index">02</span>
+          <div class="work__body">
+            <h3 class="work__name">长沙天气看板</h3>
+            <p class="work__desc">按小时与按天两种粒度呈现本地天气，夜昼配色自动切换。</p>
+          </div>
+          <ul class="work__stack">
+            <li>Fetch</li><li>CSS 变量</li><li>图表</li>
+          </ul>
+        </li>
+
+        <li class="work reveal" data-cat="tool">
+          <span class="work__index">03</span>
+          <div class="work__body">
+            <h3 class="work__name">静态站生成器</h3>
+            <p class="work__desc">输入一段结构化数据，输出成套 HTML/CSS/JS 的极简生成脚本。</p>
+          </div>
+          <ul class="work__stack">
+            <li>Node</li><li>模板</li><li>CLI</li>
+          </ul>
+        </li>
+
+        <li class="work reveal" data-cat="web">
+          <span class="work__index">04</span>
+          <div class="work__body">
+            <h3 class="work__name">排版实验室</h3>
+            <p class="work__desc">12 列基线网格的可视化调试工具，实时显示列宽与间距参考线。</p>
+          </div>
+          <ul class="work__stack">
+            <li>CSS</li><li>Canvas</li><li>无障碍</li>
+          </ul>
+        </li>
+
+        <li class="work reveal" data-cat="data">
+          <span class="work__index">05</span>
+          <div class="work__body">
+            <h3 class="work__name">阅读时长统计</h3>
+            <p class="work__desc">把零散的读书记录聚合成年度条形图，导出为可打印的年度海报。</p>
+          </div>
+          <ul class="work__stack">
+            <li>SVG</li><li>本地存储</li><li>打印样式</li>
+          </ul>
+        </li>
+
+        <li class="work reveal" data-cat="tool">
+          <span class="work__index">06</span>
+          <div class="work__body">
+            <h3 class="work__name">色板校验器</h3>
+            <p class="work__desc">检查前景与背景的对比度是否达标，并给出就近的合规替代色。</p>
+          </div>
+          <ul class="work__stack">
+            <li>WCAG</li><li>色彩空间</li><li>原生 JS</li>
+          </ul>
+        </li>
+      </ol>
+
+      <p class="works__empty col-12" id="work-empty" hidden>该分类下暂无作品。</p>
+    </div>
+  </section>
+
+  <div class="rule" aria-hidden="true"></div>
+
+  <!-- ===== 03 能力：滚动进入后播放进度条动画 ===== -->
+  <section class="section" id="skills" aria-labelledby="skills-title">
+    <div class="grid">
+      <header class="section__head col-12">
+        <span class="section__num">03</span>
+        <h2 class="section__title" id="skills-title">能力 / CAPABILITY</h2>
+      </header>
+
+      <div class="col-7 skills" id="skills-list">
+        <div class="skill">
+          <div class="skill__head"><span class="skill__name">HTML / CSS 版式</span><span class="skill__val">95</span></div>
+          <div class="skill__track"><span class="skill__bar" data-level="95"></span></div>
+        </div>
+        <div class="skill">
+          <div class="skill__head"><span class="skill__name">JavaScript 原生开发</span><span class="skill__val">90</span></div>
+          <div class="skill__track"><span class="skill__bar" data-level="90"></span></div>
+        </div>
+        <div class="skill">
+          <div class="skill__head"><span class="skill__name">数据可视化</span><span class="skill__val">82</span></div>
+          <div class="skill__track"><span class="skill__bar" data-level="82"></span></div>
+        </div>
+        <div class="skill">
+          <div class="skill__head"><span class="skill__name">性能与无障碍</span><span class="skill__val">76</span></div>
+          <div class="skill__track"><span class="skill__bar" data-level="76"></span></div>
+        </div>
+      </div>
+
+      <aside class="col-5 counters" aria-label="数字概览">
+        <div class="counter">
+          <span class="counter__num" data-count="128">0</span>
+          <span class="counter__label">完成页面 / PAGES</span>
+        </div>
+        <div class="counter">
+          <span class="counter__num" data-count="42">0</span>
+          <span class="counter__label">开源提交 / COMMITS</span>
+        </div>
+        <div class="counter">
+          <span class="counter__num" data-count="7">0</span>
+          <span class="counter__label">使用年数 / YEARS</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <div class="rule" aria-hidden="true"></div>
+
+  <!-- ===== 04 个人数据 + 05 联系 ===== -->
+  <section class="section" id="data" aria-labelledby="data-title">
+    <div class="grid">
+      <header class="section__head col-12">
+        <span class="section__num">04</span>
+        <h2 class="section__title" id="data-title">个人数据 / DATA</h2>
+      </header>
+
+      <div class="col-12">
+        <ul class="data-list" id="contact">
+          <li class="data-row reveal">
+            <span class="data-row__label">GitHub</span>
+            <a class="data-row__value" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+          </li>
+          <li class="data-row reveal">
+            <span class="data-row__label">QQ</span>
+            <a class="data-row__value" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+          </li>
+          <li class="data-row reveal">
+            <span class="data-row__label">邮箱 1</span>
+            <a class="data-row__value" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+          </li>
+          <li class="data-row reveal">
+            <span class="data-row__label">邮箱 2</span>
+            <a class="data-row__value" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+          </li>
+          <li class="data-row reveal">
+            <span class="data-row__label">地点</span>
+            <span class="data-row__value data-row__value--plain">湖南省长沙市</span>
+          </li>
+          <li class="data-row reveal">
+            <span class="data-row__label">时间</span>
+            <span class="data-row__value data-row__value--plain" id="contact-time">长沙时间载入中…</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="footer" aria-label="页脚">
+  <div class="grid footer__inner">
+    <p class="footer__copy col-6">© 2026 ok-lzr · 湖南省长沙市</p>
+    <p class="footer__note col-6">瑞士国际主义 · 12 列网格 · 无外部依赖</p>
+  </div>
+</footer>
+
+<!-- 回到顶部：由 JS 控制显隐与平滑滚动 -->
+<button class="to-top" id="to-top" type="button" aria-label="回到页面顶部">↑</button>
+
+<script src="script.js" defer></script>
+</body>
+</html>

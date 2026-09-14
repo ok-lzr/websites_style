@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="night">
+<head>
+  <meta charset="UTF-8" />
+  <!-- 移动端优先：宽度自适应 + 初始缩放 1，避免横向滚动 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="ok-lzr 的个人主页 —— 视差山景风格：层叠远山剪影、日出渐变天空与山间薄雾。" />
+  <meta name="author" content="ok-lzr" />
+  <title>ok-lzr / 码上生活 · 视差山景</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body id="top">
+
+  <!-- ===== 固定视差背景：天空 / 日月 / 雾 / 四层远山（装饰性，对读屏隐藏） ===== -->
+  <div class="scene" aria-hidden="true">
+    <div class="scene__sky"></div>
+    <div class="scene__glow"></div>
+    <div class="scene__sun"></div>
+    <div class="scene__stars"></div>
+    <div class="scene__mist scene__mist--upper"></div>
+    <div class="scene__ridge scene__ridge--l1"></div>
+    <div class="scene__ridge scene__ridge--l2"></div>
+    <div class="scene__mist scene__mist--lower"></div>
+    <div class="scene__ridge scene__ridge--l3"></div>
+    <div class="scene__ridge scene__ridge--l4"></div>
+  </div>
+
+  <!-- ===== 页面加载 / 滚动进度：位于视差场景之上的可见界面 ===== -->
+  <div class="page">
+    <div class="scroll-progress" role="presentation"><span id="scroll-progress-bar"></span></div>
+
+    <!-- ===== 顶部导航 ===== -->
+    <header class="hero" id="hero">
+      <nav class="nav" aria-label="主导航">
+        <a class="nav__brand" href="#hero">ok-lzr<span>·山</span></a>
+        <ul class="nav__list">
+          <li><a class="nav__link" href="#about">关于</a></li>
+          <li><a class="nav__link" href="#works">作品</a></li>
+          <li><a class="nav__link" href="#skills">技能</a></li>
+          <li><a class="nav__link" href="#data">数据</a></li>
+        </ul>
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-pressed="false" aria-label="切换昼夜主题">
+          <span class="theme-toggle__icon" aria-hidden="true">☾</span>
+          <span class="theme-toggle__text">切到白天</span>
+        </button>
+      </nav>
+
+      <!-- ===== 首屏：姓名 / 一句话简介 / 实时时钟 ===== -->
+      <div class="hero__inner">
+        <p class="hero__eyebrow">视差山景 · 个人主页</p>
+        <h1 class="hero__name">ok-lzr <span class="hero__slash">/</span> 码上生活</h1>
+        <p class="hero__lead">一名前端开发者，喜欢把日夜、山雾与时间做成能滚动的东西。</p>
+        <p class="hero__typing" aria-live="polite">
+          <span class="hero__typing-label">正在折腾：</span><span id="typed" class="hero__typing-text"></span>
+        </p>
+
+        <div class="clock" id="clock" data-phase="night">
+          <div class="clock__left">
+            <span class="clock__place">湖南省长沙市 · 长沙时间</span>
+            <time id="clock-date" class="clock__date">加载中…</time>
+          </div>
+          <div class="clock__right">
+            <time id="clock-time" class="clock__time">--:--:--</time>
+            <span id="clock-phase" class="clock__phase">夜</span>
+          </div>
+        </div>
+
+        <ul class="tags" aria-label="能力标签">
+          <li class="tag">前端工程</li>
+          <li class="tag">视觉动效</li>
+          <li class="tag">数据可视化</li>
+          <li class="tag">Python 小工具</li>
+        </ul>
+
+        <p class="hero__hint" id="hero-hint">向下滚动，山会慢慢让开 ↓</p>
+      </div>
+    </header>
+
+    <main>
+      <!-- ===== 关于：一句话定位 + 山景随昼夜变化 ===== -->
+      <section class="section reveal" id="about" aria-labelledby="about-title">
+        <p class="section__index">01 / 关于</p>
+        <h2 class="section__title" id="about-title">住在山与代码之间</h2>
+        <p class="section__text">
+          白天写页面，晚上看日落。这个主页用纯 HTML、CSS 与原生 JavaScript 做成：
+          四层远山负责视差，渐变天空负责昼夜，薄雾负责让距离感看起来真实一点。
+        </p>
+        <p class="section__text">
+          主题会按长沙时间自动判断——现在是白天就亮，入夜就暗；也可以点右上角自己切。
+        </p>
+      </section>
+
+      <!-- ===== 作品：标签筛选 + 卡片网格 ===== -->
+      <section class="section reveal" id="works" aria-labelledby="works-title">
+        <p class="section__index">02 / 作品</p>
+        <h2 class="section__title" id="works-title">山脚下的几个项目</h2>
+
+        <div class="filters" role="group" aria-label="按类型筛选作品">
+          <button type="button" class="filter is-active" data-filter="all" aria-pressed="true">全部</button>
+          <button type="button" class="filter" data-filter="web" aria-pressed="false">网页</button>
+          <button type="button" class="filter" data-filter="visual" aria-pressed="false">动效</button>
+          <button type="button" class="filter" data-filter="tool" aria-pressed="false">工具</button>
+        </div>
+
+        <ul class="works" id="works-list">
+          <li class="work" data-cat="web">
+            <h3 class="work__title">个人导航站</h3>
+            <p class="work__desc">把常用入口按使用频率排成一座山脊，支持键盘快速跳转与自定义分组。</p>
+            <ul class="work__stack">
+              <li>HTML</li><li>CSS</li><li>LocalStorage</li>
+            </ul>
+          </li>
+          <li class="work" data-cat="web">
+            <h3 class="work__title">长沙天气看板</h3>
+            <p class="work__desc">按小时展示气温与降水概率，背景随天气在晴、阴、雨之间切换。</p>
+            <ul class="work__stack">
+              <li>JavaScript</li><li>Canvas</li><li>Fetch</li>
+            </ul>
+          </li>
+          <li class="work" data-cat="visual">
+            <h3 class="work__title">层叠山景视差</h3>
+            <p class="work__desc">用四层剪影与雾带做纵深，滚动与鼠标移动共同驱动视差位移。</p>
+            <ul class="work__stack">
+              <li>CSS 变量</li><li>Parallax</li><li>SVG</li>
+            </ul>
+          </li>
+          <li class="work" data-cat="tool">
+            <h3 class="work__title">代码片段管理器</h3>
+            <p class="work__desc">本地保存常用代码片段，支持标签检索、一键复制与语法高亮。</p>
+            <ul class="work__stack">
+              <li>JavaScript</li><li>IndexedDB</li>
+            </ul>
+          </li>
+          <li class="work" data-cat="tool">
+            <h3 class="work__title">文件重命名助手</h3>
+            <p class="work__desc">按规则批量重命名照片与文档，可预览结果再执行，避免误操作。</p>
+            <ul class="work__stack">
+              <li>Python</li><li>CLI</li>
+            </ul>
+          </li>
+          <li class="work" data-cat="visual">
+            <h3 class="work__title">日出主题生成器</h3>
+            <p class="work__desc">从一张日出照片里提取主色，自动生成一套可直接使用的 CSS 变量主题。</p>
+            <ul class="work__stack">
+              <li>Canvas</li><li>色彩算法</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===== 技能：滚动进入时进度条动画 ===== -->
+      <section class="section reveal" id="skills" aria-labelledby="skills-title">
+        <p class="section__index">03 / 技能</p>
+        <h2 class="section__title" id="skills-title">手里常备的工具</h2>
+
+        <ul class="skills">
+          <li class="skill" data-level="92">
+            <div class="skill__head"><span>HTML / CSS</span><span class="skill__pct">0%</span></div>
+            <div class="skill__track"><span class="skill__fill" role="progressbar" aria-label="HTML 与 CSS 熟练度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="92"></span></div>
+          </li>
+          <li class="skill" data-level="88">
+            <div class="skill__head"><span>JavaScript</span><span class="skill__pct">0%</span></div>
+            <div class="skill__track"><span class="skill__fill" role="progressbar" aria-label="JavaScript 熟练度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="88"></span></div>
+          </li>
+          <li class="skill" data-level="76">
+            <div class="skill__head"><span>数据可视化</span><span class="skill__pct">0%</span></div>
+            <div class="skill__track"><span class="skill__fill" role="progressbar" aria-label="数据可视化熟练度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="76"></span></div>
+          </li>
+          <li class="skill" data-level="70">
+            <div class="skill__head"><span>Python</span><span class="skill__pct">0%</span></div>
+            <div class="skill__track"><span class="skill__fill" role="progressbar" aria-label="Python 熟练度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70"></span></div>
+          </li>
+          <li class="skill" data-level="64">
+            <div class="skill__head"><span>动效设计</span><span class="skill__pct">0%</span></div>
+            <div class="skill__track"><span class="skill__fill" role="progressbar" aria-label="动效设计熟练度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64"></span></div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- ===== 数据：个人数据区，每条都可点击 ===== -->
+      <section class="section reveal" id="data" aria-labelledby="data-title">
+        <p class="section__index">04 / 数据</p>
+        <h2 class="section__title" id="data-title">找到我的几种方式</h2>
+
+        <dl class="data-grid">
+          <div class="data-item">
+            <dt class="data-item__key">GitHub</dt>
+            <dd class="data-item__val">
+              <a href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+            </dd>
+          </div>
+          <div class="data-item">
+            <dt class="data-item__key">QQ</dt>
+            <dd class="data-item__val">
+              <a href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+            </dd>
+          </div>
+          <div class="data-item">
+            <dt class="data-item__key">邮箱 · 主</dt>
+            <dd class="data-item__val">
+              <a href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+            </dd>
+          </div>
+          <div class="data-item">
+            <dt class="data-item__key">邮箱 · 备用</dt>
+            <dd class="data-item__val">
+              <a href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+            </dd>
+          </div>
+          <div class="data-item">
+            <dt class="data-item__key">地点</dt>
+            <dd class="data-item__val"><span class="data-item__text">湖南省长沙市</span></dd>
+          </div>
+          <div class="data-item">
+            <dt class="data-item__key">长沙时间</dt>
+            <dd class="data-item__val"><time id="clock-echo" class="data-item__text">--</time></dd>
+          </div>
+        </dl>
+
+        <ul class="stats" aria-label="概览数据">
+          <li class="stat">
+            <span class="stat__num" data-count="6" data-suffix="">0</span>
+            <span class="stat__label">个公开项目</span>
+          </li>
+          <li class="stat">
+            <span class="stat__num" data-count="128" data-suffix="+">0</span>
+            <span class="stat__label">篇笔记与记录</span>
+          </li>
+          <li class="stat">
+            <span class="stat__num" data-count="4" data-suffix="">0</span>
+            <span class="stat__label">年写前端</span>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- ===== 页脚 ===== -->
+    <footer class="footer">
+      <div class="ridge-divider" aria-hidden="true">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" focusable="false">
+          <path d="M0,86 L96,50 L178,84 L268,40 L352,88 L452,52 L548,90 L648,44 L742,86 L836,54 L930,92 L1030,48 L1120,84 L1200,58 L1200,120 L0,120 Z"></path>
+        </svg>
+      </div>
+      <p class="footer__line">© 2026 ok-lzr · 湖南省长沙市</p>
+      <p class="footer__sub">视差山景 · 纯原生 HTML / CSS / JavaScript 构建</p>
+    </footer>
+  </div>
+
+</body>
+</html>

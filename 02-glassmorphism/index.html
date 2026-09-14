@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ok-lzr · 玻璃拟态个人主页</title>
+  <meta name="description" content="ok-lzr 的个人主页 —— 彩色流体渐变与磨砂玻璃风格的静态站点。" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- 背景层：彩色流体渐变光斑（纯装饰，不参与语义） -->
+  <div class="aurora" aria-hidden="true">
+    <span class="blob blob--a"></span>
+    <span class="blob blob--b"></span>
+    <span class="blob blob--c"></span>
+    <span class="blob blob--d"></span>
+    <span class="grain"></span>
+  </div>
+
+  <!-- 顶部导航：毛玻璃条 + 平滑滚动锚点 -->
+  <header class="site-header">
+    <div class="wrap header-inner glass">
+      <a class="brand" href="#top">
+        <span class="brand-mark">◍</span>
+        <span class="brand-text">ok-lzr<em>/ 码上生活</em></span>
+      </a>
+
+      <nav class="nav" aria-label="站内导航">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="#about">关于</a></li>
+          <li><a class="nav-link" href="#works">作品</a></li>
+          <li><a class="nav-link" href="#skills">技能</a></li>
+          <li><a class="nav-link" href="#contact">联系</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-tools">
+        <button class="icon-btn" id="themeToggle" type="button" aria-pressed="false" aria-label="切换深浅色主题">
+          <span class="icon-btn-glyph" id="themeGlyph" aria-hidden="true">☾</span>
+        </button>
+        <button class="icon-btn icon-btn--menu" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="展开导航菜单">
+          <span class="icon-btn-glyph" aria-hidden="true">≡</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 移动端下拉导航 -->
+    <nav class="mobile-nav glass" id="mobileNav" aria-label="移动端导航" hidden>
+      <ul class="nav-list nav-list--stack">
+        <li><a class="nav-link" href="#about">关于</a></li>
+        <li><a class="nav-link" href="#works">作品</a></li>
+        <li><a class="nav-link" href="#skills">技能</a></li>
+        <li><a class="nav-link" href="#contact">联系</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- ===== 首屏 Hero ===== -->
+    <section class="section hero" id="hero">
+      <div class="wrap hero-inner">
+        <article class="hero-card glass reveal">
+          <p class="eyebrow">玻璃拟态 · Glassmorphism</p>
+          <h1 class="hero-title">
+            <span class="hero-name" id="typedName" data-text="ok-lzr">ok-lzr</span>
+            <span class="hero-sub">码上生活</span>
+          </h1>
+          <p class="hero-desc">
+            把复杂留给自己，把清爽交给界面 —— 一名喜欢折腾前端动效与本地工具的开发者，
+            住在湘江边，用代码记录日常。
+          </p>
+
+          <ul class="tag-list" aria-label="能力标签">
+            <li class="tag">前端动效</li>
+            <li class="tag">数据可视化</li>
+            <li class="tag">静态站点</li>
+            <li class="tag">Python 小工具</li>
+          </ul>
+
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="#works">看看作品 ↓</a>
+            <a class="btn btn--ghost" href="#contact">联系我</a>
+          </div>
+        </article>
+
+        <!-- 实时时钟卡片：长沙时间 -->
+        <aside class="clock-card glass reveal" aria-label="长沙时间">
+          <h2 class="card-title">长沙时间 <span class="city-dot" aria-hidden="true"></span></h2>
+          <p class="clock-time" id="clockTime">--:--:--</p>
+          <p class="clock-date" id="clockDate">加载中…</p>
+          <div class="clock-meta">
+            <span class="pill" id="clockWeekday">星期—</span>
+            <span class="pill" id="clockPhase">—</span>
+          </div>
+          <p class="clock-note">
+            时区 UTC+8 · 昼 / 夜主题随当前时刻自动切换（基准：2026-09-14 星期一 22:07）
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===== 关于 ===== -->
+    <section class="section" id="about">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <h2 class="section-title">关于我</h2>
+          <p class="section-desc">一点自我介绍，以及我在意的事。</p>
+        </header>
+
+        <div class="grid grid--about">
+          <article class="card glass reveal">
+            <h3 class="card-title">自我描述</h3>
+            <p>
+              我是 ok-lzr，长期在长沙生活与工作。喜欢把零散的想法做成能用的小页面：
+              一个导航站、一块天气看板、一组自动化脚本。写代码之外，
+              爱沿着湘江散步，也会在深夜调一调颜色与模糊半径。
+            </p>
+          </article>
+
+          <article class="card glass reveal">
+            <h3 class="card-title">我在意</h3>
+            <ul class="dot-list">
+              <li>界面的层次与呼吸感，玻璃要“透而不糊”。</li>
+              <li>可读性优先：再花哨也要保证文字对比度。</li>
+              <li>零依赖：原生 HTML / CSS / JS 就够用。</li>
+              <li>移动先行，360px 上同样顺手。</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 作品列表：支持标签筛选 ===== -->
+    <section class="section" id="works">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <h2 class="section-title">作品集</h2>
+          <p class="section-desc">点点标签，筛选你感兴趣的方向。</p>
+        </header>
+
+        <div class="filter-bar glass reveal" role="tablist" aria-label="作品筛选">
+          <button class="chip is-active" type="button" role="tab" aria-selected="true" data-filter="all">全部</button>
+          <button class="chip" type="button" role="tab" aria-selected="false" data-filter="web">网页</button>
+          <button class="chip" type="button" role="tab" aria-selected="false" data-filter="data">数据</button>
+          <button class="chip" type="button" role="tab" aria-selected="false" data-filter="tool">工具</button>
+        </div>
+
+        <ul class="grid grid--works" id="workList">
+          <li class="work glass reveal" data-tags="web tool">
+            <h3 class="work-title">个人导航站</h3>
+            <p class="work-desc">把常用站点按场景分组，支持键盘快速跳转与自定义图标。</p>
+            <ul class="tag-list tag-list--sm">
+              <li class="tag">HTML</li>
+              <li class="tag">CSS Grid</li>
+              <li class="tag">localStorage</li>
+            </ul>
+          </li>
+
+          <li class="work glass reveal" data-tags="data web">
+            <h3 class="work-title">长沙天气看板</h3>
+            <p class="work-desc">抓取本地气象数据，用纯 CSS 图表展示温度曲线与降雨概率。</p>
+            <ul class="tag-list tag-list--sm">
+              <li class="tag">JavaScript</li>
+              <li class="tag">Fetch</li>
+              <li class="tag">SVG</li>
+            </ul>
+          </li>
+
+          <li class="work glass reveal" data-tags="tool">
+            <h3 class="work-title">番茄钟小窗</h3>
+            <p class="work-desc">桌面角落的极简计时器，专注结束用系统通知轻柔提醒。</p>
+            <ul class="tag-list tag-list--sm">
+              <li class="tag">Electron</li>
+              <li class="tag">Notification</li>
+            </ul>
+          </li>
+
+          <li class="work glass reveal" data-tags="data tool">
+            <h3 class="work-title">记账数据清洗器</h3>
+            <p class="work-desc">把散乱的账单导出统一成表格，自动归类并生成月度趋势。</p>
+            <ul class="tag-list tag-list--sm">
+              <li class="tag">Python</li>
+              <li class="tag">pandas</li>
+              <li class="tag">CSV</li>
+            </ul>
+          </li>
+
+          <li class="work glass reveal" data-tags="web data">
+            <h3 class="work-title">阅读时长年报</h3>
+            <p class="work-desc">把一年的读书笔记做成可滚动的可视化长图，支持导出图片。</p>
+            <ul class="tag-list tag-list--sm">
+              <li class="tag">Canvas</li>
+              <li class="tag">IntersectionObserver</li>
+            </ul>
+          </li>
+
+          <li class="work glass reveal" data-tags="tool web">
+            <h3 class="work-title">玻璃拟态组件库</h3>
+            <p class="work-desc">一套磨砂玻璃卡片、按钮与开关，附带可直接复制的 CSS 变量。</p>
+            <ul class="tag-list tag-list--sm">
+              <li class="tag">CSS 变量</li>
+              <li class="tag">backdrop-filter</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p class="empty-hint" id="emptyHint" hidden>该分类下暂时没有作品，换个标签看看吧。</p>
+      </div>
+    </section>
+
+    <!-- ===== 技能条 ===== -->
+    <section class="section" id="skills">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <h2 class="section-title">技能条</h2>
+          <p class="section-desc">滚动到此处会自动填充，数值为自我评估。</p>
+        </header>
+
+        <div class="card glass reveal" id="skillPanel">
+          <ul class="skill-list">
+            <li class="skill">
+              <div class="skill-head"><span class="skill-name">HTML / CSS</span><span class="skill-val" data-value="92">92%</span></div>
+              <div class="skill-track"><span class="skill-fill" data-target="92"></span></div>
+            </li>
+            <li class="skill">
+              <div class="skill-head"><span class="skill-name">JavaScript</span><span class="skill-val" data-value="86">86%</span></div>
+              <div class="skill-track"><span class="skill-fill" data-target="86"></span></div>
+            </li>
+            <li class="skill">
+              <div class="skill-head"><span class="skill-name">Python</span><span class="skill-val" data-value="78">78%</span></div>
+              <div class="skill-track"><span class="skill-fill" data-target="78"></span></div>
+            </li>
+            <li class="skill">
+              <div class="skill-head"><span class="skill-name">数据可视化</span><span class="skill-val" data-value="70">70%</span></div>
+              <div class="skill-track"><span class="skill-fill" data-target="70"></span></div>
+            </li>
+          </ul>
+
+          <!-- 数字滚动统计 -->
+          <ul class="stat-list" id="statList">
+            <li class="stat">
+              <span class="stat-num" data-count="6">0</span>
+              <span class="stat-label">收录作品</span>
+            </li>
+            <li class="stat">
+              <span class="stat-num" data-count="128">0</span>
+              <span class="stat-label">提交次数</span>
+            </li>
+            <li class="stat">
+              <span class="stat-num" data-count="42">0</span>
+              <span class="stat-label">整理笔记</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 联系 / 个人数据区 ===== -->
+    <section class="section" id="contact">
+      <div class="wrap">
+        <header class="section-head reveal">
+          <h2 class="section-title">联系与数据</h2>
+          <p class="section-desc">每一项都可以直接点击。</p>
+        </header>
+
+        <ul class="grid grid--contact">
+          <li class="reveal">
+            <a class="info glass" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">
+              <span class="info-icon" aria-hidden="true">⌥</span>
+              <span class="info-body">
+                <span class="info-label">GitHub</span>
+                <span class="info-value">github.com/ok-lzr</span>
+              </span>
+              <span class="info-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+
+          <li class="reveal">
+            <a class="info glass" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">
+              <span class="info-icon" aria-hidden="true">✆</span>
+              <span class="info-body">
+                <span class="info-label">QQ</span>
+                <span class="info-value">386477796</span>
+              </span>
+              <span class="info-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+
+          <li class="reveal">
+            <a class="info glass" href="mailto:csgdnrxg@163.com">
+              <span class="info-icon" aria-hidden="true">✉</span>
+              <span class="info-body">
+                <span class="info-label">邮箱 · 163</span>
+                <span class="info-value">csgdnrxg@163.com</span>
+              </span>
+              <span class="info-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+
+          <li class="reveal">
+            <a class="info glass" href="mailto:3866477796@qq.com">
+              <span class="info-icon" aria-hidden="true">✉</span>
+              <span class="info-body">
+                <span class="info-label">邮箱 · QQ</span>
+                <span class="info-value">3866477796@qq.com</span>
+              </span>
+              <span class="info-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+
+          <li class="reveal">
+            <span class="info glass info--static">
+              <span class="info-icon" aria-hidden="true">◎</span>
+              <span class="info-body">
+                <span class="info-label">所在地</span>
+                <span class="info-value">湖南省长沙市</span>
+              </span>
+            </span>
+          </li>
+
+          <li class="reveal">
+            <span class="info glass info--static">
+              <span class="info-icon" aria-hidden="true">◷</span>
+              <span class="info-body">
+                <span class="info-label">长沙时间</span>
+                <span class="info-value" id="contactClock">--:--:--</span>
+              </span>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="site-footer">
+    <div class="wrap footer-inner glass">
+      <p class="footer-text">© 2026 ok-lzr · 湖南省长沙市</p>
+      <p class="footer-sub">原生 HTML / CSS / JavaScript 构建 · 玻璃拟态风格</p>
+      <a class="footer-top" href="#top">回到顶部 ↑</a>
+    </div>
+  </footer>
+
+  <!-- 鼠标跟随光晕（JS 控制位置） -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+</body>
+</html>

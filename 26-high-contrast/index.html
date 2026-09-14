@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ok-lzr / 码上生活 · 高对比大胆</title>
+<meta name="description" content="ok-lzr 的个人主页：纯黑底 + 荧光黄、巨大字号、斜切色块的高对比大胆风格，纯手写 HTML / CSS / JS。">
+<meta name="theme-color" content="#000000">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body data-phase="night">
+
+<!-- 键盘用户跳过导航 -->
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<!-- ===== 顶部：品牌 + 主导航 + 反色开关 ===== -->
+<header class="site-header" id="top">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top">
+      <span class="brand-mark">OK</span>
+      <span class="brand-text">ok-lzr</span>
+    </a>
+
+    <nav class="nav" aria-label="主导航">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="#hero">首页</a></li>
+        <li><a class="nav-link" href="#works">作品</a></li>
+        <li><a class="nav-link" href="#skills">能力</a></li>
+        <li><a class="nav-link" href="#data">数据</a></li>
+      </ul>
+    </nav>
+
+    <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">反色模式</button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ===== 首屏：巨型排印 + 一句话简介 + 标签 ===== -->
+  <section class="hero" id="hero">
+    <div class="slash-block" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <p class="hero-kicker">// 个人主页 · 纯黑底 × 荧光黄</p>
+
+      <h1 class="hero-title">
+        <span class="hero-title-line">ok-lzr</span>
+        <span class="hero-title-line hero-title-sub"><span class="skew-inner">码上生活</span></span>
+      </h1>
+
+      <p class="hero-lead">
+        一句话简介：把生活里的小麻烦写成一屏就能跑起来的原生网页，零依赖、离线可用、丑得有个性。
+      </p>
+
+      <ul class="tag-list" aria-label="能力标签">
+        <li class="tag">原生 JS 手写</li>
+        <li class="tag">界面与排版</li>
+        <li class="tag">数据可视化</li>
+        <li class="tag">自动化脚本</li>
+      </ul>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#works">看作品 ↓</a>
+        <a class="btn btn-ghost" href="#data">拿联系方式</a>
+      </div>
+
+      <!-- 实时时钟（JS 驱动）与昼夜时段 -->
+      <p class="hero-status">
+        <span class="status-item">长沙时间 <strong class="clock-inline" id="heroClock">--:--:--</strong></span>
+        <span class="status-item">时段 <span class="clock-phase" id="heroPhase">计算中…</span></span>
+      </p>
+
+      <!-- 个人数据速览：数字由滚动动画填充 -->
+      <ul class="stat-strip">
+        <li class="stat reveal">
+          <span class="stat-value" data-count="5" data-suffix="个">0个</span>
+          <span class="stat-label">已上线小站</span>
+        </li>
+        <li class="stat reveal">
+          <span class="stat-value" data-count="3" data-suffix="年">0年</span>
+          <span class="stat-label">持续折腾</span>
+        </li>
+        <li class="stat reveal">
+          <span class="stat-value" data-count="12" data-suffix="个">0个</span>
+          <span class="stat-label">自用脚本</span>
+        </li>
+        <li class="stat reveal">
+          <span class="stat-value" data-count="0" data-suffix="个">0个</span>
+          <span class="stat-label">外部依赖</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== 斜切滚动条幅 ===== -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-group">
+        <span>纯原生 HTML · CSS · JS</span><span>★</span>
+        <span>零外部依赖</span><span>★</span>
+        <span>湖南长沙 · UTC+8</span><span>★</span>
+        <span>360px → 1200px 全响应式</span><span>★</span>
+      </div>
+      <div class="marquee-group">
+        <span>纯原生 HTML · CSS · JS</span><span>★</span>
+        <span>零外部依赖</span><span>★</span>
+        <span>湖南长沙 · UTC+8</span><span>★</span>
+        <span>360px → 1200px 全响应式</span><span>★</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 作品列表 ===== -->
+  <section class="section" id="works" aria-labelledby="works-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2 class="section-title" id="works-title">作品 / Works</h2>
+        <p class="section-note">5 个自己每天真的在用的页面，全部单文件可离线打开。</p>
+      </div>
+
+      <ol class="work-list">
+        <li class="work-item reveal">
+          <span class="work-index" aria-hidden="true">01</span>
+          <div class="work-body">
+            <div class="work-head">
+              <h3 class="work-title">个人导航站</h3>
+              <span class="work-meta">2026 · 首页级入口</span>
+            </div>
+            <p class="work-desc">把常用站点、在线工具和本地书签收进一屏，支持分类折叠与键盘直接搜索跳转。</p>
+            <ul class="stack" aria-label="技术栈">
+              <li>HTML</li><li>CSS 变量</li><li>原生 JS</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="work-item reveal">
+          <span class="work-index" aria-hidden="true">02</span>
+          <div class="work-body">
+            <div class="work-head">
+              <h3 class="work-title">长沙天气看板</h3>
+              <span class="work-meta">2025 · 本地生活</span>
+            </div>
+            <p class="work-desc">用超大字号卡片播报长沙实时天气、体感温度与未来三天趋势，下雨前先给一句提醒。</p>
+            <ul class="stack" aria-label="技术栈">
+              <li>Fetch</li><li>数据可视化</li><li>响应式</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="work-item reveal">
+          <span class="work-index" aria-hidden="true">03</span>
+          <div class="work-body">
+            <div class="work-head">
+              <h3 class="work-title">摸鱼计时器</h3>
+              <span class="work-meta">2025 · 时间管理</span>
+            </div>
+            <p class="work-desc">番茄钟 + 工时统计，记录每天真正专注的分钟数，并把发呆时长单独列出来羞辱自己。</p>
+            <ul class="stack" aria-label="技术栈">
+              <li>原生 JS</li><li>Canvas</li><li>本地存储</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="work-item reveal">
+          <span class="work-index" aria-hidden="true">04</span>
+          <div class="work-body">
+            <div class="work-head">
+              <h3 class="work-title">静态站点生成器</h3>
+              <span class="work-meta">2026 · 就是这个页面</span>
+            </div>
+            <p class="work-desc">一份内容配置批量产出多套视觉风格的个人主页，结构给 HTML、样式给 CSS、行为给 JS。</p>
+            <ul class="stack" aria-label="技术栈">
+              <li>Node.js</li><li>模板拼装</li><li>构建脚本</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="work-item reveal">
+          <span class="work-index" aria-hidden="true">05</span>
+          <div class="work-body">
+            <div class="work-head">
+              <h3 class="work-title">记账小账本</h3>
+              <span class="work-meta">2024 · 收支记录</span>
+            </div>
+            <p class="work-desc">极简收支录入，按月出柱状图，手绘 SVG 不引图表库，一键导出 CSV 存档。</p>
+            <ul class="stack" aria-label="技术栈">
+              <li>IndexedDB</li><li>SVG</li><li>CSV 导出</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== 能力条（荧光黄整块反白，滚动时填充） ===== -->
+  <section class="section section-alt" id="skills" aria-labelledby="skills-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2 class="section-title" id="skills-title">能力 / Skills</h2>
+        <p class="section-note">滚到这一屏，条子会自己长出来。</p>
+      </div>
+
+      <ul class="skill-list">
+        <li class="skill reveal" data-level="92">
+          <span class="skill-name">HTML / CSS 布局与排版</span>
+          <span class="skill-value" data-count="92" data-suffix="%">0%</span>
+          <span class="skill-track"><span class="skill-bar"></span></span>
+        </li>
+        <li class="skill reveal" data-level="88">
+          <span class="skill-name">原生 JavaScript 交互</span>
+          <span class="skill-value" data-count="88" data-suffix="%">0%</span>
+          <span class="skill-track"><span class="skill-bar"></span></span>
+        </li>
+        <li class="skill reveal" data-level="80">
+          <span class="skill-name">自动化脚本与构建</span>
+          <span class="skill-value" data-count="80" data-suffix="%">0%</span>
+          <span class="skill-track"><span class="skill-bar"></span></span>
+        </li>
+        <li class="skill reveal" data-level="74">
+          <span class="skill-name">Node.js 小服务</span>
+          <span class="skill-value" data-count="74" data-suffix="%">0%</span>
+          <span class="skill-track"><span class="skill-bar"></span></span>
+        </li>
+        <li class="skill reveal" data-level="68">
+          <span class="skill-name">数据可视化</span>
+          <span class="skill-value" data-count="68" data-suffix="%">0%</span>
+          <span class="skill-track"><span class="skill-bar"></span></span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== 个人数据区：全部可点击 ===== -->
+  <section class="section" id="data" aria-labelledby="data-title">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2 class="section-title" id="data-title">数据 / Contact</h2>
+        <p class="section-note">每一项都能点：链接直接打开，时间卡片点一下切换 12 / 24 小时制。</p>
+      </div>
+
+      <ul class="data-grid">
+        <li>
+          <a class="data-card reveal" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">
+            <span class="data-icon" aria-hidden="true">GH</span>
+            <span class="data-label">GitHub</span>
+            <span class="data-value">github.com/ok-lzr</span>
+          </a>
+        </li>
+        <li>
+          <a class="data-card reveal" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">
+            <span class="data-icon" aria-hidden="true">QQ</span>
+            <span class="data-label">QQ</span>
+            <span class="data-value">386477796</span>
+          </a>
+        </li>
+        <li>
+          <a class="data-card reveal" href="mailto:csgdnrxg@163.com">
+            <span class="data-icon" aria-hidden="true">@</span>
+            <span class="data-label">邮箱 · 163</span>
+            <span class="data-value">csgdnrxg@163.com</span>
+          </a>
+        </li>
+        <li>
+          <a class="data-card reveal" href="mailto:3866477796@qq.com">
+            <span class="data-icon" aria-hidden="true">@</span>
+            <span class="data-label">邮箱 · QQ</span>
+            <span class="data-value">3866477796@qq.com</span>
+          </a>
+        </li>
+        <li>
+          <a class="data-card reveal" href="https://www.amap.com/search?query=%E6%B9%96%E5%8D%97%E7%9C%81%E9%95%BF%E6%B2%99%E5%B8%82" target="_blank" rel="noopener noreferrer">
+            <span class="data-icon" aria-hidden="true">⌖</span>
+            <span class="data-label">地点</span>
+            <span class="data-value">湖南省长沙市</span>
+          </a>
+        </li>
+        <li>
+          <button class="data-card data-card-clock reveal" id="clockCard" type="button" aria-pressed="false">
+            <span class="data-icon" aria-hidden="true">⏱</span>
+            <span class="data-label">长沙时间 · UTC+8</span>
+            <span class="data-value" id="clockValue">正在校准…</span>
+            <span class="data-hint" id="clockValue2">年月日 · 时:分:秒 · 星期</span>
+            <span class="data-hint" id="clockPhase">时段判断中…</span>
+          </button>
+        </li>
+      </ul>
+
+      <p class="data-baseline">
+        参考基线时刻：2026 年 9 月 14 日（星期一）22:07（UTC+8）——用于夜 / 昼主题判断；
+        上方时钟由 <code>new Date()</code> 每秒实时刷新，点击卡片可在 24 小时制与 12 小时制之间切换。
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p class="footer-text">© 2026 ok-lzr · 湖南省长沙市</p>
+    <p class="footer-text footer-meta">高对比大胆 · 纯黑底 × 荧光黄 · 手写 HTML / CSS / JS</p>
+    <a class="footer-top" href="#top">回到顶部 ↑</a>
+  </div>
+</footer>
+
+</body>
+</html>

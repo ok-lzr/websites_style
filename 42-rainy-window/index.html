@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="night">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ok-lzr / 码上生活 · 雨天窗景</title>
+  <meta name="description" content="ok-lzr 的个人主页 —— 隔着雨天的窗玻璃，看代码与生活。">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- ===== 雨景背景层：透过窗玻璃看到的街道、暖光与雨丝 ===== -->
+  <div class="scene" aria-hidden="true">
+    <div class="sky-glow"></div>
+    <div class="bokeh"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="rain-layer rain-layer--back"></div>
+    <div class="rain-layer rain-layer--front"></div>
+    <div class="mascot" title="窗台上的小客人">
+      <span class="tail"></span>
+      <span class="cat-body"></span>
+      <span class="cat-head">
+        <span class="ear ear--left"></span>
+        <span class="ear ear--right"></span>
+        <span class="eye eye--left"></span>
+        <span class="eye eye--right"></span>
+        <span class="muzzle"></span>
+      </span>
+      <span class="cat-paw"></span>
+    </div>
+  </div>
+
+  <!-- 鼠标跟随的暖色灯光（位置由 JS 写入 CSS 变量） -->
+  <div class="cursor-lamp" aria-hidden="true"></div>
+
+  <!-- ===== 顶部导航 ===== -->
+  <header class="site-top">
+    <nav class="nav" aria-label="主导航">
+      <a class="brand" href="#hero">
+        <span class="brand-drop">💧</span>
+        <span class="brand-text">ok-lzr</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="展开或收起导航菜单">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+      <ul class="nav-list" id="nav-menu">
+        <li><a class="nav-link" href="#hero">窗前</a></li>
+        <li><a class="nav-link" href="#about">关于</a></li>
+        <li><a class="nav-link" href="#works">作品</a></li>
+        <li><a class="nav-link" href="#data">数据</a></li>
+      </ul>
+      <div class="nav-tools">
+        <button class="icon-btn" id="rain-toggle" type="button" aria-pressed="true" aria-label="开启或关闭雨丝">🌧</button>
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="切换白天与夜晚">💡</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== 首屏：窗前的自我介绍 ===== -->
+    <section class="section hero" id="hero">
+      <div class="hero-grid">
+        <div class="hero-text reveal">
+          <p class="eyebrow">长沙 · 雨 · 实时窗景</p>
+          <h1 class="name">
+            <span class="name-main">ok-lzr</span>
+            <span class="name-sub">/ 码上生活</span>
+          </h1>
+          <p class="tagline">
+            <span id="typed"></span><span class="caret" aria-hidden="true"></span>
+          </p>
+          <p class="hero-desc">
+            白天写页面，夜里听雨声。喜欢把生活里的小需求做成能用的小工具，
+            也喜欢在下雨的窗口前，把光线和像素都调得刚刚好。
+          </p>
+          <ul class="chips" aria-label="能力标签">
+            <li class="chip">前端开发</li>
+            <li class="chip">UI 设计</li>
+            <li class="chip">Python 脚本</li>
+            <li class="chip">数据可视化</li>
+          </ul>
+          <p class="hero-actions">
+            <a class="btn btn--primary" href="#works">看看作品</a>
+            <a class="btn btn--ghost" href="#data">联系我</a>
+          </p>
+        </div>
+
+        <!-- 玻璃卡片：实时时钟 + 技能条 -->
+        <aside class="glass hero-card reveal" aria-label="长沙时间与技能">
+          <div class="glass-shine" aria-hidden="true"></div>
+          <p class="clock-label">长沙时间 <span class="live-dot" aria-hidden="true"></span></p>
+          <p class="clock-time" id="clock-time">--:--:--</p>
+          <p class="clock-date" id="clock-date">加载中…</p>
+          <p class="clock-zone">UTC+8 · <span id="day-part">—</span></p>
+          <hr class="rule">
+          <h2 class="card-title">常做的事</h2>
+          <ul class="skills">
+            <li class="skill">
+              <span class="skill-head"><span>HTML / CSS 还原</span><span class="skill-val">92%</span></span>
+              <span class="skill-track"><span class="skill-fill" data-level="92"></span></span>
+            </li>
+            <li class="skill">
+              <span class="skill-head"><span>JavaScript 交互</span><span class="skill-val">86%</span></span>
+              <span class="skill-track"><span class="skill-fill" data-level="86"></span></span>
+            </li>
+            <li class="skill">
+              <span class="skill-head"><span>界面与动效设计</span><span class="skill-val">78%</span></span>
+              <span class="skill-track"><span class="skill-fill" data-level="78"></span></span>
+            </li>
+          </ul>
+        </aside>
+      </div>
+      <p class="scroll-hint" aria-hidden="true">向下滚动，看看雨里的人 ⟶</p>
+    </section>
+
+    <!-- ===== 关于：自我介绍 + 数字滚动统计 ===== -->
+    <section class="section" id="about">
+      <h2 class="section-title reveal"><span class="drop-dot"></span>关于我</h2>
+      <div class="about-grid">
+        <article class="glass about-card reveal">
+          <h3 class="card-title">一句话</h3>
+          <p class="about-line">把日子过成可维护的项目：小步提交，及时重构，偶尔加一点动效。</p>
+          <p class="about-text">
+            我是 ok-lzr，常驻湖南长沙。做前端为主，也会写一点脚本和看板来自动化日常琐事。
+            偏爱冷色调的界面与克制的动效，喜欢观察雨天窗玻璃上的水痕——
+            那种模糊与清晰的交界，正好是想做的产品感觉。
+          </p>
+          <ul class="facts">
+            <li><span class="fact-key">坐标</span><span class="fact-val">湖南省长沙市</span></li>
+            <li><span class="fact-key">时区</span><span class="fact-val">UTC+8（长沙时间）</span></li>
+            <li><span class="fact-key">状态</span><span class="fact-val">在线，边听雨边写代码</span></li>
+          </ul>
+        </article>
+        <ul class="stats reveal" aria-label="个人数据统计">
+          <li class="stat glass">
+            <span class="stat-num" data-count="6" data-suffix="+">0</span>
+            <span class="stat-label">上线小项目</span>
+          </li>
+          <li class="stat glass">
+            <span class="stat-num" data-count="1200" data-suffix="+">0</span>
+            <span class="stat-label">代码提交</span>
+          </li>
+          <li class="stat glass">
+            <span class="stat-num" data-count="3" data-suffix=" 年">0</span>
+            <span class="stat-label">写前端的时间</span>
+          </li>
+          <li class="stat glass">
+            <span class="stat-num" data-count="42" data-suffix=" 场">0</span>
+            <span class="stat-label">窗外听过的雨</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 作品：可按分类筛选的项目列表 ===== -->
+    <section class="section" id="works">
+      <h2 class="section-title reveal"><span class="drop-dot"></span>作品集</h2>
+      <p class="section-lead reveal">雨点落在玻璃上的每一道痕迹，都是一个小项目。</p>
+
+      <div class="filters reveal" role="group" aria-label="作品分类筛选">
+        <button class="filter is-active" type="button" data-filter="all" aria-pressed="true">全部</button>
+        <button class="filter" type="button" data-filter="web" aria-pressed="false">网页</button>
+        <button class="filter" type="button" data-filter="tool" aria-pressed="false">工具</button>
+        <button class="filter" type="button" data-filter="visual" aria-pressed="false">视觉</button>
+      </div>
+
+      <ul class="works" id="work-list">
+        <li class="work glass reveal" data-cat="visual">
+          <div class="work-top">
+            <span class="work-icon" aria-hidden="true">🪟</span>
+            <h3 class="work-name">雨天窗景主页</h3>
+            <span class="work-cat">视觉</span>
+          </div>
+          <p class="work-desc">你正在看的这一页：冷灰蓝雨幕、玻璃模糊与室内暖光，全部用原生 CSS 绘制。</p>
+          <ul class="work-tags">
+            <li>HTML</li><li>CSS</li><li>Canvas-free</li>
+          </ul>
+        </li>
+        <li class="work glass reveal" data-cat="web">
+          <div class="work-top">
+            <span class="work-icon" aria-hidden="true">🧭</span>
+            <h3 class="work-name">个人导航站</h3>
+            <span class="work-cat">网页</span>
+          </div>
+          <p class="work-desc">把常用站点按场景分组，支持自定义排序与深色模式，纯静态、可直接托管。</p>
+          <ul class="work-tags">
+            <li>HTML</li><li>CSS</li><li>localStorage</li>
+          </ul>
+        </li>
+        <li class="work glass reveal" data-cat="web">
+          <div class="work-top">
+            <span class="work-icon" aria-hidden="true">🌦</span>
+            <h3 class="work-name">长沙天气看板</h3>
+            <span class="work-cat">网页</span>
+          </div>
+          <p class="work-desc">面向长沙的实时天气与降水趋势看板，重点提示"今天要不要带伞"。</p>
+          <ul class="work-tags">
+            <li>JavaScript</li><li>Chart</li><li>Fetch</li>
+          </ul>
+        </li>
+        <li class="work glass reveal" data-cat="tool">
+          <div class="work-top">
+            <span class="work-icon" aria-hidden="true">🗂</span>
+            <h3 class="work-name">相册批量整理器</h3>
+            <span class="work-cat">工具</span>
+          </div>
+          <p class="work-desc">按拍摄日期与地点自动归档照片，重复文件识别后先预览再删除，绝不误伤。</p>
+          <ul class="work-tags">
+            <li>Python</li><li>EXIF</li><li>CLI</li>
+          </ul>
+        </li>
+        <li class="work glass reveal" data-cat="tool">
+          <div class="work-top">
+            <span class="work-icon" aria-hidden="true">📝</span>
+            <h3 class="work-name">Markdown 简历生成器</h3>
+            <span class="work-cat">工具</span>
+          </div>
+          <p class="work-desc">一份 Markdown 同时产出网页版与打印友好版简历，主题由 CSS 变量统一控制。</p>
+          <ul class="work-tags">
+            <li>Node</li><li>Markdown</li><li>Print CSS</li>
+          </ul>
+        </li>
+        <li class="work glass reveal" data-cat="visual">
+          <div class="work-top">
+            <span class="work-icon" aria-hidden="true">🌈</span>
+            <h3 class="work-name">配色灵感采集夹</h3>
+            <span class="work-cat">视觉</span>
+          </div>
+          <p class="work-desc">收集雨天街景与霓虹招牌的取色结果，一键生成可复用的 CSS 变量配色表。</p>
+          <ul class="work-tags">
+            <li>Canvas</li><li>取色</li><li>Design Token</li>
+          </ul>
+        </li>
+      </ul>
+      <p class="empty-tip" id="empty-tip" hidden>这一格里暂时没有项目，换个分类看看。</p>
+    </section>
+
+    <!-- ===== 个人数据：可点击的联系方式与实时信息 ===== -->
+    <section class="section" id="data">
+      <h2 class="section-title reveal"><span class="drop-dot"></span>个人数据</h2>
+      <p class="section-lead reveal">每一滴水珠里，都存着一条可以点开的联系方式。</p>
+
+      <ul class="data-grid">
+        <li class="data-item glass reveal">
+          <span class="data-icon" aria-hidden="true">🐙</span>
+          <span class="data-key">GitHub</span>
+          <a class="data-val" href="https://github.com/ok-lzr" target="_blank" rel="noopener">github.com/ok-lzr</a>
+        </li>
+        <li class="data-item glass reveal">
+          <span class="data-icon" aria-hidden="true">🐧</span>
+          <span class="data-key">QQ</span>
+          <a class="data-val" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener">386477796</a>
+        </li>
+        <li class="data-item glass reveal">
+          <span class="data-icon" aria-hidden="true">✉</span>
+          <span class="data-key">邮箱 · 主</span>
+          <a class="data-val" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+        </li>
+        <li class="data-item glass reveal">
+          <span class="data-icon" aria-hidden="true">📮</span>
+          <span class="data-key">邮箱 · 备</span>
+          <a class="data-val" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+        </li>
+        <li class="data-item glass reveal">
+          <span class="data-icon" aria-hidden="true">📍</span>
+          <span class="data-key">地点</span>
+          <span class="data-val data-val--plain">湖南省长沙市</span>
+        </li>
+        <li class="data-item glass reveal data-item--clock">
+          <span class="data-icon" aria-hidden="true">🕰</span>
+          <span class="data-key">长沙时间</span>
+          <span class="data-val data-val--plain" id="clock-full">正在读取实时时钟…</span>
+          <span class="data-note">页面打开期间每秒刷新，深夜自动切换为暖光夜色。</span>
+        </li>
+      </ul>
+
+      <p class="baseline reveal">
+        参考基线：动态生成当天为 <strong>2026 年 9 月 14 日（星期一）22:07</strong>（UTC+8），
+        仅用于昼 / 夜主题的初始判断；上方时钟始终由 <code>new Date()</code> 实时驱动。
+      </p>
+    </section>
+  </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="site-foot">
+    <p class="foot-line">© 2026 ok-lzr · 湖南省长沙市</p>
+    <p class="foot-note">雨还在下，页面用原生 HTML / CSS / JavaScript 手写而成。</p>
+    <p class="foot-note">当前主题：<span id="theme-name">暖光夜色</span> · <a class="foot-link" href="#hero">回到窗前 ↑</a></p>
+  </footer>
+</body>
+</html>

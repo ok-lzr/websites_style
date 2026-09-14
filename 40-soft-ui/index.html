@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ok-lzr / 码上生活 · 柔和个人主页</title>
+<meta name="description" content="ok-lzr 的个人主页，柔和 UI 风格：浅紫蓝配色、胶囊按钮、细腻微交互。">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<!-- ===== 顶部导航：胶囊式导航条 + 深浅色切换 ===== -->
+<header class="site-header">
+  <nav class="nav-pill" aria-label="主导航">
+    <a class="nav-logo" href="#top">ok-lzr</a>
+    <ul class="nav-list">
+      <li><a class="nav-link" href="#skills">能力</a></li>
+      <li><a class="nav-link" href="#works">作品</a></li>
+      <li><a class="nav-link" href="#stats">数据</a></li>
+      <li><a class="nav-link" href="#contact">联系</a></li>
+    </ul>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="切换深浅色主题">
+      <span class="theme-toggle__icon" aria-hidden="true">☾</span>
+      <span class="theme-toggle__text">夜间</span>
+    </button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ===== 首屏：姓名、一句话简介、能力标签 ===== -->
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="hero__blob hero__blob--a" aria-hidden="true"></div>
+    <div class="hero__blob hero__blob--b" aria-hidden="true"></div>
+
+    <div class="hero__card reveal">
+      <p class="hero__eyebrow">柔和 UI · 个人主页</p>
+      <h1 class="hero__title" id="heroTitle">
+        <span class="hero__name" id="typedName">ok-lzr</span>
+        <span class="hero__slash">/</span>
+        <span class="hero__alias">码上生活</span>
+      </h1>
+      <p class="hero__lead">
+        喜欢把想法做成看得见的小工具，用干净的前端把日常琐事理顺。
+      </p>
+
+      <ul class="tag-list" aria-label="能力标签">
+        <li class="tag">HTML / CSS 布局</li>
+        <li class="tag">原生 JavaScript</li>
+        <li class="tag">数据可视化看板</li>
+        <li class="tag">响应式与可访问性</li>
+      </ul>
+
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#works">看看作品</a>
+        <a class="btn btn--ghost" href="#contact">联系我</a>
+      </div>
+
+      <p class="hero__clock-note" id="dayHint">正在读取长沙时间…</p>
+    </div>
+
+    <!-- 首屏右侧：长沙实时时钟 -->
+    <aside class="clock-card reveal" aria-labelledby="clockTitle">
+      <h2 class="clock-card__title" id="clockTitle">长沙时间</h2>
+      <p class="clock-card__time" id="clockTime">--:--:--</p>
+      <p class="clock-card__date" id="clockDate">加载中…</p>
+      <p class="clock-card__meta"><span class="dot" aria-hidden="true"></span>UTC+8 · 实时更新</p>
+    </aside>
+  </section>
+
+  <!-- ===== 能力区：技能条动画 ===== -->
+  <section class="section" id="skills" aria-labelledby="skillsTitle">
+    <h2 class="section__title" id="skillsTitle">能力雷达</h2>
+    <p class="section__desc">日常最常用的四块手艺，进度条会在滚动进入时缓慢生长。</p>
+
+    <ul class="skill-list">
+      <li class="skill" data-level="92">
+        <div class="skill__head"><span class="skill__name">HTML / CSS</span><span class="skill__pct">0%</span></div>
+        <div class="skill__track"><div class="skill__bar" role="progressbar" aria-label="HTML 与 CSS 熟练度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="92"></div></div>
+      </li>
+      <li class="skill" data-level="86">
+        <div class="skill__head"><span class="skill__name">原生 JavaScript</span><span class="skill__pct">0%</span></div>
+        <div class="skill__track"><div class="skill__bar" role="progressbar" aria-label="原生 JavaScript 熟练度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="86"></div></div>
+      </li>
+      <li class="skill" data-level="74">
+        <div class="skill__head"><span class="skill__name">界面动效与微交互</span><span class="skill__pct">0%</span></div>
+        <div class="skill__track"><div class="skill__bar" role="progressbar" aria-label="界面动效熟练度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="74"></div></div>
+      </li>
+      <li class="skill" data-level="68">
+        <div class="skill__head"><span class="skill__name">数据整理与可视化</span><span class="skill__pct">0%</span></div>
+        <div class="skill__track"><div class="skill__bar" role="progressbar" aria-label="数据可视化熟练度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="68"></div></div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== 作品区：标签筛选 + 滚动进入动画 ===== -->
+  <section class="section" id="works" aria-labelledby="worksTitle">
+    <h2 class="section__title" id="worksTitle">作品集</h2>
+    <p class="section__desc">都是自己动手做的小项目，点击标签可以按类型筛选。</p>
+
+    <div class="filter-bar" role="group" aria-label="作品筛选">
+      <button class="chip is-active" type="button" data-filter="all">全部</button>
+      <button class="chip" type="button" data-filter="web">网页</button>
+      <button class="chip" type="button" data-filter="data">数据</button>
+      <button class="chip" type="button" data-filter="tool">小工具</button>
+    </div>
+
+    <ul class="work-list" id="workList">
+      <li class="work reveal" data-cat="web">
+        <h3 class="work__title">个人导航站</h3>
+        <p class="work__desc">把常用站点收进一个柔和的九宫格，支持分组与快捷搜索。</p>
+        <ul class="work__stack"><li>HTML</li><li>CSS Grid</li><li>localStorage</li></ul>
+      </li>
+      <li class="work reveal" data-cat="data">
+        <h3 class="work__title">长沙天气看板</h3>
+        <p class="work__desc">读取公开气象数据，用色块与曲线展示未来一周的温度走势。</p>
+        <ul class="work__stack"><li>JavaScript</li><li>Fetch</li><li>Canvas</li></ul>
+      </li>
+      <li class="work reveal" data-cat="tool">
+        <h3 class="work__title">番茄专注钟</h3>
+        <p class="work__desc">25 分钟一轮的专注计时，含休息提醒与当日完成统计。</p>
+        <ul class="work__stack"><li>JavaScript</li><li>Notification</li><li>CSS 动画</li></ul>
+      </li>
+      <li class="work reveal" data-cat="web">
+        <h3 class="work__title">书影清单</h3>
+        <p class="work__desc">记录读过的书与看过的电影，按标签检索，界面轻盈无干扰。</p>
+        <ul class="work__stack"><li>语义化 HTML</li><li>Flexbox</li><li>原生 JS</li></ul>
+      </li>
+      <li class="work reveal" data-cat="data">
+        <h3 class="work__title">记账小账本</h3>
+        <p class="work__desc">手动记流水，按月汇总支出，生成简易饼图与月度对比。</p>
+        <ul class="work__stack"><li>JavaScript</li><li>SVG</li><li>IndexedDB</li></ul>
+      </li>
+      <li class="work reveal" data-cat="tool">
+        <h3 class="work__title">配色生成器</h3>
+        <p class="work__desc">一键生成柔和色板，实时预览对比度并导出 CSS 变量。</p>
+        <ul class="work__stack"><li>CSS 变量</li><li>色彩算法</li><li>剪贴板 API</li></ul>
+      </li>
+    </ul>
+    <p class="work-empty" id="workEmpty" hidden>这个分类下暂时没有作品。</p>
+  </section>
+
+  <!-- ===== 数据区：数字滚动 + 可点击联系方式 ===== -->
+  <section class="section" id="stats" aria-labelledby="statsTitle">
+    <h2 class="section__title" id="statsTitle">一些数字</h2>
+    <p class="section__desc">进度条之外，也喜欢用数字观察自己的节奏。</p>
+
+    <ul class="stat-list">
+      <li class="stat">
+        <span class="stat__num" data-count="126">0</span>
+        <span class="stat__label">完成的小项目</span>
+      </li>
+      <li class="stat">
+        <span class="stat__num" data-count="48">0</span>
+        <span class="stat__label">写过的页面</span>
+      </li>
+      <li class="stat">
+        <span class="stat__num" data-count="3000" data-suffix="+">0</span>
+        <span class="stat__label">累计代码行</span>
+      </li>
+      <li class="stat">
+        <span class="stat__num" data-count="5">0</span>
+        <span class="stat__label">使用中的编辑器主题</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== 联系区：逐项可点击的个人资料 ===== -->
+  <section class="section" id="contact" aria-labelledby="contactTitle">
+    <h2 class="section__title" id="contactTitle">联系方式</h2>
+    <p class="section__desc">以下每一项都可以直接点击，欢迎来聊技术与生活。</p>
+
+    <ul class="contact-list">
+      <li class="contact-item">
+        <span class="contact-item__icon" aria-hidden="true">◈</span>
+        <span class="contact-item__label">GitHub</span>
+        <a class="contact-item__value" href="https://github.com/ok-lzr" target="_blank" rel="noopener">github.com/ok-lzr</a>
+      </li>
+      <li class="contact-item">
+        <span class="contact-item__icon" aria-hidden="true">✿</span>
+        <span class="contact-item__label">QQ</span>
+        <a class="contact-item__value" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener">386477796</a>
+      </li>
+      <li class="contact-item">
+        <span class="contact-item__icon" aria-hidden="true">✉</span>
+        <span class="contact-item__label">邮箱一</span>
+        <a class="contact-item__value" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+      </li>
+      <li class="contact-item">
+        <span class="contact-item__icon" aria-hidden="true">✉</span>
+        <span class="contact-item__label">邮箱二</span>
+        <a class="contact-item__value" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+      </li>
+      <li class="contact-item">
+        <span class="contact-item__icon" aria-hidden="true">⌖</span>
+        <span class="contact-item__label">地点</span>
+        <span class="contact-item__value contact-item__value--plain">湖南省长沙市</span>
+      </li>
+      <li class="contact-item contact-item--clock">
+        <span class="contact-item__icon" aria-hidden="true">◷</span>
+        <span class="contact-item__label">长沙时间</span>
+        <span class="contact-item__value contact-item__value--plain" id="contactClock">--:--:--</span>
+      </li>
+    </ul>
+  </section>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="site-footer">
+  <p>© 2026 ok-lzr · 湖南省长沙市</p>
+  <p class="site-footer__note">柔和 UI 风格演示 · 纯原生 HTML / CSS / JavaScript 构建</p>
+</footer>
+
+<!-- 回到顶部：鼠标跟随柔光由 JS 控制 -->
+<button class="to-top" id="toTop" type="button" aria-label="回到顶部" hidden>↑</button>
+
+</body>
+</html>

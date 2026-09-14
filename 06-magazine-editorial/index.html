@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="night">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OK-LZR 周刊 · ok-lzr / 码上生活</title>
+  <meta name="description" content="ok-lzr 的个人主页，以杂志排版呈现：长沙的前端开发者，作品、技能与联系方式。">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+
+  <div class="page">
+    <!-- ===== 报头：刊名、出版信息、主导航 ===== -->
+    <header class="masthead" id="masthead" data-parallax>
+      <p class="masthead__kicker">PERSONAL EDITION · 个人主页特刊</p>
+
+      <div class="masthead__plate">
+        <h1 class="masthead__logo">
+          OK-LZR<span class="masthead__logo-dot">.</span>
+        </h1>
+        <p class="masthead__chinese">ok-lzr / 码上生活</p>
+      </div>
+
+      <div class="masthead__meta">
+        <span class="masthead__meta-item">第 06 期 · 杂志排版</span>
+        <span class="masthead__meta-item">地点：湖南省长沙市</span>
+        <span class="masthead__meta-item">刊行：<time id="issue-date" datetime="2026-09-14">2026 年 9 月 14 日</time></span>
+        <span class="masthead__meta-item">定价：免费取阅</span>
+      </div>
+
+      <nav class="nav" aria-label="页内导航">
+        <ul class="nav__list">
+          <li class="nav__item"><a class="nav__link" href="#intro">卷首语</a></li>
+          <li class="nav__item"><a class="nav__link" href="#projects">本期作品</a></li>
+          <li class="nav__item"><a class="nav__link" href="#colophon">版权页</a></li>
+          <li class="nav__item"><a class="nav__link" href="#contact">联络我们</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main" id="main">
+
+      <!-- ===== 卷首语：一句话简介、首字下沉、技能标签与能力评分 ===== -->
+      <section class="section" id="intro" aria-labelledby="intro-title">
+        <p class="section__kicker">卷首语 · Editorial</p>
+        <h2 class="section__title" id="intro-title">把代码排成版面，把生活过成专栏</h2>
+
+        <div class="section__body">
+          <div class="prose">
+            <p class="lead">
+              <span class="lead__cap">码</span>上生活，字面意思是把日常搬到屏幕上。我是 ok-lzr，
+              一名常驻长沙的前端开发者：白天写界面与数据看板，夜里整理排版、字体与留白，
+              顺手把生活里的小需求做成一个个能打开的小站点——像一期期自印的杂志，不求发行量，只求每一页都站得住。
+            </p>
+
+            <p>
+              做页面时我偏爱三件事：清晰的信息层级、克制的颜色、以及能被看见的细节。
+              下面这一期，收录了我近期的作品、常用的技术栈，以及一份可以随时翻到的版权页。
+            </p>
+
+            <div class="tags" role="list" aria-label="能力标签">
+              <span class="tag" role="listitem">前端开发</span>
+              <span class="tag" role="listitem">数据可视化</span>
+              <span class="tag" role="listitem">界面排版</span>
+              <span class="tag" role="listitem">Python 脚本</span>
+            </div>
+          </div>
+
+          <aside class="column-rule reveal" aria-label="技能熟练度">
+            <h3 class="column-rule__title">能力评分表</h3>
+            <ul class="skills" role="list">
+              <li class="skill" role="listitem" data-skill="HTML/CSS 排版">
+                <span class="skill__row">
+                  <span class="skill__name">HTML / CSS 排版</span>
+                  <span class="skill__value">92%</span>
+                </span>
+                <span class="skill__track" role="img" aria-label="HTML 与 CSS 排版 92%">
+                  <span class="skill__bar" data-level="92"></span>
+                </span>
+              </li>
+              <li class="skill" role="listitem" data-skill="JavaScript">
+                <span class="skill__row">
+                  <span class="skill__name">JavaScript</span>
+                  <span class="skill__value">88%</span>
+                </span>
+                <span class="skill__track" role="img" aria-label="JavaScript 88%">
+                  <span class="skill__bar" data-level="88"></span>
+                </span>
+              </li>
+              <li class="skill" role="listitem" data-skill="数据可视化">
+                <span class="skill__row">
+                  <span class="skill__name">数据可视化</span>
+                  <span class="skill__value">80%</span>
+                </span>
+                <span class="skill__track" role="img" aria-label="数据可视化 80%">
+                  <span class="skill__bar" data-level="80"></span>
+                </span>
+              </li>
+              <li class="skill" role="listitem" data-skill="Python 与自动化">
+                <span class="skill__row">
+                  <span class="skill__name">Python / 自动化</span>
+                  <span class="skill__value">75%</span>
+                </span>
+                <span class="skill__track" role="img" aria-label="Python 与自动化 75%">
+                  <span class="skill__bar" data-level="75"></span>
+                </span>
+              </li>
+            </ul>
+          </aside>
+        </div>
+
+        <blockquote class="pullquote">
+          <p class="pullquote__text">版面是沉默的编辑，它替作者决定读者先看哪一行。</p>
+          <cite class="pullquote__cite">—— 编辑手记</cite>
+        </blockquote>
+      </section>
+
+      <div class="fold" role="presentation"><span class="fold__mark">※</span></div>
+
+      <!-- ===== 本期作品：栏目筛选 + 编号作品卡片 ===== -->
+      <section class="section" id="projects" aria-labelledby="projects-title">
+        <p class="section__kicker">本期作品 · Selected Works</p>
+        <h2 class="section__title" id="projects-title">六件小事，排成六个版位</h2>
+
+        <div class="filter" role="group" aria-label="按栏目筛选作品">
+          <button class="filter__btn is-active" type="button" data-filter="all" aria-pressed="true">全部栏目</button>
+          <button class="filter__btn" type="button" data-filter="web" aria-pressed="false">网站</button>
+          <button class="filter__btn" type="button" data-filter="tool" aria-pressed="false">工具</button>
+          <button class="filter__btn" type="button" data-filter="data" aria-pressed="false">数据</button>
+        </div>
+        <p class="filter__status" id="filter-status" role="status" aria-live="polite">当前显示 6 篇作品</p>
+
+        <div class="grid grid--features" id="work-grid">
+          <article class="card reveal" data-cat="web">
+            <p class="card__index">№ 01</p>
+            <h3 class="card__title">个人导航站</h3>
+            <p class="card__meta">网站 · 2026 年 3 月</p>
+            <p class="card__desc">把每天要打开的十几个站点收进一页，分组、搜索、快捷键齐全，替代浏览器里越堆越乱的书签栏。</p>
+            <div class="tags tags--small" role="list">
+              <span class="tag" role="listitem">HTML</span>
+              <span class="tag" role="listitem">CSS Grid</span>
+              <span class="tag" role="listitem">LocalStorage</span>
+            </div>
+          </article>
+
+          <article class="card reveal" data-cat="data">
+            <p class="card__index">№ 02</p>
+            <h3 class="card__title">长沙天气看板</h3>
+            <p class="card__meta">数据 · 2026 年 5 月</p>
+            <p class="card__desc">抓取本地气象数据，用折线图与色块呈现一周温度与降水，早晨打开就知道要不要带伞。</p>
+            <div class="tags tags--small" role="list">
+              <span class="tag" role="listitem">JavaScript</span>
+              <span class="tag" role="listitem">Canvas</span>
+              <span class="tag" role="listitem">Fetch API</span>
+            </div>
+          </article>
+
+          <article class="card reveal" data-cat="tool">
+            <p class="card__index">№ 03</p>
+            <h3 class="card__title">排版尺</h3>
+            <p class="card__meta">工具 · 2026 年 6 月</p>
+            <p class="card__desc">输入字号与栏宽，自动算出合适的行高、字距与网格间距，帮我在动手写 CSS 之前先把比例定下来。</p>
+            <div class="tags tags--small" role="list">
+              <span class="tag" role="listitem">Type Scale</span>
+              <span class="tag" role="listitem">CSS 变量</span>
+            </div>
+          </article>
+
+          <article class="card reveal" data-cat="tool">
+            <p class="card__index">№ 04</p>
+            <h3 class="card__title">字帖生成器</h3>
+            <p class="card__meta">工具 · 2026 年 7 月</p>
+            <p class="card__desc">输入任意中文句子，导出一页可打印的田字格字帖，练字不必再手画格子。</p>
+            <div class="tags tags--small" role="list">
+              <span class="tag" role="listitem">Canvas</span>
+              <span class="tag" role="listitem">打印样式</span>
+            </div>
+          </article>
+
+          <article class="card reveal" data-cat="data">
+            <p class="card__index">№ 05</p>
+            <h3 class="card__title">阅读年度报告</h3>
+            <p class="card__meta">数据 · 2026 年 1 月</p>
+            <p class="card__desc">把一整年的读书笔记汇总成一期杂志式年报：字数统计、时间分布、年度关键词，排版比数据更好看。</p>
+            <div class="tags tags--small" role="list">
+              <span class="tag" role="listitem">Python</span>
+              <span class="tag" role="listitem">Markdown</span>
+              <span class="tag" role="listitem">SVG</span>
+            </div>
+          </article>
+
+          <article class="card reveal" data-cat="web">
+            <p class="card__index">№ 06</p>
+            <h3 class="card__title">长沙咖啡地图</h3>
+            <p class="card__meta">网站 · 2026 年 8 月</p>
+            <p class="card__desc">用纯 CSS 画出的城区示意图，标注常去的自习咖啡店，附插座、安静程度与人均价格。</p>
+            <div class="tags tags--small" role="list">
+              <span class="tag" role="listitem">SVG</span>
+              <span class="tag" role="listitem">响应式</span>
+              <span class="tag" role="listitem">深色模式</span>
+            </div>
+          </article>
+        </div>
+
+        <p class="filter__empty" id="filter-empty" hidden>本栏目暂无作品，试试「全部栏目」。</p>
+      </section>
+
+      <div class="fold" role="presentation"><span class="fold__mark">※</span></div>
+
+      <!-- ===== 版权页：个人数据区（可点击） + 长沙实时时钟 ===== -->
+      <section class="section" id="colophon" aria-labelledby="colophon-title">
+        <p class="section__kicker">版权页 · Colophon</p>
+        <h2 class="section__title" id="colophon-title">可供查阅的个人数据</h2>
+
+        <div class="grid grid--ledger">
+          <div class="ledger reveal">
+            <h3 class="ledger__title">联系方式</h3>
+            <dl class="ledger__list">
+              <div class="ledger__row">
+                <dt class="ledger__key">GitHub</dt>
+                <dd class="ledger__value">
+                  <a class="ledger__link" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+                </dd>
+              </div>
+              <div class="ledger__row">
+                <dt class="ledger__key">QQ</dt>
+                <dd class="ledger__value">
+                  <a class="ledger__link" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+                </dd>
+              </div>
+              <div class="ledger__row">
+                <dt class="ledger__key">邮箱 · 主</dt>
+                <dd class="ledger__value">
+                  <a class="ledger__link" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+                </dd>
+              </div>
+              <div class="ledger__row">
+                <dt class="ledger__key">邮箱 · 备</dt>
+                <dd class="ledger__value">
+                  <a class="ledger__link" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="ledger reveal" id="contact">
+            <h3 class="ledger__title">地点与时间</h3>
+            <dl class="ledger__list">
+              <div class="ledger__row">
+                <dt class="ledger__key">地点</dt>
+                <dd class="ledger__value">湖南省长沙市</dd>
+              </div>
+              <div class="ledger__row">
+                <dt class="ledger__key">时区</dt>
+                <dd class="ledger__value">UTC+8 · 中国标准时间</dd>
+              </div>
+            </dl>
+
+            <div class="clock" id="clock">
+              <p class="clock__label">长沙时间 · 实时</p>
+              <p class="clock__big" id="clock-time">--:--:--</p>
+              <p class="clock__date"><time id="clock-date">加载中…</time></p>
+              <p class="clock__phase" id="clock-phase">正在读取本机时间…</p>
+              <p class="clock__note">昼夜主题参考基线：2026-09-14（星期一）22:07 UTC+8</p>
+            </div>
+          </div>
+        </div>
+
+        <blockquote class="pullquote pullquote--end">
+          <p class="pullquote__text">若这一期读完还有话想说，来信即可，版面留白处永远写着欢迎。</p>
+          <cite class="pullquote__cite">—— OK-LZR 周刊 · 编辑部</cite>
+        </blockquote>
+      </section>
+
+    </main>
+
+    <!-- ===== 页脚：版权与出版信息 ===== -->
+    <footer class="footer">
+      <p class="footer__line">© 2026 ok-lzr · 湖南省长沙市</p>
+      <p class="footer__line footer__line--sub">OK-LZR 周刊 · 第 06 期 · 杂志排版 · 纯 HTML / CSS / JavaScript 手排</p>
+      <p class="footer__line footer__line--sub">本站不加载任何外部依赖，全部版面由作者手工排版。</p>
+    </footer>
+  </div>
+</body>
+</html>

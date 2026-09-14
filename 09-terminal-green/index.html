@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="night">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ok-lzr / 码上生活 · 绿色终端主页</title>
+  <meta name="description" content="ok-lzr 的个人主页：绿色终端（CRT）风格，命令行提示符、打字机输出与长沙实时时钟。">
+  <!-- 样式表：所有视觉规则集中在 style.css，本文件不写任何样式 -->
+  <link rel="stylesheet" href="style.css">
+  <!-- 脚本：defer 保证 DOM 解析完成后再执行 -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <!-- ===== CRT 装饰层：扫描线与暗角，纯 CSS 绘制，不拦截鼠标 ===== -->
+  <div class="crt" aria-hidden="true"></div>
+
+  <!-- ===== 头部：仿终端窗口标题栏 ===== -->
+  <header class="site-head">
+    <div class="wrap head-bar">
+      <span class="dots" aria-hidden="true">
+        <i class="dot dot-a"></i><i class="dot dot-b"></i><i class="dot dot-c"></i>
+      </span>
+      <p class="head-path">ok-lzr@changsha: ~/profile — bash</p>
+      <button class="theme-toggle" id="themeToggle" type="button">theme: --night</button>
+    </div>
+  </header>
+
+  <!-- ===== 导航：命令行风格，点击平滑滚动到对应区块 ===== -->
+  <nav class="site-nav" id="siteNav" aria-label="站内导航">
+    <div class="wrap nav-bar">
+      <span class="prompt" aria-hidden="true">$</span>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="#about">./about</a></li>
+        <li><a class="nav-link" href="#projects">./projects</a></li>
+        <li><a class="nav-link" href="#contact">./contact</a></li>
+        <li><a class="nav-link" href="#time">./time</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- ===== 首屏：提示符 + 打字机输出的身份信息 ===== -->
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <p class="cmd-line"><span class="prompt" aria-hidden="true">ok-lzr@cs:~$</span><span class="cmd">whoami --verbose</span></p>
+
+      <!-- h1 内先写好文本，脚本加载后会清空并逐字打出，脚本失效时仍可读 -->
+      <h1 class="hero-title" id="hero-title">
+        <span class="typed" id="typeTitle">ok-lzr / 码上生活</span><span class="caret" aria-hidden="true"></span>
+      </h1>
+
+      <p class="hero-sub" id="typeSub">在长沙写前端，把想法编译成能直接跑起来的东西；偏爱终端、暗色和极简交互。</p>
+
+      <ul class="tags" aria-label="能力标签">
+        <li class="tag">HTML / CSS / JavaScript</li>
+        <li class="tag">响应式布局</li>
+        <li class="tag">Node.js 脚本</li>
+        <li class="tag">数据可视化</li>
+      </ul>
+
+      <!-- 可交互的迷你终端：输入命令并回车执行 -->
+      <form class="cmdline" id="cmdForm" autocomplete="off">
+        <label class="sr-only" for="cmdInput">终端命令输入框</label>
+        <span class="prompt" aria-hidden="true">$</span>
+        <input class="cmd-input" id="cmdInput" name="cmd" type="text" placeholder="输入 help 回车，查看可用命令" spellcheck="false">
+        <button class="cmd-send" type="submit">执行</button>
+      </form>
+      <pre class="cmd-log" id="cmdLog" aria-live="polite" aria-label="命令行输出"></pre>
+    </section>
+
+    <!-- ===== 关于：简介 + 技能条（滚动进入后增长） ===== -->
+    <section class="sec wrap reveal" id="about" aria-labelledby="about-h">
+      <h2 class="sec-title" id="about-h"><span class="prompt" aria-hidden="true">$</span> cat ./about.md</h2>
+      <div class="sec-body">
+        <p class="text">你好，我是 <strong class="hl">ok-lzr</strong>，一名常驻长沙的前端开发者。白天把设计稿还原成像素，晚上折腾脚本、看板和一堆"给自己用"的小工具。</p>
+        <p class="text">喜欢终端里的确定性：一条命令一个结果，没有多余的动画和弹窗。这个主页就是从这种偏好长出来的——纯原生三件套，不加载任何外部依赖，弱网也能瞬间打开。</p>
+
+        <h3 class="sub-title">技能点亮情况</h3>
+        <ul class="skills">
+          <li class="skill" data-level="92">
+            <span class="skill-name">前端工程 · HTML / CSS / JS</span>
+            <span class="skill-bar"><span class="skill-fill"></span></span>
+            <span class="skill-num" data-num="92">0%</span>
+          </li>
+          <li class="skill" data-level="88">
+            <span class="skill-name">响应式与无障碍布局</span>
+            <span class="skill-bar"><span class="skill-fill"></span></span>
+            <span class="skill-num" data-num="88">0%</span>
+          </li>
+          <li class="skill" data-level="84">
+            <span class="skill-name">交互与动效脚本</span>
+            <span class="skill-bar"><span class="skill-fill"></span></span>
+            <span class="skill-num" data-num="84">0%</span>
+          </li>
+          <li class="skill" data-level="73">
+            <span class="skill-name">Node.js 工具链</span>
+            <span class="skill-bar"><span class="skill-fill"></span></span>
+            <span class="skill-num" data-num="73">0%</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 项目列表：ls -l ./projects ===== -->
+    <section class="sec wrap reveal" id="projects" aria-labelledby="projects-h">
+      <h2 class="sec-title" id="projects-h"><span class="prompt" aria-hidden="true">$</span> ls -l ./projects</h2>
+      <div class="sec-body">
+        <ul class="projects">
+          <li class="project">
+            <h3 class="project-name">个人导航站</h3>
+            <p class="project-desc">把常用工具、文档和自建服务收进一个键盘可达的起始页，支持模糊搜索与自定义分组。</p>
+            <ul class="project-tags">
+              <li>HTML</li><li>CSS</li><li>localStorage</li>
+            </ul>
+          </li>
+          <li class="project">
+            <h3 class="project-name">长沙天气看板</h3>
+            <p class="project-desc">聚合本地气象数据，用纯 CSS 图表展示温度、湿度与未来趋势，弱网环境也能秒开。</p>
+            <ul class="project-tags">
+              <li>JavaScript</li><li>Fetch</li><li>数据可视化</li>
+            </ul>
+          </li>
+          <li class="project">
+            <h3 class="project-name">终端风博客引擎</h3>
+            <p class="project-desc">用 Node 脚本把 Markdown 编译成静态页面，命令行里预览、构建、一键发布。</p>
+            <ul class="project-tags">
+              <li>Node.js</li><li>Markdown</li><li>静态生成</li>
+            </ul>
+          </li>
+          <li class="project">
+            <h3 class="project-name">Git 提交热力图</h3>
+            <p class="project-desc">把仓库提交记录渲染成字符矩阵，用色阶回看自己的编码节奏与熬夜曲线。</p>
+            <ul class="project-tags">
+              <li>Canvas</li><li>Git</li><li>CSS 网格</li>
+            </ul>
+          </li>
+          <li class="project">
+            <h3 class="project-name">打字练习器</h3>
+            <p class="project-desc">针对中文与代码片段的指法练习器，实时统计速度、准确率并记录历史最好成绩。</p>
+            <ul class="project-tags">
+              <li>JavaScript</li><li>键盘事件</li><li>Chart</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 个人数据：可点击联系方式与地点 ===== -->
+    <section class="sec wrap reveal" id="contact" aria-labelledby="contact-h">
+      <h2 class="sec-title" id="contact-h"><span class="prompt" aria-hidden="true">$</span> cat ./contact.json</h2>
+      <div class="sec-body">
+        <ul class="data-list">
+          <li class="data-row">
+            <span class="data-key">github</span>
+            <a class="data-val" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+            <button class="copy-btn" type="button" data-copy="github.com/ok-lzr">复制</button>
+          </li>
+          <li class="data-row">
+            <span class="data-key">qq</span>
+            <a class="data-val" href="https://wpa.qq.com/msgrd?v=3&uin=386477796&site=qq&menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+            <button class="copy-btn" type="button" data-copy="386477796">复制</button>
+          </li>
+          <li class="data-row">
+            <span class="data-key">mail-1</span>
+            <a class="data-val" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+            <button class="copy-btn" type="button" data-copy="csgdnrxg@163.com">复制</button>
+          </li>
+          <li class="data-row">
+            <span class="data-key">mail-2</span>
+            <a class="data-val" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+            <button class="copy-btn" type="button" data-copy="3866477796@qq.com">复制</button>
+          </li>
+          <li class="data-row">
+            <span class="data-key">location</span>
+            <span class="data-val data-plain">湖南省长沙市</span>
+            <button class="copy-btn" type="button" data-copy="湖南省长沙市">复制</button>
+          </li>
+          <li class="data-row">
+            <span class="data-key">time</span>
+            <a class="data-val" href="#time" id="dataClock">长沙时间加载中…</a>
+            <span class="data-badge">UTC+8</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 时钟：长沙（UTC+8）实时时间 ===== -->
+    <section class="sec wrap reveal" id="time" aria-labelledby="time-h">
+      <h2 class="sec-title" id="time-h"><span class="prompt" aria-hidden="true">$</span> date --timezone Asia/Shanghai</h2>
+      <div class="sec-body">
+        <div class="clock-panel">
+          <p class="clock-line" id="clockDate">————</p>
+          <p class="clock-time" id="clockTime">--:--:--</p>
+          <p class="clock-line" id="clockWeek">——</p>
+          <ul class="clock-meta">
+            <li>时区：UTC+8 · Asia/Shanghai（长沙本地时间）</li>
+            <li>基线参考：2026-09-14 22:07（星期一）· 夜</li>
+            <li>当前光照：<span class="hl" id="clockPhase">夜</span> · 主题：<span class="hl" id="clockTheme">night</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="site-foot">
+    <div class="wrap">
+      <p class="cmd-line"><span class="prompt" aria-hidden="true">$</span><span class="cmd">echo "bye"</span></p>
+      <p class="foot-text">© 2026 ok-lzr · 湖南省长沙市</p>
+      <p class="foot-dim">原生 HTML / CSS / JavaScript 构建 · 无外部依赖 · 无网络请求<span class="caret caret-sm" aria-hidden="true"></span></p>
+    </div>
+  </footer>
+</body>
+</html>

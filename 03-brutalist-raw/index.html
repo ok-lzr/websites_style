@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="day">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>ok-lzr / 码上生活 · 粗野主义主页</title>
+<meta name="description" content="ok-lzr 的个人主页：粗黑边框、纯色撞色、硬阴影的粗野主义（Brutalist Raw）风格静态站点。">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<!-- ===== 站点顶栏：站名 + 主导航 + 昼/夜切换 ===== -->
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true">▚</span>
+      <span class="brand-text">ok-lzr / 码上生活</span>
+    </a>
+
+    <nav class="site-nav" id="site-nav" aria-label="主导航">
+      <a href="#about">关于</a>
+      <a href="#work">作品</a>
+      <a href="#data">数据</a>
+    </nav>
+
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">
+      <span class="theme-icon" aria-hidden="true">☀</span>
+      <span class="theme-label">白天模式</span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== 首屏：姓名 / 简介 / 技能标签 / 作品与联系入口 ===== -->
+  <section class="hero" id="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="kicker">个人主页 / 粗野主义 v2026</p>
+        <h1 class="hero-title">
+          <span class="hero-line">ok-lzr</span>
+          <span class="hero-line hero-line-sub"><span id="typed" class="typed"></span></span>
+        </h1>
+        <p class="lead">
+          一个人写前端、写脚本、写生活记录的长沙开发者；喜欢把想法直接做成能打开就能用的页面。
+        </p>
+
+        <ul class="tags" aria-label="能力标签">
+          <li class="tag">原生 HTML/CSS/JS</li>
+          <li class="tag">静态站点</li>
+          <li class="tag">自动化脚本</li>
+          <li class="tag">数据可视化</li>
+        </ul>
+
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="#work">查看作品</a>
+          <a class="btn btn-ghost" href="#data">联系我</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel" aria-label="当前状态">
+        <p class="panel-title">当前状态</p>
+        <p class="panel-big" id="panel-period">夜</p>
+        <dl class="panel-list">
+          <div class="panel-row">
+            <dt>长沙时间</dt>
+            <dd id="hero-time">--:--:--</dd>
+          </div>
+          <div class="panel-row">
+            <dt>日期</dt>
+            <dd id="hero-date">--------</dd>
+          </div>
+          <div class="panel-row">
+            <dt>参考基线</dt>
+            <dd>2026-09-14 22:07</dd>
+          </div>
+        </dl>
+        <p class="panel-note">基线用于判断初始昼/夜配色，时钟本身每秒实时刷新。</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===== 关于：一句话定位 + 数据统计（数字滚动） ===== -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <h2 class="section-title"><span class="section-no">01</span>关于我</h2>
+      <div class="about-grid">
+        <p class="about-text">
+          我是 ok-lzr，常年在湖南省长沙市。写代码的方向很杂：前端页面、自动化脚本、个人工具站。
+          偏爱没有任何装饰也能看清结构的界面，也偏爱把一件小事做到能长期用下去。
+        </p>
+        <ul class="stats" aria-label="个人数据统计">
+          <li class="stat">
+            <span class="stat-num" data-value="6" data-suffix="+">6+</span>
+            <span class="stat-label">在跑的项目</span>
+          </li>
+          <li class="stat">
+            <span class="stat-num" data-value="4" data-suffix="">4</span>
+            <span class="stat-label">年写前端</span>
+          </li>
+          <li class="stat">
+            <span class="stat-num" data-value="128" data-suffix="">128</span>
+            <span class="stat-label">个提交仓库</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 作品列表：6 个项目卡片 ===== -->
+  <section class="section" id="work">
+    <div class="wrap">
+      <h2 class="section-title"><span class="section-no">02</span>作品 / 项目</h2>
+      <ul class="projects">
+        <li class="project reveal">
+          <p class="project-no">P / 01</p>
+          <h3 class="project-name">个人导航站</h3>
+          <p class="project-desc">把常用站点、工具、文档收进一屏，支持分组与自定义排序，打开浏览器就能用。</p>
+          <ul class="tags tags-sm">
+            <li class="tag">HTML</li>
+            <li class="tag">CSS Grid</li>
+            <li class="tag">localStorage</li>
+          </ul>
+        </li>
+        <li class="project reveal">
+          <p class="project-no">P / 02</p>
+          <h3 class="project-name">长沙天气看板</h3>
+          <p class="project-desc">按小时展示长沙气温、降雨与风力，纯静态渲染，弱网下也能快速打开。</p>
+          <ul class="tags tags-sm">
+            <li class="tag">JavaScript</li>
+            <li class="tag">Canvas</li>
+            <li class="tag">公开 API</li>
+          </ul>
+        </li>
+        <li class="project reveal">
+          <p class="project-no">P / 03</p>
+          <h3 class="project-name">极简博客引擎</h3>
+          <p class="project-desc">Markdown 直接生成静态文章页，构建一分钟内跑完，产物只有 HTML 和三份小文件。</p>
+          <ul class="tags tags-sm">
+            <li class="tag">Node.js</li>
+            <li class="tag">Markdown</li>
+            <li class="tag">静态生成</li>
+          </ul>
+        </li>
+        <li class="project reveal">
+          <p class="project-no">P / 04</p>
+          <h3 class="project-name">每日待办追踪器</h3>
+          <p class="project-desc">离线优先的待办清单，带键盘快捷操作与本地持久化，不需要注册登录。</p>
+          <ul class="tags tags-sm">
+            <li class="tag">IndexedDB</li>
+            <li class="tag">键盘操作</li>
+            <li class="tag">离线优先</li>
+          </ul>
+        </li>
+        <li class="project reveal">
+          <p class="project-no">P / 05</p>
+          <h3 class="project-name">本地图片压缩台</h3>
+          <p class="project-desc">拖拽即可批量压缩图片，全部在浏览器本地完成，文件不会上传到任何服务器。</p>
+          <ul class="tags tags-sm">
+            <li class="tag">Canvas</li>
+            <li class="tag">Web Worker</li>
+            <li class="tag">隐私友好</li>
+          </ul>
+        </li>
+        <li class="project reveal">
+          <p class="project-no">P / 06</p>
+          <h3 class="project-name">命令行备份脚本</h3>
+          <p class="project-desc">给本地目录做增量快照，按日期归档并生成校验清单，一条命令完成备份。</p>
+          <ul class="tags tags-sm">
+            <li class="tag">Shell</li>
+            <li class="tag">rsync</li>
+            <li class="tag">计划任务</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== 个人数据：联系方式（可点击）+ 地点 + 实时时钟 ===== -->
+  <section class="section" id="data">
+    <div class="wrap">
+      <h2 class="section-title"><span class="section-no">03</span>个人数据</h2>
+
+      <ul class="data-list">
+        <li class="data-row">
+          <span class="data-key">GitHub</span>
+          <a class="data-val" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+        </li>
+        <li class="data-row">
+          <span class="data-key">QQ</span>
+          <a class="data-val" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+        </li>
+        <li class="data-row">
+          <span class="data-key">邮箱 1</span>
+          <a class="data-val" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+        </li>
+        <li class="data-row">
+          <span class="data-key">邮箱 2</span>
+          <a class="data-val" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+        </li>
+        <li class="data-row">
+          <span class="data-key">地点</span>
+          <span class="data-val data-val-plain">湖南省长沙市</span>
+        </li>
+      </ul>
+
+      <div class="clock" id="clock" role="group" aria-label="长沙时间实时时钟">
+        <p class="clock-label">长沙时间 / UTC+8</p>
+        <p class="clock-time" id="clock-time">--:--:--</p>
+        <p class="clock-date" id="clock-date">----年--月--日</p>
+        <p class="clock-week" id="clock-week">星期-</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p class="footer-copy">© 2026 ok-lzr · 湖南省长沙市</p>
+    <p class="footer-note">粗野主义 / 纯原生 HTML + CSS + JS / 无外部依赖</p>
+  </div>
+</footer>
+
+</body>
+</html>

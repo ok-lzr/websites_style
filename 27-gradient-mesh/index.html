@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="night">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#070b1c">
+<title>ok-lzr / 码上生活 · 网格渐变个人主页</title>
+<meta name="description" content="ok-lzr 的个人主页：多彩网格渐变 + 半透明玻璃卡片风格，包含技能、作品、联系方式与长沙实时时钟。">
+<!-- 结构只在 HTML：样式全部在 style.css，行为全部在 script.js -->
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body class="theme-night">
+
+<a class="skip-link" href="#main">跳到主要内容</a>
+
+<!-- ===== 网格渐变背景：底色网格 + 四团彩色光斑 + 鼠标跟随光晕（纯装饰） ===== -->
+<div class="mesh" aria-hidden="true">
+  <span class="mesh__blob mesh__blob--violet"></span>
+  <span class="mesh__blob mesh__blob--cyan"></span>
+  <span class="mesh__blob mesh__blob--pink"></span>
+  <span class="mesh__blob mesh__blob--amber"></span>
+</div>
+<div class="cursor-glow" aria-hidden="true"></div>
+
+<!-- ===== 顶部导航：锚点跳转 + 滚动高亮 + 昼夜主题切换 ===== -->
+<header class="site-header" id="siteHeader">
+  <nav class="nav" aria-label="主导航">
+    <a class="nav__brand" href="#top">
+      <span class="nav__dot" aria-hidden="true"></span>
+      <span class="nav__brand-text">ok-lzr<span class="nav__brand-sub"> / 码上生活</span></span>
+    </a>
+
+    <button class="nav__toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navList">
+      <span aria-hidden="true">☰</span>
+      <span class="sr-only">展开导航菜单</span>
+    </button>
+
+    <ul class="nav__list" id="navList">
+      <li><a class="nav__link" href="#top">首页</a></li>
+      <li><a class="nav__link" href="#skills">能力</a></li>
+      <li><a class="nav__link" href="#works">作品</a></li>
+      <li><a class="nav__link" href="#profile">联系</a></li>
+    </ul>
+
+    <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="true">
+      <span class="theme-toggle__icon" id="themeIcon" aria-hidden="true">🌙</span>
+      <span class="theme-toggle__text" id="themeText">夜间</span>
+    </button>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ===== 首屏：姓名 / 一句话简介 / 能力标签 / 数字概览 ===== -->
+  <section class="section hero" id="top">
+    <div class="wrap hero__inner">
+      <div class="hero__text">
+        <p class="eyebrow reveal">网格渐变 · 半透明玻璃 · 现代 SaaS</p>
+        <h1 class="hero__name reveal">
+          ok-lzr<span class="hero__slash"> / </span><span class="hero__alias grad-text">码上生活</span>
+        </h1>
+        <p class="hero__intro reveal" id="typewriter" data-typing="在长沙写代码，把日常过成一片会呼吸的网格渐变。">在长沙写代码，把日常过成一片会呼吸的网格渐变。</p>
+        <ul class="tag-list reveal" aria-label="能力标签">
+          <li class="tag">前端工程</li>
+          <li class="tag">交互与动效</li>
+          <li class="tag">响应式布局</li>
+          <li class="tag">静态站点搭建</li>
+        </ul>
+        <div class="hero__actions reveal">
+          <a class="btn btn--primary" href="#works">看看作品</a>
+          <a class="btn btn--ghost" href="#profile">联系我</a>
+        </div>
+      </div>
+
+      <!-- 半透明玻璃展示卡：风格说明 + 漂浮技术芯片 -->
+      <div class="hero__visual" aria-hidden="true">
+        <div class="glass-card hero__card">
+          <p class="hero__card-mark">◈</p>
+          <p class="hero__card-title">多彩网格渐变</p>
+          <p class="hero__card-text">多层径向渐变叠成网格，<br>光斑缓慢漂移，柔和不刺眼。</p>
+        </div>
+        <span class="chip chip--1">CSS Grid</span>
+        <span class="chip chip--2">Glass</span>
+        <span class="chip chip--3">Vanilla JS</span>
+      </div>
+    </div>
+
+    <!-- 数字滚动概览 -->
+    <div class="wrap">
+      <ul class="stats glass-card reveal" aria-label="个人数据概览">
+        <li class="stat"><span class="stat__num" data-count="6">6</span><span class="stat__label">个作品</span></li>
+        <li class="stat"><span class="stat__num" data-count="12">12</span><span class="stat__label">项技能</span></li>
+        <li class="stat"><span class="stat__num" data-count="0">0</span><span class="stat__label">外部依赖</span></li>
+        <li class="stat"><span class="stat__num" data-count="100" data-suffix="%">100%</span><span class="stat__label">原生实现</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== 能力区：滚动进入时进度条动画 ===== -->
+  <section class="section" id="skills">
+    <div class="wrap">
+      <header class="section__head reveal">
+        <p class="eyebrow">Capabilities</p>
+        <h2 class="section__title">能力与手感</h2>
+        <p class="section__desc">不追新框架，先把浏览器自带的那几样用顺手。</p>
+      </header>
+
+      <div class="grid grid--2">
+        <article class="glass-card skill reveal">
+          <div class="skill__top">
+            <h3 class="skill__name">HTML / 语义化结构</h3>
+            <span class="skill__val">92%</span>
+          </div>
+          <div class="bar" role="presentation"><span class="bar__fill" data-fill="92"></span></div>
+          <p class="skill__note">结构清晰、标题层级正确、可被读屏软件读懂。</p>
+        </article>
+
+        <article class="glass-card skill reveal">
+          <div class="skill__top">
+            <h3 class="skill__name">CSS 视觉与动效</h3>
+            <span class="skill__val">88%</span>
+          </div>
+          <div class="bar" role="presentation"><span class="bar__fill" data-fill="88"></span></div>
+          <p class="skill__note">网格渐变、玻璃拟态、关键帧与过渡曲线调校。</p>
+        </article>
+
+        <article class="glass-card skill reveal">
+          <div class="skill__top">
+            <h3 class="skill__name">原生 JavaScript</h3>
+            <span class="skill__val">85%</span>
+          </div>
+          <div class="bar" role="presentation"><span class="bar__fill" data-fill="85"></span></div>
+          <p class="skill__note">DOM、观察器、异步请求与状态管理，不依赖框架。</p>
+        </article>
+
+        <article class="glass-card skill reveal">
+          <div class="skill__top">
+            <h3 class="skill__name">响应式与性能</h3>
+            <span class="skill__val">90%</span>
+          </div>
+          <div class="bar" role="presentation"><span class="bar__fill" data-fill="90"></span></div>
+          <p class="skill__note">360px 到 1200px 都能用，减少重绘与布局抖动。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 作品区：分类筛选 + 卡片列表 ===== -->
+  <section class="section" id="works">
+    <div class="wrap">
+      <header class="section__head reveal">
+        <p class="eyebrow">Selected Work</p>
+        <h2 class="section__title">作品与项目</h2>
+        <p class="section__desc">都是自己每天会打开的东西，所以细节抠得比较久。</p>
+      </header>
+
+      <!-- 筛选按钮组：JS 切换分类 -->
+      <div class="filter reveal" id="filterBar" role="group" aria-label="作品分类筛选">
+        <button class="filter__btn is-active" type="button" data-filter="all" aria-pressed="true">全部</button>
+        <button class="filter__btn" type="button" data-filter="web" aria-pressed="false">网页应用</button>
+        <button class="filter__btn" type="button" data-filter="tool" aria-pressed="false">效率工具</button>
+        <button class="filter__btn" type="button" data-filter="template" aria-pressed="false">页面模板</button>
+      </div>
+
+      <div class="grid grid--3" id="workGrid">
+        <article class="glass-card work reveal" data-cat="web">
+          <p class="work__no">01</p>
+          <h3 class="work__title">个人导航站</h3>
+          <p class="work__desc">把常用工具、文档与常逛的站点收进一页，支持分类折叠与本地排序。</p>
+          <ul class="tag-list tag-list--sm">
+            <li class="tag">HTML</li><li class="tag">CSS Grid</li><li class="tag">原生 JS</li>
+          </ul>
+        </article>
+
+        <article class="glass-card work reveal" data-cat="web">
+          <p class="work__no">02</p>
+          <h3 class="work__title">长沙天气看板</h3>
+          <p class="work__desc">展示长沙实时天气与未来趋势，纯前端渲染，断网时回退到最近一次缓存。</p>
+          <ul class="tag-list tag-list--sm">
+            <li class="tag">Fetch API</li><li class="tag">CSS 变量</li><li class="tag">数据可视化</li>
+          </ul>
+        </article>
+
+        <article class="glass-card work reveal" data-cat="tool">
+          <p class="work__no">03</p>
+          <h3 class="work__title">网格渐变生成器</h3>
+          <p class="work__desc">可视化调节光斑颜色、位置与模糊度，一键复制可直接使用的 CSS 代码。</p>
+          <ul class="tag-list tag-list--sm">
+            <li class="tag">Canvas</li><li class="tag">CSS 变量</li><li class="tag">剪贴板</li>
+          </ul>
+        </article>
+
+        <article class="glass-card work reveal" data-cat="tool">
+          <p class="work__no">04</p>
+          <h3 class="work__title">番茄专注计时器</h3>
+          <p class="work__desc">25 分钟专注配 5 分钟休息，带任务清单与本地专注时长统计。</p>
+          <ul class="tag-list tag-list--sm">
+            <li class="tag">LocalStorage</li><li class="tag">Web Audio</li><li class="tag">PWA</li>
+          </ul>
+        </article>
+
+        <article class="glass-card work reveal" data-cat="template">
+          <p class="work__no">05</p>
+          <h3 class="work__title">静态博客模板集</h3>
+          <p class="work__desc">一套可复用的静态站点模板与 Markdown 构建脚本，改配置即可上线。</p>
+          <ul class="tag-list tag-list--sm">
+            <li class="tag">Node.js</li><li class="tag">Markdown</li><li class="tag">CSS</li>
+          </ul>
+        </article>
+
+        <article class="glass-card work reveal" data-cat="template">
+          <p class="work__no">06</p>
+          <h3 class="work__title">响应式简历模板</h3>
+          <p class="work__desc">单页简历模板，打印友好，深浅色自适应，手机上一屏读完关键信息。</p>
+          <ul class="tag-list tag-list--sm">
+            <li class="tag">HTML</li><li class="tag">打印样式</li><li class="tag">响应式</li>
+          </ul>
+        </article>
+      </div>
+
+      <p class="filter__empty" id="filterEmpty" hidden>该分类下暂时还没有作品。</p>
+    </div>
+  </section>
+
+  <!-- ===== 联系区：个人数据 + 长沙实时时钟 ===== -->
+  <section class="section" id="profile">
+    <div class="wrap">
+      <header class="section__head reveal">
+        <p class="eyebrow">Get in touch</p>
+        <h2 class="section__title">个人数据与联系</h2>
+        <p class="section__desc">合作、提问或者只是打个招呼，都欢迎。</p>
+      </header>
+
+      <div class="grid grid--contact">
+        <!-- 逐项可点击的个人数据 -->
+        <article class="glass-card contact-card reveal">
+          <h3 class="card__title">联系清单</h3>
+          <ul class="info-list">
+            <li class="info">
+              <span class="info__icon" aria-hidden="true">🐙</span>
+              <span class="info__key">GitHub</span>
+              <a class="info__val info__val--link" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+            </li>
+            <li class="info">
+              <span class="info__icon" aria-hidden="true">💬</span>
+              <span class="info__key">QQ</span>
+              <a class="info__val info__val--link" href="https://wpa.qq.com/msgrd?v=3&uin=386477796&site=qq&menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+            </li>
+            <li class="info">
+              <span class="info__icon" aria-hidden="true">✉️</span>
+              <span class="info__key">邮箱 1</span>
+              <a class="info__val info__val--link" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+            </li>
+            <li class="info">
+              <span class="info__icon" aria-hidden="true">✉️</span>
+              <span class="info__key">邮箱 2</span>
+              <a class="info__val info__val--link" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+            </li>
+            <li class="info">
+              <span class="info__icon" aria-hidden="true">📍</span>
+              <span class="info__key">地点</span>
+              <a class="info__val info__val--link" href="https://www.openstreetmap.org/search?query=%E6%B9%96%E5%8D%97%E7%9C%81%E9%95%BF%E6%B2%99%E5%B8%82" target="_blank" rel="noopener noreferrer">湖南省长沙市</a>
+            </li>
+          </ul>
+        </article>
+
+        <!-- 长沙实时时钟：new Date() 每秒刷新，按钮切换 12 / 24 小时制 -->
+        <article class="glass-card clock-card reveal">
+          <h3 class="card__title">长沙时间</h3>
+          <p class="clock__zone">Asia/Shanghai · UTC+8</p>
+          <p class="clock__time" id="clockTime">--:--:--</p>
+          <p class="clock__date" id="clockDate">----年--月--日 星期-</p>
+          <button class="clock__toggle" id="clockToggle" type="button" aria-pressed="false">切换 12 小时制</button>
+          <p class="clock__meta">参考基线：<span id="clockBase">2026-09-14 22:07 (UTC+8)</span></p>
+          <p class="clock__theme" id="clockTheme">正在按参考时刻判定昼夜主题…</p>
+          <noscript><p class="clock__meta">请启用 JavaScript 以显示长沙实时时间。</p></noscript>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <p class="site-footer__copy">© 2026 ok-lzr · 湖南省长沙市</p>
+    <p class="site-footer__meta">原生 HTML / CSS / JavaScript 构建 · 无外部依赖</p>
+    <a class="site-footer__top" href="#top">回到顶部 ↑</a>
+  </div>
+</footer>
+
+</body>
+</html>

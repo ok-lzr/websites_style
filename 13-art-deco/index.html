@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ok-lzr 的个人主页 —— 装饰艺术风格（Art Deco）黑金小站，长沙。">
+<title>ok-lzr · 码上生活 | Art Deco Salon</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== 顶部装饰横幅：几何纹样 + 主题切换 ===== -->
+<div class="marquee" aria-hidden="true">
+  <span class="marquee__line"></span>
+  <span class="marquee__diamond">◆</span>
+  <span class="marquee__text">ART DECO · SALON · MCMXXV · CHANGSHA</span>
+  <span class="marquee__diamond">◆</span>
+  <span class="marquee__line"></span>
+</div>
+
+<!-- ===== 页头：对称徽标与导航 ===== -->
+<header class="masthead" id="top">
+  <div class="masthead__inner">
+    <a class="brand" href="#top" aria-label="返回页面顶部">
+      <span class="brand__monogram" aria-hidden="true">OL</span>
+      <span class="brand__text">
+        <strong>ok-lzr</strong>
+        <em>码上生活</em>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="主导航">
+      <ul class="nav__list">
+        <li><a class="nav__link" href="#about">关于</a></li>
+        <li><a class="nav__link" href="#works">作品</a></li>
+        <li><a class="nav__link" href="#stats">数据</a></li>
+        <li><a class="nav__link" href="#stats">联络</a></li>
+      </ul>
+    </nav>
+
+    <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">
+      <span class="theme-toggle__icon" id="themeIcon" aria-hidden="true">☾</span>
+      <span class="theme-toggle__label" id="themeLabel">夜之厅</span>
+    </button>
+  </div>
+  <div class="masthead__rule" aria-hidden="true"></div>
+</header>
+
+<main>
+
+  <!-- ===== 首屏：放射纹样 + 姓名 + 实时时钟 ===== -->
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="hero__rays" aria-hidden="true"></div>
+    <div class="hero__frame">
+      <p class="hero__eyebrow">装饰艺术 · 个人主页</p>
+      <h1 class="hero__title" id="heroTitle">
+        <span class="hero__name" id="typeName" data-text="OK-LZR">OK-LZR</span>
+        <span class="hero__cn">码上生活</span>
+      </h1>
+      <p class="hero__slogan">
+        在黑金的几何秩序里写代码 —— 把日常的念头，锻造成可以点击的金色线条。
+      </p>
+
+      <ul class="tags" aria-label="能力标签">
+        <li class="tags__item">前端工程</li>
+        <li class="tags__item">数据可视化</li>
+        <li class="tags__item">交互原型</li>
+        <li class="tags__item">像素级还原</li>
+      </ul>
+
+      <!-- 实时时钟：由 script.js 驱动 -->
+      <div class="clock" role="group" aria-label="长沙时间实时时钟">
+        <p class="clock__place">长沙时间 · CHANGSHA TIME</p>
+        <p class="clock__time" id="clockTime">--:--:--</p>
+        <p class="clock__date" id="clockDate">----年--月--日 星期-</p>
+        <p class="clock__phase" id="clockPhase">白昼</p>
+      </div>
+
+      <div class="hero__actions">
+        <a class="btn btn--solid" href="#works">查看作品</a>
+        <a class="btn btn--ghost" href="#contact">与我联络</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 关于：简介 + 技能条 ===== -->
+  <section class="section" id="about" aria-labelledby="aboutTitle">
+    <header class="section__head reveal">
+      <p class="section__kicker">SECTION I</p>
+      <h2 class="section__title" id="aboutTitle">关于我</h2>
+      <div class="flourish" aria-hidden="true"><span></span>◆<span></span></div>
+    </header>
+
+    <div class="about">
+      <div class="panel reveal">
+        <h3 class="panel__title">金色线条的自述</h3>
+        <p class="panel__text">
+          我是 ok-lzr，一名常驻长沙的前端开发者。喜欢把界面当成建筑来做：
+          对称、克制、每一根线条都要有理由。白天写业务代码，夜晚打磨自己的小工具，
+          相信优雅的实现和美观的外形可以同时成立。
+        </p>
+        <p class="panel__text">
+          日常在 <span class="mono">HTML / CSS / JavaScript</span> 之间往返，
+          偶尔做数据看板与自动化脚本，也对排版、字体与色彩系统保持长期兴趣。
+        </p>
+        <dl class="facts">
+          <div class="facts__row"><dt>城市</dt><dd>湖南省长沙市</dd></div>
+          <div class="facts__row"><dt>坐标</dt><dd>28.23°N, 112.94°E</dd></div>
+          <div class="facts__row"><dt>状态</dt><dd>接受有趣的合作</dd></div>
+        </dl>
+      </div>
+
+      <div class="panel reveal">
+        <h3 class="panel__title">技艺刻度</h3>
+        <ul class="skills" aria-label="技能熟练度">
+          <li class="skills__item" data-level="92">
+            <div class="skills__meta"><span>HTML / 语义与可访问性</span><span class="skills__num">0%</span></div>
+            <div class="skills__track"><span class="skills__bar"></span></div>
+          </li>
+          <li class="skills__item" data-level="95">
+            <div class="skills__meta"><span>CSS / 布局与动效</span><span class="skills__num">0%</span></div>
+            <div class="skills__track"><span class="skills__bar"></span></div>
+          </li>
+          <li class="skills__item" data-level="88">
+            <div class="skills__meta"><span>JavaScript / 原生交互</span><span class="skills__num">0%</span></div>
+            <div class="skills__track"><span class="skills__bar"></span></div>
+          </li>
+          <li class="skills__item" data-level="78">
+            <div class="skills__meta"><span>数据可视化 / 图表表达</span><span class="skills__num">0%</span></div>
+            <div class="skills__track"><span class="skills__bar"></span></div>
+          </li>
+        </ul>
+        <p class="panel__note">刻度由鼠标悬停触发重绘，数字滚动至目标值。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 作品：可筛选的项目列表 ===== -->
+  <section class="section" id="works" aria-labelledby="worksTitle">
+    <header class="section__head reveal">
+      <p class="section__kicker">SECTION II</p>
+      <h2 class="section__title" id="worksTitle">作品陈列</h2>
+      <div class="flourish" aria-hidden="true"><span></span>◆<span></span></div>
+    </header>
+
+    <div class="filters" role="tablist" aria-label="作品分类筛选">
+      <button class="filters__btn is-active" type="button" role="tab" aria-selected="true" data-filter="all">全部</button>
+      <button class="filters__btn" type="button" role="tab" aria-selected="false" data-filter="web">网页</button>
+      <button class="filters__btn" type="button" role="tab" aria-selected="false" data-filter="tool">工具</button>
+      <button class="filters__btn" type="button" role="tab" aria-selected="false" data-filter="data">数据</button>
+    </div>
+
+    <ul class="works" id="worksList">
+      <li class="card reveal" data-cat="web">
+        <p class="card__index">NO.Ⅰ</p>
+        <h3 class="card__title">个人导航站</h3>
+        <p class="card__desc">把常用站点收进一页，支持分组、拖拽排序与离线可用的本地收藏。</p>
+        <ul class="card__stack"><li>HTML</li><li>CSS Grid</li><li>localStorage</li></ul>
+      </li>
+      <li class="card reveal" data-cat="data">
+        <p class="card__index">NO.Ⅱ</p>
+        <h3 class="card__title">长沙天气看板</h3>
+        <p class="card__desc">展示本地逐小时气温与湿度曲线，配色随昼夜时段自动切换。</p>
+        <ul class="card__stack"><li>JavaScript</li><li>Canvas</li><li>响应式</li></ul>
+      </li>
+      <li class="card reveal" data-cat="tool">
+        <p class="card__index">NO.Ⅲ</p>
+        <h3 class="card__title">文本工坊</h3>
+        <p class="card__desc">批量去重、大小写转换、正则替换与 JSON 格式化的随身小工具箱。</p>
+        <ul class="card__stack"><li>原生 JS</li><li>RegExp</li><li>Clipboard</li></ul>
+      </li>
+      <li class="card reveal" data-cat="web">
+        <p class="card__index">NO.Ⅳ</p>
+        <h3 class="card__title">像素还原训练营</h3>
+        <p class="card__desc">逐像素复刻经典界面，记录每个间距与字重的取舍笔记。</p>
+        <ul class="card__stack"><li>CSS</li><li>设计还原</li><li>无障碍</li></ul>
+      </li>
+      <li class="card reveal" data-cat="data">
+        <p class="card__index">NO.Ⅴ</p>
+        <h3 class="card__title">阅读时长统计</h3>
+        <p class="card__desc">按周汇总的阅读记录，用环形与柱状图对照时间分布。</p>
+        <ul class="card__stack"><li>SVG</li><li>数据整理</li><li>图表</li></ul>
+      </li>
+      <li class="card reveal" data-cat="tool">
+        <p class="card__index">NO.Ⅵ</p>
+        <h3 class="card__title">配色锻造炉</h3>
+        <p class="card__desc">输入一个主色，自动推导色阶、对比度报告与可访问的文本配色。</p>
+        <ul class="card__stack"><li>色彩算法</li><li>WCAG</li><li>CSS 变量</li></ul>
+      </li>
+    </ul>
+    <p class="works__empty" id="worksEmpty" hidden>该分类暂无陈列品。</p>
+  </section>
+
+  <!-- ===== 数据区：数字滚动 + 个人联络信息 ===== -->
+  <section class="section" id="stats" aria-labelledby="statsTitle">
+    <header class="section__head reveal">
+      <p class="section__kicker">SECTION III</p>
+      <h2 class="section__title" id="statsTitle">数据与联络</h2>
+      <div class="flourish" aria-hidden="true"><span></span>◆<span></span></div>
+    </header>
+
+    <ul class="metrics reveal" aria-label="个人数据">
+      <li class="metrics__item"><span class="metrics__num" data-count="6">0</span><span class="metrics__label">陈列作品</span></li>
+      <li class="metrics__item"><span class="metrics__num" data-count="4">0</span><span class="metrics__label">核心技艺</span></li>
+      <li class="metrics__item"><span class="metrics__num" data-count="1200">0</span><span class="metrics__label">提交次数</span></li>
+      <li class="metrics__item"><span class="metrics__num" data-count="2026">0</span><span class="metrics__label">本年纪元</span></li>
+    </ul>
+
+    <ul class="contacts" aria-label="个人数据与联络方式">
+      <li class="contacts__item reveal">
+        <span class="contacts__icon" aria-hidden="true">◈</span>
+        <span class="contacts__key">GitHub</span>
+        <a class="contacts__val" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+      </li>
+      <li class="contacts__item reveal">
+        <span class="contacts__icon" aria-hidden="true">✆</span>
+        <span class="contacts__key">QQ</span>
+        <a class="contacts__val" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+      </li>
+      <li class="contacts__item reveal">
+        <span class="contacts__icon" aria-hidden="true">✉</span>
+        <span class="contacts__key">邮箱 · 主</span>
+        <a class="contacts__val" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+      </li>
+      <li class="contacts__item reveal">
+        <span class="contacts__icon" aria-hidden="true">✉</span>
+        <span class="contacts__key">邮箱 · 备</span>
+        <a class="contacts__val" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+      </li>
+      <li class="contacts__item reveal">
+        <span class="contacts__icon" aria-hidden="true">⌖</span>
+        <span class="contacts__key">地点</span>
+        <span class="contacts__val">湖南省长沙市</span>
+      </li>
+      <li class="contacts__item reveal">
+        <span class="contacts__icon" aria-hidden="true">◷</span>
+        <span class="contacts__key">长沙时间</span>
+        <span class="contacts__val" id="clockInline">--:--:--</span>
+      </li>
+    </ul>
+  </section>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="footer">
+  <div class="flourish flourish--footer" aria-hidden="true"><span></span>◆<span></span></div>
+  <p class="footer__main">© 2026 ok-lzr · 湖南省长沙市</p>
+  <p class="footer__sub">Art Deco Salon · 纯原生 HTML / CSS / JavaScript · 无外部依赖</p>
+</footer>
+
+<!-- 返回顶部：由脚本控制显示与滚动 -->
+<button class="to-top" id="toTop" type="button" aria-label="返回顶部" hidden>▲</button>
+
+<script src="script.js" defer></script>
+</body>
+</html>

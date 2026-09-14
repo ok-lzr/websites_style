@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ok-lzr 的自然有机风格个人主页：森林绿与大地色，叶片点缀，记录代码与生活。" />
+  <title>ok-lzr · 码上生活 · 自然有机</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <!-- ===== 背景装饰：枝叶与光斑（纯 CSS 绘制，无外部图标） ===== -->
+  <div class="backdrop" aria-hidden="true">
+    <span class="leaf leaf--a">&#127811;</span>
+    <span class="leaf leaf--b">&#127810;</span>
+    <span class="leaf leaf--c">&#127807;</span>
+    <span class="glow glow--one"></span>
+    <span class="glow glow--two"></span>
+  </div>
+
+  <!-- ===== 顶部导航：树冠 ===== -->
+  <header class="canopy" id="top">
+    <div class="wrap canopy__inner">
+      <a class="brand" href="#top">
+        <span class="brand__mark" aria-hidden="true">&#127793;</span>
+        <span class="brand__text">
+          <strong class="brand__name">ok-lzr</strong>
+          <em class="brand__sub">码上生活</em>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" type="button"
+              aria-expanded="false" aria-controls="primaryNav">
+        <span class="nav-toggle__bar" aria-hidden="true"></span>
+        <span class="sr-only">展开导航菜单</span>
+      </button>
+
+      <nav class="nav" id="primaryNav" aria-label="主导航">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="#about">关于我</a></li>
+          <li><a class="nav__link" href="#works">作品林</a></li>
+          <li><a class="nav__link" href="#skills">技能土壤</a></li>
+          <li><a class="nav__link" href="#contact">找到我</a></li>
+        </ul>
+        <button class="theme-btn" id="themeToggle" type="button" aria-pressed="false">
+          <span class="theme-btn__icon" aria-hidden="true">&#9728;</span>
+          <span class="theme-btn__label">日间</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- ===== 首屏：姓名 / 简介 / 能力标签 / 实时时钟 ===== -->
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero__copy reveal">
+        <p class="hero__eyebrow">&#127810; 自然有机 · 前端手作</p>
+        <h1 class="hero__title" id="heroTitle">
+          你好，我是 <span class="ink">ok-lzr</span>
+        </h1>
+        <p class="hero__tagline" id="typingLine" data-typing="在长沙写代码，也种一点生活。|用原生的手艺，做干净好用的网页。|慢一点，稳一点，像树一样生长。">
+          在长沙写代码，也种一点生活。
+        </p>
+        <ul class="chips" aria-label="能力标签">
+          <li class="chip">原生前端</li>
+          <li class="chip">UI 设计感</li>
+          <li class="chip">数据可视化</li>
+          <li class="chip">自动化脚本</li>
+        </ul>
+        <p class="hero__actions">
+          <a class="btn btn--solid" href="#works">看看作品林</a>
+          <a class="btn btn--ghost" href="#contact">找到我</a>
+        </p>
+      </div>
+
+      <aside class="clock-card reveal" aria-labelledby="clockTitle">
+        <h2 class="clock-card__title" id="clockTitle">&#128337; 长沙时间</h2>
+        <p class="clock-card__time" id="clockTime">--:--:--</p>
+        <p class="clock-card__date" id="clockDate">加载中…</p>
+        <p class="clock-card__zone" id="clockZone">UTC+8 · 湖南省长沙市</p>
+        <p class="clock-card__phase" id="clockPhase">昼夜判断中…</p>
+        <p class="clock-card__base">基线参考：2026-09-14 星期一 22:07（UTC+8）</p>
+      </aside>
+    </section>
+
+    <!-- ===== 关于我：一句话简介与个人数据 ===== -->
+    <section class="section" id="about" aria-labelledby="aboutTitle">
+      <h2 class="section__title reveal" id="aboutTitle">
+        <span class="section__leaf" aria-hidden="true">&#127811;</span>关于我
+      </h2>
+      <p class="section__lead reveal">
+        一个偏爱自然色与圆润手感的前端开发者，喜欢把复杂的东西削成简单的木头，
+        再打磨成顺手的小工具。
+      </p>
+
+      <div class="about-grid">
+        <article class="about-card reveal">
+          <h3 class="about-card__title">&#127795; 我的原则</h3>
+          <p>不加多余依赖，不做多余动画。页面像林间小路：好走、好认、好回头。</p>
+        </article>
+        <article class="about-card reveal">
+          <h3 class="about-card__title">&#127812; 我的节奏</h3>
+          <p>白天写业务，夜里写玩具。每个小项目都是一颗种子，合适的时候会发芽。</p>
+        </article>
+        <article class="about-card reveal">
+          <h3 class="about-card__title">&#127810; 我的兴趣</h3>
+          <p>徒步、雨声、绿植、把生活数据画成图。偶尔研究字体与排版的手感。</p>
+        </article>
+      </div>
+
+      <h3 class="sub-title reveal" id="factsTitle">&#128205; 个人数据</h3>
+      <ul class="facts" aria-labelledby="factsTitle">
+        <li class="fact reveal">
+          <span class="fact__key">GitHub</span>
+          <a class="fact__val" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+        </li>
+        <li class="fact reveal">
+          <span class="fact__key">QQ</span>
+          <a class="fact__val" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+        </li>
+        <li class="fact reveal">
+          <span class="fact__key">邮箱 1</span>
+          <a class="fact__val" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+        </li>
+        <li class="fact reveal">
+          <span class="fact__key">邮箱 2</span>
+          <a class="fact__val" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+        </li>
+        <li class="fact reveal">
+          <span class="fact__key">地点</span>
+          <span class="fact__val fact__val--plain">湖南省长沙市</span>
+        </li>
+        <li class="fact reveal">
+          <span class="fact__key">时间</span>
+          <span class="fact__val fact__val--plain" id="factClock">长沙时间加载中…</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== 作品林：项目列表 ===== -->
+    <section class="section" id="works" aria-labelledby="worksTitle">
+      <h2 class="section__title reveal" id="worksTitle">
+        <span class="section__leaf" aria-hidden="true">&#127794;</span>作品林
+      </h2>
+      <p class="section__lead reveal">五棵已经长起来的小树。挑一个看看吧。</p>
+
+      <div class="filter reveal" role="group" aria-label="作品分类筛选">
+        <button class="filter__btn is-active" type="button" data-filter="all">全部</button>
+        <button class="filter__btn" type="button" data-filter="web">网页</button>
+        <button class="filter__btn" type="button" data-filter="tool">工具</button>
+        <button class="filter__btn" type="button" data-filter="data">数据</button>
+      </div>
+
+      <ul class="works" id="worksList">
+        <li class="work reveal" data-kind="web">
+          <h3 class="work__title">&#127760; 个人导航站</h3>
+          <p class="work__desc">把常用站点收进一页，分组收纳、支持本地保存与快速搜索。</p>
+          <ul class="tags">
+            <li class="tag">HTML</li>
+            <li class="tag">CSS Grid</li>
+            <li class="tag">LocalStorage</li>
+          </ul>
+        </li>
+        <li class="work reveal" data-kind="data">
+          <h3 class="work__title">&#127783; 长沙天气看板</h3>
+          <p class="work__desc">按小时展示温度与降雨概率，用颜色带代替枯燥数字表格。</p>
+          <ul class="tags">
+            <li class="tag">JavaScript</li>
+            <li class="tag">Canvas</li>
+            <li class="tag">响应式</li>
+          </ul>
+        </li>
+        <li class="work reveal" data-kind="tool">
+          <h3 class="work__title">&#127807; 番茄森林</h3>
+          <p class="work__desc">专注计时器：每完成一轮就长出一片叶子，攒够一屏变成森林。</p>
+          <ul class="tags">
+            <li class="tag">原生 JS</li>
+            <li class="tag">CSS 动画</li>
+            <li class="tag">无障碍</li>
+          </ul>
+        </li>
+        <li class="work reveal" data-kind="data">
+          <h3 class="work__title">&#128202; 生活数据手账</h3>
+          <p class="work__desc">记录睡眠、步数与阅读，用极简折线图观察自己的季节变化。</p>
+          <ul class="tags">
+            <li class="tag">SVG</li>
+            <li class="tag">数据处理</li>
+            <li class="tag">主题变量</li>
+          </ul>
+        </li>
+        <li class="work reveal" data-kind="tool">
+          <h3 class="work__title">&#127793; 小苗待办</h3>
+          <p class="work__desc">任务完成即浇水，未完成会枯萎，用一点游戏感对抗拖延。</p>
+          <ul class="tags">
+            <li class="tag">PWA</li>
+            <li class="tag">IndexedDB</li>
+            <li class="tag">键盘操作</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== 技能土壤：技能条动画 ===== -->
+    <section class="section" id="skills" aria-labelledby="skillsTitle">
+      <h2 class="section__title reveal" id="skillsTitle">
+        <span class="section__leaf" aria-hidden="true">&#127812;</span>技能土壤
+      </h2>
+      <p class="section__lead reveal">滚到这片区域时，养分条会自动生长。</p>
+
+      <ul class="skills" id="skillsList">
+        <li class="skill">
+          <p class="skill__head"><span class="skill__name">HTML / CSS</span><span class="skill__num" data-value="92">0%</span></p>
+          <div class="bar"><span class="bar__fill" data-value="92"></span></div>
+        </li>
+        <li class="skill">
+          <p class="skill__head"><span class="skill__name">JavaScript</span><span class="skill__num" data-value="85">0%</span></p>
+          <div class="bar"><span class="bar__fill" data-value="85"></span></div>
+        </li>
+        <li class="skill">
+          <p class="skill__head"><span class="skill__name">界面与动效设计</span><span class="skill__num" data-value="74">0%</span></p>
+          <div class="bar"><span class="bar__fill" data-value="74"></span></div>
+        </li>
+        <li class="skill">
+          <p class="skill__head"><span class="skill__name">数据可视化</span><span class="skill__num" data-value="68">0%</span></p>
+          <div class="bar"><span class="bar__fill" data-value="68"></span></div>
+        </li>
+      </ul>
+
+      <div class="counters reveal" aria-label="一点小统计">
+        <p class="counter"><span class="counter__num" data-target="46">0</span><span class="counter__unit">个小项目</span></p>
+        <p class="counter"><span class="counter__num" data-target="6">0</span><span class="counter__unit">年手感</span></p>
+        <p class="counter"><span class="counter__num" data-target="2026">0</span><span class="counter__unit">年仍在长</span></p>
+      </div>
+    </section>
+
+    <!-- ===== 找到我：联系方式集中区 ===== -->
+    <section class="section" id="contact" aria-labelledby="contactTitle">
+      <h2 class="section__title reveal" id="contactTitle">
+        <span class="section__leaf" aria-hidden="true">&#127811;</span>找到我
+      </h2>
+      <p class="section__lead reveal">写邮件最快，QQ 也行。欢迎聊网页、聊工具、聊长沙的雨。</p>
+
+      <ul class="contact-list">
+        <li class="contact reveal">
+          <a class="contact__link" href="mailto:csgdnrxg@163.com">
+            <span class="contact__icon" aria-hidden="true">&#9993;</span>
+            <span class="contact__main">csgdnrxg@163.com</span>
+            <span class="contact__hint">主邮箱</span>
+          </a>
+        </li>
+        <li class="contact reveal">
+          <a class="contact__link" href="mailto:3866477796@qq.com">
+            <span class="contact__icon" aria-hidden="true">&#9993;</span>
+            <span class="contact__main">3866477796@qq.com</span>
+            <span class="contact__hint">备用邮箱</span>
+          </a>
+        </li>
+        <li class="contact reveal">
+          <a class="contact__link" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">
+            <span class="contact__icon" aria-hidden="true">&#128172;</span>
+            <span class="contact__main">386477796</span>
+            <span class="contact__hint">QQ</span>
+          </a>
+        </li>
+        <li class="contact reveal">
+          <a class="contact__link" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">
+            <span class="contact__icon" aria-hidden="true">&#127807;</span>
+            <span class="contact__main">github.com/ok-lzr</span>
+            <span class="contact__hint">GitHub</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <p class="footer__copy">© 2026 ok-lzr · 湖南省长沙市</p>
+      <p class="footer__note">自然有机风格 · 原生 HTML / CSS / JavaScript 手作</p>
+      <p class="footer__top"><a href="#top">&#8593; 回到树冠</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>

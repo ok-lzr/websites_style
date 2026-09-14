@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="day">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ok-lzr / 码上生活 · 拟物皮革个人主页</title>
+  <meta name="description" content="ok-lzr 的个人主页，拟物皮革风格：真皮纹理、缝线边框、黄铜金属按钮与真实投影。前端开发 / 数据可视化 / 自动化脚本。" />
+  <meta name="author" content="ok-lzr" />
+  <meta name="theme-color" content="#623f22" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- 顶部阅读进度：JS 写入根变量 --progress，CSS 负责表现 -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <!-- 鼠标跟随的皮革高光（装饰层，不参与交互） -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <!-- ===== 页头：皮革横条 + 缝线导航 + 黄铜主题开关 ===== -->
+  <header class="site-header" id="siteHeader">
+    <div class="wrap header__inner">
+      <a class="brand" href="#top">
+        <span class="brand__badge" aria-hidden="true">ok</span>
+        <span class="brand__text">
+          <strong>ok-lzr</strong>
+          <em>码上生活</em>
+        </span>
+      </a>
+
+      <nav class="nav" id="primaryNav" aria-label="主导航">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="#about">关于</a></li>
+          <li><a class="nav__link" href="#works">作品</a></li>
+          <li><a class="nav__link" href="#skills">技能</a></li>
+          <li><a class="nav__link" href="#profile">名片</a></li>
+        </ul>
+      </nav>
+
+      <button class="theme-switch" id="themeSwitch" type="button" aria-pressed="false">
+        <span class="theme-switch__icon" aria-hidden="true">☀</span>
+        <span class="theme-switch__text">日间皮革</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===== 首屏：姓名 / 打字机标语 / 一句话简介 / 能力标签 / 长沙时间 ===== -->
+    <section class="hero" id="top" aria-labelledby="heroTitle">
+      <div class="wrap hero__grid">
+        <div class="hero__main reveal">
+          <p class="eyebrow">手工皮革工坊 · 数字制品</p>
+          <h1 class="hero__name" id="heroTitle">
+            ok-lzr
+            <span class="hero__alias">/ 码上生活</span>
+          </h1>
+          <p class="hero__type" aria-hidden="true">
+            <span class="hero__type-text" id="typewriter">把界面当皮料打磨。</span>
+            <span class="caret"></span>
+          </p>
+          <p class="hero__intro">
+            一句话简介：白天写代码，晚上打磨界面手感——<strong>缝线要对齐，圆角要服帖</strong>，
+            用原生 HTML / CSS / JavaScript 把想法做成能上手摸的作品。
+          </p>
+          <ul class="chips" aria-label="能力标签">
+            <li class="chip">前端开发</li>
+            <li class="chip">数据可视化</li>
+            <li class="chip">自动化脚本</li>
+            <li class="chip">拟物 UI</li>
+          </ul>
+          <p class="hero__actions">
+            <a class="btn btn--brass" href="#works">查看作品</a>
+            <a class="btn btn--leather" href="#profile">联系方式</a>
+          </p>
+        </div>
+
+        <aside class="panel panel--clock reveal" aria-labelledby="clockTitle">
+          <h2 class="clock__title" id="clockTitle">长沙时间</h2>
+          <p class="clock__display">
+            <span class="clock__time" data-clock="time">--:--:--</span>
+          </p>
+          <p class="clock__date">
+            <span data-clock="date">正在读取时间…</span>
+            <span class="clock__week" data-clock="week">—</span>
+          </p>
+          <dl class="clock__meta">
+            <div class="clock__row">
+              <dt>时区</dt>
+              <dd>UTC+8 · Asia/Shanghai</dd>
+            </div>
+            <div class="clock__row">
+              <dt>参考基线</dt>
+              <dd id="baselineInfo">2026-09-14（星期一）22:07</dd>
+            </div>
+            <div class="clock__row">
+              <dt>昼夜判定</dt>
+              <dd id="phaseInfo">判断中…</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===== 关于：自述 + 手账数据（数字滚动） ===== -->
+    <section class="section" id="about" aria-labelledby="aboutTitle">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <p class="section__kicker">About / 关于</p>
+          <h2 class="section__title" id="aboutTitle">关于这块皮料</h2>
+          <p class="section__lead">一句话简介：把界面当皮料来打磨，先做好手感，再谈参数。</p>
+        </header>
+
+        <div class="about__grid">
+          <article class="panel reveal">
+            <h3 class="card__title">自述</h3>
+            <p class="card__text">
+              常驻长沙的前端手艺人，习惯用原生三件套做东西：先起结构，再上皮料与缝线，
+              最后交给 JavaScript 让页面动起来。喜欢把复杂交互拆成能复用的小块，
+              也喜欢给旧平板、旧路由写点自动化脚本，让它们继续服役。
+            </p>
+            <ul class="chips chips--tight" aria-label="能力标签">
+              <li class="chip">响应式布局</li>
+              <li class="chip">Canvas 图表</li>
+              <li class="chip">Node.js 脚本</li>
+              <li class="chip">可访问性</li>
+            </ul>
+          </article>
+
+          <article class="panel reveal">
+            <h3 class="card__title">手账数据</h3>
+            <ul class="stats">
+              <li class="stat">
+                <span class="stat__num" data-count="42">42</span><span class="stat__unit">个</span>
+                <span class="stat__label">已完成作品</span>
+              </li>
+              <li class="stat">
+                <span class="stat__num" data-count="1860">1860</span><span class="stat__unit">次</span>
+                <span class="stat__label">代码提交</span>
+              </li>
+              <li class="stat">
+                <span class="stat__num" data-count="128">128</span><span class="stat__unit">枚</span>
+                <span class="stat__label">自制组件</span>
+              </li>
+              <li class="stat">
+                <span class="stat__num" data-count="21">21</span><span class="stat__unit">杯</span>
+                <span class="stat__label">每周咖啡</span>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 作品：6 件手工成品 ===== -->
+    <section class="section" id="works" aria-labelledby="worksTitle">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <p class="section__kicker">Works / 作品</p>
+          <h2 class="section__title" id="worksTitle">手工成品架</h2>
+          <p class="section__lead">每一件都上过缝线、压过边，代码与手感一起交付。</p>
+        </header>
+
+        <div class="works__grid">
+          <article class="panel work reveal">
+            <p class="work__no">No. 01</p>
+            <h3 class="card__title">个人导航站</h3>
+            <p class="card__text">把常用工具收进一块牛皮面板，支持分类折叠、快捷键搜索与离线缓存。</p>
+            <ul class="tags" aria-label="技术栈">
+              <li class="tag">HTML</li>
+              <li class="tag">CSS 变量</li>
+              <li class="tag">原生 JS</li>
+            </ul>
+          </article>
+
+          <article class="panel work reveal">
+            <p class="work__no">No. 02</p>
+            <h3 class="card__title">长沙天气看板</h3>
+            <p class="card__text">抓取长沙实时天气与未来七天趋势，用手绘 Canvas 仪表盘呈现，皮革表盘风格。</p>
+            <ul class="tags" aria-label="技术栈">
+              <li class="tag">JavaScript</li>
+              <li class="tag">Canvas</li>
+              <li class="tag">REST API</li>
+            </ul>
+          </article>
+
+          <article class="panel work reveal">
+            <p class="work__no">No. 03</p>
+            <h3 class="card__title">皮革记账本</h3>
+            <p class="card__text">本地优先的双人记账小工具，月度统计一目了然，可导出 CSV 交给表格软件。</p>
+            <ul class="tags" aria-label="技术栈">
+              <li class="tag">IndexedDB</li>
+              <li class="tag">CSS Grid</li>
+              <li class="tag">原生 JS</li>
+            </ul>
+          </article>
+
+          <article class="panel work reveal">
+            <p class="work__no">No. 04</p>
+            <h3 class="card__title">缝线组件库</h3>
+            <p class="card__text">一套拟物风格的表单与按钮组件，含 12 种材质预设，只用 CSS 变量切换主题。</p>
+            <ul class="tags" aria-label="技术栈">
+              <li class="tag">Web Components</li>
+              <li class="tag">CSS 变量</li>
+              <li class="tag">可访问性</li>
+            </ul>
+          </article>
+
+          <article class="panel work reveal">
+            <p class="work__no">No. 05</p>
+            <h3 class="card__title">通勤时间计算器</h3>
+            <p class="card__text">输入起终点，估算长沙地铁通勤耗时，一键复制结果并生成日历提醒文案。</p>
+            <ul class="tags" aria-label="技术栈">
+              <li class="tag">JavaScript</li>
+              <li class="tag">剪贴板 API</li>
+              <li class="tag">PWA</li>
+            </ul>
+          </article>
+
+          <article class="panel work reveal">
+            <p class="work__no">No. 06</p>
+            <h3 class="card__title">客厅信息看板</h3>
+            <p class="card__text">把退役平板改造成客厅信息屏，轮播日程、天气与家务提醒，夜里自动调暗。</p>
+            <ul class="tags" aria-label="技术栈">
+              <li class="tag">Node.js</li>
+              <li class="tag">WebSocket</li>
+              <li class="tag">Linux</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 技能：滚动进入后进度条上膛 ===== -->
+    <section class="section" id="skills" aria-labelledby="skillsTitle">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <p class="section__kicker">Skills / 技能</p>
+          <h2 class="section__title" id="skillsTitle">工具与手艺</h2>
+          <p class="section__lead">刻度是自评，活儿在作品里。</p>
+        </header>
+
+        <ul class="skills__list">
+          <li class="skill" data-level="92">
+            <p class="skill__head"><span class="skill__name">HTML / CSS 布局与动效</span><span class="skill__pct">92%</span></p>
+            <span class="skill__track"><span class="skill__fill"></span></span>
+          </li>
+          <li class="skill" data-level="86">
+            <p class="skill__head"><span class="skill__name">JavaScript（原生 / ES6+）</span><span class="skill__pct">86%</span></p>
+            <span class="skill__track"><span class="skill__fill"></span></span>
+          </li>
+          <li class="skill" data-level="80">
+            <p class="skill__head"><span class="skill__name">拟物 UI 与视觉打磨</span><span class="skill__pct">80%</span></p>
+            <span class="skill__track"><span class="skill__fill"></span></span>
+          </li>
+          <li class="skill" data-level="74">
+            <p class="skill__head"><span class="skill__name">数据可视化</span><span class="skill__pct">74%</span></p>
+            <span class="skill__track"><span class="skill__fill"></span></span>
+          </li>
+          <li class="skill" data-level="68">
+            <p class="skill__head"><span class="skill__name">Node.js 与自动化脚本</span><span class="skill__pct">68%</span></p>
+            <span class="skill__track"><span class="skill__fill"></span></span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 名片：个人数据区（GitHub / QQ / 两个邮箱 / 地点 / 长沙时间） ===== -->
+    <section class="section" id="profile" aria-labelledby="profileTitle">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <p class="section__kicker">Profile / 名片</p>
+          <h2 class="section__title" id="profileTitle">联系方式与坐标</h2>
+          <p class="section__lead">点一下就能用：链接直达，其余字段可一键复制。</p>
+        </header>
+
+        <ul class="profile__grid">
+          <li class="data-item reveal">
+            <span class="data-item__icon" aria-hidden="true">GH</span>
+            <span class="data-item__body">
+              <span class="data-item__label">GitHub</span>
+              <a class="data-item__value" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+            </span>
+            <button class="mini-btn" type="button" data-copy="https://github.com/ok-lzr">复制</button>
+          </li>
+
+          <li class="data-item reveal">
+            <span class="data-item__icon" aria-hidden="true">QQ</span>
+            <span class="data-item__body">
+              <span class="data-item__label">QQ</span>
+              <a class="data-item__value" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+            </span>
+            <button class="mini-btn" type="button" data-copy="386477796">复制</button>
+          </li>
+
+          <li class="data-item reveal">
+            <span class="data-item__icon" aria-hidden="true">✉</span>
+            <span class="data-item__body">
+              <span class="data-item__label">邮箱 1</span>
+              <a class="data-item__value" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+            </span>
+            <button class="mini-btn" type="button" data-copy="csgdnrxg@163.com">复制</button>
+          </li>
+
+          <li class="data-item reveal">
+            <span class="data-item__icon" aria-hidden="true">✉</span>
+            <span class="data-item__body">
+              <span class="data-item__label">邮箱 2</span>
+              <a class="data-item__value" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+            </span>
+            <button class="mini-btn" type="button" data-copy="3866477796@qq.com">复制</button>
+          </li>
+
+          <li class="data-item reveal">
+            <span class="data-item__icon" aria-hidden="true">⌖</span>
+            <span class="data-item__body">
+              <span class="data-item__label">地点</span>
+              <button class="data-item__value data-item__value--button" type="button" data-copy="湖南省长沙市">湖南省长沙市</button>
+            </span>
+            <button class="mini-btn" type="button" data-copy="湖南省长沙市">复制</button>
+          </li>
+
+          <li class="data-item reveal">
+            <span class="data-item__icon" aria-hidden="true">◷</span>
+            <span class="data-item__body">
+              <span class="data-item__label">长沙时间</span>
+              <span class="data-item__value" data-clock="full">正在读取时间…</span>
+            </span>
+            <button class="mini-btn" id="clockCopy" type="button" data-copy="长沙时间">复制</button>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="site-footer">
+    <div class="wrap footer__inner">
+      <p class="footer__brand">© 2026 ok-lzr · 湖南省长沙市</p>
+      <p class="footer__note">拟物皮革风格 · 纯原生 HTML / CSS / JavaScript 手工缝制</p>
+      <button class="mini-btn" id="backTop" type="button">回到顶部 ↑</button>
+    </div>
+  </footer>
+
+  <!-- 操作反馈气泡（JS 控制显示） -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

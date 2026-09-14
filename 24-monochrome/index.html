@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ok-lzr 的个人主页 · 黑白极简风格 · 湖南长沙">
+  <title>ok-lzr / 码上生活 · 黑白极简个人主页</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- 顶部细进度条：随滚动增长（宽度由 JS 写入，样式在 CSS） -->
+  <div class="scroll-line" aria-hidden="true"><span class="scroll-line__bar" data-progress-bar></span></div>
+
+  <!-- ===== 页头：品牌 + 主导航 ===== -->
+  <header class="site-header" id="top">
+    <div class="wrap site-header__inner">
+      <a class="brand" href="#hero">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__text">
+          <strong>ok-lzr</strong>
+          <em>码上生活</em>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="主导航">
+        <a class="nav__link" href="#about">关于</a>
+        <a class="nav__link" href="#works">作品</a>
+        <a class="nav__link" href="#skills">技能</a>
+        <a class="nav__link" href="#profile">档案</a>
+      </nav>
+
+      <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false">
+        <span class="theme-toggle__label">暗</span>
+        <span class="theme-toggle__label">亮</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== 首屏：超大字号名号 + 简介标签 ===== -->
+    <section class="hero" id="hero">
+      <div class="wrap hero__inner">
+        <p class="hero__eyebrow">个人主页 / 黑白极简 / 湖南长沙</p>
+
+        <h1 class="hero__name">
+          <span class="hero__name-solid">ok-lzr</span>
+          <span class="hero__name-outline">码上生活</span>
+        </h1>
+
+        <div class="hero__foot">
+          <p class="hero__intro">
+            一句话简介：用极少的颜色，写清楚一件事——白天搬砖做前端，夜里折腾小工具，
+            把长沙的烟火气也顺手做成能打开的网页。
+          </p>
+
+          <ul class="tags" aria-label="能力标签">
+            <li class="tag">前端开发</li>
+            <li class="tag">动效与交互</li>
+            <li class="tag">数据可视化</li>
+            <li class="tag">自动化脚本</li>
+          </ul>
+        </div>
+
+        <p class="hero__hint" aria-hidden="true">向下滚动 ↓</p>
+      </div>
+    </section>
+
+    <!-- ===== 关于：大标题 + 正文 + 图注方块 ===== -->
+    <section class="section" id="about">
+      <div class="wrap">
+        <p class="section__index">01 / 关于我</p>
+        <h2 class="section__title">少即是多，<br>黑与白就够用。</h2>
+
+        <div class="about__grid">
+          <div class="about__text" data-reveal>
+            <p>
+              我是 ok-lzr，一名常驻湖南省长沙市的开发者。喜欢把需求拆到最小，
+              再用最朴素的技术把它实现出来：语义化结构、克制的样式、能看懂的行为层。
+            </p>
+            <p>
+              不依赖任何外部库与字体，这个页面本身就是作品之一——只用黑白灰三种语汇，
+              把排版、留白和线条当成主要的设计工具。
+            </p>
+            <p>
+              如果你想聊聊网页、动效或者长沙的夜宵路线，下面任意一个出口都能找到我。
+            </p>
+          </div>
+
+          <aside class="about__side" data-reveal>
+            <div class="about__block">
+              <p class="about__k">工作方式</p>
+              <p class="about__v">先做对，再做快，最后做少。</p>
+            </div>
+            <div class="about__block">
+              <p class="about__k">当前状态</p>
+              <p class="about__v">在线 · 接受小项目合作</p>
+            </div>
+            <div class="about__block">
+              <p class="about__k">常驻坐标</p>
+              <p class="about__v">湖南省长沙市</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 作品：筛选标签页 + 项目列表 ===== -->
+    <section class="section" id="works">
+      <div class="wrap">
+        <p class="section__index">02 / 作品</p>
+        <h2 class="section__title">做过的一些东西</h2>
+
+        <div class="filters" role="tablist" aria-label="作品分类筛选">
+          <button class="filter is-active" type="button" role="tab" data-filter="all" aria-selected="true">全部</button>
+          <button class="filter" type="button" role="tab" data-filter="web" aria-selected="false">网页</button>
+          <button class="filter" type="button" role="tab" data-filter="tool" aria-selected="false">工具</button>
+          <button class="filter" type="button" role="tab" data-filter="data" aria-selected="false">数据</button>
+        </div>
+
+        <ol class="works" data-works>
+          <li class="work" data-kind="web" data-reveal>
+            <span class="work__no">01</span>
+            <div class="work__body">
+              <h3 class="work__title">个人导航站</h3>
+              <p class="work__desc">把自己常用的站点收进一页，分组折叠、暗色跟随系统，打开就是起点。</p>
+              <ul class="work__stack"><li>HTML</li><li>CSS Grid</li><li>localStorage</li></ul>
+            </div>
+          </li>
+
+          <li class="work" data-kind="data" data-reveal>
+            <span class="work__no">02</span>
+            <div class="work__body">
+              <h3 class="work__title">长沙天气看板</h3>
+              <p class="work__desc">抓取本地天气与空气质量，用纯手绘折线展示一周变化，无第三方图表库。</p>
+              <ul class="work__stack"><li>Canvas</li><li>Fetch</li><li>定时任务</li></ul>
+            </div>
+          </li>
+
+          <li class="work" data-kind="tool" data-reveal>
+            <span class="work__no">03</span>
+            <div class="work__body">
+              <h3 class="work__title">黑白截图工具</h3>
+              <p class="work__desc">一键把截图处理成灰度并加深对比，方便写文档时保持版面统一。</p>
+              <ul class="work__stack"><li>Canvas 滤镜</li><li>拖拽上传</li></ul>
+            </div>
+          </li>
+
+          <li class="work" data-kind="web" data-reveal>
+            <span class="work__no">04</span>
+            <div class="work__body">
+              <h3 class="work__title">长沙时间墙</h3>
+              <p class="work__desc">一个只显示时间与星期的极简壁纸页，昼夜自动换肤，可全屏常驻副屏。</p>
+              <ul class="work__stack"><li>Date API</li><li>CSS 变量</li></ul>
+            </div>
+          </li>
+
+          <li class="work" data-kind="tool" data-reveal>
+            <span class="work__no">05</span>
+            <div class="work__body">
+              <h3 class="work__title">接口模拟器</h3>
+              <p class="work__desc">用本地 JSON 假数据模拟接口，支持延迟与错误码，方便前端离线联调。</p>
+              <ul class="work__stack"><li>Node 原生</li><li>REST</li></ul>
+            </div>
+          </li>
+
+          <li class="work" data-kind="data" data-reveal>
+            <span class="work__no">06</span>
+            <div class="work__body">
+              <h3 class="work__title">记账小账本</h3>
+              <p class="work__desc">按标签统计月度支出，输出黑白柱状图与月度对比，数据只存在浏览器里。</p>
+              <ul class="work__stack"><li>IndexedDB</li><li>SVG</li></ul>
+            </div>
+          </li>
+        </ol>
+
+        <p class="works__empty" data-works-empty hidden>该分类下暂时没有作品。</p>
+      </div>
+    </section>
+
+    <!-- ===== 技能：滚动进入后动画的进度条 ===== -->
+    <section class="section" id="skills">
+      <div class="wrap">
+        <p class="section__index">03 / 技能</p>
+        <h2 class="section__title">手感刻度</h2>
+
+        <ul class="skills" data-skills>
+          <li class="skill" data-reveal>
+            <p class="skill__head"><span class="skill__name">前端开发</span><span class="skill__num" data-count="92">0</span></p>
+            <div class="skill__track"><span class="skill__fill" data-level="92"></span></div>
+          </li>
+          <li class="skill" data-reveal>
+            <p class="skill__head"><span class="skill__name">动效与交互</span><span class="skill__num" data-count="85">0</span></p>
+            <div class="skill__track"><span class="skill__fill" data-level="85"></span></div>
+          </li>
+          <li class="skill" data-reveal>
+            <p class="skill__head"><span class="skill__name">数据可视化</span><span class="skill__num" data-count="78">0</span></p>
+            <div class="skill__track"><span class="skill__fill" data-level="78"></span></div>
+          </li>
+          <li class="skill" data-reveal>
+            <p class="skill__head"><span class="skill__name">自动化脚本</span><span class="skill__num" data-count="70">0</span></p>
+            <div class="skill__track"><span class="skill__fill" data-level="70"></span></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 档案：可点击的个人数据 + 实时长沙时间 ===== -->
+    <section class="section" id="profile">
+      <div class="wrap">
+        <p class="section__index">04 / 档案</p>
+        <h2 class="section__title">找到我</h2>
+
+        <!-- 实时时钟卡片：昼夜主题由脚本按小时判断 -->
+        <div class="clock" data-clock-card data-reveal>
+          <div class="clock__head">
+            <p class="clock__label">长沙时间 <span class="clock__zone">UTC+8</span></p>
+            <p class="clock__mode" data-period>昼夜判定中</p>
+          </div>
+
+          <p class="clock__time" data-clock-time>--:--:--</p>
+
+          <p class="clock__date">
+            <span data-clock-date>加载中</span>
+            <span class="clock__dot" aria-hidden="true">·</span>
+            <span data-clock-week>—</span>
+          </p>
+
+          <p class="clock__note">
+            时钟由浏览器实时计算；页面加载时会参考 2026 年 9 月 14 日（星期一）22:07（UTC+8）
+            这一查得的基线时刻来设定昼夜基调。
+          </p>
+        </div>
+
+        <ul class="info">
+          <li class="info__item">
+            <span class="info__k">GitHub</span>
+            <a class="info__v info__v--link" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+          </li>
+          <li class="info__item">
+            <span class="info__k">QQ</span>
+            <a class="info__v info__v--link" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+          </li>
+          <li class="info__item">
+            <span class="info__k">邮箱 1</span>
+            <a class="info__v info__v--link" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+          </li>
+          <li class="info__item">
+            <span class="info__k">邮箱 2</span>
+            <a class="info__v info__v--link" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+          </li>
+          <li class="info__item">
+            <span class="info__k">地点</span>
+            <span class="info__v">湖南省长沙市</span>
+          </li>
+          <li class="info__item">
+            <span class="info__k">时间</span>
+            <span class="info__v info__v--live" data-clock-inline>长沙时间加载中…</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="site-footer">
+    <div class="wrap site-footer__inner">
+      <p class="site-footer__copy">© 2026 ok-lzr · 湖南省长沙市</p>
+      <p class="site-footer__meta">纯原生 HTML / CSS / JavaScript 构建 · 无外部依赖</p>
+      <a class="site-footer__top" href="#top">回到顶部 ↑</a>
+    </div>
+  </footer>
+</body>
+</html>

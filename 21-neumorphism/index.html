@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ok-lzr / 码上生活 · 柔和拟物个人主页</title>
+  <meta name="description" content="ok-lzr 的个人主页：坐标长沙，用原生 HTML / CSS / JavaScript 做柔软顺手的网页小站。" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <!-- ===== 顶部导航 ===== -->
+  <header class="site-header">
+    <nav class="nav shell" aria-label="主导航">
+      <a class="nav__brand" href="#home">
+        <span class="nav__dot" aria-hidden="true"></span>
+        ok-lzr
+      </a>
+      <ul class="nav__list">
+        <li><a class="nav__link" href="#home">首页</a></li>
+        <li><a class="nav__link" href="#skills">技能</a></li>
+        <li><a class="nav__link" href="#works">作品</a></li>
+        <li><a class="nav__link" href="#contact">联系</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="切换深色或浅色主题">
+        <span class="theme-toggle__icon" id="themeIcon" aria-hidden="true">🌙</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main" class="shell">
+
+    <!-- ===== 首屏：姓名、简介、标签、数据概览 ===== -->
+    <section class="section hero" id="home" aria-labelledby="heroTitle">
+      <p class="hero__eyebrow">湖南省长沙市 · 原生前端手艺人</p>
+      <h1 class="hero__name" id="heroTitle">
+        ok-lzr <span class="hero__slash" aria-hidden="true">/</span> <span class="hero__alias">码上生活</span>
+      </h1>
+      <p class="hero__desc">
+        喜欢把脑子里的想法捏成一块块软软的界面：不用任何外部依赖，
+        只用 HTML、CSS 和 JavaScript，也能做出顺手、耐看、手机上也舒服的小站。
+      </p>
+      <ul class="tag-list" aria-label="能力标签">
+        <li class="tag">原生 HTML / CSS</li>
+        <li class="tag">响应式布局</li>
+        <li class="tag">交互动效</li>
+        <li class="tag">数据可视化</li>
+      </ul>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#works">看看作品</a>
+        <a class="btn" href="#contact">联系我</a>
+      </div>
+
+      <ul class="stats" aria-label="个人数据概览">
+        <li class="stat">
+          <span class="stat__num" data-count-to="5">0</span>
+          <span class="stat__label">个在维护的小站</span>
+        </li>
+        <li class="stat">
+          <span class="stat__num" data-count-to="3">0</span>
+          <span class="stat__label">年折腾前端</span>
+        </li>
+        <li class="stat">
+          <span class="stat__num" data-count-to="0">0</span>
+          <span class="stat__label">个外部依赖</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== 技能：进入视口后进度条生长 ===== -->
+    <section class="section" id="skills" aria-labelledby="skillsTitle">
+      <header class="section__head">
+        <h2 class="section__title" id="skillsTitle">技能盘子</h2>
+        <p class="section__sub">按自己用得最顺手的顺序排的，深浅只代表熟练度。</p>
+      </header>
+
+      <ul class="skills">
+        <li class="skill" data-level="92">
+          <div class="skill__top">
+            <span class="skill__name">HTML / CSS</span>
+            <span class="skill__pct">92%</span>
+          </div>
+          <div class="skill__track" role="presentation">
+            <span class="skill__bar"></span>
+          </div>
+        </li>
+        <li class="skill" data-level="82">
+          <div class="skill__top">
+            <span class="skill__name">JavaScript</span>
+            <span class="skill__pct">82%</span>
+          </div>
+          <div class="skill__track" role="presentation">
+            <span class="skill__bar"></span>
+          </div>
+        </li>
+        <li class="skill" data-level="86">
+          <div class="skill__top">
+            <span class="skill__name">响应式与适配</span>
+            <span class="skill__pct">86%</span>
+          </div>
+          <div class="skill__track" role="presentation">
+            <span class="skill__bar"></span>
+          </div>
+        </li>
+        <li class="skill" data-level="74">
+          <div class="skill__top">
+            <span class="skill__name">交互动效</span>
+            <span class="skill__pct">74%</span>
+          </div>
+          <div class="skill__track" role="presentation">
+            <span class="skill__bar"></span>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== 作品：带分类筛选的项目卡片 ===== -->
+    <section class="section" id="works" aria-labelledby="worksTitle">
+      <header class="section__head">
+        <h2 class="section__title" id="worksTitle">折腾过的东西</h2>
+        <p class="section__sub">都是小体量项目，但每一个都跑在日常里。</p>
+      </header>
+
+      <div class="filters" role="group" aria-label="作品分类筛选">
+        <button class="chip is-active" type="button" data-filter="all" aria-pressed="true">全部</button>
+        <button class="chip" type="button" data-filter="web" aria-pressed="false">网页</button>
+        <button class="chip" type="button" data-filter="tool" aria-pressed="false">工具</button>
+        <button class="chip" type="button" data-filter="data" aria-pressed="false">数据</button>
+      </div>
+
+      <ul class="works" id="workList">
+        <li class="work" data-category="web">
+          <h3 class="work__title">个人导航站</h3>
+          <p class="work__desc">把每天要开的站点收成一块柔和的启动面板，支持分组与自定义配色。</p>
+          <ul class="work__tags">
+            <li>HTML</li><li>CSS</li><li>JavaScript</li>
+          </ul>
+        </li>
+        <li class="work" data-category="data">
+          <h3 class="work__title">长沙天气看板</h3>
+          <p class="work__desc">本地天气与温度曲线一屏看完，早晚通勤前扫一眼就知道要不要带伞。</p>
+          <ul class="work__tags">
+            <li>Fetch API</li><li>Canvas</li><li>响应式</li>
+          </ul>
+        </li>
+        <li class="work" data-category="tool">
+          <h3 class="work__title">拟物便签本</h3>
+          <p class="work__desc">可拖拽的便签与每日打卡清单，内容存在浏览器本地，关掉也还在。</p>
+          <ul class="work__tags">
+            <li>LocalStorage</li><li>拖拽</li><li>CSS 变量</li>
+          </ul>
+        </li>
+        <li class="work" data-category="tool">
+          <h3 class="work__title">课表小管家</h3>
+          <p class="work__desc">周课表导入导出，上课时间冲突自动提醒，手机端单手也能翻。</p>
+          <ul class="work__tags">
+            <li>IndexedDB</li><li>表单校验</li>
+          </ul>
+        </li>
+        <li class="work" data-category="web">
+          <h3 class="work__title">打字速度测试</h3>
+          <p class="work__desc">中英混排的打字练习与成绩曲线，错字位置会实时标红提示。</p>
+          <ul class="work__tags">
+            <li>JavaScript</li><li>动效</li><li>无障碍</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== 个人数据：链接、地址与长沙实时时钟 ===== -->
+    <section class="section" id="contact" aria-labelledby="contactTitle">
+      <header class="section__head">
+        <h2 class="section__title" id="contactTitle">个人数据</h2>
+        <p class="section__sub">想聊项目、换友链或者只是打个招呼，下面任意一条都能找到我。</p>
+      </header>
+
+      <ul class="data-grid">
+        <li>
+          <a class="data-card" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">
+            <span class="data-card__icon" aria-hidden="true">🐙</span>
+            <span class="data-card__label">GitHub</span>
+            <span class="data-card__value">github.com/ok-lzr</span>
+            <span class="data-card__note">代码与练习仓库</span>
+          </a>
+        </li>
+        <li>
+          <a class="data-card" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">
+            <span class="data-card__icon" aria-hidden="true">🐧</span>
+            <span class="data-card__label">QQ</span>
+            <span class="data-card__value">386477796</span>
+            <span class="data-card__note">点一下直接开聊</span>
+          </a>
+        </li>
+        <li>
+          <a class="data-card" href="mailto:csgdnrxg@163.com">
+            <span class="data-card__icon" aria-hidden="true">✉️</span>
+            <span class="data-card__label">邮箱 1</span>
+            <span class="data-card__value">csgdnrxg@163.com</span>
+            <span class="data-card__note">正式一点的事情发这里</span>
+          </a>
+        </li>
+        <li>
+          <a class="data-card" href="mailto:3866477796@qq.com">
+            <span class="data-card__icon" aria-hidden="true">📮</span>
+            <span class="data-card__label">邮箱 2</span>
+            <span class="data-card__value">3866477796@qq.com</span>
+            <span class="data-card__note">备用邮箱，回信也很快</span>
+          </a>
+        </li>
+        <li>
+          <button class="data-card" type="button" data-copy="湖南省长沙市">
+            <span class="data-card__icon" aria-hidden="true">📍</span>
+            <span class="data-card__label">地点</span>
+            <span class="data-card__value">湖南省长沙市</span>
+            <span class="data-card__note">点击复制地址</span>
+          </button>
+        </li>
+        <li>
+          <div class="data-card data-card--clock">
+            <span class="data-card__icon" aria-hidden="true">🕒</span>
+            <span class="data-card__label">长沙时间</span>
+            <time class="data-card__value data-card__value--clock" id="clockTime" datetime="">--:--:--</time>
+            <span class="data-card__note" id="clockMeta">正在读取本机时间…</span>
+            <button class="chip chip--tiny" type="button" id="copyTime" data-copy-target="clockTime">复制时间</button>
+          </div>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="site-footer">
+    <div class="shell site-footer__inner">
+      <p class="site-footer__copy">© 2026 ok-lzr · 湖南省长沙市</p>
+      <p class="site-footer__note">纯原生 HTML / CSS / JavaScript 手写，无外部依赖。</p>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" type="button" aria-label="回到顶部">↑</button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ok-lzr 的手绘涂鸦风格个人主页：项目、技能与联系方式的纸上笔记。">
+<meta name="theme-color" content="#fdf6e3">
+<title>ok-lzr / 码上生活 · 手绘涂鸦主页</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<!-- 铅笔跟随光标：纯装饰，JS 控制位置 -->
+<div id="pencilCursor" class="pencil-cursor" aria-hidden="true">✎</div>
+
+<!-- 顶部阅读进度：一条随手画的铅笔线 -->
+<div id="scrollProgress" class="scroll-progress" aria-hidden="true"></div>
+
+<!-- ===== 页头 / 导航（贴在页面顶部的便签条；不用 roughPaper 滤镜以免破坏 sticky） ===== -->
+<header class="sketch-box site-header">
+  <a class="brand" href="#hero">
+    <span class="brand-main">ok-lzr</span>
+    <span class="brand-sub">码上生活</span>
+    <em class="brand-id">ID: 10073</em>
+  </a>
+
+  <nav class="tab-nav" aria-label="页面导航">
+    <button class="tab-btn is-active" type="button" data-target="hero">首页</button>
+    <button class="tab-btn" type="button" data-target="skill">技能</button>
+    <button class="tab-btn" type="button" data-target="works">作品</button>
+    <button class="tab-btn" type="button" data-target="notes">数据</button>
+    <button class="tab-btn" type="button" data-target="contact">联系</button>
+  </nav>
+
+  <button id="themeBtn" class="theme-toggle" type="button" aria-label="切换纸张与黑板模式">🌙 切换模式</button>
+</header>
+
+<main>
+
+  <!-- ===== 首页 / 人物速写 ===== -->
+  <section id="hero" class="section hero">
+    <div class="sketch-box hero-card">
+      <p class="tape tape-left" aria-hidden="true"></p>
+      <p class="tape tape-right" aria-hidden="true"></p>
+
+      <p class="hand-label">随手涂鸦 · 一页纸认识我</p>
+      <h1>
+        ok-lzr
+        <span class="h1-scribble" aria-hidden="true">/ 码上生活</span>
+      </h1>
+      <p class="type-line">
+        <span class="prompt-mark" aria-hidden="true">✎</span>
+        <span id="typedLine" class="typed-line"></span>
+        <span class="caret" aria-hidden="true"></span>
+      </p>
+      <p class="hero-desc">
+        把想法先画在纸上、再写成代码：白天折腾前端界面，晚上给服务器擦橡皮屑，
+        喜欢把日常开销、天气和灵感都塞进一张张可点的小页面里。
+      </p>
+
+      <ul class="tag-list" aria-label="能力标签">
+        <li class="tag">HTML / CSS 手绘风界面</li>
+        <li class="tag">原生 JavaScript 交互</li>
+        <li class="tag">Python 小工具与爬虫</li>
+        <li class="tag">可视化看板</li>
+      </ul>
+
+      <p class="stat-row">
+        <span class="stat"><b id="statProjects" class="stat-num" data-target="26">26</b>个练手项目</span>
+        <span class="dot-sep" aria-hidden="true">·</span>
+        <span class="stat"><b id="statYears" class="stat-num" data-target="4">4</b>年码龄</span>
+        <span class="dot-sep" aria-hidden="true">·</span>
+        <span class="stat"><b id="statCoffee" class="stat-num" data-target="1024">1024</b>杯咖啡</span>
+      </p>
+
+      <p class="hand-arrow" aria-hidden="true">往下翻 ↴ 这里有我的涂鸦笔记</p>
+    </div>
+
+    <aside class="sketch-box doodle-card" aria-label="今日随手记">
+      <h2 class="side-title">📌 今日随手记</h2>
+      <p id="doodleText" class="doodle-text">双击便签可以换一句随手记 ✎</p>
+      <p class="doodle-tip">提示：双击（或按回车键）就会换一句。</p>
+      <p class="sketch-divider" aria-hidden="true"></p>
+      <p class="doodle-sign">—— ok-lzr 画于长沙</p>
+    </aside>
+  </section>
+
+  <!-- ===== 技能 ===== -->
+  <section id="skill" class="section">
+    <h2 class="section-title">
+      技能草稿
+      <span class="title-doodle" aria-hidden="true">✧ 边做边学</span>
+    </h2>
+
+    <div class="skill-grid">
+      <article class="sketch-box skill-box">
+        <h3 class="skill-name">界面与样式</h3>
+        <div class="bar" data-value="88">
+          <span class="bar-fill"></span>
+        </div>
+        <p class="bar-note">手写 Grid / Flex 布局、CSS 变量、响应式</p>
+      </article>
+
+      <article class="sketch-box skill-box">
+        <h3 class="skill-name">原生 JavaScript</h3>
+        <div class="bar" data-value="82">
+          <span class="bar-fill"></span>
+        </div>
+        <p class="bar-note">事件委托、IntersectionObserver、Canvas 小动画</p>
+      </article>
+
+      <article class="sketch-box skill-box">
+        <h3 class="skill-name">Python 小工具</h3>
+        <div class="bar" data-value="74">
+          <span class="bar-fill"></span>
+        </div>
+        <p class="bar-note">数据抓取、自动化脚本、数据处理</p>
+      </article>
+
+      <article class="sketch-box skill-box">
+        <h3 class="skill-name">数据可视化</h3>
+        <div class="bar" data-value="66">
+          <span class="bar-fill"></span>
+        </div>
+        <p class="bar-note">把表格变成小人看得懂的图与看板</p>
+      </article>
+
+      <article class="sketch-box skill-box">
+        <h3 class="skill-name">工程与协作</h3>
+        <div class="bar" data-value="70">
+          <span class="bar-fill"></span>
+        </div>
+        <p class="bar-note">Git 分支管理、文档写作、命令行生存技能</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== 作品 ===== -->
+  <section id="works" class="section">
+    <h2 class="section-title">
+      作品涂鸦墙
+      <span class="title-doodle" aria-hidden="true">✎ 3~6 张便签</span>
+    </h2>
+    <p class="filter-tip">点下面的分类，便签会筛一下：</p>
+
+    <div class="filter-row" id="filterRow" role="group" aria-label="作品分类筛选">
+      <button class="chip is-active" type="button" data-filter="all">全部</button>
+      <button class="chip" type="button" data-filter="web">前端 / 页面</button>
+      <button class="chip" type="button" data-filter="python">Python</button>
+      <button class="chip" type="button" data-filter="data">数据可视化</button>
+      <button class="chip" type="button" data-filter="tool">小工具</button>
+    </div>
+
+    <p id="filterHint" class="filter-hint" aria-live="polite">全部便签都贴出来了。</p>
+
+    <div class="work-grid" id="workGrid">
+
+      <article class="sketch-box work-card" data-cat="web">
+        <p class="pin" aria-hidden="true">📌</p>
+        <h3 class="work-name">个人导航站</h3>
+        <p class="work-desc">把常逛的文档、工具、博客钉在一页纸上，支持分类和快捷键搜索。</p>
+        <ul class="mini-tags">
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>localStorage</li>
+        </ul>
+        <button class="scribble-btn" type="button" data-project="个人导航站">✎ 便签详情</button>
+      </article>
+
+      <article class="sketch-box work-card" data-cat="data">
+        <p class="pin" aria-hidden="true">📌</p>
+        <h3 class="work-name">长沙天气看板</h3>
+        <p class="work-desc">每天自动抓取长沙的温湿度与空气质量，画成手账风格的小卡片。</p>
+        <ul class="mini-tags">
+          <li>Python</li>
+          <li>定时任务</li>
+          <li>手账图表</li>
+        </ul>
+        <button class="scribble-btn" type="button" data-project="长沙天气看板">✎ 便签详情</button>
+      </article>
+
+      <article class="sketch-box work-card" data-cat="tool">
+        <p class="pin" aria-hidden="true">📌</p>
+        <h3 class="work-name">待办清单涂鸦版</h3>
+        <p class="work-desc">任务可以打勾、划掉、撕掉，完成时整条便签会被铅笔划穿。</p>
+        <ul class="mini-tags">
+          <li>原生 JS</li>
+          <li>离线存储</li>
+          <li>PWA</li>
+        </ul>
+        <button class="scribble-btn" type="button" data-project="待办清单涂鸦版">✎ 便签详情</button>
+      </article>
+
+      <article class="sketch-box work-card" data-cat="python">
+        <p class="pin" aria-hidden="true">📌</p>
+        <h3 class="work-name">书签整理器</h3>
+        <p class="work-desc">读取浏览器导出的书签文件，去重、按域名归类，再生成一张目录页。</p>
+        <ul class="mini-tags">
+          <li>Python</li>
+          <li>HTML 解析</li>
+          <li>CLI</li>
+        </ul>
+        <button class="scribble-btn" type="button" data-project="书签整理器">✎ 便签详情</button>
+      </article>
+
+      <article class="sketch-box work-card" data-cat="python">
+        <p class="pin" aria-hidden="true">📌</p>
+        <h3 class="work-name">图片批量加水印</h3>
+        <p class="work-desc">给截图统一压上手写感水印，顺手压缩体积，一条命令跑完整个文件夹。</p>
+        <ul class="mini-tags">
+          <li>Python</li>
+          <li>Pillow</li>
+          <li>批处理</li>
+        </ul>
+        <button class="scribble-btn" type="button" data-project="图片批量加水印">✎ 便签详情</button>
+      </article>
+
+      <article class="sketch-box work-card" data-cat="data">
+        <p class="pin" aria-hidden="true">📌</p>
+        <h3 class="work-name">博客访问统计</h3>
+        <p class="work-desc">从访问日志里数出热门文章与来源，画成一张贴墙上的趋势草图。</p>
+        <ul class="mini-tags">
+          <li>数据分析</li>
+          <li>SVG 手绘</li>
+          <li>定时统计</li>
+        </ul>
+        <button class="scribble-btn" type="button" data-project="博客访问统计">✎ 便签详情</button>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== 数据 / 联系方式 ===== -->
+  <section id="notes" class="section">
+    <h2 class="section-title">
+      个人数据
+      <span class="title-doodle" aria-hidden="true">✎ 每一条都能点</span>
+    </h2>
+
+    <div class="data-grid">
+      <a class="sketch-box data-card" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">
+        <span class="data-icon" aria-hidden="true">🐙</span>
+        <span class="data-label">GitHub</span>
+        <span class="data-value">github.com/ok-lzr</span>
+      </a>
+
+      <a class="sketch-box data-card" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">
+        <span class="data-icon" aria-hidden="true">🐧</span>
+        <span class="data-label">QQ</span>
+        <span class="data-value">386477796</span>
+      </a>
+
+      <a class="sketch-box data-card" href="mailto:csgdnrxg@163.com">
+        <span class="data-icon" aria-hidden="true">✉️</span>
+        <span class="data-label">邮箱 1</span>
+        <span class="data-value">csgdnrxg@163.com</span>
+      </a>
+
+      <a class="sketch-box data-card" href="mailto:3866477796@qq.com">
+        <span class="data-icon" aria-hidden="true">📮</span>
+        <span class="data-label">邮箱 2</span>
+        <span class="data-value">3866477796@qq.com</span>
+      </a>
+
+      <p class="sketch-box data-card data-card-static">
+        <span class="data-icon" aria-hidden="true">📍</span>
+        <span class="data-label">地点</span>
+        <span class="data-value">湖南省长沙市</span>
+      </p>
+
+      <div class="sketch-box data-card data-card-clock">
+        <span class="data-icon" aria-hidden="true">🕰️</span>
+        <span class="data-label">长沙时间</span>
+        <time id="clockDate" class="clock-date" datetime="">加载中…</time>
+        <time id="clockTime" class="clock-time" datetime="">--:--:--</time>
+        <span id="clockWeek" class="clock-week">星期—</span>
+        <span id="clockTheme" class="clock-theme">正在对照基线时间…</span>
+      </div>
+    </div>
+
+    <aside class="sketch-box baseline-note" aria-label="时间基线说明">
+      <h3 class="baseline-title">🖍️ 关于时间基线</h3>
+      <p class="baseline-text">
+        本页动态生成的当天基线时刻为 <b>2026 年 9 月 14 日（星期一）22:07（UTC+8）</b>，
+        这个参考时刻来自一次网络查询，用来判断“现在是白天还是夜里”，
+        从而自动决定用米黄纸张还是夜里的黑板便签。
+      </p>
+      <p class="baseline-text">
+        上面的长沙时钟则是真实的：由 <code>new Date()</code> 按 UTC+8 实时换算，
+        每一天都跟着系统时间往前走，并同步刷新日期与星期。
+      </p>
+    </aside>
+  </section>
+
+  <!-- ===== 联系 ===== -->
+  <section id="contact" class="section">
+    <h2 class="section-title">
+      写张纸条给我
+      <span class="title-doodle" aria-hidden="true">✎ 随时在</span>
+    </h2>
+
+    <div class="contact-grid">
+      <a class="sketch-box contact-card" href="mailto:3866477796@qq.com">
+        <h3>📮 邮件最快</h3>
+        <p>3866477796@qq.com</p>
+      </a>
+      <a class="sketch-box contact-card" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">
+        <h3>🐧 QQ 戳我</h3>
+        <p>386477796</p>
+      </a>
+      <a class="sketch-box contact-card" href="mailto:csgdnrxg@163.com">
+        <h3>✉️ 备用邮箱</h3>
+        <p>csgdnrxg@163.com</p>
+      </a>
+    </div>
+
+    <p class="hand-hint">
+      <span class="hand-arrow" aria-hidden="true">☞</span>
+      常在长沙，欢迎交流前端与手绘风格的界面设计。
+    </p>
+  </section>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="site-footer">
+  <p>© 2026 ok-lzr · 湖南省长沙市 · 用纸、笔和原生代码画成</p>
+  <p class="footer-tip">
+    无 CDN、无字体库、无框架；数字滚动、时钟与滚动动画都由原生 JavaScript 现场涂鸦。
+  </p>
+</footer>
+
+<!-- 便签详情弹窗：由 JS 打开/关闭 -->
+<div id="noteModal" class="note-modal" role="dialog" aria-modal="true" aria-labelledby="noteTitle" hidden>
+  <div class="sketch-box note-paper">
+    <p class="pin" aria-hidden="true">📌</p>
+    <h2 id="noteTitle" class="note-title">便签详情</h2>
+    <p id="noteBody" class="note-body">—</p>
+    <p class="note-sign">—— ok-lzr 的手绘便签</p>
+    <button id="noteClose" class="scribble-btn" type="button">✎ 贴回去</button>
+  </div>
+</div>
+
+</body>
+</html>

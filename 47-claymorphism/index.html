@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ok-lzr / 码上生活 · 黏土小屋</title>
+<meta name="description" content="ok-lzr 的个人主页 —— 黏土拟态风格，来自湖南省长沙市。">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<!-- ===== 装饰性黏土泡泡背景 ===== -->
+<div class="blobs" aria-hidden="true">
+  <span class="blob blob--1"></span>
+  <span class="blob blob--2"></span>
+  <span class="blob blob--3"></span>
+  <span class="blob blob--4"></span>
+</div>
+
+<!-- ===== 顶部导航 ===== -->
+<header class="site-header">
+  <nav class="nav clay" aria-label="主导航">
+    <a class="nav__logo" href="#hero">
+      <span class="nav__logo-dot"></span>
+      <span class="nav__logo-text">ok-lzr</span>
+    </a>
+
+    <ul class="nav__list">
+      <li><a class="nav__link" href="#hero">首页</a></li>
+      <li><a class="nav__link" href="#skills">技能</a></li>
+      <li><a class="nav__link" href="#works">作品</a></li>
+      <li><a class="nav__link" href="#info">名片</a></li>
+    </ul>
+
+    <button class="theme-btn clay" id="themeBtn" type="button" aria-label="切换深浅色主题">
+      <span class="theme-btn__icon" id="themeIcon">🌙</span>
+      <span class="theme-btn__text" id="themeText">夜灯</span>
+    </button>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- ===== 首屏：身份与简介 ===== -->
+  <section class="hero" id="hero">
+    <div class="hero__card clay reveal">
+      <p class="hero__badge">🧱 黏土拟态 · Claymorphism</p>
+      <h1 class="hero__name">
+        <span class="hero__name-main">ok-lzr</span>
+        <span class="hero__name-sub">/ 码上生活</span>
+      </h1>
+      <p class="hero__motto">
+        把代码捏成软乎乎的黏土，做有趣又能用的小工具。
+      </p>
+
+      <div class="tags" aria-label="能力标签">
+        <span class="tag">前端手作</span>
+        <span class="tag">数据可视化</span>
+        <span class="tag">原生 JS</span>
+        <span class="tag">界面配色</span>
+      </div>
+
+      <div class="hero__actions">
+        <a class="btn btn--primary clay" href="#works">看我的作品</a>
+        <a class="btn btn--ghost clay" href="#info">联系我</a>
+      </div>
+
+      <p class="hero__clock-tip">
+        <span class="hero__pulse"></span>
+        页面已就绪，向下滚动捏一捏吧
+      </p>
+    </div>
+
+    <!-- 首屏右侧：长沙实时时钟 -->
+    <aside class="clock-card clay reveal" aria-label="长沙时间">
+      <h2 class="clock-card__title">🕒 长沙时间</h2>
+      <p class="clock-card__date" id="clockDate">--</p>
+      <p class="clock-card__time" id="clockTime">--:--:--</p>
+      <p class="clock-card__week" id="clockWeek">--</p>
+      <p class="clock-card__zone">UTC+8 · 湖南省长沙市</p>
+    </aside>
+  </section>
+
+  <!-- ===== 技能区：可点击切换的能力条 ===== -->
+  <section class="section" id="skills">
+    <header class="section__head">
+      <h2 class="section__title">🧩 我的工具箱</h2>
+      <p class="section__sub">点一下技能卡，看看黏土里藏了什么</p>
+    </header>
+
+    <div class="skills">
+      <ul class="skills__list" id="skillList">
+        <li>
+          <button class="skill clay is-active" type="button" data-skill="html" aria-pressed="true">
+            <span class="skill__icon">🎨</span>
+            <span class="skill__name">HTML / CSS</span>
+            <span class="skill__value">92%</span>
+          </button>
+        </li>
+        <li>
+          <button class="skill clay" type="button" data-skill="js" aria-pressed="false">
+            <span class="skill__icon">⚙️</span>
+            <span class="skill__name">JavaScript</span>
+            <span class="skill__value">85%</span>
+          </button>
+        </li>
+        <li>
+          <button class="skill clay" type="button" data-skill="design" aria-pressed="false">
+            <span class="skill__icon">🖌️</span>
+            <span class="skill__name">视觉设计</span>
+            <span class="skill__value">78%</span>
+          </button>
+        </li>
+        <li>
+          <button class="skill clay" type="button" data-skill="data" aria-pressed="false">
+            <span class="skill__icon">📊</span>
+            <span class="skill__name">数据可视化</span>
+            <span class="skill__value">74%</span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="skills__panel clay">
+        <h3 class="skills__panel-title" id="skillTitle">HTML / CSS</h3>
+        <p class="skills__panel-desc" id="skillDesc">
+          语义化结构 + 变量化样式，追求像素级的手感与可维护性。
+        </p>
+        <div class="bars" id="barBox">
+          <div class="bar" data-bar="html">
+            <span class="bar__label">熟练度</span>
+            <span class="bar__track"><span class="bar__fill"></span></span>
+          </div>
+          <div class="bar" data-bar="js">
+            <span class="bar__label">熟练度</span>
+            <span class="bar__track"><span class="bar__fill"></span></span>
+          </div>
+          <div class="bar" data-bar="design">
+            <span class="bar__label">熟练度</span>
+            <span class="bar__track"><span class="bar__fill"></span></span>
+          </div>
+          <div class="bar" data-bar="data">
+            <span class="bar__label">熟练度</span>
+            <span class="bar__track"><span class="bar__fill"></span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 作品区：可筛选的项目列表 ===== -->
+  <section class="section" id="works">
+    <header class="section__head">
+      <h2 class="section__title">🧸 捏过的作品</h2>
+      <p class="section__sub">按标签筛一筛，看看我的黏土架上有什么</p>
+    </header>
+
+    <div class="filters" id="filters" role="group" aria-label="作品筛选">
+      <button class="filter clay is-active" type="button" data-filter="all">全部</button>
+      <button class="filter clay" type="button" data-filter="web">网页</button>
+      <button class="filter clay" type="button" data-filter="tool">工具</button>
+      <button class="filter clay" type="button" data-filter="data">数据</button>
+    </div>
+
+    <ul class="works" id="workList">
+      <li class="work clay reveal" data-cat="web">
+        <div class="work__top">
+          <span class="work__icon">🧭</span>
+          <span class="work__cat">网页</span>
+        </div>
+        <h3 class="work__title">个人导航站</h3>
+        <p class="work__desc">把常用站点收进一面黏土墙，支持分类、拖拽排序与本地保存。</p>
+        <div class="tags tags--small">
+          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">LocalStorage</span>
+        </div>
+      </li>
+
+      <li class="work clay reveal" data-cat="data">
+        <div class="work__top">
+          <span class="work__icon">🌦️</span>
+          <span class="work__cat">数据</span>
+        </div>
+        <h3 class="work__title">长沙天气看板</h3>
+        <p class="work__desc">把温湿度、空气质量做成软糖图表，一眼看清长沙四季的脸色。</p>
+        <div class="tags tags--small">
+          <span class="tag">Canvas</span><span class="tag">JSON</span><span class="tag">可视化</span>
+        </div>
+      </li>
+
+      <li class="work clay reveal" data-cat="tool">
+        <div class="work__top">
+          <span class="work__icon">⏱️</span>
+          <span class="work__cat">工具</span>
+        </div>
+        <h3 class="work__title">番茄专注钟</h3>
+        <p class="work__desc">25 分钟一颗番茄，结束后自动记录，附带呼吸灯式的休息提醒。</p>
+        <div class="tags tags--small">
+          <span class="tag">JavaScript</span><span class="tag">定时器</span><span class="tag">PWA</span>
+        </div>
+      </li>
+
+      <li class="work clay reveal" data-cat="web">
+        <div class="work__top">
+          <span class="work__icon">📮</span>
+          <span class="work__cat">网页</span>
+        </div>
+        <h3 class="work__title">留言黏土板</h3>
+        <p class="work__desc">轻量留言墙，支持昵称配色与表情气泡，纯前端也能玩得开心。</p>
+        <div class="tags tags--small">
+          <span class="tag">HTML</span><span class="tag">动画</span><span class="tag">表单</span>
+        </div>
+      </li>
+
+      <li class="work clay reveal" data-cat="tool">
+        <div class="work__top">
+          <span class="work__icon">🎨</span>
+          <span class="work__cat">工具</span>
+        </div>
+        <h3 class="work__title">配色捏捏乐</h3>
+        <p class="work__desc">输入一个主色，自动生成对比度合格的四色黏土套装，并导出 CSS 变量。</p>
+        <div class="tags tags--small">
+          <span class="tag">色彩算法</span><span class="tag">CSS 变量</span><span class="tag">无障碍</span>
+        </div>
+      </li>
+
+      <li class="work clay reveal" data-cat="data">
+        <div class="work__top">
+          <span class="work__icon">📈</span>
+          <span class="work__cat">数据</span>
+        </div>
+        <h3 class="work__title">习惯打卡年报</h3>
+        <p class="work__desc">把每天的小坚持画成一年热力图，年末自动生成一句总结评语。</p>
+        <div class="tags tags--small">
+          <span class="tag">SVG</span><span class="tag">数据聚合</span><span class="tag">报表</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== 个人数据区：数字滚动 + 联系方式 ===== -->
+  <section class="section" id="info">
+    <header class="section__head">
+      <h2 class="section__title">📇 我的黏土名片</h2>
+      <p class="section__sub">想聊聊？这些方式都能找到我</p>
+    </header>
+
+    <div class="stats" id="stats">
+      <div class="stat clay">
+        <span class="stat__num" data-count="6">0</span>
+        <span class="stat__label">已完成作品</span>
+      </div>
+      <div class="stat clay">
+        <span class="stat__num" data-count="4">0</span>
+        <span class="stat__label">常用技术栈</span>
+      </div>
+      <div class="stat clay">
+        <span class="stat__num" data-count="2026">0</span>
+        <span class="stat__label">当前年份</span>
+      </div>
+      <div class="stat clay">
+        <span class="stat__num" data-count="1">0</span>
+        <span class="stat__label">座城市 · 长沙</span>
+      </div>
+    </div>
+
+    <div class="contacts">
+      <a class="contact clay reveal" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">
+        <span class="contact__icon">🐙</span>
+        <span class="contact__body">
+          <span class="contact__label">GitHub</span>
+          <span class="contact__value">github.com/ok-lzr</span>
+        </span>
+      </a>
+
+      <a class="contact clay reveal" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">
+        <span class="contact__icon">🐧</span>
+        <span class="contact__body">
+          <span class="contact__label">QQ</span>
+          <span class="contact__value">386477796</span>
+        </span>
+      </a>
+
+      <a class="contact clay reveal" href="mailto:csgdnrxg@163.com">
+        <span class="contact__icon">✉️</span>
+        <span class="contact__body">
+          <span class="contact__label">邮箱 · 主</span>
+          <span class="contact__value">csgdnrxg@163.com</span>
+        </span>
+      </a>
+
+      <a class="contact clay reveal" href="mailto:3866477796@qq.com">
+        <span class="contact__icon">📧</span>
+        <span class="contact__body">
+          <span class="contact__label">邮箱 · 备</span>
+          <span class="contact__value">3866477796@qq.com</span>
+        </span>
+      </a>
+
+      <div class="contact contact--static clay reveal">
+        <span class="contact__icon">📍</span>
+        <span class="contact__body">
+          <span class="contact__label">地点</span>
+          <span class="contact__value">湖南省长沙市</span>
+        </span>
+      </div>
+
+      <div class="contact contact--static clay reveal">
+        <span class="contact__icon">🕒</span>
+        <span class="contact__body">
+          <span class="contact__label">长沙时间</span>
+          <span class="contact__value" id="contactClock">--:--:--</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="site-footer">
+  <div class="site-footer__inner clay">
+    <p class="site-footer__text">© 2026 ok-lzr · 湖南省长沙市</p>
+    <p class="site-footer__sub">用手捏出来的黏土小站 · 原生 HTML / CSS / JS</p>
+    <button class="to-top clay" id="toTop" type="button">⬆ 回到顶部</button>
+  </div>
+</footer>
+
+</body>
+</html>

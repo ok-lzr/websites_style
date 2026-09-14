@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<!-- 39-typographic · 字体排印风格个人主页
+     结构说明：本文件只负责语义与内容，样式全部在 style.css，行为全部在 script.js -->
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ok-lzr 的个人主页 —— 字体排印风格：以文字为主角，超大字号与字距实验。">
+<meta name="theme-color" content="#f4f2ed">
+<title>ok-lzr / 码上生活 · 字体排印</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<!-- 顶部阅读进度：一条头发丝粗细的字宽进度条 -->
+<div class="progress" aria-hidden="true"><span class="progress__bar" id="progressBar"></span></div>
+
+<a class="skip-link" href="#hero">跳到主内容</a>
+
+<!-- ===== 页眉 / 导航 ===== -->
+<header class="site-head" id="siteHead">
+  <div class="wrap site-head__inner">
+    <a class="brand" href="#hero">
+      <span class="brand__mark">ok-lzr</span>
+      <span class="brand__sub">码上生活 / TYPOGRAPHY</span>
+    </a>
+
+    <nav class="nav" id="siteNav" aria-label="主导航">
+      <a class="nav__link" href="#hero">首字</a>
+      <a class="nav__link" href="#projects">作品</a>
+      <a class="nav__link" href="#numbers">数据</a>
+      <a class="nav__link" href="#contact">联系</a>
+    </nav>
+
+    <div class="head-tools">
+      <button class="tool" id="trackingToggle" type="button" aria-pressed="false">字距实验</button>
+      <button class="tool" id="themeToggle" type="button" aria-pressed="false">夜间</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== 首屏：超大字号姓名作为图形元素 ===== -->
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <p class="eyebrow">字体排印 · Typographic Portfolio · 长沙</p>
+
+      <!-- 姓名逐字拆开做排印实验，aria-label 保证读屏得到完整的 "ok-lzr" -->
+      <h1 class="hero__name" id="heroName" aria-label="ok-lzr">
+        <span class="hero__word">
+          <span>o</span><span>k</span><span class="hero__dash">-</span><span>l</span><span>z</span><span>r</span>
+        </span>
+      </h1>
+
+      <p class="hero__cn">码　上　生　活</p>
+
+      <div class="hero__grid">
+        <p class="hero__lead">
+          <span class="lead__index">01</span>
+          把每一行代码当成一次排版练习：<em>字形要正、行距要稳、留白要敢</em>。
+          我在长沙写前端，也写顺手的小工具。
+        </p>
+
+        <ul class="tags" aria-label="能力标签">
+          <li class="tag">原生 JavaScript</li>
+          <li class="tag">CSS 排印 / 网格</li>
+          <li class="tag">数据可视化</li>
+          <li class="tag">交互设计</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 首屏数据：数字滚动（.wrap 提供居中与左右留白） -->
+    <div class="wrap">
+      <ul class="hero__stats">
+        <li class="stat">
+          <span class="stat__num" data-count-to="6">0</span>
+          <span class="stat__label">年在写前端</span>
+        </li>
+        <li class="stat">
+          <span class="stat__num" data-count-to="24">0</span>
+          <span class="stat__label">个上线项目</span>
+        </li>
+        <li class="stat">
+          <span class="stat__num" data-count-to="90">0</span>
+          <span class="stat__label">次开源提交</span>
+        </li>
+        <li class="stat">
+          <span class="stat__num" data-count-to="12">0</span>
+          <span class="stat__label">个自用脚本</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== 作品列表 ===== -->
+  <section class="section" id="projects">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="section__no">02</p>
+        <h2 class="section__title">作品 / <span>Selected Works</span></h2>
+        <p class="section__desc">五件顺手做出来的东西，都被自己天天用着。</p>
+      </header>
+
+      <ol class="works" data-reveal-group>
+        <li class="work" data-reveal>
+          <p class="work__no">A / 01</p>
+          <h3 class="work__title">个人导航站</h3>
+          <p class="work__desc">把 60 多个常用站点按场景分组，支持键盘直达与自定义排序，打开就是自己的浏览器新标签页。</p>
+          <ul class="work__stack">
+            <li>原生 JS</li><li>LocalStorage</li><li>CSS Grid</li>
+          </ul>
+        </li>
+
+        <li class="work" data-reveal>
+          <p class="work__no">A / 02</p>
+          <h3 class="work__title">长沙天气看板</h3>
+          <p class="work__desc">抓取本地气象数据做可视化，含逐小时折线、七日趋势与降雨提醒，放在副屏上一直亮着。</p>
+          <ul class="work__stack">
+            <li>Fetch API</li><li>SVG 手绘图表</li><li>响应式</li>
+          </ul>
+        </li>
+
+        <li class="work" data-reveal>
+          <p class="work__no">A / 03</p>
+          <h3 class="work__title">代码片段剪贴板</h3>
+          <p class="work__desc">浏览器里的片段仓库，支持标签检索、语法高亮与一键复制，解决"这段以前写过"的老问题。</p>
+          <ul class="work__stack">
+            <li>IndexedDB</li><li>正则高亮</li><li>快捷键</li>
+          </ul>
+        </li>
+
+        <li class="work" data-reveal>
+          <p class="work__no">A / 04</p>
+          <h3 class="work__title">字距实验台</h3>
+          <p class="work__desc">一个可以实时调字号、行高、字距与栏宽的小工具，用来给纸面感的网页排版找手感。</p>
+          <ul class="work__stack">
+            <li>CSS 变量</li><li>可编辑面板</li><li>字体度量</li>
+          </ul>
+        </li>
+
+        <li class="work" data-reveal>
+          <p class="work__no">A / 05</p>
+          <h3 class="work__title">番茄专注钟</h3>
+          <p class="work__desc">极简计时器，四轮一循环，结束用 Web Audio 合成提示音，顺便统计每天的专注时段。</p>
+          <ul class="work__stack">
+            <li>Web Audio</li><li>计时状态机</li><li>PWA</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== 个人数据区 ===== -->
+  <section class="section section--alt" id="numbers">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="section__no">03</p>
+        <h2 class="section__title">数据 / <span>Data</span></h2>
+        <p class="section__desc">逐项可点击，直接找到我。</p>
+      </header>
+
+      <dl class="data">
+        <div class="data__row">
+          <dt>GitHub</dt>
+          <dd><a href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a></dd>
+        </div>
+
+        <div class="data__row">
+          <dt>QQ</dt>
+          <dd><a href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a></dd>
+        </div>
+
+        <div class="data__row">
+          <dt>邮箱 · 163</dt>
+          <dd><a href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a></dd>
+        </div>
+
+        <div class="data__row">
+          <dt>邮箱 · QQ</dt>
+          <dd><a href="mailto:3866477796@qq.com">3866477796@qq.com</a></dd>
+        </div>
+
+        <div class="data__row">
+          <dt>地点</dt>
+          <dd><span class="data__plain">湖南省长沙市</span></dd>
+        </div>
+
+        <div class="data__row">
+          <dt>长沙时间</dt>
+          <dd>
+            <time class="clock" id="clock" datetime="">
+              <span class="clock__date" id="clockDate">----年--月--日</span>
+              <span class="clock__time" id="clockTime">--:--:--</span>
+              <span class="clock__week" id="clockWeek">星期-</span>
+            </time>
+          </dd>
+        </div>
+
+        <div class="data__row">
+          <dt>当前主题</dt>
+          <dd><span class="data__plain" id="themeState">白昼</span></dd>
+        </div>
+      </dl>
+
+      <p class="data__note">
+        参考基线：2026 年 9 月 14 日（星期一）22:07 UTC+8 —— 用于夜/昼主题判断；上方时钟由 <code>new Date()</code> 实时驱动。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 联系方式 + 页脚 ===== -->
+  <section class="section section--contact" id="contact">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="section__no">04</p>
+        <h2 class="section__title">联系 / <span>Say Hi</span></h2>
+      </header>
+
+      <p class="contact__line">
+        想聊排印、聊前端、或者只是想要一个长沙的天气接口 —— 邮件最快。
+      </p>
+
+      <div class="contact__links">
+        <a class="btn" href="mailto:csgdnrxg@163.com">写邮件给 csgdnrxg@163.com</a>
+        <a class="btn btn--ghost" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">看 GitHub</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="site-foot">
+  <div class="wrap site-foot__inner">
+    <p class="site-foot__copy">© 2026 ok-lzr · 湖南省长沙市</p>
+    <p class="site-foot__meta">字体排印 / Typographic · 纯原生 HTML + CSS + JS</p>
+  </div>
+</footer>
+
+</body>
+</html>

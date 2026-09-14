@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="night" data-baseline="2026-09-14T22:07">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ok-lzr 的个人主页 · 像素 8-bit 风格，前端 / 数据可视化 / 小工具开发者，坐标湖南省长沙市。">
+<meta name="author" content="ok-lzr">
+<meta name="theme-color" content="#0b0a1f">
+<title>ok-lzr · 码上生活 ❤ 像素 8-bit 个人主页</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Crect width='8' height='8' fill='%230b0a1f'/%3E%3Crect x='1' y='1' width='2' height='2' fill='%2338e8c8'/%3E%3Crect x='5' y='2' width='2' height='2' fill='%23ff4d8d'/%3E%3Crect x='2' y='5' width='2' height='2' fill='%23ffd93d'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- 跳转到主内容：键盘 / 读屏用户快捷入口 -->
+<a class="skip-link" href="#hero">跳到主要内容</a>
+<div class="scanlines" aria-hidden="true"></div>
+
+<div class="page">
+
+  <!-- ===== 页头：标题 + 主题切换 ===== -->
+  <header class="masthead">
+    <a class="brand" href="#hero">
+      <span class="brand__cube" aria-hidden="true"></span>
+      <span class="brand__text">
+        <span class="brand__line1">ok-lzr</span>
+        <span class="brand__line2">码上生活</span>
+      </span>
+    </a>
+    <button class="toggle" id="theme-toggle" type="button" aria-pressed="false">
+      <span class="toggle__icon" id="theme-icon" aria-hidden="true">☀</span>
+      <span id="theme-label">白天模式</span>
+    </button>
+  </header>
+
+  <!-- ===== 导航：等宽像素按钮，锚点由 CSS scroll-behavior 平滑滚动 ===== -->
+  <nav class="nav" aria-label="主导航">
+    <ul class="nav__list">
+      <li><a href="#hero">首页</a></li>
+      <li><a href="#about">技能</a></li>
+      <li><a href="#projects">项目</a></li>
+      <li><a href="#stats">数据</a></li>
+      <li><a href="#site-footer">联系</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- ===== 主视觉：像素角色 + 打字机简介 + 技能标签 + 快捷按钮 ===== -->
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="hero__grid">
+        <div class="hero__side">
+          <!-- 纯 CSS 绘制的像素角色，无任何图片依赖 -->
+          <div class="pixel-avatar" role="img" aria-label="纯 CSS 绘制的像素角色头像">
+            <span class="pa pa--hair"></span>
+            <span class="pa pa--face"></span>
+            <span class="pa pa--eye pa--eye-l"></span>
+            <span class="pa pa--eye pa--eye-r"></span>
+            <span class="pa pa--mouth"></span>
+            <span class="pa pa--body"></span>
+            <span class="pa pa--arm pa--arm-l"></span>
+            <span class="pa pa--arm pa--arm-r"></span>
+            <span class="pa pa--pack"></span>
+          </div>
+          <p class="hero__caret-line" aria-hidden="true">PLAYER 1 READY <span class="blink">_</span></p>
+        </div>
+
+        <div class="hero__body">
+          <p class="small-caps">player profile · 个人档案</p>
+          <h1 id="hero-title">ok-lzr<span class="hero__slash"> / </span>码上生活</h1>
+          <p class="hero__role">前端开发 · 数据可视化 · 小工具制造者</p>
+          <p class="hero__type">＞ <span id="typewriter" aria-hidden="true"></span><span class="caret" aria-hidden="true"></span></p>
+          <p class="hero__sub">像素不糊、按钮必响。我把想法切成一个个方块，拼成能跑起来的小站。</p>
+
+          <ul class="tags" aria-label="能力标签">
+            <li class="tag tag--hp">HTML / CSS / JS</li>
+            <li class="tag tag--mp">数据可视化</li>
+            <li class="tag tag--xp">效率小工具</li>
+            <li class="tag tag--coin">响应式布局</li>
+          </ul>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#projects">进入项目 ▸</a>
+            <a class="btn" href="#stats">联系我 ✉</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 游戏式状态条 -->
+      <dl class="hud">
+        <div class="hud__item">
+          <dt>HP 精力</dt>
+          <dd><meter class="bar bar--hp" min="0" max="100" value="92">92 / 100</meter></dd>
+        </div>
+        <div class="hud__item">
+          <dt>MP 灵感</dt>
+          <dd><meter class="bar bar--mp" min="0" max="100" value="76">76 / 100</meter></dd>
+        </div>
+        <div class="hud__item">
+          <dt>XP 经验</dt>
+          <dd><meter class="bar bar--xp" min="0" max="100" value="64">64 / 100</meter></dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- ===== 关于：一句话简介 + 技能条（滚动进入后动画） ===== -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="panel reveal">
+        <header class="panel__head">
+          <h2 id="about-title">技能台 · 一句话简介</h2>
+          <span class="panel__meta">LEVEL 24</span>
+        </header>
+        <p class="section__lead">
+          我是 ok-lzr：喜欢用原生 HTML / CSS / JS 手搓小项目，把日常琐事变成
+          能点、能动、有反馈的小工具，顺便把界面做出 8-bit 时代的仪式感。
+        </p>
+
+        <div class="skills">
+          <!-- 目标数值由 CSS 按位置给出（--v），JS 只负责切换 is-on 类名 -->
+          <div class="skill">
+            <div class="skill__head"><span>HTML / CSS 布局</span><span class="skill__num">90</span></div>
+            <div class="skill__track"><div class="fill"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill__head"><span>JavaScript 原生开发</span><span class="skill__num">85</span></div>
+            <div class="skill__track"><div class="fill"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill__head"><span>数据可视化</span><span class="skill__num">72</span></div>
+            <div class="skill__track"><div class="fill"></div></div>
+          </div>
+          <div class="skill">
+            <div class="skill__head"><span>后端与接口对接</span><span class="skill__num">66</span></div>
+            <div class="skill__track"><div class="fill"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 项目：筛选按钮 + 项目卡片（3~6 条） ===== -->
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="panel reveal">
+        <header class="panel__head">
+          <h2 id="projects-title">任务清单 · 项目作品</h2>
+          <span class="panel__meta">6 ENTRIES</span>
+        </header>
+
+        <div class="filters" id="filters" role="group" aria-label="项目分类筛选">
+          <button class="filter is-active" type="button" data-filter="all">全部</button>
+          <button class="filter" type="button" data-filter="web">网页</button>
+          <button class="filter" type="button" data-filter="tool">工具</button>
+          <button class="filter" type="button" data-filter="visual">可视化</button>
+        </div>
+
+        <ul class="cards" id="project-list">
+          <li class="card" data-tags="web tool">
+            <span class="card__badge" aria-hidden="true">◆</span>
+            <div class="card__body">
+              <h3 class="card__title">个人导航站</h3>
+              <p class="card__desc">把常用站点按颜色和分类排成像素格子，支持自定义分组与本地收藏。</p>
+              <ul class="card__stack">
+                <li>HTML</li><li>CSS Grid</li><li>localStorage</li>
+              </ul>
+            </div>
+          </li>
+          <li class="card" data-tags="visual web">
+            <span class="card__badge" aria-hidden="true">◆</span>
+            <div class="card__body">
+              <h3 class="card__title">长沙天气看板</h3>
+              <p class="card__desc">实时天气 + 未来趋势柱状图，雨天的方块会变成蓝色并自带像素雨滴动画。</p>
+              <ul class="card__stack">
+                <li>Fetch API</li><li>Canvas</li><li>响应式</li>
+              </ul>
+            </div>
+          </li>
+          <li class="card" data-tags="tool visual">
+            <span class="card__badge" aria-hidden="true">◆</span>
+            <div class="card__body">
+              <h3 class="card__title">像素画工坊</h3>
+              <p class="card__desc">在 32×32 网格上点出 sprite，可导出 PNG，一键切换 8 色调色板。</p>
+              <ul class="card__stack">
+                <li>Canvas</li><li>File API</li><li>原生 JS</li>
+              </ul>
+            </div>
+          </li>
+          <li class="card" data-tags="tool">
+            <span class="card__badge" aria-hidden="true">◆</span>
+            <div class="card__body">
+              <h3 class="card__title">每日习惯打卡器</h3>
+              <p class="card__desc">连续打卡显示成经验条，满格升级；数据离线保存在浏览器里。</p>
+              <ul class="card__stack">
+                <li>localStorage</li><li>日期处理</li><li>CSS 动画</li>
+              </ul>
+            </div>
+          </li>
+          <li class="card" data-tags="tool web">
+            <span class="card__badge" aria-hidden="true">◆</span>
+            <div class="card__body">
+              <h3 class="card__title">批量图片压缩器</h3>
+              <p class="card__desc">拖拽即压缩，全程在本地完成，不上传任何文件，支持体积对比预览。</p>
+              <ul class="card__stack">
+                <li>Canvas</li><li>Drag Drop</li><li>Web Worker</li>
+              </ul>
+            </div>
+          </li>
+          <li class="card" data-tags="visual">
+            <span class="card__badge" aria-hidden="true">◆</span>
+            <div class="card__body">
+              <h3 class="card__title">游戏素材库</h3>
+              <p class="card__desc">整理自绘的方块图标、按钮与音效占位资源，可直接复制到新项目里。</p>
+              <ul class="card__stack">
+                <li>SVG</li><li>CSS 绘制</li><li>文档整理</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 数据面板：逐项可点击的社交 / 联系信息 ===== -->
+    <section class="section" id="stats" aria-labelledby="stats-title">
+      <div class="panel reveal">
+        <header class="panel__head">
+          <h2 id="stats-title">数据面板 · 找到我</h2>
+          <span class="panel__meta">ONLINE</span>
+        </header>
+        <p class="section__hint">提示：点击卡片上的文字可直接复制内容。</p>
+        <!-- 注意：格子位置由 CSS 固定，避免主题切换时布局跳动 -->
+        <ul class="stats">
+          <li class="stat stat--a">
+            <span class="stat__label">GitHub</span>
+            <a class="stat__value" data-copy href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+            <meter class="bar bar--php" min="0" max="100" value="88">88</meter>
+          </li>
+          <li class="stat stat--b">
+            <span class="stat__label">QQ</span>
+            <a class="stat__value" data-copy href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+            <meter class="bar bar--js" min="0" max="100" value="80">80</meter>
+          </li>
+          <li class="stat stat--c">
+            <span class="stat__label">邮箱 1</span>
+            <a class="stat__value" data-copy href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+            <meter class="bar bar--css" min="0" max="100" value="76">76</meter>
+          </li>
+          <li class="stat stat--d">
+            <span class="stat__label">邮箱 2</span>
+            <a class="stat__value" data-copy href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+            <meter class="bar bar--xp" min="0" max="100" value="72">72</meter>
+          </li>
+          <li class="stat stat--e">
+            <span class="stat__label">地点</span>
+            <span class="stat__value" data-copy>湖南省长沙市</span>
+            <meter class="bar bar--coin" min="0" max="100" value="96">96</meter>
+          </li>
+          <li class="stat stat--f">
+            <span class="stat__label">长沙时间</span>
+            <time class="stat__value" id="clock-datetime" datetime="2026-09-14T22:07">2026年9月14日 星期一</time>
+            <strong class="stat__time" id="clock-time">22:07:00</strong>
+          </li>
+        </ul>
+        <p class="section__lead">
+          参考基线：2026 年 9 月 14 日（星期一）22:07（UTC+8，来自网络查询），用于判断当前应使用夜间还是白天配色；
+          页面时钟本身由 <code>new Date()</code> 每秒实时刷新，并按北京时间（Asia/Shanghai）显示。
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="footer" id="site-footer">
+    <p>© 2026 ok-lzr · 湖南省长沙市</p>
+    <p>纯原生 HTML / CSS / JS 手写 · 像素 8-bit 风格 · 无任何外部依赖</p>
+  </footer>
+</div>
+
+<!-- 复制成功提示（由 JS 控制显示） -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<!-- 回到顶部：像素方向键，滚动后出现 -->
+<button class="to-top" id="to-top" type="button" aria-label="回到顶部">↑</button>
+
+<script src="script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ok-lzr / 码上生活 · 霓虹赛博朋克个人主页</title>
+  <meta name="description" content="ok-lzr 的个人主页：前端开发 / 数据可视化 / 自动化脚本，坐标湖南省长沙市。">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- 背景层：扫描线、网格、鼠标光晕、霓虹雨画布（全部由 CSS/JS 驱动，纯装饰） -->
+  <div class="bg-fx" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="bg-scanlines"></div>
+    <div class="bg-vignette"></div>
+    <div class="bg-glow" id="bgGlow"></div>
+    <canvas id="neonRain" class="bg-canvas"></canvas>
+  </div>
+
+  <!-- 顶部导航：固定悬浮，玻璃拟态 + 霓虹描边 -->
+  <header class="site-header">
+    <nav class="nav container" aria-label="主导航">
+      <a class="logo" href="#hero">
+        <span class="logo-mark" aria-hidden="true">◤◢</span>
+        <span class="logo-text glitch" data-text="OK-LZR">OK-LZR</span>
+      </a>
+
+      <ul class="nav-list" id="navList">
+        <li><a class="nav-link" href="#about">档案</a></li>
+        <li><a class="nav-link" href="#projects">项目</a></li>
+        <li><a class="nav-link" href="#skills">能力</a></li>
+        <li><a class="nav-link" href="#contact">联络</a></li>
+      </ul>
+
+      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">
+        <span class="theme-icon" id="themeIcon" aria-hidden="true">☾</span>
+        <span class="theme-text" id="themeText">夜间模式</span>
+      </button>
+    </nav>
+    <!-- 页面滚动进度条 -->
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  </header>
+
+  <main>
+    <!-- ===== 首屏：姓名、简介、能力标签、实时时钟 ===== -->
+    <section class="section hero" id="hero">
+      <div class="container hero-inner">
+        <div class="hero-main">
+          <p class="hero-kicker">
+            <span class="dot" aria-hidden="true"></span>
+            系统在线 · NEO&nbsp;CHANGSHA&nbsp;2077</p>
+          <h1 class="hero-title glitch" data-text="ok-lzr / 码上生活">ok-lzr / 码上生活</h1>
+          <p class="hero-sub">
+            <span class="prompt" aria-hidden="true">$</span>
+            <span id="typed" class="typed"></span><span class="caret" aria-hidden="true"></span>
+          </p>
+          <p class="hero-desc">
+            用像素与代码搭建实用小站：白天跑数据，深夜调霓虹。喜欢把复杂的事情做成一行命令。
+          </p>
+
+          <ul class="tag-list" aria-label="能力标签">
+            <li class="tag">前端开发</li>
+            <li class="tag">数据可视化</li>
+            <li class="tag">自动化脚本</li>
+            <li class="tag">本地私有部署</li>
+          </ul>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">查看项目 →</a>
+            <a class="btn btn-ghost" href="#contact">建立联络</a>
+          </div>
+        </div>
+
+        <!-- 终端风时钟面板：长沙时间实时刷新 -->
+        <aside class="clock-card" aria-label="长沙时间实时时钟">
+          <div class="clock-head">
+            <span class="clock-led" id="clockLed" aria-hidden="true"></span>
+            <span class="clock-label">长沙时间 · UTC+8</span>
+            <span class="clock-mode" id="clockMode">夜</span>
+          </div>
+          <p class="clock-time" id="clockTime">--:--:--</p>
+          <p class="clock-date" id="clockDate">加载中…</p>
+          <p class="clock-week" id="clockWeek">星期—</p>
+          <p class="clock-note">
+            网络参考基线：2026-09-14（星期一）22:07 · 仅用于昼夜主题初值
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===== 档案：个人数据统计 + 技能条 ===== -->
+    <section class="section" id="about">
+      <div class="container">
+        <header class="section-head reveal">
+          <h2 class="section-title"><span class="hash" aria-hidden="true">##</span> 个人档案</h2>
+          <p class="section-sub">ID / 坐标 / 运行数据</p>
+        </header>
+
+        <div class="about-grid">
+          <div class="panel reveal">
+            <h3 class="panel-title">身份摘要</h3>
+            <ul class="info-list">
+              <li><span class="info-key">ID</span><span class="info-val">ok-lzr</span></li>
+              <li><span class="info-key">坐标</span><span class="info-val">湖南省长沙市</span></li>
+              <li><span class="info-key">状态</span><span class="info-val ok">可接新任务</span></li>
+              <li><span class="info-key">夜行性</span><span class="info-val">22:00 - 03:00 效率峰值</span></li>
+            </ul>
+            <p class="panel-text">
+              写代码像搭霓虹灯箱：结构要稳，光要准。习惯把重复劳动交给脚本，把注意力留给设计。
+            </p>
+          </div>
+
+          <div class="stat-grid reveal">
+            <div class="stat-card">
+              <p class="stat-num" data-count="24">0</p>
+              <p class="stat-label">完成项目</p>
+            </div>
+            <div class="stat-card">
+              <p class="stat-num" data-count="3864">0</p>
+              <p class="stat-label">代码提交</p>
+            </div>
+            <div class="stat-card">
+              <p class="stat-num" data-count="128">0</p>
+              <p class="stat-label">脚本工具</p>
+            </div>
+            <div class="stat-card">
+              <p class="stat-num" data-count="7">0</p>
+              <p class="stat-label">常驻终端</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 项目列表：可切换分类筛选 ===== -->
+    <section class="section" id="projects">
+      <div class="container">
+        <header class="section-head reveal">
+          <h2 class="section-title"><span class="hash" aria-hidden="true">##</span> 项目矩阵</h2>
+          <p class="section-sub">按分类过滤已部署的作品</p>
+        </header>
+
+        <div class="filter-bar reveal" id="filterBar" role="tablist" aria-label="项目分类筛选">
+          <button class="filter-btn is-active" type="button" role="tab" aria-selected="true" data-filter="all">全部</button>
+          <button class="filter-btn" type="button" role="tab" aria-selected="false" data-filter="web">网页</button>
+          <button class="filter-btn" type="button" role="tab" aria-selected="false" data-filter="tool">工具</button>
+          <button class="filter-btn" type="button" role="tab" aria-selected="false" data-filter="data">数据</button>
+        </div>
+
+        <div class="project-grid" id="projectGrid">
+          <article class="card reveal" data-cat="web" tabindex="0">
+            <p class="card-index">01</p>
+            <h3 class="card-title">个人导航站</h3>
+            <p class="card-desc">把常用站点、书签和自建服务收进一个深色首页，支持键盘快速跳转与自定义分组。</p>
+            <ul class="stack-list">
+              <li>HTML</li><li>CSS</li><li>原生 JS</li>
+            </ul>
+            <span class="card-corner" aria-hidden="true"></span>
+          </article>
+
+          <article class="card reveal" data-cat="data" tabindex="0">
+            <p class="card-index">02</p>
+            <h3 class="card-title">长沙天气看板</h3>
+            <p class="card-desc">每日抓取长沙温湿度与降水，用折线图和热力色块展示一周趋势，开机自动更新。</p>
+            <ul class="stack-list">
+              <li>Node.js</li><li>Chart 绘制</li><li>定时任务</li>
+            </ul>
+            <span class="card-corner" aria-hidden="true"></span>
+          </article>
+
+          <article class="card reveal" data-cat="tool" tabindex="0">
+            <p class="card-index">03</p>
+            <h3 class="card-title">霓虹番茄钟</h3>
+            <p class="card-desc">专注计时器：25 分钟工作 + 5 分钟休息，结束时用声音与屏幕闪烁提醒。</p>
+            <ul class="stack-list">
+              <li>Web Audio</li><li>CSS 变量</li><li>本地存储</li>
+            </ul>
+            <span class="card-corner" aria-hidden="true"></span>
+          </article>
+
+          <article class="card reveal" data-cat="tool" tabindex="0">
+            <p class="card-index">04</p>
+            <h3 class="card-title">批量图片压榨机</h3>
+            <p class="card-desc">拖拽文件夹即可压缩并重命名图片，输出体积报告，适合整理相册与博客配图。</p>
+            <ul class="stack-list">
+              <li>Python</li><li>CLI</li><li>批处理</li>
+            </ul>
+            <span class="card-corner" aria-hidden="true"></span>
+          </article>
+
+          <article class="card reveal" data-cat="data" tabindex="0">
+            <p class="card-index">05</p>
+            <h3 class="card-title">歌单光谱分析器</h3>
+            <p class="card-desc">读取本地音乐库，统计曲风、年代与播放频次，生成一张彩色光谱图。</p>
+            <ul class="stack-list">
+              <li>数据处理</li><li>Canvas</li><li>可视化</li>
+            </ul>
+            <span class="card-corner" aria-hidden="true"></span>
+          </article>
+
+          <article class="card reveal" data-cat="web" tabindex="0">
+            <p class="card-index">06</p>
+            <h3 class="card-title">深夜日志本</h3>
+            <p class="card-desc">极简 Markdown 日记站，纯静态生成，支持标签检索与全文搜索，离线可用。</p>
+            <ul class="stack-list">
+              <li>静态生成</li><li>Markdown</li><li>搜索索引</li>
+            </ul>
+            <span class="card-corner" aria-hidden="true"></span>
+          </article>
+        </div>
+        <p class="filter-empty" id="filterEmpty" hidden>没有匹配的项目，试试其它分类。</p>
+      </div>
+    </section>
+
+    <!-- ===== 能力：技能条动画 ===== -->
+    <section class="section" id="skills">
+      <div class="container">
+        <header class="section-head reveal">
+          <h2 class="section-title"><span class="hash" aria-hidden="true">##</span> 能力矩阵</h2>
+          <p class="section-sub">进入视野时自动充能</p>
+        </header>
+
+        <div class="panel reveal">
+          <ul class="skill-list">
+            <li class="skill">
+              <div class="skill-top"><span class="skill-name">HTML / CSS</span><span class="skill-val">92%</span></div>
+              <div class="bar"><span class="bar-fill" data-value="92"></span></div>
+            </li>
+            <li class="skill">
+              <div class="skill-top"><span class="skill-name">JavaScript</span><span class="skill-val">86%</span></div>
+              <div class="bar"><span class="bar-fill" data-value="86"></span></div>
+            </li>
+            <li class="skill">
+              <div class="skill-top"><span class="skill-name">数据可视化</span><span class="skill-val">78%</span></div>
+              <div class="bar"><span class="bar-fill" data-value="78"></span></div>
+            </li>
+            <li class="skill">
+              <div class="skill-top"><span class="skill-name">自动化 / 部署</span><span class="skill-val">83%</span></div>
+              <div class="bar"><span class="bar-fill" data-value="83"></span></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 联络：数据区，逐项可点击 ===== -->
+    <section class="section" id="contact">
+      <div class="container">
+        <header class="section-head reveal">
+          <h2 class="section-title"><span class="hash" aria-hidden="true">##</span> 建立联络</h2>
+          <p class="section-sub">点击任意一行即可直达</p>
+        </header>
+
+        <ul class="contact-grid">
+          <li class="reveal">
+            <a class="contact-card" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">
+              <span class="contact-icon" aria-hidden="true">⌨</span>
+              <span class="contact-body">
+                <span class="contact-key">GitHub</span>
+                <span class="contact-val">github.com/ok-lzr</span>
+              </span>
+              <span class="contact-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li class="reveal">
+            <a class="contact-card" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">
+              <span class="contact-icon" aria-hidden="true">✆</span>
+              <span class="contact-body">
+                <span class="contact-key">QQ</span>
+                <span class="contact-val">386477796</span>
+              </span>
+              <span class="contact-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li class="reveal">
+            <a class="contact-card" href="mailto:csgdnrxg@163.com">
+              <span class="contact-icon" aria-hidden="true">✉</span>
+              <span class="contact-body">
+                <span class="contact-key">邮箱 1</span>
+                <span class="contact-val">csgdnrxg@163.com</span>
+              </span>
+              <span class="contact-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li class="reveal">
+            <a class="contact-card" href="mailto:3866477796@qq.com">
+              <span class="contact-icon" aria-hidden="true">✉</span>
+              <span class="contact-body">
+                <span class="contact-key">邮箱 2</span>
+                <span class="contact-val">3866477796@qq.com</span>
+              </span>
+              <span class="contact-arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li class="reveal">
+            <div class="contact-card is-static">
+              <span class="contact-icon" aria-hidden="true">◎</span>
+              <span class="contact-body">
+                <span class="contact-key">地点</span>
+                <span class="contact-val">湖南省长沙市</span>
+              </span>
+              <span class="contact-arrow" aria-hidden="true">·</span>
+            </div>
+          </li>
+          <li class="reveal">
+            <div class="contact-card is-static">
+              <span class="contact-icon" aria-hidden="true">◷</span>
+              <span class="contact-body">
+                <span class="contact-key">时间</span>
+                <span class="contact-val" id="contactClock">长沙时间 --:--:--</span>
+              </span>
+              <span class="contact-arrow" aria-hidden="true">·</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-line">© 2026 ok-lzr · 湖南省长沙市</p>
+      <p class="footer-note">纯原生 HTML / CSS / JS 构建 · 无外部依赖 · 霓虹赛博朋克</p>
+    </div>
+  </footer>
+</body>
+</html>

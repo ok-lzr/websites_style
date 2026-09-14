@@ -1,0 +1,622 @@
+/* =========================================================
+   湘江晚报 · 复古报纸风格个人主页
+   style.css —— 全站样式（不含任何行为逻辑）
+   ========================================================= */
+
+/* ===== 变量：纸张、油墨、圆角、间距 ===== */
+:root {
+  /* 纸色与油墨 */
+  --paper:        #f2e6c9;
+  --paper-deep:   #e8d8b0;
+  --paper-card:   #f7eed6;
+  --ink:          #211a12;
+  --ink-soft:     #4a3d2c;
+  --ink-faint:    #7a6a52;
+  --rule:         #3a2f20;
+  --rule-light:   #b9a67f;
+  --accent:       #8c1f14;   /* 朱红，用于报头与重点 */
+  --stamp:        #a8481f;
+
+  /* 尺寸与节奏 */
+  --maxw:         1200px;
+  --gap:          18px;
+  --gap-sm:       10px;
+  --radius:       2px;
+  --border:       1px solid var(--rule-light);
+  --border-bold:  3px double var(--rule);
+
+  /* 字体：只用系统自带的衬线字，保证印刷感 */
+  --serif:  "Songti SC", "SimSun", "STSong", "Georgia", "Times New Roman", serif;
+  --hei:    "Heiti SC", "SimHei", "Microsoft YaHei", "PingFang SC", sans-serif;
+  --mono:   "Courier New", "Consolas", monospace;
+}
+
+/* ===== 夜刊主题：由 JS 在 body 上切换 data-theme ===== */
+body[data-theme="night"] {
+  --paper:      #17130e;
+  --paper-deep: #221b13;
+  --paper-card: #1e1811;
+  --ink:        #ecdfc2;
+  --ink-soft:   #c9b995;
+  --ink-faint:  #9c8b6d;
+  --rule:       #d8c69f;
+  --rule-light: #5b4c35;
+  --accent:     #e0a35a;
+  --stamp:      #c98a4b;
+}
+
+/* ===== 基础重置与纸张底色 ===== */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }   /* 平滑滚动（JS 中另有兜底） */
+
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.75;
+  background-color: var(--paper);
+  /* 印刷颗粒感 + 纸张污渍，全部用 CSS 渐变模拟，不加载图片 */
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(120, 90, 40, .10) 0 22%, transparent 60%),
+    radial-gradient(circle at 88% 72%, rgba(120, 90, 40, .09) 0 20%, transparent 55%),
+    repeating-linear-gradient(0deg, rgba(90, 70, 40, .045) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(90, 70, 40, .035) 0 1px, transparent 1px 4px);
+  background-attachment: fixed;
+  overflow-x: hidden;               /* 防止 360px 下出现横向滚动条 */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* 颗粒噪点叠加层：纯 CSS 网点 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .28;
+  background-image:
+    radial-gradient(rgba(60, 45, 25, .35) .5px, transparent .6px),
+    radial-gradient(rgba(60, 45, 25, .22) .5px, transparent .6px);
+  background-size: 3px 3px, 5px 5px;
+  background-position: 0 0, 2px 1px;
+  mix-blend-mode: multiply;
+}
+body[data-theme="night"]::before { opacity: .16; mix-blend-mode: screen; }
+
+img, svg { max-width: 100%; }
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent);
+}
+a:hover,
+a:focus-visible {
+  background: var(--accent);
+  color: var(--paper);
+  border-bottom-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px dashed var(--accent);
+  outline-offset: 2px;
+}
+
+/* ===== 通用文字工具类 ===== */
+.num { font-family: var(--mono); }
+.headline__sep { color: var(--ink-faint); font-weight: normal; }
+
+/* ===== 布局：报头容器与主体纸张 ===== */
+.masthead,
+.paper,
+.footer {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding-left: var(--gap);
+  padding-right: var(--gap);
+}
+
+/* ===== 报头：细密横线 + 报头大字 ===== */
+.masthead {
+  padding-top: 14px;
+  text-align: center;
+  border-bottom: 6px double var(--rule);
+  background: linear-gradient(180deg, rgba(140, 31, 20, .05), transparent 70%);
+}
+
+.masthead__topline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-sm);
+  padding: 6px 0;
+  border-top: var(--border);
+  border-bottom: var(--border);
+  font-family: var(--hei);
+  font-size: 12.5px;
+  letter-spacing: .12em;
+  color: var(--ink-soft);
+}
+
+.masthead__edition { text-transform: uppercase; }
+.masthead__date { color: var(--ink-faint); }
+
+/* 昼夜切换按钮：做成铅字小方块 */
+.theme-toggle {
+  font-family: var(--hei);
+  font-size: 12.5px;
+  letter-spacing: .1em;
+  color: var(--ink);
+  background: var(--paper-card);
+  border: var(--border);
+  border-radius: var(--radius);
+  padding: 3px 10px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--rule-light);
+}
+.theme-toggle:hover { background: var(--accent); color: var(--paper); }
+.theme-toggle:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--rule-light); }
+
+.masthead__title {
+  margin: 14px 0 6px;
+  font-family: var(--serif);
+  font-weight: 900;
+  font-size: clamp(44px, 12vw, 118px);
+  line-height: 1.02;
+  letter-spacing: .16em;
+  text-indent: .16em;           /* 抵消末字后的字距，保持视觉居中 */
+  color: var(--ink);
+  text-shadow: 2px 2px 0 rgba(140, 31, 20, .18), 0 0 1px var(--ink);
+}
+
+.masthead__sub {
+  margin: 0 0 4px;
+  font-family: var(--hei);
+  font-size: 13px;
+  letter-spacing: .18em;
+  color: var(--ink-soft);
+}
+
+.masthead__rule {
+  margin: 8px 0 0;
+  font-size: 13px;
+  letter-spacing: 1.4em;
+  text-indent: 1.4em;
+  color: var(--accent);
+}
+
+/* ===== 导航：横排栏目，滚动时吸顶 ===== */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 22px;
+  margin-top: 10px;
+  padding: 8px 6px;
+  background: var(--paper-deep);
+  border-top: var(--border);
+  border-bottom: 3px double var(--rule);
+}
+
+.nav__link {
+  font-family: var(--hei);
+  font-size: 14px;
+  letter-spacing: .22em;
+  color: var(--ink);
+  border-bottom: none;
+  padding: 2px 4px;
+}
+.nav__link:hover,
+.nav__link:focus-visible { background: transparent; color: var(--accent); border-bottom: 2px solid var(--accent); }
+.nav__link.is-current { color: var(--accent); border-bottom: 2px solid var(--accent); }
+
+/* ===== 主体与分栏 ===== */
+.paper { padding-top: 26px; padding-bottom: 26px; }
+
+.section { margin: 0 0 26px; }
+
+/* 头条区：标题居中，正文双栏 */
+.section--lead { text-align: center; }
+
+.kicker {
+  margin: 0 0 8px;
+  font-family: var(--hei);
+  font-size: 12.5px;
+  letter-spacing: .34em;
+  text-indent: .34em;
+  color: var(--accent);
+}
+
+.headline {
+  margin: 0 0 14px;
+  font-size: clamp(24px, 5.2vw, 42px);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: .04em;
+}
+
+.headline__type { color: var(--accent); }
+
+/* 打字机光标 */
+.caret {
+  display: inline-block;
+  width: .6em;
+  height: 1em;
+  margin-left: .08em;
+  vertical-align: -.12em;
+  background: var(--accent);
+  animation: blink 1s steps(1, end) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 var(--gap);
+  text-align: justify;
+  hyphens: auto;
+}
+/* 栏间细线，模仿报纸分栏 */
+.columns > .lead-text + .lead-text {
+  border-left: var(--border);
+  padding-left: var(--gap);
+}
+
+.lead-text { margin: 0 0 12px; font-size: 17px; }
+.lead-text--muted { color: var(--ink-soft); }
+
+/* 首字下沉 */
+.dropcap {
+  float: left;
+  font-size: 3.1em;
+  line-height: .86;
+  padding: 4px 8px 0 0;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+/* ===== 能力标签 ===== */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  font-family: var(--hei);
+  font-size: 13px;
+  letter-spacing: .1em;
+  padding: 3px 12px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper-card);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .25);
+}
+
+/* ===== 细密横线分隔 ===== */
+.rule {
+  height: 0;
+  margin: 22px 0;
+  border: none;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule-light);
+  /* 上下双线之间再压一行更细的线，形成报章感 */
+  box-shadow: 0 -4px 0 -3.5px var(--rule-light), 0 4px 0 -3.5px var(--rule-light);
+}
+
+/* ===== 栏目标题 ===== */
+.section__title {
+  margin: 0 0 4px;
+  font-size: clamp(20px, 3.6vw, 28px);
+  font-weight: 800;
+  letter-spacing: .06em;
+  padding-bottom: 6px;
+  border-bottom: var(--border);
+  /* 标题左侧的装饰方点 */
+  background: linear-gradient(90deg, var(--accent) 0 10px, transparent 10px) left 58% / 10px 10px no-repeat;
+  padding-left: 18px;
+}
+
+.section__note {
+  margin: 8px 0 16px;
+  font-size: 14px;
+  font-style: italic;
+  color: var(--ink-faint);
+}
+
+/* ===== 专长录：技能条 ===== */
+.skills { margin: 0; padding: 0; list-style: none; }
+
+.skill { margin-bottom: 14px; }
+
+.skill__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--gap-sm);
+  font-family: var(--hei);
+  font-size: 14.5px;
+  letter-spacing: .08em;
+}
+
+.skill__value { font-family: var(--mono); font-size: 13px; color: var(--accent); }
+
+.skill__track {
+  position: relative;
+  height: 12px;
+  margin-top: 5px;
+  background: var(--paper-deep);
+  border: var(--border);
+  /* 刻度线 */
+  background-image: repeating-linear-gradient(90deg, var(--rule-light) 0 1px, transparent 1px 10%);
+}
+
+.skill__bar {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: repeating-linear-gradient(45deg, var(--accent) 0 6px, var(--stamp) 6px 12px);
+  transition: width 1.3s cubic-bezier(.22, .7, .2, 1);
+}
+
+/* ===== 作品陈列：筛选铅字 + 卡片 ===== */
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.filter__btn {
+  font-family: var(--hei);
+  font-size: 13.5px;
+  letter-spacing: .14em;
+  padding: 4px 14px;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.filter__btn:hover { background: var(--paper-deep); }
+.filter__btn.is-active {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+.works {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.work {
+  padding: 14px 16px 12px;
+  background: var(--paper-card);
+  border: var(--border);
+  border-top: 3px double var(--rule);
+  border-radius: var(--radius);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.work:hover {
+  transform: translateY(-3px);
+  box-shadow: 4px 4px 0 var(--rule-light);
+}
+/* 被筛选隐藏的卡片 */
+.work.is-hidden { display: none; }
+
+.work__title {
+  margin: 0 0 6px;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: .04em;
+}
+.work__title::before { content: "❡ "; color: var(--accent); }
+
+.work__desc { margin: 0 0 10px; font-size: 15px; color: var(--ink-soft); }
+
+.work__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 8px 0 0;
+  border-top: 1px dotted var(--rule-light);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+.work__stack span { border: 1px solid var(--rule-light); padding: 0 6px; }
+
+/* ===== 数字版：统计 + 时钟 ===== */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--gap-sm);
+  margin-bottom: 20px;
+}
+
+.stat {
+  padding: 12px 10px;
+  text-align: center;
+  background: var(--paper-card);
+  border: var(--border);
+}
+.stat__num {
+  display: block;
+  font-family: var(--mono);
+  font-size: clamp(26px, 5vw, 38px);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--accent);
+}
+.stat__label {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--hei);
+  font-size: 12.5px;
+  letter-spacing: .1em;
+  color: var(--ink-soft);
+}
+
+/* 长沙时间：做成一块报纸上的「时辰栏」 */
+.clock {
+  padding: 16px 18px;
+  text-align: center;
+  background: var(--paper-deep);
+  border: var(--border-bold);
+  background-image: repeating-linear-gradient(0deg, rgba(90, 70, 40, .06) 0 1px, transparent 1px 4px);
+}
+.clock__city {
+  margin: 0;
+  font-family: var(--hei);
+  font-size: 13px;
+  letter-spacing: .3em;
+  text-indent: .3em;
+  color: var(--ink-soft);
+}
+.clock__zone { color: var(--ink-faint); letter-spacing: .1em; }
+.clock__time {
+  margin: 6px 0 2px;
+  font-family: var(--mono);
+  font-size: clamp(34px, 9vw, 58px);
+  font-weight: 700;
+  letter-spacing: .06em;
+  line-height: 1.1;
+  color: var(--ink);
+  text-shadow: 1px 1px 0 rgba(140, 31, 20, .22);
+}
+.clock__date { margin: 0; font-size: 15px; color: var(--ink-soft); }
+.clock__period { margin: 6px 0 0; font-size: 14px; font-style: italic; color: var(--accent); }
+
+/* ===== 联络启事：定义列表 ===== */
+.contact {
+  margin: 0;
+  padding: 0;
+  border-top: var(--border);
+}
+
+.contact__row {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: var(--gap-sm);
+  align-items: baseline;
+  padding: 10px 4px;
+  border-bottom: 1px dotted var(--rule-light);
+}
+.contact__row:hover { background: rgba(140, 31, 20, .06); }
+
+.contact__key {
+  font-family: var(--hei);
+  font-size: 13.5px;
+  letter-spacing: .16em;
+  color: var(--ink-faint);
+}
+.contact__val { margin: 0; font-size: 16.5px; }
+.contact__text { font-family: var(--mono); font-size: 15px; }
+
+/* ===== 回到报头按钮 ===== */
+.to-top-wrap { margin: 18px 0 0; text-align: center; }
+
+.to-top {
+  font-family: var(--hei);
+  font-size: 13.5px;
+  letter-spacing: .16em;
+  padding: 6px 18px;
+  color: var(--ink);
+  background: var(--paper-card);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  box-shadow: 3px 3px 0 var(--rule-light);
+  cursor: pointer;
+}
+.to-top:hover { background: var(--ink); color: var(--paper); }
+.to-top:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0 var(--rule-light); }
+/* 未滚到一定深度时隐藏（由 JS 切换 is-dim） */
+.to-top.is-dim { visibility: hidden; }
+
+/* ===== 页脚 ===== */
+.footer {
+  padding-top: 10px;
+  padding-bottom: 34px;
+  text-align: center;
+  border-top: 6px double var(--rule);
+}
+.footer__line { margin: 8px 0; color: var(--rule-light); letter-spacing: .3em; }
+.footer__text { margin: 4px 0; font-size: 14px; color: var(--ink-soft); }
+.footer__text--small { font-size: 12.5px; color: var(--ink-faint); }
+
+/* ===== 滚动进入动画：由 JS 添加 is-visible ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* 尊重用户的「减少动效」偏好 */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .caret { animation: none; }
+  .skill__bar { transition: none; }
+}
+
+/* ===== 响应式：平板 ===== */
+@media (max-width: 860px) {
+  body { font-size: 16px; }
+  .columns { grid-template-columns: 1fr; }
+  .columns > .lead-text + .lead-text {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px dotted var(--rule-light);
+    padding-top: 10px;
+  }
+  .contact__row { grid-template-columns: 120px 1fr; }
+}
+
+/* ===== 响应式：手机（含 360px） ===== */
+@media (max-width: 560px) {
+  :root { --gap: 14px; --gap-sm: 8px; }
+
+  body { font-size: 15.5px; line-height: 1.7; }
+
+  .masthead__title { letter-spacing: .08em; text-indent: .08em; }
+  .masthead__topline { justify-content: center; text-align: center; font-size: 11.5px; }
+
+  .nav { gap: 2px 14px; padding: 6px 2px; }
+  .nav__link { font-size: 13px; letter-spacing: .14em; }
+
+  .dropcap { font-size: 2.4em; }
+
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .works { grid-template-columns: 1fr; }
+
+  .contact__row { grid-template-columns: 1fr; gap: 2px; }
+  .contact__key { letter-spacing: .1em; }
+  .contact__val { font-size: 15.5px; word-break: break-word; }
+
+  .clock { padding: 12px 10px; }
+  .footer__line { letter-spacing: .12em; }
+}

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ok-lzr · 水墨中国</title>
+  <meta name="description" content="ok-lzr 的个人主页 —— 宣纸米色，墨色晕染，一笔一世界。">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- ===== 顶部固定导航：水墨卷轴式菜单 ===== -->
+  <header class="site-header" id="top">
+    <nav class="nav" aria-label="主导航">
+      <a class="nav__brand" href="#top">
+        <span class="brand__seal" aria-hidden="true">墨</span>
+        <span class="brand__text">ok-lzr</span>
+      </a>
+      <ul class="nav__list">
+        <li><a class="nav__link" href="#about">题记</a></li>
+        <li><a class="nav__link" href="#works">画卷</a></li>
+        <li><a class="nav__link" href="#skills">笔法</a></li>
+        <li><a class="nav__link" href="#contact">落款</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换昼夜墨色">
+        <span class="theme-toggle__icon" aria-hidden="true">☾</span>
+        <span class="theme-toggle__label">夜</span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== 首屏：留白与晕染 ===== -->
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero__ink" aria-hidden="true">
+        <span class="ink-blot ink-blot--1"></span>
+        <span class="ink-blot ink-blot--2"></span>
+        <span class="ink-blot ink-blot--3"></span>
+      </div>
+      <div class="hero__inner wrap">
+        <p class="hero__vertical" aria-hidden="true">笔 落 惊 风 雨</p>
+        <div class="hero__body">
+          <p class="hero__eyebrow">水墨中国 · 个人主页</p>
+          <h1 class="hero__title" id="heroTitle">
+            <span class="hero__name">ok-lzr</span>
+            <span class="hero__slash">/</span>
+            <span class="hero__alias">码上生活</span>
+          </h1>
+          <p class="hero__desc" id="typedLine">以代码为笔，以屏幕为宣纸，写一点安静的实用小东西。</p>
+          <ul class="hero__tags">
+            <li class="tag">前端开发</li>
+            <li class="tag">界面设计</li>
+            <li class="tag">数据可视化</li>
+            <li class="tag">长沙</li>
+          </ul>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#works">展开画卷</a>
+            <a class="btn btn--ghost" href="#contact">落款留名</a>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-hint" aria-hidden="true">
+        <span class="scroll-hint__line"></span>
+        <span class="scroll-hint__text">下 行</span>
+      </div>
+    </section>
+
+    <!-- ===== 题记：一句话简介与数据 ===== -->
+    <section class="section section--about" id="about" aria-labelledby="aboutTitle">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <p class="section__seal" aria-hidden="true">壹</p>
+          <h2 class="section__title" id="aboutTitle">题记</h2>
+          <p class="section__sub">一点自述，几行墨迹</p>
+        </header>
+
+        <div class="about__grid">
+          <article class="about__text reveal">
+            <p>
+              我是 <strong>ok-lzr</strong>，一名在<strong>湖南省长沙市</strong>写代码的人。
+              喜欢把复杂的东西折叠成简单的一页，让工具安静地待在角落里，需要时才出现。
+            </p>
+            <p>
+              白日写界面，夜里调样式。相信留白比堆砌更难，也更好看。
+              这个小站本身就是一次练习：宣纸米色打底，墨色晕染收边。
+            </p>
+            <p class="about__quote">「 少 则 得 ， 多 则 惑 。 」</p>
+          </article>
+
+          <aside class="about__stats reveal" aria-label="个人数据">
+            <h3 class="stats__title">个人数据</h3>
+            <ul class="stats__list">
+              <li class="stat">
+                <span class="stat__key">项目数</span>
+                <span class="stat__val" data-count="12">0</span>
+              </li>
+              <li class="stat">
+                <span class="stat__key">代码行</span>
+                <span class="stat__val" data-count="86400">0</span>
+              </li>
+              <li class="stat">
+                <span class="stat__key">写码年岁</span>
+                <span class="stat__val" data-count="6">0</span>
+              </li>
+              <li class="stat">
+                <span class="stat__key">茶 杯</span>
+                <span class="stat__val" data-count="999">0</span>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 画卷：作品列表 ===== -->
+    <section class="section section--works" id="works" aria-labelledby="worksTitle">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <p class="section__seal" aria-hidden="true">贰</p>
+          <h2 class="section__title" id="worksTitle">画卷</h2>
+          <p class="section__sub">六件小物，随手堆放</p>
+        </header>
+
+        <!-- 作品筛选：标签按钮 -->
+        <div class="filter reveal" role="tablist" aria-label="作品筛选">
+          <button class="filter__btn is-active" type="button" role="tab" aria-selected="true" data-filter="all">全部</button>
+          <button class="filter__btn" type="button" role="tab" aria-selected="false" data-filter="web">网页</button>
+          <button class="filter__btn" type="button" role="tab" aria-selected="false" data-filter="tool">工具</button>
+          <button class="filter__btn" type="button" role="tab" aria-selected="false" data-filter="data">数据</button>
+        </div>
+
+        <ul class="works__list" id="worksList">
+          <li class="card reveal" data-cat="web">
+            <h3 class="card__title">个人导航站</h3>
+            <p class="card__desc">把常用站点收进一页，支持分组、搜索与键盘快捷跳转。</p>
+            <ul class="card__tags">
+              <li>HTML</li><li>CSS</li><li>JavaScript</li>
+            </ul>
+          </li>
+          <li class="card reveal" data-cat="data">
+            <h3 class="card__title">长沙天气看板</h3>
+            <p class="card__desc">本地天气趋势可视化，含逐时温度曲线与七日概览。</p>
+            <ul class="card__tags">
+              <li>Canvas</li><li>Fetch API</li>
+            </ul>
+          </li>
+          <li class="card reveal" data-cat="tool">
+            <h3 class="card__title">墨迹便签</h3>
+            <p class="card__desc">极简本地便签，自动保存草稿，支持 Markdown 速记。</p>
+            <ul class="card__tags">
+              <li>LocalStorage</li><li>Markdown</li>
+            </ul>
+          </li>
+          <li class="card reveal" data-cat="web">
+            <h3 class="card__title">宣纸排版手册</h3>
+            <p class="card__desc">中文网页排版实践笔记，字距、行高与竖排样式示例集。</p>
+            <ul class="card__tags">
+              <li>CSS</li><li>Typography</li>
+            </ul>
+          </li>
+          <li class="card reveal" data-cat="data">
+            <h3 class="card__title">代码统计折页</h3>
+            <p class="card__desc">读取本地提交记录，生成年度贡献热力折页图。</p>
+            <ul class="card__tags">
+              <li>Node.js</li><li>SVG</li>
+            </ul>
+          </li>
+          <li class="card reveal" data-cat="tool">
+            <h3 class="card__title">图片水墨化处理</h3>
+            <p class="card__desc">浏览器内把照片转为水墨风格，可调墨量、晕染与留白。</p>
+            <ul class="card__tags">
+              <li>Canvas</li><li>滤镜</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 笔法：技能条 ===== -->
+    <section class="section section--skills" id="skills" aria-labelledby="skillsTitle">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <p class="section__seal" aria-hidden="true">叁</p>
+          <h2 class="section__title" id="skillsTitle">笔法</h2>
+          <p class="section__sub">常用几支笔，深浅自知</p>
+        </header>
+
+        <ul class="skills__list">
+          <li class="skill reveal">
+            <div class="skill__row">
+              <span class="skill__name">HTML / CSS</span>
+              <span class="skill__pct">96%</span>
+            </div>
+            <div class="skill__bar"><span class="skill__fill" data-level="96"></span></div>
+          </li>
+          <li class="skill reveal">
+            <div class="skill__row">
+              <span class="skill__name">JavaScript</span>
+              <span class="skill__pct">90%</span>
+            </div>
+            <div class="skill__bar"><span class="skill__fill" data-level="90"></span></div>
+          </li>
+          <li class="skill reveal">
+            <div class="skill__row">
+              <span class="skill__name">界面设计</span>
+              <span class="skill__pct">82%</span>
+            </div>
+            <div class="skill__bar"><span class="skill__fill" data-level="82"></span></div>
+          </li>
+          <li class="skill reveal">
+            <div class="skill__row">
+              <span class="skill__name">数据可视化</span>
+              <span class="skill__pct">78%</span>
+            </div>
+            <div class="skill__bar"><span class="skill__fill" data-level="78"></span></div>
+          </li>
+          <li class="skill reveal">
+            <div class="skill__row">
+              <span class="skill__name">后端与部署</span>
+              <span class="skill__pct">70%</span>
+            </div>
+            <div class="skill__bar"><span class="skill__fill" data-level="70"></span></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 落款：联系方式与实时时钟 ===== -->
+    <section class="section section--contact" id="contact" aria-labelledby="contactTitle">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <p class="section__seal" aria-hidden="true">肆</p>
+          <h2 class="section__title" id="contactTitle">落款</h2>
+          <p class="section__sub">若有同好，可通音信</p>
+        </header>
+
+        <div class="contact__grid">
+          <ul class="contact__list reveal">
+            <li class="contact__item">
+              <span class="contact__icon" aria-hidden="true">⌘</span>
+              <a class="contact__link" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+            </li>
+            <li class="contact__item">
+              <span class="contact__icon" aria-hidden="true">☎</span>
+              <a class="contact__link" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+            </li>
+            <li class="contact__item">
+              <span class="contact__icon" aria-hidden="true">✉</span>
+              <a class="contact__link" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+            </li>
+            <li class="contact__item">
+              <span class="contact__icon" aria-hidden="true">✉</span>
+              <a class="contact__link" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+            </li>
+            <li class="contact__item">
+              <span class="contact__icon" aria-hidden="true">◎</span>
+              <span class="contact__text">湖南省长沙市</span>
+            </li>
+          </ul>
+
+          <!-- 实时时钟：长沙时间（UTC+8） -->
+          <aside class="clock reveal" aria-label="长沙时间">
+            <h3 class="clock__title">长沙时间</h3>
+            <p class="clock__time" id="clockTime">--:--:--</p>
+            <p class="clock__date" id="clockDate">----年--月--日 星期-</p>
+            <p class="clock__meta">
+              <span class="clock__period" id="clockPeriod">昼</span>
+              <span class="clock__zone">UTC+8 · 东八区</span>
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="site-footer">
+    <div class="wrap footer__inner">
+      <p class="footer__copy">© 2026 ok-lzr · 湖南省长沙市</p>
+      <p class="footer__note">水墨中国 · 以原生 HTML / CSS / JavaScript 手书</p>
+    </div>
+  </footer>
+
+  <!-- 回到顶部 -->
+  <button class="to-top" id="toTop" type="button" aria-label="回到顶部">↑</button>
+</body>
+</html>

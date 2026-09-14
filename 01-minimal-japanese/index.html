@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="day">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ok-lzr / 码上生活 · 日式极简禅意</title>
+  <meta name="description" content="ok-lzr 的个人主页：留白、米白与墨黑、细线分隔，长沙时间实时钟与作品一览。">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- 无障碍：跳转到主内容 -->
+  <a class="skip-link" href="#main">跳到主内容</a>
+
+  <!-- ===== 顶部：标识 + 导航 + 昼夜切换 ===== -->
+  <header class="site-header" id="siteHeader">
+    <div class="wrap header-inner">
+      <a class="brand" href="#intro">
+        <span class="brand-mark" aria-hidden="true">◯</span>
+        <span class="brand-name">ok-lzr</span>
+        <span class="brand-alias">码上生活</span>
+      </a>
+
+      <nav class="site-nav" aria-label="主导航">
+        <ul>
+          <li><a href="#intro">序</a></li>
+          <li><a href="#works">作</a></li>
+          <li><a href="#data">録</a></li>
+          <li><a href="#contact">結</a></li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">
+        <span class="theme-icon" id="themeIcon" aria-hidden="true">☾</span>
+        <span class="theme-text" id="themeText">夜</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===== 序：姓名与一句话简介 ===== -->
+    <section class="section hero" id="intro">
+      <p class="section-label" aria-hidden="true">序</p>
+      <div class="section-body">
+        <h1 class="hero-title">
+          <span class="hero-name">ok-lzr</span>
+          <span class="hero-slash" aria-hidden="true">/</span>
+          <span class="hero-alias">码上生活</span>
+        </h1>
+
+        <p class="hero-line">
+          <span class="type-target" id="typeTarget">在米白与墨黑之间写代码，把复杂的事做得安静。</span>
+          <span class="type-caret" aria-hidden="true"></span>
+        </p>
+
+        <h2 class="visually-hidden">能力标签</h2>
+        <ul class="tags tags-hero">
+          <li>前端工程</li>
+          <li>数据可视化</li>
+          <li>交互设计</li>
+          <li>全栈 · 长沙</li>
+        </ul>
+
+        <p class="hero-meta">留白处留给自己 · 一行一线，皆有呼吸</p>
+      </div>
+    </section>
+
+    <!-- ===== 作：作品列表 ===== -->
+    <section class="section" id="works" aria-labelledby="works-title">
+      <p class="section-label" aria-hidden="true">作</p>
+      <div class="section-body">
+        <h2 class="section-title" id="works-title">作品一览</h2>
+        <p class="section-note">五件小事，都在夜里磨出来。</p>
+
+        <ol class="works">
+          <li class="work reveal">
+            <span class="work-index" aria-hidden="true">一</span>
+            <div class="work-main">
+              <h3 class="work-title">个人导航站</h3>
+              <p class="work-desc">把常用站点收进一页，晨起一眼看完，不许多点一次。</p>
+              <ul class="tags">
+                <li>HTML</li><li>CSS</li><li>原生 JS</li>
+              </ul>
+            </div>
+            <span class="work-year">二〇二五</span>
+          </li>
+
+          <li class="work reveal">
+            <span class="work-index" aria-hidden="true">二</span>
+            <div class="work-main">
+              <h3 class="work-title">长沙天气看板</h3>
+              <p class="work-desc">逐时温度与湿度曲线，梅雨季也能提前收衣服。</p>
+              <ul class="tags">
+                <li>Canvas</li><li>数据解析</li><li>响应式</li>
+              </ul>
+            </div>
+            <span class="work-year">二〇二五</span>
+          </li>
+
+          <li class="work reveal">
+            <span class="work-index" aria-hidden="true">三</span>
+            <div class="work-main">
+              <h3 class="work-title">墨色笔记</h3>
+              <p class="work-desc">本地优先的 Markdown 笔记，自动保存，标签一搜即得。</p>
+              <ul class="tags">
+                <li>IndexedDB</li><li>Markdown</li><li>离线可用</li>
+              </ul>
+            </div>
+            <span class="work-year">二〇二四</span>
+          </li>
+
+          <li class="work reveal">
+            <span class="work-index" aria-hidden="true">四</span>
+            <div class="work-main">
+              <h3 class="work-title">禅意番茄钟</h3>
+              <p class="work-desc">二十五分钟专注，界面只留一个圆与一次呼吸。</p>
+              <ul class="tags">
+                <li>CSS 动画</li><li>Web Audio</li><li>无障碍</li>
+              </ul>
+            </div>
+            <span class="work-year">二〇二四</span>
+          </li>
+
+          <li class="work reveal">
+            <span class="work-index" aria-hidden="true">五</span>
+            <div class="work-main">
+              <h3 class="work-title">静默 RSS 阅读器</h3>
+              <p class="work-desc">去掉广告与推荐的订阅流，按主题折成一页纸。</p>
+              <ul class="tags">
+                <li>RSS</li><li>本地缓存</li><li>Node</li>
+              </ul>
+            </div>
+            <span class="work-year">二〇二三</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== 録：个人数据 + 长沙实时钟 ===== -->
+    <section class="section" id="data" aria-labelledby="data-title">
+      <p class="section-label" aria-hidden="true">録</p>
+      <div class="section-body">
+        <h2 class="section-title" id="data-title">个人数据</h2>
+        <p class="section-note">点到即达，不必客套。</p>
+
+        <dl class="data-list">
+          <div class="data-row reveal">
+            <dt>GitHub</dt>
+            <dd>
+              <a class="data-link" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+            </dd>
+          </div>
+
+          <div class="data-row reveal">
+            <dt>QQ</dt>
+            <dd>
+              <a class="data-link" href="https://wpa.qq.com/msgrd?v=3&uin=386477796&site=qq&menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+            </dd>
+          </div>
+
+          <div class="data-row reveal">
+            <dt>邮箱 · 163</dt>
+            <dd>
+              <a class="data-link" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+            </dd>
+          </div>
+
+          <div class="data-row reveal">
+            <dt>邮箱 · QQ</dt>
+            <dd>
+              <a class="data-link" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+            </dd>
+          </div>
+
+          <div class="data-row reveal">
+            <dt>地点</dt>
+            <dd>
+              <button class="copy-btn" id="copyLocation" type="button" data-copy="湖南省长沙市">
+                <span class="copy-text">湖南省长沙市</span>
+                <span class="copy-hint" aria-hidden="true">点击复制</span>
+              </button>
+            </dd>
+          </div>
+
+          <div class="data-row data-row--clock reveal">
+            <dt>长沙时间</dt>
+            <dd>
+              <div class="clock" id="clock">
+                <time class="clock-date" id="clockDate">——</time>
+                <time class="clock-time" id="clockTime">--:--:--</time>
+                <p class="clock-meta">
+                  <span class="clock-dot" id="clockDot" aria-hidden="true"></span>
+                  <span id="clockPeriod">昼</span>
+                  <span class="clock-zone">UTC+8 · 东八区</span>
+                </p>
+              </div>
+            </dd>
+          </div>
+        </dl>
+
+        <h3 class="sub-title">几个数字</h3>
+        <ul class="stats">
+          <li class="stat reveal">
+            <span class="stat-num" data-count-to="5" data-suffix=" 件">0</span>
+            <span class="stat-label">公开作品</span>
+          </li>
+          <li class="stat reveal">
+            <span class="stat-num" data-count-to="4" data-suffix=" 项">0</span>
+            <span class="stat-label">能力标签</span>
+          </li>
+          <li class="stat reveal">
+            <span class="stat-num" data-count-to="8" data-prefix="+">0</span>
+            <span class="stat-label">时区偏移</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 結：结语与联系 ===== -->
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <p class="section-label" aria-hidden="true">結</p>
+      <div class="section-body">
+        <h2 class="section-title" id="contact-title">结语</h2>
+        <p class="closing">
+          写完这一页，茶就该凉了。<br>
+          若有事相商，邮件最快；若只是路过，也祝你今日安静。
+        </p>
+        <p class="closing-actions">
+          <a class="btn" href="mailto:csgdnrxg@163.com">写信给 ok-lzr</a>
+          <a class="btn btn-ghost" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">看看代码</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p class="footer-copy">© 2026 ok-lzr · 湖南省长沙市</p>
+      <p class="footer-note">纯原生 HTML / CSS / JavaScript · 无外部依赖</p>
+    </div>
+  </footer>
+
+  <!-- 复制成功提示（由 JS 控制显隐） -->
+  <p class="toast" id="toast" role="status" aria-live="polite"></p>
+</body>
+</html>

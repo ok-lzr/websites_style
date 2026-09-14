@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>湘江晚报 · ok-lzr 个人号外</title>
+<meta name="description" content="复古报纸风格个人主页 —— ok-lzr，湖南省长沙市，码上生活。">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<!-- ===== 报头 / 顶栏：报头大字、刊期、昼夜切换 ===== -->
+<header class="masthead" id="top">
+  <div class="masthead__topline">
+    <span class="masthead__edition">湘江晚报 · 个人号外</span>
+    <span class="masthead__date" id="masthead-date">民国风 · 数字版</span>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">
+      <span id="theme-toggle-text">切换夜刊</span>
+    </button>
+  </div>
+
+  <h1 class="masthead__title">码上生活</h1>
+
+  <p class="masthead__sub">
+    第 <span class="num" id="issue-no">001</span> 期 ·
+    <span id="masthead-weekday">星期一</span> ·
+    定价：一行代码
+  </p>
+
+  <p class="masthead__rule" aria-hidden="true">❦ ❦ ❦</p>
+
+  <!-- 站点导航：点击平滑滚动到对应栏目 -->
+  <nav class="nav" id="site-nav" aria-label="栏目导航">
+    <a class="nav__link" href="#profile">人物</a>
+    <a class="nav__link" href="#skills">专长</a>
+    <a class="nav__link" href="#works">作品</a>
+    <a class="nav__link" href="#stats">数据</a>
+    <a class="nav__link" href="#contact">联络</a>
+  </nav>
+</header>
+
+<main class="paper">
+
+  <!-- ===== 头条：姓名、一句话简介、能力标签、打字机 ===== -->
+  <section class="section section--lead" id="profile" aria-labelledby="profile-title">
+    <p class="kicker">头版头条 · 本期人物</p>
+    <h2 class="headline" id="profile-title">
+      ok-lzr <span class="headline__sep">/</span>
+      <span class="headline__type" id="typewriter">码上生活</span><span class="caret" aria-hidden="true"></span>
+    </h2>
+
+    <div class="columns">
+      <p class="lead-text">
+        <span class="dropcap">本</span>报讯 —— 一名常驻湖南省长沙市的独立开发者，
+        白天与接口和样式表周旋，夜里给空荡的终端写注释。
+        信奉「先把东西做出来，再把它做漂亮」，
+        偏爱原生技术、干脆的交互，以及一切加载得足够快的页面。
+      </p>
+      <p class="lead-text lead-text--muted">
+        本期号外收录其近年的手艺、作品与联络方式。
+        若阁下对其中任何一条感兴趣，页面末尾备有直通电报线（邮箱与 QQ），
+        来信必复，回信风格同样复古。
+      </p>
+    </div>
+
+    <ul class="tags" aria-label="能力标签">
+      <li class="tag">前端工程</li>
+      <li class="tag">原生 JavaScript</li>
+      <li class="tag">响应式布局</li>
+      <li class="tag">数据可视化</li>
+    </ul>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ===== 专长版：技能条动画 ===== -->
+  <section class="section" id="skills" aria-labelledby="skills-title">
+    <h2 class="section__title" id="skills-title">第二版 · 专长录</h2>
+    <p class="section__note">以下数值由本报编辑部手工估测，仅供参考，不服来辩。</p>
+
+    <ul class="skills" id="skill-list">
+      <li class="skill">
+        <div class="skill__head">
+          <span class="skill__name">HTML / CSS 版式</span>
+          <span class="skill__value" data-target="92">0%</span>
+        </div>
+        <div class="skill__track"><span class="skill__bar" data-fill="92"></span></div>
+      </li>
+      <li class="skill">
+        <div class="skill__head">
+          <span class="skill__name">JavaScript 交互</span>
+          <span class="skill__value" data-target="88">0%</span>
+        </div>
+        <div class="skill__track"><span class="skill__bar" data-fill="88"></span></div>
+      </li>
+      <li class="skill">
+        <div class="skill__head">
+          <span class="skill__name">排版与审美</span>
+          <span class="skill__value" data-target="80">0%</span>
+        </div>
+        <div class="skill__track"><span class="skill__bar" data-fill="80"></span></div>
+      </li>
+      <li class="skill">
+        <div class="skill__head">
+          <span class="skill__name">数据整理与看板</span>
+          <span class="skill__value" data-target="75">0%</span>
+        </div>
+        <div class="skill__track"><span class="skill__bar" data-fill="75"></span></div>
+      </li>
+    </ul>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ===== 作品版：分类筛选 + 卡片 ===== -->
+  <section class="section" id="works" aria-labelledby="works-title">
+    <h2 class="section__title" id="works-title">第三版 · 作品陈列</h2>
+    <p class="section__note">点击下方的分类铅字，可筛出同类稿件。</p>
+
+    <div class="filter" id="work-filter" role="group" aria-label="作品分类筛选">
+      <button class="filter__btn is-active" type="button" data-filter="all">全部</button>
+      <button class="filter__btn" type="button" data-filter="web">网页</button>
+      <button class="filter__btn" type="button" data-filter="tool">工具</button>
+      <button class="filter__btn" type="button" data-filter="data">数据</button>
+    </div>
+
+    <ul class="works" id="work-list">
+      <li class="work" data-cat="web">
+        <h3 class="work__title">个人导航站</h3>
+        <p class="work__desc">把常用站点折成一张报纸首页，支持自定义分组与夜间模式，冷启动一屏即达。</p>
+        <p class="work__stack"><span>HTML</span><span>CSS</span><span>localStorage</span></p>
+      </li>
+      <li class="work" data-cat="data">
+        <h3 class="work__title">长沙天气看板</h3>
+        <p class="work__desc">抓取本地气象数据，用折线图与方格纸式排版展示七日走势，早晚各更新一次。</p>
+        <p class="work__stack"><span>JavaScript</span><span>Canvas</span><span>JSON</span></p>
+      </li>
+      <li class="work" data-cat="tool">
+        <h3 class="work__title">铅字排版器</h3>
+        <p class="work__desc">输入文字即可套用报头、分栏与花边，一键导出可打印的复古广告版面。</p>
+        <p class="work__stack"><span>CSS Grid</span><span>Print API</span></p>
+      </li>
+      <li class="work" data-cat="tool">
+        <h3 class="work__title">剪报收藏夹</h3>
+        <p class="work__desc">把零散链接剪成条目，自动去重、打标签，并按日期排成一份可检索的合订本。</p>
+        <p class="work__stack"><span>原生 JS</span><span>IndexedDB</span></p>
+      </li>
+      <li class="work" data-cat="web">
+        <h3 class="work__title">排字工坊</h3>
+        <p class="work__desc">在线试验字体、行距与栏宽组合的微型实验室，实时预览并给出可读性评分。</p>
+        <p class="work__stack"><span>CSS</span><span>Web Fonts</span></p>
+      </li>
+      <li class="work" data-cat="data">
+        <h3 class="work__title">作息年报</h3>
+        <p class="work__desc">统计一年的作息与提交记录，生成一份印刷厂风格的年度总结，页页皆是横线。</p>
+        <p class="work__stack"><span>Node.js</span><span>SVG</span></p>
+      </li>
+    </ul>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ===== 数据版：数字滚动 + 实时时钟 + 个人数据 ===== -->
+  <section class="section" id="stats" aria-labelledby="stats-title">
+    <h2 class="section__title" id="stats-title">第四版 · 数字与时辰</h2>
+
+    <div class="stats" id="stat-list">
+      <div class="stat">
+        <span class="stat__num" data-target="2026" data-suffix="">0</span>
+        <span class="stat__label">入行年份（自称）</span>
+      </div>
+      <div class="stat">
+        <span class="stat__num" data-target="6" data-suffix=" 件">0</span>
+        <span class="stat__label">本期公开作品</span>
+      </div>
+      <div class="stat">
+        <span class="stat__num" data-target="4" data-suffix=" 项">0</span>
+        <span class="stat__label">核心专长</span>
+      </div>
+      <div class="stat">
+        <span class="stat__num" data-target="100" data-suffix=" %">0</span>
+        <span class="stat__label">原生技术含量</span>
+      </div>
+    </div>
+
+    <!-- 长沙时间：由 JS 实时驱动 -->
+    <div class="clock" aria-live="polite">
+      <p class="clock__city">长沙时间 <span class="clock__zone">UTC+8</span></p>
+      <p class="clock__time" id="clock-time">--:--:--</p>
+      <p class="clock__date" id="clock-date">加载中……</p>
+      <p class="clock__period" id="clock-period">正在校准印刷机……</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ===== 联络版：个人数据，全部可点击 ===== -->
+  <section class="section" id="contact" aria-labelledby="contact-title">
+    <h2 class="section__title" id="contact-title">第五版 · 联络启事</h2>
+    <p class="section__note">以下条目均可点击，直接投递至本人信箱或电报线。</p>
+
+    <dl class="contact" id="contact-list">
+      <div class="contact__row">
+        <dt class="contact__key">GitHub</dt>
+        <dd class="contact__val">
+          <a href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+        </dd>
+      </div>
+      <div class="contact__row">
+        <dt class="contact__key">QQ</dt>
+        <dd class="contact__val">
+          <a href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+        </dd>
+      </div>
+      <div class="contact__row">
+        <dt class="contact__key">邮箱（主）</dt>
+        <dd class="contact__val">
+          <a href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+        </dd>
+      </div>
+      <div class="contact__row">
+        <dt class="contact__key">邮箱（备）</dt>
+        <dd class="contact__val">
+          <a href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+        </dd>
+      </div>
+      <div class="contact__row">
+        <dt class="contact__key">地点</dt>
+        <dd class="contact__val"><span class="contact__text">湖南省长沙市</span></dd>
+      </div>
+      <div class="contact__row">
+        <dt class="contact__key">时间</dt>
+        <dd class="contact__val">
+          <span class="contact__text" id="contact-clock">长沙时间加载中……</span>
+        </dd>
+      </div>
+    </dl>
+
+    <!-- 回到顶部：便捷交互 -->
+    <p class="to-top-wrap">
+      <button class="to-top" id="to-top" type="button">↑ 回到报头</button>
+    </p>
+  </section>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="footer">
+  <p class="footer__line" aria-hidden="true">════════════════════════</p>
+  <p class="footer__text">© 2026 ok-lzr · 湖南省长沙市 · 湘江晚报个人号外</p>
+  <p class="footer__text footer__text--small">本版纯手工排印，使用原生 HTML / CSS / JavaScript，未借用任何外来铅字。</p>
+</footer>
+
+</body>
+</html>

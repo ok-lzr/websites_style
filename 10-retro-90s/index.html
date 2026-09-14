@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ok-lzr / 码上生活 ★ 银河紫个人主页</title>
+  <meta name="description" content="ok-lzr 的 90 年代复古个人主页：前端开发 / 数据可视化 / 自动化脚本，坐标湖南省长沙市。">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- ===== 背景层：银河紫渐变 + 平铺星点 + 扫描线（纯装饰，JS/CSS 生成） ===== -->
+  <div class="bg-layer" aria-hidden="true">
+    <div class="bg-tile"></div>
+    <div class="bg-noise"></div>
+    <div class="bg-scanlines"></div>
+    <div class="star-field" id="starField"></div>
+  </div>
+
+  <!-- ===== 站点头部：复古徽标 + 跑马灯标语 + 主站导航 ===== -->
+  <header class="site-header" id="siteHeader">
+    <div class="wrap">
+      <div class="masthead">
+        <a class="brand" href="#hero">
+          <span class="brand-badge" aria-hidden="true">★</span>
+          <span class="brand-text">OK-LZR</span>
+          <span class="brand-sub">的个人主页</span>
+        </a>
+
+        <div class="masthead-side">
+          <p class="visit-badge">
+            <span aria-hidden="true">👁</span>
+            第 <span class="badge-num" id="hitCounter">000000</span> 位访客
+          </p>
+          <p class="best-view">
+            <span class="blink" aria-hidden="true">●</span>
+            最佳浏览：800×600 · IE4.0 以上
+          </p>
+        </div>
+      </div>
+
+      <!-- 跑马灯感标语条（视觉上的 marquee） -->
+      <div class="marquee" role="marquee" aria-label="站点公告">
+        <div class="marquee-track">
+          <p class="marquee-text">
+            ★★★ 欢迎光临 ok-lzr 的小站 ★★★ 本站已加入「银河紫」网页联盟 ★★★ 留言请点击下方数据区 ★★★ 长沙时间实时更新 ★★★ 感谢每一位路过的朋友 ★★★
+          </p>
+          <p class="marquee-text" aria-hidden="true">
+            ★★★ 欢迎光临 ok-lzr 的小站 ★★★ 本站已加入「银河紫」网页联盟 ★★★ 留言请点击下方数据区 ★★★ 长沙时间实时更新 ★★★ 感谢每一位路过的朋友 ★★★
+          </p>
+        </div>
+      </div>
+
+      <nav class="site-nav" aria-label="主导航">
+        <ul class="nav-list" id="navList">
+          <li><a class="nav-link" href="#about">关于我</a></li>
+          <li><a class="nav-link" href="#skills">技能条</a></li>
+          <li><a class="nav-link" href="#projects">作品仓库</a></li>
+          <li><a class="nav-link" href="#data">数据区</a></li>
+          <li><a class="nav-link" href="#guestbook">计数器</a></li>
+        </ul>
+        <div class="nav-tools">
+          <button class="retro-btn" id="themeToggle" type="button" aria-pressed="true">
+            <span class="retro-btn-icon" id="themeIcon" aria-hidden="true">🌙</span>
+            <span id="themeText">夜间模式</span>
+          </button>
+        </div>
+      </nav>
+    </div>
+    <!-- 黄黑施工条纹：90 年代网页的经典分隔 -->
+    <div class="construction" aria-hidden="true"></div>
+  </header>
+
+  <main>
+    <!-- ===== 首屏：姓名 / 一句话简介 / 能力标签 / 实时时钟 ===== -->
+    <section class="hero" id="hero" aria-labelledby="heroTitle">
+      <div class="wrap hero-grid">
+        <div class="hero-main">
+          <p class="hero-kicker"><span class="blink">▶</span> now loading ... 请稍候</p>
+          <h1 class="hero-title" id="heroTitle">
+            <span class="grad">ok-lzr</span>
+            <span class="hero-slash">/</span>
+            <span class="grad-2">码上生活</span>
+          </h1>
+          <p class="hero-lead">
+            白天写界面、晚上调脚本的全栈爱好者：喜欢把杂乱数据整理成一眼看得懂的画面，
+            也喜欢把重复劳动交给自动化流程。
+          </p>
+          <ul class="tag-list" aria-label="能力标签">
+            <li class="tag">前端开发</li>
+            <li class="tag">数据可视化</li>
+            <li class="tag">自动化脚本</li>
+            <li class="tag">界面动效</li>
+          </ul>
+          <p class="hero-actions">
+            <a class="retro-btn big" href="#projects">进入作品仓库</a>
+            <a class="retro-btn big ghost" href="#data">查看个人数据</a>
+          </p>
+        </div>
+
+        <aside class="hero-panel" aria-label="长沙时间与站点状态">
+          <p class="panel-title">长沙时间 / UTC+8</p>
+          <time class="clock" id="clockTime" datetime="" aria-live="off">--:--:--</time>
+          <p class="clock-date" id="clockDate">加载中…</p>
+          <div class="panel-split" aria-hidden="true"></div>
+          <ul class="panel-meta">
+            <li>时段判定：<strong id="periodText">--</strong></li>
+            <li>主题：<strong id="themeBadge">夜间</strong></li>
+            <li>基线：2026-09-14 22:07</li>
+          </ul>
+          <p class="panel-globe" aria-hidden="true">🌐</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===== 关于我 + 技能进度条 ===== -->
+    <section class="section" id="about" aria-labelledby="aboutTitle">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 class="section-title" id="aboutTitle">关于我</h2>
+          <span class="section-deco" aria-hidden="true">≡</span>
+        </div>
+        <div class="about-grid">
+          <div class="window">
+            <p class="window-bar"><span aria-hidden="true">▣</span> about_me.txt <span class="window-x" aria-hidden="true">✕</span></p>
+            <div class="window-body">
+              <p>
+                我是 <strong class="hl">ok-lzr</strong>，坐标湖南省长沙市。日常把想法拆成页面、把页面拆成组件，
+                再用脚本把重复流程自动化。
+              </p>
+              <p>
+                相信「像素级还原」与「能跑就行」之间有一条可以走的路，
+                喜欢复古网页那种把心情直接摊在页面上的坦率。
+              </p>
+              <p class="mini-note"><span class="blink" aria-hidden="true">✎</span> 本站为纯手写 HTML / CSS / JS，无任何外部依赖。</p>
+            </div>
+          </div>
+          <div class="window">
+            <p class="window-bar"><span aria-hidden="true">▣</span> favorites.ini <span class="window-x" aria-hidden="true">✕</span></p>
+            <div class="window-body">
+              <ul class="plain-list">
+                <li><span aria-hidden="true">✚</span> 工具偏好：Vite / Python / SQLite</li>
+                <li><span aria-hidden="true">✚</span> 桌面爱好：老式 CRT 显示器与像素字体</li>
+                <li><span aria-hidden="true">✚</span> 城市日常：湘江边骑行、南门口吃粉</li>
+                <li><span aria-hidden="true">✚</span> 正在研究：可视化叙事与动效性能</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 技能进度条：滚动进入视口后逐条动画 ===== -->
+    <section class="section" id="skills" aria-labelledby="skillsTitle">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 class="section-title" id="skillsTitle">技能条</h2>
+          <span class="section-deco" aria-hidden="true">▮▮▮</span>
+        </div>
+        <ul class="skill-list" id="skillList">
+          <li class="skill" data-skill="HTML / CSS" data-value="92">
+            <p class="skill-head"><span class="skill-name">HTML / CSS</span><span class="skill-val">0%</span></p>
+            <div class="bar"><span class="bar-fill"></span></div>
+          </li>
+          <li class="skill" data-skill="JavaScript" data-value="86">
+            <p class="skill-head"><span class="skill-name">JavaScript</span><span class="skill-val">0%</span></p>
+            <div class="bar"><span class="bar-fill"></span></div>
+          </li>
+          <li class="skill" data-skill="数据可视化" data-value="78">
+            <p class="skill-head"><span class="skill-name">数据可视化</span><span class="skill-val">0%</span></p>
+            <div class="bar"><span class="bar-fill"></span></div>
+          </li>
+          <li class="skill" data-skill="自动化脚本" data-value="81">
+            <p class="skill-head"><span class="skill-name">自动化脚本</span><span class="skill-val">0%</span></p>
+            <div class="bar"><span class="bar-fill"></span></div>
+          </li>
+          <li class="skill" data-skill="界面动效" data-value="74">
+            <p class="skill-head"><span class="skill-name">界面动效</span><span class="skill-val">0%</span></p>
+            <div class="bar"><span class="bar-fill"></span></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 作品仓库：可按技术栈筛选，卡片滚动进入动画 ===== -->
+    <section class="section" id="projects" aria-labelledby="projectsTitle">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 class="section-title" id="projectsTitle">作品仓库</h2>
+          <span class="section-deco" aria-hidden="true">▤</span>
+        </div>
+
+        <div class="filter-bar" role="group" aria-label="按技术栈筛选作品">
+          <button class="filter-btn is-active" type="button" data-filter="all">全部作品</button>
+          <button class="filter-btn" type="button" data-filter="html">HTML/CSS</button>
+          <button class="filter-btn" type="button" data-filter="js">JavaScript</button>
+          <button class="filter-btn" type="button" data-filter="python">Python</button>
+          <button class="filter-btn" type="button" data-filter="data">数据可视化</button>
+        </div>
+
+        <p class="filter-note">当前显示 <strong id="projectCount">6</strong> / 6 个项目</p>
+
+        <ul class="project-grid" id="projectGrid">
+          <li class="project reveal" data-tags="html js">
+            <p class="project-top"><span class="project-icon" aria-hidden="true">🧭</span><span class="project-year">2026</span></p>
+            <h3 class="project-name">个人导航站</h3>
+            <p class="project-desc">把常用站点、工具箱与书签整理成一页式导航，支持本地收藏与快捷搜索。</p>
+            <ul class="project-tags">
+              <li>HTML</li><li>CSS</li><li>JavaScript</li>
+            </ul>
+          </li>
+          <li class="project reveal" data-tags="js data">
+            <p class="project-top"><span class="project-icon" aria-hidden="true">🌦</span><span class="project-year">2026</span></p>
+            <h3 class="project-name">长沙天气看板</h3>
+            <p class="project-desc">抓取本地气象数据，用图表展示一周温湿度与空气质量走势，支持夜间配色。</p>
+            <ul class="project-tags">
+              <li>JavaScript</li><li>数据可视化</li>
+            </ul>
+          </li>
+          <li class="project reveal" data-tags="python">
+            <p class="project-top"><span class="project-icon" aria-hidden="true">🗂</span><span class="project-year">2025</span></p>
+            <h3 class="project-name">桌面文件整理器</h3>
+            <p class="project-desc">按扩展名与修改时间自动归档桌面文件，附干跑模式与操作日志，误删可回滚。</p>
+            <ul class="project-tags">
+              <li>Python</li><li>自动化</li>
+            </ul>
+          </li>
+          <li class="project reveal" data-tags="js html">
+            <p class="project-top"><span class="project-icon" aria-hidden="true">🕹</span><span class="project-year">2025</span></p>
+            <h3 class="project-name">像素时钟小挂件</h3>
+            <p class="project-desc">可嵌入任意网页的复古像素时钟，含整点提示音与番茄钟计时两种模式。</p>
+            <ul class="project-tags">
+              <li>JavaScript</li><li>CSS 动画</li>
+            </ul>
+          </li>
+          <li class="project reveal" data-tags="python data">
+            <p class="project-top"><span class="project-icon" aria-hidden="true">📊</span><span class="project-year">2025</span></p>
+            <h3 class="project-name">阅读统计仪表盘</h3>
+            <p class="project-desc">汇总每月读书笔记，生成阅读量、主题分布与连续打卡天数的可视化报告。</p>
+            <ul class="project-tags">
+              <li>Python</li><li>数据可视化</li>
+            </ul>
+          </li>
+          <li class="project reveal" data-tags="html js">
+            <p class="project-top"><span class="project-icon" aria-hidden="true">💾</span><span class="project-year">2024</span></p>
+            <h3 class="project-name">复古留言板主题</h3>
+            <p class="project-desc">为静态博客写的 90 年代主题：访客计数器、跑马灯横幅与荧光下划线链接。</p>
+            <ul class="project-tags">
+              <li>HTML</li><li>CSS</li><li>JavaScript</li>
+            </ul>
+          </li>
+        </ul>
+        <p class="empty-tip" id="emptyTip" hidden>该分类下暂时没有作品，换一个筛选试试。</p>
+      </div>
+    </section>
+
+    <!-- ===== 数据区：个人数据逐项可点击 + 长沙实时时钟 ===== -->
+    <section class="section" id="data" aria-labelledby="dataTitle">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 class="section-title" id="dataTitle">个人数据区</h2>
+          <span class="section-deco" aria-hidden="true">⌘</span>
+        </div>
+
+        <div class="data-grid">
+          <div class="window data-window">
+            <p class="window-bar"><span aria-hidden="true">▣</span> contact.dat <span class="window-x" aria-hidden="true">✕</span></p>
+            <div class="window-body">
+              <dl class="data-list">
+                <div class="data-row">
+                  <dt><span class="data-icon" aria-hidden="true">🐙</span>GitHub</dt>
+                  <dd><a class="retro-link" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a></dd>
+                </div>
+                <div class="data-row">
+                  <dt><span class="data-icon" aria-hidden="true">🐧</span>QQ</dt>
+                  <dd><a class="retro-link" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a></dd>
+                </div>
+                <div class="data-row">
+                  <dt><span class="data-icon" aria-hidden="true">✉</span>邮箱 1</dt>
+                  <dd><a class="retro-link" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a></dd>
+                </div>
+                <div class="data-row">
+                  <dt><span class="data-icon" aria-hidden="true">✉</span>邮箱 2</dt>
+                  <dd><a class="retro-link" href="mailto:3866477796@qq.com">3866477796@qq.com</a></dd>
+                </div>
+                <div class="data-row">
+                  <dt><span class="data-icon" aria-hidden="true">📍</span>地点</dt>
+                  <dd><span class="data-plain">湖南省长沙市</span></dd>
+                </div>
+                <div class="data-row">
+                  <dt><span class="data-icon" aria-hidden="true">🕒</span>长沙时间</dt>
+                  <dd>
+                    <time class="data-clock" id="dataClock" datetime="">--</time>
+                  </dd>
+                </div>
+              </dl>
+              <p class="mini-note">
+                <span aria-hidden="true">※</span> 时钟跟随系统实时更新；昼夜主题的参考基线为 2026 年 9 月 14 日（星期一）22:07（UTC+8），属于夜间时段。
+              </p>
+            </div>
+          </div>
+
+          <div class="data-side">
+            <div class="stat-card">
+              <p class="stat-num" data-count="1268" id="statVisits">0</p>
+              <p class="stat-label">累计访问（本地记录）</p>
+            </div>
+            <div class="stat-card">
+              <p class="stat-num" data-count="42" id="statProjects">0</p>
+              <p class="stat-label">写过的练手项目</p>
+            </div>
+            <div class="stat-card">
+              <p class="stat-num" data-count="7" id="statYears">0</p>
+              <p class="stat-label">敲代码的年头</p>
+            </div>
+            <div class="stat-card wide">
+              <p class="stat-label">在线状态</p>
+              <p class="stat-state"><span class="blink" aria-hidden="true">●</span> 随时欢迎邮件与 QQ 留言</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 访客计数器 / 复古徽章区 ===== -->
+    <section class="section" id="guestbook" aria-labelledby="counterTitle">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 class="section-title" id="counterTitle">访客计数器</h2>
+          <span class="section-deco" aria-hidden="true">№</span>
+        </div>
+
+        <div class="counter-wrap">
+          <p class="counter-label">您是本页面第</p>
+          <div class="odometer" id="odometer" aria-hidden="true"></div>
+          <p class="counter-label">位访客 · 数据保存在本机浏览器</p>
+          <p class="visitor-line">
+            最后访问：<time id="lastVisit" datetime="">本次为首次访问</time>
+          </p>
+
+          <ul class="badge-row">
+            <li class="web-badge">银河紫联盟</li>
+            <li class="web-badge">HTML 4.01</li>
+            <li class="web-badge">无外部依赖</li>
+            <li class="web-badge">响应式</li>
+            <li class="web-badge">Made in 长沙</li>
+          </ul>
+          <p class="counter-actions">
+            <button class="retro-btn" id="signBtn" type="button">签个到 +1</button>
+            <button class="retro-btn ghost" id="toTop" type="button">回到顶部 ↑</button>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="site-footer">
+    <div class="construction" aria-hidden="true"></div>
+    <div class="wrap footer-inner">
+      <p class="footer-main">© 2026 ok-lzr · 湖南省长沙市</p>
+      <p class="footer-sub">
+        手写 HTML + CSS + JavaScript ·
+        <a class="retro-link" href="mailto:csgdnrxg@163.com">写信给我</a> ·
+        <a class="retro-link" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </p>
+      <p class="footer-sub">本站文字与像素均由个人维护，感谢 90 年代留下的审美。</p>
+    </div>
+  </footer>
+</body>
+</html>

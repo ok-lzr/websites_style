@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ok-lzr / 码上生活 · 霓虹网格街</title>
+<meta name="description" content="ok-lzr 的个人主页 —— 霓虹网格街风格，夜幕城市霓虹与地面反射。">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<!-- ===== 背景装饰层：星点 / 霓虹光斑 / 透视网格地面 ===== -->
+<div class="backdrop" aria-hidden="true">
+  <div class="stars"></div>
+  <div class="blob blob-a"></div>
+  <div class="blob blob-b"></div>
+  <div class="blob blob-c"></div>
+  <div class="sun-grid">
+    <div class="sun"></div>
+    <div class="grid-floor"></div>
+  </div>
+  <div class="scanlines"></div>
+</div>
+
+<!-- ===== 鼠标跟随霓虹光晕 ===== -->
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+<!-- ===== 顶部导航 ===== -->
+<header class="site-header" id="siteHeader">
+  <div class="shell header-inner">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true">◤</span>
+      <span class="brand-text">ok-lzr<em>/ 码上生活</em></span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="展开导航菜单">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+
+    <nav class="main-nav" id="mainNav" aria-label="主导航">
+      <ul>
+        <li><a href="#about">关于</a></li>
+        <li><a href="#skills">技能</a></li>
+        <li><a href="#works">作品</a></li>
+        <li><a href="#contact">联络</a></li>
+      </ul>
+      <!-- 昼夜主题切换 -->
+      <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="切换昼间主题">
+        <span class="theme-icon">🌙</span>
+        <span class="theme-label">夜行模式</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== 首屏：霓虹招牌姓名 + 简介 ===== -->
+  <section class="hero shell" aria-labelledby="heroTitle">
+    <p class="hero-kicker">// 霓虹网格街 · NEON GRID STREET</p>
+
+    <h1 class="hero-title" id="heroTitle">
+      <span class="neon-line" data-text="ok-lzr">ok-lzr</span>
+      <span class="neon-sub" data-text="码上生活">码上生活</span>
+    </h1>
+
+    <p class="hero-desc">
+      在代码与夜色之间搭一条街 —— <span class="typewriter" id="typewriter"></span><span class="caret" aria-hidden="true"></span>
+    </p>
+
+    <ul class="tag-row" aria-label="能力标签">
+      <li class="tag">前端开发</li>
+      <li class="tag">静态站点</li>
+      <li class="tag">数据看板</li>
+      <li class="tag">UI 动效</li>
+    </ul>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#works">看作品 ↓</a>
+      <a class="btn btn-ghost" href="#contact">找联络 →</a>
+    </div>
+
+    <!-- 首屏实时时钟 -->
+    <div class="hero-clock" aria-label="长沙实时时间">
+      <span class="clock-label">长沙时间</span>
+      <span class="clock-date" id="clockDate">----年--月--日 星期-</span>
+      <span class="clock-time" id="clockTime">--:--:--</span>
+      <span class="clock-zone" id="clockZone">UTC+8 · 昼</span>
+    </div>
+  </section>
+
+  <!-- ===== 关于我 ===== -->
+  <section class="panel shell" id="about" aria-labelledby="aboutTitle">
+    <header class="panel-head">
+      <h2 class="panel-title" id="aboutTitle">关于我</h2>
+      <p class="panel-note">ABOUT / 街道档案</p>
+    </header>
+
+    <div class="about-grid">
+      <article class="card about-card reveal">
+        <h3>一句话简介</h3>
+        <p>
+          我是 <strong>ok-lzr</strong>，一个喜欢把界面做亮、把交互做顺的个人开发者。
+          白天写逻辑，晚上调霓虹 —— 偏爱纯原生技术栈，追求打开即用的轻量页面。
+        </p>
+      </article>
+
+      <article class="card about-card reveal">
+        <h3>我的坐标</h3>
+        <p>常驻湖南省长沙市，习惯在夜里写代码，也在夜里看城市的灯。</p>
+        <ul class="mini-list">
+          <li><span aria-hidden="true">◆</span> 关注点：前端工程 / 数据可视化 / 动效</li>
+          <li><span aria-hidden="true">◆</span> 偏好：零依赖、可读性优先、移动端先想</li>
+          <li><span aria-hidden="true">◆</span> 信条：先把小站做上线，再谈大重构</li>
+        </ul>
+      </article>
+
+      <!-- 数字滚动统计 -->
+      <article class="card about-card stats-card reveal">
+        <h3>街灯统计</h3>
+        <ul class="stats">
+          <li class="stat">
+            <span class="stat-num" data-count="6" data-suffix="">0</span>
+            <span class="stat-name">在维护项目</span>
+          </li>
+          <li class="stat">
+            <span class="stat-num" data-count="1200" data-suffix="+">0</span>
+            <span class="stat-name">累计提交</span>
+          </li>
+          <li class="stat">
+            <span class="stat-num" data-count="24" data-suffix="h">0</span>
+            <span class="stat-name">夜行时长</span>
+          </li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== 技能条 ===== -->
+  <section class="panel shell" id="skills" aria-labelledby="skillsTitle">
+    <header class="panel-head">
+      <h2 class="panel-title" id="skillsTitle">技能霓虹</h2>
+      <p class="panel-note">SKILLS / 亮起街招</p>
+    </header>
+
+    <ul class="skill-list">
+      <li class="skill reveal" data-level="92">
+        <div class="skill-top"><span class="skill-name">HTML / CSS</span><span class="skill-val">92%</span></div>
+        <div class="skill-track"><span class="skill-bar"></span></div>
+      </li>
+      <li class="skill reveal" data-level="86">
+        <div class="skill-top"><span class="skill-name">JavaScript</span><span class="skill-val">86%</span></div>
+        <div class="skill-track"><span class="skill-bar"></span></div>
+      </li>
+      <li class="skill reveal" data-level="78">
+        <div class="skill-top"><span class="skill-name">响应式布局</span><span class="skill-val">78%</span></div>
+        <div class="skill-track"><span class="skill-bar"></span></div>
+      </li>
+      <li class="skill reveal" data-level="70">
+        <div class="skill-top"><span class="skill-name">数据可视化</span><span class="skill-val">70%</span></div>
+        <div class="skill-track"><span class="skill-bar"></span></div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== 作品列表（带筛选） ===== -->
+  <section class="panel shell" id="works" aria-labelledby="worksTitle">
+    <header class="panel-head">
+      <h2 class="panel-title" id="worksTitle">作品街铺</h2>
+      <p class="panel-note">WORKS / 沿街招牌</p>
+    </header>
+
+    <!-- 标签页筛选 -->
+    <div class="filter-bar" role="tablist" aria-label="作品筛选">
+      <button class="filter-btn is-active" role="tab" aria-selected="true" data-filter="all" type="button">全部</button>
+      <button class="filter-btn" role="tab" aria-selected="false" data-filter="web" type="button">网页</button>
+      <button class="filter-btn" role="tab" aria-selected="false" data-filter="data" type="button">数据</button>
+      <button class="filter-btn" role="tab" aria-selected="false" data-filter="tool" type="button">工具</button>
+    </div>
+
+    <ul class="work-grid" id="workGrid">
+      <li class="card work-card reveal" data-cat="web">
+        <h3 class="work-title">霓虹网格个人主页</h3>
+        <p class="work-desc">你正在看的这个站点：纯原生三件套，夜幕城市背景与地面反射光带。</p>
+        <ul class="chip-row">
+          <li class="chip">HTML</li><li class="chip">CSS</li><li class="chip">JS</li>
+        </ul>
+      </li>
+      <li class="card work-card reveal" data-cat="tool">
+        <h3 class="work-title">个人导航站</h3>
+        <p class="work-desc">把常用站点收进一页，支持分组、模糊搜索与深色配色，本地存储记住偏好。</p>
+        <ul class="chip-row">
+          <li class="chip">原生 JS</li><li class="chip">localStorage</li>
+        </ul>
+      </li>
+      <li class="card work-card reveal" data-cat="data">
+        <h3 class="work-title">长沙天气看板</h3>
+        <p class="work-desc">一屏查看气温、湿度与未来走势，图表为手写 SVG 绘制，无第三方库。</p>
+        <ul class="chip-row">
+          <li class="chip">SVG</li><li class="chip">Fetch</li><li class="chip">响应式</li>
+        </ul>
+      </li>
+      <li class="card work-card reveal" data-cat="web">
+        <h3 class="work-title">极简博客主题</h3>
+        <p class="work-desc">为静态博客写的轻量主题，重点是排版节奏与阅读对比度。</p>
+        <ul class="chip-row">
+          <li class="chip">CSS 变量</li><li class="chip">排版</li>
+        </ul>
+      </li>
+      <li class="card work-card reveal" data-cat="tool">
+        <h3 class="work-title">像素时钟小挂件</h3>
+        <p class="work-desc">一行代码嵌入的桌面时钟，支持世界时间切换与呼吸灯提示。</p>
+        <ul class="chip-row">
+          <li class="chip">Canvas</li><li class="chip">定时器</li>
+        </ul>
+      </li>
+      <li class="card work-card reveal" data-cat="data">
+        <h3 class="work-title">个人记账面板</h3>
+        <p class="work-desc">按周汇总收支，用色块热度看消费节奏，数据全部留在浏览器本地。</p>
+        <ul class="chip-row">
+          <li class="chip">IndexedDB</li><li class="chip">图表</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===== 联络信息 ===== -->
+  <section class="panel shell" id="contact" aria-labelledby="contactTitle">
+    <header class="panel-head">
+      <h2 class="panel-title" id="contactTitle">联络街口</h2>
+      <p class="panel-note">CONTACT / 敲窗找人</p>
+    </header>
+
+    <ul class="contact-grid">
+      <li class="card contact-card reveal">
+        <span class="contact-ico" aria-hidden="true">◆</span>
+        <h3>GitHub</h3>
+        <a href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+      </li>
+      <li class="card contact-card reveal">
+        <span class="contact-ico" aria-hidden="true">❖</span>
+        <h3>QQ</h3>
+        <a href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+      </li>
+      <li class="card contact-card reveal">
+        <span class="contact-ico" aria-hidden="true">✉</span>
+        <h3>邮箱 · 主</h3>
+        <a href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+      </li>
+      <li class="card contact-card reveal">
+        <span class="contact-ico" aria-hidden="true">✉</span>
+        <h3>邮箱 · 备</h3>
+        <a href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+      </li>
+      <li class="card contact-card reveal">
+        <span class="contact-ico" aria-hidden="true">◎</span>
+        <h3>地点</h3>
+        <span class="contact-text">湖南省长沙市</span>
+      </li>
+      <li class="card contact-card reveal">
+        <span class="contact-ico" aria-hidden="true">◷</span>
+        <h3>长沙时间</h3>
+        <span class="contact-text" id="contactClock">--:--:--</span>
+      </li>
+    </ul>
+  </section>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="site-footer">
+  <div class="shell footer-inner">
+    <p class="footer-main">© 2026 ok-lzr · 湖南省长沙市</p>
+    <p class="footer-sub">霓虹网格街 · 纯原生 HTML / CSS / JS 构建 · 无外部依赖</p>
+    <a class="to-top" href="#top">回到街口 ↑</a>
+  </div>
+</footer>
+
+</body>
+</html>

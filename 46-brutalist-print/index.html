@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="day">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ok-lzr / 码上生活 — 印刷粗野 · 个人主页</title>
+  <meta name="description" content="ok-lzr（码上生活）的个人主页：黑白 + 一抹荧光、网点半调、错位叠印的印刷粗野风格。">
+  <meta name="author" content="ok-lzr">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- 键盘用户的跳转入口 -->
+  <a class="skip-link" href="#main">跳到主内容</a>
+
+  <!-- 鼠标跟随的荧光方块（装饰，纯 JS 驱动位置） -->
+  <div class="cursor" aria-hidden="true"></div>
+
+  <!-- ===== 页头：报头 + 姓名 + 一句话简介 ===== -->
+  <header class="masthead" id="top">
+    <div class="wrap">
+      <p class="masthead__strip">
+        <span>印刷粗野 · BRUTALIST PRINT</span>
+        <span>第 046 期</span>
+        <span>印张 1 / 1</span>
+      </p>
+
+      <h1 class="name misreg" data-text="ok-lzr">ok-lzr</h1>
+
+      <p class="masthead__alias">
+        <span class="tagline-mark" aria-hidden="true">▚</span>
+        码上生活 / CODE IS A PRINTING PRESS
+      </p>
+
+      <p class="masthead__intro">
+        <span data-typing="白天写前端，夜里调像素：把想法钉在浏览器上，让它在 360px 的屏幕上也能站直。"></span>
+        <span class="caret" aria-hidden="true">▌</span>
+      </p>
+
+      <ul class="chips" aria-label="能力标签">
+        <li class="chip">前端工程</li>
+        <li class="chip">视觉还原</li>
+        <li class="chip">数据可视化</li>
+        <li class="chip">交互动效</li>
+      </ul>
+    </div>
+
+    <!-- 网点半调装饰块 -->
+    <div class="halftone" aria-hidden="true"></div>
+  </header>
+
+  <!-- ===== 页内导航（吸顶） ===== -->
+  <nav class="nav" aria-label="页内导航">
+    <div class="wrap nav__inner">
+      <span class="nav__brand">ok-lzr</span>
+      <ul class="nav__list">
+        <li><a class="nav__link" href="#about">01 简介</a></li>
+        <li><a class="nav__link" href="#work">02 作品</a></li>
+        <li><a class="nav__link" href="#contact">03 数据</a></li>
+        <li><a class="nav__link" href="#clock">04 时间</a></li>
+      </ul>
+      <button class="btn btn--theme" type="button" data-theme-toggle aria-pressed="false">
+        <span data-theme-label>切换夜间</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- 荧光跑马灯条：风格口号 -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>黑白 + 一抹荧光</span><b>◆</b>
+      <span>网点 · 半调 · 叠印</span><b>◆</b>
+      <span>错位 3 毫米</span><b>◆</b>
+      <span>大字压满版面</span><b>◆</b>
+      <span>黑白 + 一抹荧光</span><b>◆</b>
+      <span>网点 · 半调 · 叠印</span><b>◆</b>
+      <span>错位 3 毫米</span><b>◆</b>
+      <span>大字压满版面</span><b>◆</b>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <!-- ===== 01 简介与能力 ===== -->
+    <section class="sec" id="about" aria-labelledby="about-title">
+      <div class="wrap">
+        <h2 class="sec__title misreg" id="about-title" data-text="01 / 简介">01 / 简介</h2>
+
+        <div class="sec__grid">
+          <div class="panel reveal">
+            <h3 class="panel__title">我是谁</h3>
+            <p class="panel__text">
+              一个在湖南省长沙市写代码的人，代号 <strong>ok-lzr</strong>。喜欢把纸媒的粗暴感搬进浏览器：
+              高对比的黑白、一层荧光色、毫不客气的字号。做页面先问三件事——手机窄不窄、字看得清不清、键盘能不能走通。
+            </p>
+            <p class="panel__text">
+              日常在「还原设计稿」与「调一个像素」之间来回横跳，顺手把数据画成看得懂的图。
+            </p>
+          </div>
+
+          <div class="panel panel--bars reveal">
+            <h3 class="panel__title">能力刻度</h3>
+            <ul class="bars">
+              <li class="bar">
+                <span class="bar__name">HTML / CSS 版式</span>
+                <span class="bar__track"><i class="bar__fill" data-level="94"></i></span>
+                <span class="bar__num">94%</span>
+              </li>
+              <li class="bar">
+                <span class="bar__name">原生 JavaScript</span>
+                <span class="bar__track"><i class="bar__fill" data-level="88"></i></span>
+                <span class="bar__num">88%</span>
+              </li>
+              <li class="bar">
+                <span class="bar__name">响应式与无障碍</span>
+                <span class="bar__track"><i class="bar__fill" data-level="82"></i></span>
+                <span class="bar__num">82%</span>
+              </li>
+              <li class="bar">
+                <span class="bar__name">数据可视化</span>
+                <span class="bar__track"><i class="bar__fill" data-level="76"></i></span>
+                <span class="bar__num">76%</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 数字滚动统计 -->
+        <ul class="stats reveal" aria-label="个人统计">
+          <li class="stat">
+            <b class="stat__num" data-count="6">0</b>
+            <span class="stat__label">公开作品</span>
+          </li>
+          <li class="stat">
+            <b class="stat__num" data-count="7">0</b>
+            <span class="stat__label">码龄（年）</span>
+          </li>
+          <li class="stat">
+            <b class="stat__num" data-count="3650">0</b>
+            <span class="stat__label">代码提交</span>
+          </li>
+          <li class="stat">
+            <b class="stat__num" data-count="2048">0</b>
+            <span class="stat__label">咖啡（杯）</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 02 作品清单 ===== -->
+    <section class="sec sec--work" id="work" aria-labelledby="work-title">
+      <div class="wrap">
+        <h2 class="sec__title misreg" id="work-title" data-text="02 / 作品">02 / 作品</h2>
+        <p class="sec__lead">按分类撕页查看，共 6 件。点按钮即筛，不做多余的花活。</p>
+
+        <!-- 筛选按钮：切类名控制显隐 -->
+        <div class="filters" role="group" aria-label="作品分类筛选">
+          <button class="btn btn--filter is-on" type="button" data-filter="all" aria-pressed="true">全部</button>
+          <button class="btn btn--filter" type="button" data-filter="web" aria-pressed="false">网页</button>
+          <button class="btn btn--filter" type="button" data-filter="tool" aria-pressed="false">工具</button>
+          <button class="btn btn--filter" type="button" data-filter="lab" aria-pressed="false">实验</button>
+        </div>
+
+        <ul class="cards" data-cards>
+          <li class="card reveal" data-cat="web">
+            <p class="card__no">01</p>
+            <h3 class="card__title">个人导航站</h3>
+            <p class="card__desc">把每天要点的站点钉在一页里，数字键一键直达，收藏存在浏览器本地，断网也能打开。</p>
+            <ul class="stack" aria-label="技术栈">
+              <li>HTML</li><li>CSS</li><li>LocalStorage</li>
+            </ul>
+          </li>
+          <li class="card reveal" data-cat="web">
+            <p class="card__no">02</p>
+            <h3 class="card__title">长沙天气看板</h3>
+            <p class="card__desc">抓取开放气象接口，用大字与网点图呈现橘子洲头的晴雨、体感温度与一周走向。</p>
+            <ul class="stack" aria-label="技术栈">
+              <li>Fetch API</li><li>Canvas</li><li>可视化</li>
+            </ul>
+          </li>
+          <li class="card reveal" data-cat="lab">
+            <p class="card__no">03</p>
+            <h3 class="card__title">像素排版工坊</h3>
+            <p class="card__desc">网点密度、错位角度、荧光叠印三根滑杆，实时预览一张印刷粗野海报的成品样。</p>
+            <ul class="stack" aria-label="技术栈">
+              <li>CSS Grid</li><li>SVG</li><li>自定义属性</li>
+            </ul>
+          </li>
+          <li class="card reveal" data-cat="tool">
+            <p class="card__no">04</p>
+            <h3 class="card__title">命令行日记</h3>
+            <p class="card__desc">终端里敲完一天，自动生成静态页面并部署，支持标签归档与全文检索。</p>
+            <ul class="stack" aria-label="技术栈">
+              <li>Node.js</li><li>Markdown</li><li>CLI</li>
+            </ul>
+          </li>
+          <li class="card reveal" data-cat="tool">
+            <p class="card__no">05</p>
+            <h3 class="card__title">滚动数字组件</h3>
+            <p class="card__desc">数据大屏用的滚动计数器：千分位、小数位、减速曲线都能配，注册即用。</p>
+            <ul class="stack" aria-label="技术栈">
+              <li>Web Components</li><li>rAF</li><li>动画</li>
+            </ul>
+          </li>
+          <li class="card reveal" data-cat="lab">
+            <p class="card__no">06</p>
+            <h3 class="card__title">无障碍配色体检</h3>
+            <p class="card__desc">一键检查文字与背景对比度，给出 WCAG AA / AAA 结论，并推荐同色系的替代色。</p>
+            <ul class="stack" aria-label="技术栈">
+              <li>WCAG</li><li>Canvas</li><li>色彩计算</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 03 个人数据 ===== -->
+    <section class="sec sec--contact" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <h2 class="sec__title misreg" id="contact-title" data-text="03 / 数据">03 / 数据</h2>
+        <p class="sec__lead">逐项可点，点哪里是哪里，没有中间商。</p>
+
+        <ul class="contacts">
+          <li class="contact reveal">
+            <span class="contact__key">GitHub</span>
+            <a class="contact__val" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+          </li>
+          <li class="contact reveal">
+            <span class="contact__key">QQ</span>
+            <a class="contact__val" href="https://wpa.qq.com/msgrd?v=3&uin=386477796&site=qq&menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+          </li>
+          <li class="contact reveal">
+            <span class="contact__key">邮箱 01</span>
+            <a class="contact__val" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+          </li>
+          <li class="contact reveal">
+            <span class="contact__key">邮箱 02</span>
+            <a class="contact__val" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+          </li>
+          <li class="contact reveal">
+            <span class="contact__key">地点</span>
+            <a class="contact__val" href="#clock">湖南省长沙市</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 04 长沙时间 ===== -->
+    <section class="sec sec--clock" id="clock" aria-labelledby="clock-title">
+      <div class="wrap">
+        <h2 class="sec__title misreg" id="clock-title" data-text="04 / 时间">04 / 时间</h2>
+        <p class="sec__lead">长沙时间实时钟：由 <code>new Date()</code> 每秒刷新，时区固定 UTC+8。</p>
+
+        <div class="clock reveal">
+          <p class="clock__time" data-clock-time>--:--:--</p>
+          <div class="clock__meta">
+            <p class="clock__date" data-clock-date>正在校对……</p>
+            <p class="clock__week" data-clock-week>—</p>
+            <p class="clock__zone">UTC+8 · Asia/Shanghai · 湖南省长沙市</p>
+          </div>
+          <p class="clock__badge" data-period>判定中</p>
+        </div>
+
+        <p class="clock__ref" data-baseline>参考基线：载入中……</p>
+        <p class="clock__hint">
+          页面首次打开时会按当前小时自动选夜 / 昼配色，也可以随时用右上角的按钮手动覆盖。
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="foot">
+    <div class="wrap foot__inner">
+      <p class="foot__copy">© 2026 ok-lzr · 湖南省长沙市</p>
+      <p class="foot__note">印刷粗野 / BRUTALIST PRINT · 纯原生 HTML + CSS + JavaScript，零外部依赖</p>
+      <a class="foot__top" href="#top">▲ 回到报头</a>
+    </div>
+  </footer>
+</body>
+</html>

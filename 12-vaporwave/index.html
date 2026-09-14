@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ok-lzr 的个人主页 · 蒸汽波风格 · 长沙">
+  <title>ok-lzr ／ 码上生活 · 蒸汽波主页</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- ===== 复古扫描线与噪声覆盖层（纯装饰，不参与交互） ===== -->
+  <div class="crt-scanlines" aria-hidden="true"></div>
+  <div class="crt-vignette" aria-hidden="true"></div>
+
+  <!-- ===== 顶部导航 ===== -->
+  <header class="site-header">
+    <a class="brand" href="#hero">
+      <span class="brand__mark" aria-hidden="true">◆</span>
+      <span class="brand__text">ok-lzr<span class="brand__sub">／ 码上生活</span></span>
+    </a>
+
+    <nav class="nav" aria-label="页面导航">
+      <ul class="nav__list">
+        <li><a class="nav__link" href="#hero">首页 <span class="nav__kana" aria-hidden="true">ホーム</span></a></li>
+        <li><a class="nav__link" href="#about">关于 <span class="nav__kana" aria-hidden="true">アバウト</span></a></li>
+        <li><a class="nav__link" href="#works">作品 <span class="nav__kana" aria-hidden="true">ワークス</span></a></li>
+        <li><a class="nav__link" href="#data">数据 <span class="nav__kana" aria-hidden="true">データ</span></a></li>
+      </ul>
+    </nav>
+
+    <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">
+      <span class="theme-toggle__icon" aria-hidden="true">☾</span>
+      <span class="theme-toggle__label" id="themeLabel">夜行模式</span>
+    </button>
+  </header>
+
+  <main>
+    <!-- ===== 首屏：落日圆盘 + 透视网格地平线 ===== -->
+    <section class="hero" id="hero">
+      <div class="hero__scene" aria-hidden="true">
+        <div class="sun"></div>
+        <div class="sun__glow"></div>
+        <div class="grid" data-parallax="0.08"></div>
+        <div class="mountains">
+          <span class="mountain mountain--a"></span>
+          <span class="mountain mountain--b"></span>
+          <span class="mountain mountain--c"></span>
+        </div>
+      </div>
+
+      <div class="hero__content">
+        <p class="hero__kana" aria-hidden="true">ヴェイパーウェイブ ・ ドリーム</p>
+        <h1 class="hero__title">
+          <span class="glitch" data-text="ok-lzr">ok-lzr</span>
+        </h1>
+        <p class="hero__kana-sub" aria-hidden="true">コード ノ ウエ デ イキル</p>
+        <p class="hero__tagline">
+          一句话简介：<strong>在霓虹与像素之间写代码的人</strong>——把想法做成能跑起来的小站、小工具和小玩具。
+        </p>
+
+        <!-- 能力标签 -->
+        <ul class="chips" aria-label="能力标签">
+          <li class="chip">HTML / CSS 布局</li>
+          <li class="chip">JavaScript 原生开发</li>
+          <li class="chip">数据可视化看板</li>
+          <li class="chip">界面视觉与动效</li>
+        </ul>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#works">查看作品 ▸</a>
+          <a class="btn btn--ghost" href="#data">联系方式 ▸</a>
+        </div>
+
+        <!-- 打字机效果输出区（由 JS 逐字写入） -->
+        <p class="typer" aria-live="polite">
+          <span class="typer__prompt" aria-hidden="true">&gt;</span>
+          <span class="typer__text" id="typerText"></span><span class="typer__caret" aria-hidden="true"></span>
+        </p>
+      </div>
+
+      <div class="scroll-hint" aria-hidden="true">
+        <span>向下滚动</span>
+        <span class="scroll-hint__arrow">▼</span>
+      </div>
+    </section>
+
+    <!-- ===== 关于 ===== -->
+    <section class="section" id="about">
+      <header class="section__head reveal">
+        <p class="section__kana" aria-hidden="true">アバウト</p>
+        <h2 class="section__title">关于我</h2>
+        <p class="section__desc">一个常驻长沙、喜欢把界面做成 80 年代梦境的开发者。</p>
+      </header>
+
+      <div class="about">
+        <article class="panel reveal">
+          <h3 class="panel__title">◈ 现在做什么</h3>
+          <p>
+            白天写前端与脚本工具，晚上折腾个人项目：导航站、天气看板、像素小游戏。
+            偏爱原生技术栈，能不加依赖就不加依赖，追求"打开就能用"的轻量体验。
+          </p>
+          <p>
+            相信好的界面会说话：颜色、间距、动效都在传递情绪。这个站点本身就是一次
+            蒸汽波美学的实验——粉紫青渐变、落日圆盘、透视网格与日文假名装饰。
+          </p>
+        </article>
+
+        <article class="panel reveal">
+          <h3 class="panel__title">◈ 技能熟练度</h3>
+          <ul class="bars" aria-label="技能熟练度">
+            <li class="bar">
+              <span class="bar__label">HTML / CSS</span>
+              <span class="bar__track"><span class="bar__fill" data-value="92"></span></span>
+              <span class="bar__value" data-count="92">0%</span>
+            </li>
+            <li class="bar">
+              <span class="bar__label">JavaScript</span>
+              <span class="bar__track"><span class="bar__fill" data-value="86"></span></span>
+              <span class="bar__value" data-count="86">0%</span>
+            </li>
+            <li class="bar">
+              <span class="bar__label">界面动效</span>
+              <span class="bar__track"><span class="bar__fill" data-value="78"></span></span>
+              <span class="bar__value" data-count="78">0%</span>
+            </li>
+            <li class="bar">
+              <span class="bar__label">数据处理</span>
+              <span class="bar__track"><span class="bar__fill" data-value="70"></span></span>
+              <span class="bar__value" data-count="70">0%</span>
+            </li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 作品列表（带筛选交互） ===== -->
+    <section class="section" id="works">
+      <header class="section__head reveal">
+        <p class="section__kana" aria-hidden="true">ワークス</p>
+        <h2 class="section__title">作品清单</h2>
+        <p class="section__desc">点标签可筛选，共 5 个项目。</p>
+      </header>
+
+      <!-- 筛选按钮组（JS 绑定 data-filter） -->
+      <div class="filters reveal" role="tablist" aria-label="作品分类筛选">
+        <button class="filter is-active" type="button" data-filter="all" role="tab" aria-selected="true">全部</button>
+        <button class="filter" type="button" data-filter="web" role="tab" aria-selected="false">网页</button>
+        <button class="filter" type="button" data-filter="tool" role="tab" aria-selected="false">工具</button>
+        <button class="filter" type="button" data-filter="fun" role="tab" aria-selected="false">玩具</button>
+      </div>
+
+      <ul class="works" id="worksList">
+        <li class="work reveal" data-kind="web">
+          <div class="work__glow" aria-hidden="true"></div>
+          <h3 class="work__title">个人导航站</h3>
+          <p class="work__desc">把常用站点、书签与搜索入口收进一页，支持分组折叠与本地保存。</p>
+          <ul class="tags" aria-label="技术栈">
+            <li class="tag">HTML</li><li class="tag">CSS Grid</li><li class="tag">localStorage</li>
+          </ul>
+        </li>
+
+        <li class="work reveal" data-kind="tool">
+          <div class="work__glow" aria-hidden="true"></div>
+          <h3 class="work__title">长沙天气看板</h3>
+          <p class="work__desc">抓取本地天气数据，用卡片与折线展示温度、湿度与未来三天趋势。</p>
+          <ul class="tags" aria-label="技术栈">
+            <li class="tag">JavaScript</li><li class="tag">Canvas</li><li class="tag">接口缓存</li>
+          </ul>
+        </li>
+
+        <li class="work reveal" data-kind="tool">
+          <div class="work__glow" aria-hidden="true"></div>
+          <h3 class="work__title">像素番茄钟</h3>
+          <p class="work__desc">25 分钟专注计时器，配像素进度环与提示音，可统计每日专注时长。</p>
+          <ul class="tags" aria-label="技术栈">
+            <li class="tag">Web Audio</li><li class="tag">SVG</li><li class="tag">计时器</li>
+          </ul>
+        </li>
+
+        <li class="work reveal" data-kind="fun">
+          <div class="work__glow" aria-hidden="true"></div>
+          <h3 class="work__title">蒸汽波合成器</h3>
+          <p class="work__desc">纯前端振荡器玩具，拖拽旋钮即可拼出复古 pad 音色，可导出短音频。</p>
+          <ul class="tags" aria-label="技术栈">
+            <li class="tag">AudioContext</li><li class="tag">拖拽交互</li><li class="tag">CSS 变量</li>
+          </ul>
+        </li>
+
+        <li class="work reveal" data-kind="web">
+          <div class="work__glow" aria-hidden="true"></div>
+          <h3 class="work__title">静态博客生成脚本</h3>
+          <p class="work__desc">扫描 Markdown 目录，生成带目录树、代码高亮与暗色主题的静态站点。</p>
+          <ul class="tags" aria-label="技术栈">
+            <li class="tag">Node.js</li><li class="tag">Markdown</li><li class="tag">模板渲染</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== 个人数据区 ===== -->
+    <section class="section" id="data">
+      <header class="section__head reveal">
+        <p class="section__kana" aria-hidden="true">データ</p>
+        <h2 class="section__title">个人数据</h2>
+        <p class="section__desc">下面每一项都可以点击直达。</p>
+      </header>
+
+      <div class="data-grid">
+        <!-- 实时时钟卡片 -->
+        <article class="data-card data-card--clock reveal">
+          <h3 class="data-card__key">时间 · 长沙时间</h3>
+          <p class="clock">
+            <span class="clock__time" id="clockTime">--:--:--</span>
+          </p>
+          <p class="clock__date" id="clockDate">正在读取时间…</p>
+          <p class="clock__meta" id="clockMeta">—</p>
+        </article>
+
+        <a class="data-card reveal" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">
+          <h3 class="data-card__key">GitHub</h3>
+          <p class="data-card__value">github.com/ok-lzr</p>
+          <p class="data-card__hint">打开主页 ↗</p>
+        </a>
+
+        <a class="data-card reveal" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">
+          <h3 class="data-card__key">QQ</h3>
+          <p class="data-card__value">386477796</p>
+          <p class="data-card__hint">发起临时会话 ↗</p>
+        </a>
+
+        <a class="data-card reveal" href="mailto:csgdnrxg@163.com">
+          <h3 class="data-card__key">邮箱 · 163</h3>
+          <p class="data-card__value">csgdnrxg@163.com</p>
+          <p class="data-card__hint">写邮件 ✉</p>
+        </a>
+
+        <a class="data-card reveal" href="mailto:3866477796@qq.com">
+          <h3 class="data-card__key">邮箱 · QQ</h3>
+          <p class="data-card__value">3866477796@qq.com</p>
+          <p class="data-card__hint">写邮件 ✉</p>
+        </a>
+
+        <article class="data-card reveal">
+          <h3 class="data-card__key">地点</h3>
+          <p class="data-card__value">湖南省长沙市</p>
+          <p class="data-card__hint">UTC+8 · 中国标准时间</p>
+        </article>
+      </div>
+
+      <!-- 参考基线（来自网络查询的参考时刻，用于昼夜主题判断） -->
+      <p class="baseline reveal">
+        <span class="baseline__kana" aria-hidden="true">サンプル</span>
+        参考基线时刻：2026 年 9 月 14 日（星期一）22:07（UTC+8）· 用于判断夜间主题。
+      </p>
+    </section>
+  </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="site-footer">
+    <p class="site-footer__main">© 2026 ok-lzr · 湖南省长沙市</p>
+    <p class="site-footer__kana" aria-hidden="true">また ね ・ また あした</p>
+    <p class="site-footer__note">纯原生 HTML / CSS / JavaScript 构建 · 无任何外部依赖</p>
+  </footer>
+</body>
+</html>

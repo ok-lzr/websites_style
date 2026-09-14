@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ok-lzr / 码上生活 · 复古未来空间站</title>
+<meta name="description" content="ok-lzr 的个人主页 —— 70 年代太空时代风格的复古未来站点">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== 页面顶部：星野背景装饰（纯 CSS 绘制） ===== -->
+<div class="starfield" aria-hidden="true">
+  <span class="star star--a"></span>
+  <span class="star star--b"></span>
+  <span class="star star--c"></span>
+  <span class="star star--d"></span>
+  <span class="star star--e"></span>
+</div>
+
+<!-- ===== 顶栏：徽标 + 导航 ===== -->
+<header class="topbar">
+  <div class="shell topbar__inner">
+    <!-- NASA 风线条徽标 -->
+    <a class="badge" href="#top" aria-label="返回顶部">
+      <svg class="badge__mark" viewBox="0 0 64 64" role="img" aria-hidden="true">
+        <circle cx="32" cy="32" r="29" />
+        <ellipse cx="32" cy="32" rx="29" ry="11" transform="rotate(-24 32 32)" />
+        <path d="M20 40 L32 16 L44 40 Z" />
+        <circle cx="32" cy="32" r="4" />
+      </svg>
+      <span class="badge__text">
+        <b class="badge__name">ok-lzr</b>
+        <i class="badge__sub">码上生活 · ORBITAL DIVISION</i>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="主导航">
+      <ul class="nav__list">
+        <li><a class="nav__link" href="#about">简介</a></li>
+        <li><a class="nav__link" href="#works">作品</a></li>
+        <li><a class="nav__link" href="#skills">技能</a></li>
+        <li><a class="nav__link" href="#contact">联络</a></li>
+      </ul>
+      <button class="lamp" id="theme-toggle" type="button" aria-pressed="false">
+        <span class="lamp__icon" aria-hidden="true">☀</span>
+        <span class="lamp__label">昼间模式</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== 主体 ===== -->
+<main id="top">
+
+  <!-- ---- 首屏：圆角电视造型面板 ---- -->
+  <section class="hero shell" aria-labelledby="hero-title">
+    <div class="tv">
+      <div class="tv__screen">
+        <p class="tv__eyebrow">MISSION CONTROL · 1972→2026</p>
+        <h1 class="tv__title" id="hero-title">
+          <span class="tv__call">HELLO, EARTH.</span>
+          <span class="tv__name">ok-lzr / 码上生活</span>
+        </h1>
+        <p class="tv__lead" id="typer" data-lines="把代码写进轨道|用像素搭一座复古空间站|长沙的夜里，做点会发光的东西"></p>
+        <ul class="chips" aria-label="能力标签">
+          <li class="chip">前端工程</li>
+          <li class="chip">静态站点生成</li>
+          <li class="chip">数据可视化</li>
+          <li class="chip">交互设计</li>
+        </ul>
+        <div class="tv__actions">
+          <a class="btn btn--solid" href="#works">查看作品 ↓</a>
+          <a class="btn btn--ghost" href="#contact">发个信号</a>
+        </div>
+      </div>
+      <div class="tv__knobs" aria-hidden="true">
+        <span class="knob"></span>
+        <span class="knob"></span>
+        <span class="knob knob--small"></span>
+        <span class="vent"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---- 简介 + 实时时钟 ---- -->
+  <section class="shell panel" id="about" aria-labelledby="about-title">
+    <header class="panel__head">
+      <h2 class="panel__title" id="about-title"><span class="num">01</span> 宇航员档案</h2>
+      <p class="panel__note">CREW PROFILE</p>
+    </header>
+
+    <div class="panel__body two-col">
+      <div>
+        <p class="prose">
+          一个把页面当作老式仪表盘来做的开发者：喜欢米色塑料、橙色指针和圆角显像管，
+          也喜欢用原生 HTML / CSS / JavaScript 把这些念头真的跑起来。
+        </p>
+        <p class="prose">
+          目前常驻长沙，白天写界面，夜里调像素；相信好的交互不需要联网加载任何东西。
+        </p>
+        <ul class="readouts">
+          <li class="readout"><span class="readout__k">身份</span><span class="readout__v">个人开发者 / 前端</span></li>
+          <li class="readout"><span class="readout__k">状态</span><span class="readout__v"><i class="dot"></i>可接受新任务</span></li>
+          <li class="readout"><span class="readout__k">坐标</span><span class="readout__v">28.23°N, 112.94°E</span></li>
+        </ul>
+      </div>
+
+      <!-- 实时时钟仪表 -->
+      <aside class="clock" aria-labelledby="clock-title">
+        <h3 class="clock__title" id="clock-title">长沙时间</h3>
+        <p class="clock__zone">CHANGSHA · UTC+8</p>
+        <p class="clock__time" id="clock-time">--:--:--</p>
+        <p class="clock__date" id="clock-date">加载中…</p>
+        <p class="clock__day" id="clock-day">—</p>
+        <div class="clock__phase">
+          <span class="clock__phasedot" id="phase-dot" aria-hidden="true"></span>
+          <span class="clock__phasetext" id="phase-text">正在判断昼夜…</span>
+        </div>
+        <p class="clock__hint">基线参考：2026-09-14 星期一 22:07（UTC+8）</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ---- 作品列表 ---- -->
+  <section class="shell panel" id="works" aria-labelledby="works-title">
+    <header class="panel__head">
+      <h2 class="panel__title" id="works-title"><span class="num">02</span> 载荷清单</h2>
+      <p class="panel__note">PAYLOAD MANIFEST</p>
+    </header>
+
+    <div class="filters" role="tablist" aria-label="作品筛选">
+      <button class="filter is-active" type="button" role="tab" aria-selected="true" data-filter="all">全部</button>
+      <button class="filter" type="button" role="tab" aria-selected="false" data-filter="web">网页</button>
+      <button class="filter" type="button" role="tab" aria-selected="false" data-filter="tool">工具</button>
+      <button class="filter" type="button" role="tab" aria-selected="false" data-filter="data">数据</button>
+    </div>
+
+    <ul class="cards" id="cards">
+      <li class="card" data-kind="web">
+        <p class="card__no">A-01</p>
+        <h3 class="card__title">个人导航站</h3>
+        <p class="card__desc">自用的起始页，把常用站点收进一块复古控制台，支持键盘快速跳转。</p>
+        <ul class="tags"><li>HTML</li><li>CSS Grid</li><li>PWA</li></ul>
+      </li>
+      <li class="card" data-kind="data">
+        <p class="card__no">A-02</p>
+        <h3 class="card__title">长沙天气看板</h3>
+        <p class="card__desc">按小时绘制的温度曲线与湿度柱状图，米色底 + 橙色指针的老式仪表盘。</p>
+        <ul class="tags"><li>Canvas</li><li>Fetch</li><li>图表</li></ul>
+      </li>
+      <li class="card" data-kind="tool">
+        <p class="card__no">A-03</p>
+        <h3 class="card__title">像素图标工坊</h3>
+        <p class="card__desc">在网格上画 16×16 像素图标，导出 SVG 与 Base64，零依赖单文件工具。</p>
+        <ul class="tags"><li>SVG</li><li>Canvas</li><li>本地存储</li></ul>
+      </li>
+      <li class="card" data-kind="web">
+        <p class="card__no">A-04</p>
+        <h3 class="card__title">复古字体标本页</h3>
+        <p class="card__desc">可切换字号与字重的字体预览器，带字距标尺，用来挑正文用字。</p>
+        <ul class="tags"><li>CSS 变量</li><li>可变字体</li><li>无障碍</li></ul>
+      </li>
+      <li class="card" data-kind="tool">
+        <p class="card__no">A-05</p>
+        <h3 class="card__title">Markdown 速记台</h3>
+        <p class="card__desc">左写右看的分栏便签，支持表格与代码块高亮，离线可用。</p>
+        <ul class="tags"><li>正则</li><li>本地存储</li><li>离线</li></ul>
+      </li>
+      <li class="card" data-kind="data">
+        <p class="card__no">A-06</p>
+        <h3 class="card__title">地铁通勤热力图</h3>
+        <p class="card__desc">把一年的通勤记录压成格子热力图，看哪天出门最晚。</p>
+        <ul class="tags"><li>数据整理</li><li>SVG</li><li>动画</li></ul>
+      </li>
+    </ul>
+    <p class="empty" id="empty-tip" hidden>该分类下暂无载荷，请切换其他频道。</p>
+  </section>
+
+  <!-- ---- 技能条 ---- -->
+  <section class="shell panel" id="skills" aria-labelledby="skills-title">
+    <header class="panel__head">
+      <h2 class="panel__title" id="skills-title"><span class="num">03</span> 系统校准</h2>
+      <p class="panel__note">CALIBRATION</p>
+    </header>
+
+    <ul class="bars" id="bars">
+      <li class="bar" data-value="92">
+        <p class="bar__top"><span class="bar__name">HTML / 语义结构</span><span class="bar__val">92%</span></p>
+        <div class="bar__track"><span class="bar__fill"></span></div>
+      </li>
+      <li class="bar" data-value="88">
+        <p class="bar__top"><span class="bar__name">CSS / 响应式与动效</span><span class="bar__val">88%</span></p>
+        <div class="bar__track"><span class="bar__fill"></span></div>
+      </li>
+      <li class="bar" data-value="80">
+        <p class="bar__top"><span class="bar__name">JavaScript / 原生交互</span><span class="bar__val">80%</span></p>
+        <div class="bar__track"><span class="bar__fill"></span></div>
+      </li>
+      <li class="bar" data-value="74">
+        <p class="bar__top"><span class="bar__name">数据可视化</span><span class="bar__val">74%</span></p>
+        <div class="bar__track"><span class="bar__fill"></span></div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ---- 联络信息 ---- -->
+  <section class="shell panel" id="contact" aria-labelledby="contact-title">
+    <header class="panel__head">
+      <h2 class="panel__title" id="contact-title"><span class="num">04</span> 通讯频道</h2>
+      <p class="panel__note">COMMS CHANNEL</p>
+    </header>
+
+    <ul class="links">
+      <li class="link">
+        <a class="link__a" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">
+          <span class="link__icon" aria-hidden="true">◆</span>
+          <span class="link__body">
+            <span class="link__k">GitHub</span>
+            <span class="link__v">github.com/ok-lzr</span>
+          </span>
+          <span class="link__go" aria-hidden="true">↗</span>
+        </a>
+      </li>
+      <li class="link">
+        <a class="link__a" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">
+          <span class="link__icon" aria-hidden="true">✧</span>
+          <span class="link__body">
+            <span class="link__k">QQ</span>
+            <span class="link__v">386477796</span>
+          </span>
+          <span class="link__go" aria-hidden="true">↗</span>
+        </a>
+      </li>
+      <li class="link">
+        <a class="link__a" href="mailto:csgdnrxg@163.com">
+          <span class="link__icon" aria-hidden="true">✉</span>
+          <span class="link__body">
+            <span class="link__k">邮箱 · 主</span>
+            <span class="link__v">csgdnrxg@163.com</span>
+          </span>
+          <span class="link__go" aria-hidden="true">↗</span>
+        </a>
+      </li>
+      <li class="link">
+        <a class="link__a" href="mailto:3866477796@qq.com">
+          <span class="link__icon" aria-hidden="true">✉</span>
+          <span class="link__body">
+            <span class="link__k">邮箱 · 备</span>
+            <span class="link__v">3866477796@qq.com</span>
+          </span>
+          <span class="link__go" aria-hidden="true">↗</span>
+        </a>
+      </li>
+      <li class="link">
+        <a class="link__a" href="https://www.bing.com/maps?q=%E9%95%BF%E6%B2%99" target="_blank" rel="noopener noreferrer">
+          <span class="link__icon" aria-hidden="true">⌖</span>
+          <span class="link__body">
+            <span class="link__k">地点</span>
+            <span class="link__v">湖南省长沙市</span>
+          </span>
+          <span class="link__go" aria-hidden="true">↗</span>
+        </a>
+      </li>
+    </ul>
+    <p class="copynote">点击任意条目即可建立连接 · 信号延迟约为 0 毫秒</p>
+  </section>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="footer">
+  <div class="shell footer__inner">
+    <p class="footer__line">© 2026 ok-lzr · 湖南省长沙市</p>
+    <p class="footer__line footer__line--dim">Built with 原生 HTML / CSS / JavaScript · 无外部依赖</p>
+    <p class="footer__line footer__line--dim" id="footer-time">本地时间同步中…</p>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

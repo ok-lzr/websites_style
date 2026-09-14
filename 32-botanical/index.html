@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="day">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ok-lzr / 码上生活 · 植物插画个人主页</title>
+  <meta name="description" content="ok-lzr 的个人主页：植物插画风格，前端作品集、技能与联系方式。">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- 页面背景装饰：藤蔓线条 + 飘落叶片容器（纯装饰，JS 在此生成叶片） -->
+  <div class="bg-canvas" aria-hidden="true">
+    <span class="bg-leaf bg-leaf--1"></span>
+    <span class="bg-leaf bg-leaf--2"></span>
+    <span class="bg-leaf bg-leaf--3"></span>
+    <span class="bg-glow" id="cursorGlow"></span>
+  </div>
+
+  <!-- ===== 顶部导航：藤蔓挂枝式固定条 ===== -->
+  <header class="site-header">
+    <a class="brand" href="#hero" aria-label="回到页面顶部">
+      <span class="brand-mark" aria-hidden="true">❦</span>
+      <span class="brand-text">ok-lzr<em>/ 码上生活</em></span>
+    </a>
+
+    <nav class="site-nav" aria-label="主导航">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="#about">简介</a></li>
+        <li><a class="nav-link" href="#works">作品</a></li>
+        <li><a class="nav-link" href="#skills">技能</a></li>
+        <li><a class="nav-link" href="#contact">联系</a></li>
+      </ul>
+    </nav>
+
+    <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">
+      <span class="theme-toggle__icon" aria-hidden="true">☾</span>
+      <span class="theme-toggle__label">夜读模式</span>
+    </button>
+  </header>
+
+  <main>
+    <!-- ===== 首屏：标本卡片式个人介绍 ===== -->
+    <section class="hero" id="hero">
+      <div class="hero__inner">
+        <div class="hero__text reveal">
+          <p class="eyebrow">◆ 植物标本 · 编号 032 ◆</p>
+          <h1 class="hero__title">
+            <span class="hero__name">ok-lzr</span>
+            <span class="hero__slash" aria-hidden="true">/</span>
+            <span class="hero__alias">码上生活</span>
+          </h1>
+          <p class="hero__typing">
+            <span class="typing-text" id="typingText"></span><span class="typing-caret" aria-hidden="true"></span>
+          </p>
+          <p class="hero__desc">
+            在长沙写前端，把逻辑当枝干、把像素当花瓣。喜欢把复杂的需求修枝成清爽的界面，
+            闲时浇花、看天气、写点小工具。
+          </p>
+
+          <ul class="tag-row hero__tags">
+            <li class="tag">HTML / CSS</li>
+            <li class="tag">JavaScript</li>
+            <li class="tag">响应式布局</li>
+            <li class="tag">无障碍与可读性</li>
+          </ul>
+
+          <div class="hero__actions">
+            <a class="btn btn--solid" href="#works">看看作品 ✿</a>
+            <a class="btn btn--ghost" href="#contact">留下联系方式</a>
+          </div>
+        </div>
+
+        <!-- 手绘感盆栽插画：纯 CSS 绘制 -->
+        <figure class="hero__art reveal">
+          <div class="pot-art" aria-hidden="true">
+            <span class="pot-art__leaf pot-art__leaf--a"></span>
+            <span class="pot-art__leaf pot-art__leaf--b"></span>
+            <span class="pot-art__leaf pot-art__leaf--c"></span>
+            <span class="pot-art__leaf pot-art__leaf--d"></span>
+            <span class="pot-art__stem"></span>
+            <span class="pot-art__bloom"></span>
+            <span class="pot-art__pot"></span>
+          </div>
+          <figcaption class="hero__caption">标本 032 · 常绿 · 向阳生长</figcaption>
+        </figure>
+      </div>
+
+      <!-- 首屏数据速览：进入视口后数字滚动 -->
+      <ul class="hero__stats reveal">
+        <li class="mini-stat">
+          <span class="mini-stat__num" data-count="6" data-suffix=" 年">0</span>
+          <span class="mini-stat__label">前端耕耘</span>
+        </li>
+        <li class="mini-stat">
+          <span class="mini-stat__num" data-count="42" data-suffix=" +">0</span>
+          <span class="mini-stat__label">上线项目</span>
+        </li>
+        <li class="mini-stat">
+          <span class="mini-stat__num" data-count="128" data-suffix=" 株">0</span>
+          <span class="mini-stat__label">窗台绿植</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== 简介：生长年轮说明 ===== -->
+    <section class="section" id="about">
+      <header class="section__head reveal">
+        <p class="section__kicker">CHAPTER 01</p>
+        <h2 class="section__title">关于这株植物</h2>
+        <p class="section__sub">三句真话，比一整页简历好用。</p>
+      </header>
+
+      <div class="about-grid">
+        <article class="card about-card reveal">
+          <h3 class="card__title"><span class="dot" aria-hidden="true"></span>我在做什么</h3>
+          <p>做企业官网、数据看板与个人小工具，负责从视觉走查到上线部署的全流程。</p>
+        </article>
+        <article class="card about-card reveal">
+          <h3 class="card__title"><span class="dot" aria-hidden="true"></span>我怎么做事</h3>
+          <p>先把结构拆清楚再动样式；能用原生写就不引依赖，能少一个请求就少一个。</p>
+        </article>
+        <article class="card about-card reveal">
+          <h3 class="card__title"><span class="dot" aria-hidden="true"></span>我在意什么</h3>
+          <p>文字读得清、手机不横滚、键盘能走通。细节像叶脉，看不见但撑着整片叶子。</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 作品花名册：可按标签筛选 ===== -->
+    <section class="section" id="works">
+      <header class="section__head reveal">
+        <p class="section__kicker">CHAPTER 02</p>
+        <h2 class="section__title">作品花名册</h2>
+        <p class="section__sub">每一株都活着，点标签可以只看向阳的那几盆。</p>
+      </header>
+
+      <div class="filter-bar reveal" role="group" aria-label="按类型筛选作品">
+        <button class="filter-btn is-active" type="button" data-filter="all" aria-pressed="true">全部</button>
+        <button class="filter-btn" type="button" data-filter="tool" aria-pressed="false">工具</button>
+        <button class="filter-btn" type="button" data-filter="data" aria-pressed="false">数据</button>
+        <button class="filter-btn" type="button" data-filter="site" aria-pressed="false">站点</button>
+      </div>
+
+      <ul class="work-list" id="workList">
+        <li class="work-item reveal" data-tags="tool site">
+          <article class="card work-card">
+            <p class="work-card__no">No.01</p>
+            <h3 class="work-card__title">个人导航站</h3>
+            <p class="work-card__desc">把常用后台、文档与工具收进一页，支持拖拽排序与本地收藏，打开就是工作台。</p>
+            <ul class="tag-row">
+              <li class="tag tag--small">HTML</li>
+              <li class="tag tag--small">CSS</li>
+              <li class="tag tag--small">localStorage</li>
+            </ul>
+          </article>
+        </li>
+        <li class="work-item reveal" data-tags="data tool">
+          <article class="card work-card">
+            <p class="work-card__no">No.02</p>
+            <h3 class="work-card__title">长沙天气看板</h3>
+            <p class="work-card__desc">按小时展示长沙温湿度与降水趋势，纯手写折线图，早晚通勤前扫一眼就够。</p>
+            <ul class="tag-row">
+              <li class="tag tag--small">Canvas</li>
+              <li class="tag tag--small">Fetch API</li>
+              <li class="tag tag--small">SVG</li>
+            </ul>
+          </article>
+        </li>
+        <li class="work-item reveal" data-tags="tool">
+          <article class="card work-card">
+            <p class="work-card__no">No.03</p>
+            <h3 class="work-card__title">番茄园艺钟</h3>
+            <p class="work-card__desc">25 分钟专注 + 5 分钟浇花休息的计时器，记录每日专注曲线上长出了几片叶子。</p>
+            <ul class="tag-row">
+              <li class="tag tag--small">JavaScript</li>
+              <li class="tag tag--small">Web Audio</li>
+            </ul>
+          </article>
+        </li>
+        <li class="work-item reveal" data-tags="site">
+          <article class="card work-card">
+            <p class="work-card__no">No.04</p>
+            <h3 class="work-card__title">苗圃组件库</h3>
+            <p class="work-card__desc">一套无依赖的按钮、卡片与表单样式，用 CSS 变量分主题，接入即用不挑框架。</p>
+            <ul class="tag-row">
+              <li class="tag tag--small">CSS 变量</li>
+              <li class="tag tag--small">组件化</li>
+            </ul>
+          </article>
+        </li>
+        <li class="work-item reveal" data-tags="data">
+          <article class="card work-card">
+            <p class="work-card__no">No.05</p>
+            <h3 class="work-card__title">记账藤蔓图</h3>
+            <p class="work-card__desc">把月度支出画成会生长的藤蔓，花得多的月份枝更粗，一眼看出钱的去向。</p>
+            <ul class="tag-row">
+              <li class="tag tag--small">数据可视化</li>
+              <li class="tag tag--small">IndexedDB</li>
+            </ul>
+          </article>
+        </li>
+        <li class="work-item reveal" data-tags="site tool">
+          <article class="card work-card">
+            <p class="work-card__no">No.06</p>
+            <h3 class="work-card__title">植物图鉴笔记</h3>
+            <p class="work-card__desc">给窗台每盆绿植建卡：浇水周期、光照偏好与照片时间线，顺手练手响应式图片。</p>
+            <ul class="tag-row">
+              <li class="tag tag--small">PWA</li>
+              <li class="tag tag--small">IntersectionObserver</li>
+            </ul>
+          </article>
+        </li>
+      </ul>
+      <p class="filter-empty" id="filterEmpty" hidden>这一类暂无植株，换个标签看看吧。</p>
+    </section>
+
+    <!-- ===== 技能：进入视口后生长条动画 ===== -->
+    <section class="section" id="skills">
+      <header class="section__head reveal">
+        <p class="section__kicker">CHAPTER 03</p>
+        <h2 class="section__title">叶脉与技能</h2>
+        <p class="section__sub">数字只是浇水的年份，绿得久才算数。</p>
+      </header>
+
+      <div class="skills-grid">
+        <ul class="skill-list reveal">
+          <li class="skill">
+            <div class="skill__head"><span class="skill__name">HTML / 语义化结构</span><span class="skill__val">95%</span></div>
+            <div class="skill__track"><span class="skill__bar" data-level="95"></span></div>
+          </li>
+          <li class="skill">
+            <div class="skill__head"><span class="skill__name">CSS / 布局与动效</span><span class="skill__val">90%</span></div>
+            <div class="skill__track"><span class="skill__bar" data-level="90"></span></div>
+          </li>
+          <li class="skill">
+            <div class="skill__head"><span class="skill__name">JavaScript / 原生交互</span><span class="skill__val">85%</span></div>
+            <div class="skill__track"><span class="skill__bar" data-level="85"></span></div>
+          </li>
+          <li class="skill">
+            <div class="skill__head"><span class="skill__name">数据可视化</span><span class="skill__val">75%</span></div>
+            <div class="skill__track"><span class="skill__bar" data-level="75"></span></div>
+          </li>
+          <li class="skill">
+            <div class="skill__head"><span class="skill__name">性能与可访问性</span><span class="skill__val">80%</span></div>
+            <div class="skill__track"><span class="skill__bar" data-level="80"></span></div>
+          </li>
+        </ul>
+
+        <aside class="card skill-note reveal">
+          <h3 class="card__title"><span class="dot" aria-hidden="true"></span>常用工具</h3>
+          <ul class="tag-row">
+            <li class="tag tag--small">VS Code</li>
+            <li class="tag tag--small">Git</li>
+            <li class="tag tag--small">Vite</li>
+            <li class="tag tag--small">Figma</li>
+            <li class="tag tag--small">Nginx</li>
+            <li class="tag tag--small">Node.js</li>
+          </ul>
+          <p class="skill-note__text">
+            习惯先画草图再写代码：结构像盆栽的骨架，样式只负责让它好看，
+            脚本则负责让它在风里真的会动。
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===== 联系：花名册卡片 + 实时时钟 ===== -->
+    <section class="section" id="contact">
+      <header class="section__head reveal">
+        <p class="section__kicker">CHAPTER 04</p>
+        <h2 class="section__title">交换枝条</h2>
+        <p class="section__sub">下面每一项都可以直接点开。</p>
+      </header>
+
+      <div class="contact-grid">
+        <article class="card contact-card reveal">
+          <h3 class="card__title"><span class="dot" aria-hidden="true"></span>个人数据</h3>
+          <ul class="contact-list">
+            <li class="contact-item">
+              <span class="contact-key">GitHub</span>
+              <a class="contact-val" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">github.com/ok-lzr</a>
+            </li>
+            <li class="contact-item">
+              <span class="contact-key">QQ</span>
+              <a class="contact-val" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">386477796</a>
+            </li>
+            <li class="contact-item">
+              <span class="contact-key">邮箱 1</span>
+              <a class="contact-val" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com</a>
+            </li>
+            <li class="contact-item">
+              <span class="contact-key">邮箱 2</span>
+              <a class="contact-val" href="mailto:3866477796@qq.com">3866477796@qq.com</a>
+            </li>
+            <li class="contact-item">
+              <span class="contact-key">地点</span>
+              <span class="contact-val">湖南省长沙市</span>
+            </li>
+          </ul>
+        </article>
+
+        <article class="card clock-card reveal">
+          <h3 class="card__title"><span class="dot" aria-hidden="true"></span>长沙时间</h3>
+          <p class="clock-zone">UTC+8 · 中国标准时间</p>
+          <p class="clock-time" id="clockTime" role="timer" aria-live="off">--:--:--</p>
+          <p class="clock-date" id="clockDate">正在读取时间…</p>
+          <p class="clock-meta">
+            <span class="clock-chip" id="clockPhase">— 昼夜判断中 —</span>
+          </p>
+          <p class="clock-note" id="clockNote">页面加载后由脚本实时刷新。</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="site-footer">
+    <p class="footer-line">© 2026 ok-lzr · 湖南省长沙市</p>
+    <p class="footer-sub">植物插画风格 · 原生 HTML / CSS / JavaScript 手植而成</p>
+    <p class="footer-sun" aria-hidden="true">❦ ❀ ❦</p>
+  </footer>
+
+  <!-- 回到顶部（JS 控制显示与滚动） -->
+  <button class="to-top" id="toTop" type="button" aria-label="回到顶部">↑</button>
+</body>
+</html>

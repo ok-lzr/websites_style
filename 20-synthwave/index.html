@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="dark" />
+<meta name="description" content="ok-lzr 的个人主页 · 合成波风格：深紫底、青粉霓虹、发光边框、镭射网格。" />
+<meta name="theme-color" content="#0d0320" />
+<title>ok-lzr · 合成波个人主页</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- 顶部滚动进度条（宽度由 JS 计算） -->
+<div class="scroll-progress" id="progress" aria-hidden="true"></div>
+
+<!-- ===== 页头：品牌 + 导航 + 主题切换 ===== -->
+<header class="site-header" id="top">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="#top">
+      <span class="brand__mark" aria-hidden="true">◢</span>
+      <span class="brand__text">
+        <span class="brand__id">ok-lzr</span>
+        <span class="brand__sub">码上生活</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="站内导航">
+      <a class="nav__link" href="#hero">首页</a>
+      <a class="nav__link" href="#about">档案</a>
+      <a class="nav__link" href="#works">作品</a>
+      <a class="nav__link" href="#data">联络</a>
+    </nav>
+
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">
+      <span class="theme-toggle__icon" id="theme-icon" aria-hidden="true">☾</span>
+      <span class="theme-toggle__text" id="theme-text">夜间霓虹</span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== 首屏：标题 / 打字机 / 标签 / 镭射网格 ===== -->
+  <section class="hero" id="hero">
+    <div class="hero__sun" id="hero-sun" aria-hidden="true"></div>
+    <div class="hero__floor" id="hero-grid" aria-hidden="true"></div>
+
+    <div class="wrap hero__inner">
+      <p class="hero__eyebrow">SYNTHWAVE · 个人主页 / SINCE 2026</p>
+
+      <h1 class="hero__title">
+        <span class="hero__id">ok-lzr</span>
+        <span class="hero__cn">码上生活</span>
+      </h1>
+
+      <p class="hero__typed">
+        <b id="typed">用代码把城市、数据与夜晚连成一条霓虹带。</b><span class="caret" aria-hidden="true"></span>
+      </p>
+
+      <p class="hero__desc">
+        常驻长沙的前端 / 全栈爱好者，喜欢做看得见、摸得着的网页小工具：
+        把数据变成光，把交互变成节奏，让页面像合成器一样有回响。
+      </p>
+
+      <ul class="hero__tags">
+        <li class="tag">前端工程</li>
+        <li class="tag">数据可视化</li>
+        <li class="tag">Web 交互体验</li>
+        <li class="tag">复古视觉再造</li>
+      </ul>
+
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#works">查看作品 ▸</a>
+        <a class="btn btn--ghost" href="#data">联系我</a>
+      </div>
+
+      <p class="hero__hint">↓ 向下滚动，霓虹网格会跟着你的视线前进</p>
+    </div>
+  </section>
+
+  <!-- ===== 档案区：简介 + 技能条 ===== -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="section__kicker">01 / PROFILE</p>
+        <h2 class="section__title">个人档案</h2>
+        <p class="section__note">一段自我介绍，外加几条能落地的能力条。</p>
+      </header>
+
+      <div class="about">
+        <div class="about__text card card--glow reveal">
+          <h3 class="card__title">关于 ok-lzr</h3>
+          <p>
+            白天写业务页面，晚上折腾个人小项目。做过导航站、天气看板、终端小工具，
+            习惯从"自己每天会不会用它"出发决定要不要动手。
+          </p>
+          <p>
+            技术口味偏实用：原生 Web 三件套打底，框架按需要上；
+            写代码时在意三件事 —— <strong>能跑、好看、别人接得住</strong>。
+          </p>
+          <ul class="facts">
+            <li><span class="facts__k">坐标</span><span class="facts__v">湖南省长沙市</span></li>
+            <li><span class="facts__k">状态</span><span class="facts__v">开放交流与合作</span></li>
+            <li><span class="facts__k">风格</span><span class="facts__v">深紫夜里的一束霓虹</span></li>
+          </ul>
+        </div>
+
+        <div class="skills card card--glow reveal">
+          <h3 class="card__title">能力刻度</h3>
+
+          <div class="skill" data-level="92">
+            <div class="skill__row"><span class="skill__name">HTML / CSS</span><span class="skill__pct">92%</span></div>
+            <div class="skill__track"><span class="skill__bar"></span></div>
+          </div>
+
+          <div class="skill" data-level="87">
+            <div class="skill__row"><span class="skill__name">JavaScript</span><span class="skill__pct">87%</span></div>
+            <div class="skill__track"><span class="skill__bar"></span></div>
+          </div>
+
+          <div class="skill" data-level="78">
+            <div class="skill__row"><span class="skill__name">数据可视化</span><span class="skill__pct">78%</span></div>
+            <div class="skill__track"><span class="skill__bar"></span></div>
+          </div>
+
+          <div class="skill" data-level="72">
+            <div class="skill__row"><span class="skill__name">Node / 部署运维</span><span class="skill__pct">72%</span></div>
+            <div class="skill__track"><span class="skill__bar"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 作品区：项目列表 ===== -->
+  <section class="section" id="works">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="section__kicker">02 / WORKS</p>
+        <h2 class="section__title">作品磁带</h2>
+        <p class="section__note">六个自己动手的项目，按最近维护顺序排列。</p>
+      </header>
+
+      <ul class="works">
+
+        <li class="work card card--glow reveal">
+          <div class="work__thumb" aria-hidden="true"><span class="thumb__v thumb__v--a">◇</span></div>
+          <div class="work__body">
+            <p class="work__no">01</p>
+            <h3 class="work__title">个人导航站</h3>
+            <p class="work__desc">把常用工具、文档和自建服务收进一页，支持分组折叠与快捷搜索，打开浏览器就能用。</p>
+            <ul class="work__stack">
+              <li>HTML</li><li>CSS Grid</li><li>原生 JS</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="work card card--glow reveal">
+          <div class="work__thumb" aria-hidden="true"><span class="thumb__v thumb__v--b">☁</span></div>
+          <div class="work__body">
+            <p class="work__no">02</p>
+            <h3 class="work__title">长沙天气看板</h3>
+            <p class="work__desc">本地天气与体感温度展示，含未来三日趋势曲线、降雨提醒，夜班时自动切换暗色霓虹。</p>
+            <ul class="work__stack">
+              <li>JavaScript</li><li>Canvas</li><li>Fetch API</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="work card card--glow reveal">
+          <div class="work__thumb" aria-hidden="true"><span class="thumb__v thumb__v--c">&gt;_</span></div>
+          <div class="work__body">
+            <p class="work__no">03</p>
+            <h3 class="work__title">终端工具箱</h3>
+            <p class="work__desc">一批自用的命令行脚本：批量改文件名、图片压缩、日志统计，一条命令解决重复劳动。</p>
+            <ul class="work__stack">
+              <li>Node.js</li><li>Bash</li><li>CLI</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="work card card--glow reveal">
+          <div class="work__thumb" aria-hidden="true"><span class="thumb__v thumb__v--d">▤</span></div>
+          <div class="work__body">
+            <p class="work__no">04</p>
+            <h3 class="work__title">阅读清单</h3>
+            <p class="work__desc">待读 / 在读 / 读完三栏看板，记录笔记与进度，数据存在本地，不联网也能用。</p>
+            <ul class="work__stack">
+              <li>LocalStorage</li><li>CSS 变量</li><li>拖拽排序</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="work card card--glow reveal">
+          <div class="work__thumb" aria-hidden="true"><span class="thumb__v thumb__v--e">✦</span></div>
+          <div class="work__body">
+            <p class="work__no">05</p>
+            <h3 class="work__title">合成波墙纸机</h3>
+            <p class="work__desc">在线生成霓虹网格 + 落日圆盘桌面壁纸，可调色相、网格密度与扫描线强度并导出图片。</p>
+            <ul class="work__stack">
+              <li>Canvas</li><li>CSS 滤镜</li><li>色彩算法</li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="work card card--glow reveal">
+          <div class="work__thumb" aria-hidden="true"><span class="thumb__v thumb__v--f">◐</span></div>
+          <div class="work__body">
+            <p class="work__no">06</p>
+            <h3 class="work__title">配色对比检查器</h3>
+            <p class="work__desc">实时计算前景 / 背景色的 WCAG 对比度，给出 AA、AAA 判定与最接近的合规替代色。</p>
+            <ul class="work__stack">
+              <li>原生 JS</li><li>WCAG</li><li>无障碍</li>
+            </ul>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== 数据区：长沙时间 + 联络方式 ===== -->
+  <section class="section" id="data">
+    <div class="wrap">
+      <header class="section__head">
+        <p class="section__kicker">03 / PING</p>
+        <h2 class="section__title">联络信号</h2>
+        <p class="section__note">实时时钟与联系方式，点一下就能拨号或写信。</p>
+      </header>
+
+      <div class="data">
+
+        <!-- 长沙实时时钟（JS 驱动，东八区） -->
+        <div class="clock card card--glow reveal">
+          <p class="clock__label">长沙时间 · UTC+8</p>
+          <p class="clock__date" id="clock-date">2026 年 09 月 14 日</p>
+          <p class="clock__time" id="clock-time">22:07:00</p>
+          <p class="clock__meta">
+            <span class="clock__weekday" id="clock-weekday">星期一</span>
+            <span class="clock__sep" aria-hidden="true">/</span>
+            <span class="clock__zone" id="clock-zone">夜场模式</span>
+          </p>
+          <p class="clock__note">时钟由浏览器实时刷新；页面基线参考 2026-09-14 22:07（UTC+8）。</p>
+        </div>
+
+        <!-- 联络清单 -->
+        <ul class="links card card--glow reveal">
+          <li class="links__item">
+            <a class="link" href="https://github.com/ok-lzr" target="_blank" rel="noopener noreferrer">
+              <span class="link__icon" aria-hidden="true">◆</span>
+              <span class="link__body"><span class="link__label">GitHub</span><span class="link__value">github.com/ok-lzr</span></span>
+              <span class="link__go" aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li class="links__item">
+            <a class="link" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener noreferrer">
+              <span class="link__icon" aria-hidden="true">◈</span>
+              <span class="link__body"><span class="link__label">QQ</span><span class="link__value">386477796</span></span>
+              <span class="link__go" aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li class="links__item">
+            <a class="link" href="mailto:csgdnrxg@163.com">
+              <span class="link__icon" aria-hidden="true">▣</span>
+              <span class="link__body"><span class="link__label">邮箱 · 163</span><span class="link__value">csgdnrxg@163.com</span></span>
+              <span class="link__go" aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li class="links__item">
+            <a class="link" href="mailto:3866477796@qq.com">
+              <span class="link__icon" aria-hidden="true">▣</span>
+              <span class="link__body"><span class="link__label">邮箱 · QQ</span><span class="link__value">3866477796@qq.com</span></span>
+              <span class="link__go" aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li class="links__item">
+            <span class="link link--static">
+              <span class="link__icon" aria-hidden="true">◎</span>
+              <span class="link__body"><span class="link__label">地点</span><span class="link__value">湖南省长沙市</span></span>
+              <span class="link__go link__go--static" aria-hidden="true">·</span>
+            </span>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="site-footer" id="footer">
+  <div class="wrap site-footer__inner">
+    <p class="site-footer__copy">© <span id="year">2026</span> ok-lzr · 湖南省长沙市</p>
+    <p class="site-footer__meta">纯原生 HTML / CSS / JavaScript 手写 · 无外部依赖</p>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

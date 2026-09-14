@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<!-- 14-futuristic-hud · 未来科幻 HUD 个人主页
+     结构说明：本文件只负责语义结构，不含 <style> 标签、不含行内 style=""、不含内联事件；
+     所有样式见 style.css，所有交互（时钟 / 平滑滚动 / 滚动进入动画 / 鼠标跟随等）见 script.js -->
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ok-lzr 的未来科幻 HUD 风格个人主页：六边形网格、环形仪表、角标括号与蓝青色发光数据条。">
+  <title>ok-lzr · 未来科幻 HUD</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+<!-- 全屏 HUD 背景层：网格 / 六边形蜂窝 / 扫描线，装饰用途，对读屏隐藏 -->
+<div class="bg-layer" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-hex"></div>
+  <div class="bg-scan"></div>
+  <div class="bg-follow" id="bgFollow"></div>
+</div>
+
+<!-- ===== 顶栏：身份牌 + 实时时钟微件 ===== -->
+<header class="hud-top">
+  <div class="wrap hud-top__inner">
+    <div class="idplate">
+      <span class="idplate__mark" aria-hidden="true">◆</span>
+      <p class="idplate__name">ok-lzr <span class="idplate__slash">//</span> 码上生活</p>
+      <p class="idplate__meta">HUD-CORE v2.6 · 个人终端 · 湖南长沙 · 状态 <span class="status-tag">在线</span></p>
+    </div>
+    <div class="mini-clock">
+      <span class="mini-clock__label">长沙时间</span>
+      <time class="mini-clock__time" id="navClock" datetime="2026-09-14T22:07:00+08:00">--:--:--</time>
+    </div>
+  </div>
+</header>
+
+<!-- ===== 导航：平滑滚动 + 滚动高亮（行为在 script.js） ===== -->
+<nav class="hud-nav" id="hudNav" aria-label="页面导航">
+  <div class="wrap nav">
+    <a class="nav__brand" href="#overview">ok-lzr<span class="nav__caret">_</span></a>
+    <ul class="nav__list">
+      <li><a class="nav__link" href="#overview"><span class="nav__num">01</span>总览</a></li>
+      <li><a class="nav__link" href="#capabilities"><span class="nav__num">02</span>能力</a></li>
+      <li><a class="nav__link" href="#archive"><span class="nav__num">03</span>作品</a></li>
+      <li><a class="nav__link" href="#link"><span class="nav__num">04</span>联系</a></li>
+      <li><a class="nav__link" href="#timeline"><span class="nav__num">05</span>时间</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <!-- ===== 区块 01：总览（姓名 / 简介 / 标签 / 环形仪表 / 技能数据条） ===== -->
+  <section class="sec" id="overview">
+    <div class="wrap">
+      <p class="sec__hint">SYS.LINK // 通道已建立，正在读取操作者资料…</p>
+      <div class="hero">
+        <div class="hero__main">
+          <h1 class="hero__title">ok-lzr <span class="hero__slash">/</span> 码上生活</h1>
+          <p class="hero__sub">前端开发 · 终端界面爱好者</p>
+          <p class="hero__desc">
+            把想法写成能点开就看的页面：白天做表格与看板，夜里调终端配色与动效。
+          </p>
+          <ul class="tags" aria-label="能力标签">
+            <li class="tag tag--main">HTML / CSS / JS</li>
+            <li class="tag">Vue 3</li>
+            <li class="tag">数据可视化</li>
+            <li class="tag">响应式布局</li>
+            <li class="tag">交互动效</li>
+          </ul>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#archive">查看作品档案 →</a>
+            <a class="btn" href="#link">建立连接</a>
+          </div>
+        </div>
+
+        <!-- 环形仪表：三只渐变环组成的状态阵列 -->
+        <div class="gauges" aria-label="状态仪表">
+          <h2 class="gauges__title">SYS.CHECK // 系统自检</h2>
+          <div class="ring-grid">
+            <div class="ring">
+              <svg class="ring__svg" viewBox="0 0 120 120" role="img" aria-label="前端完成度 92%">
+                <circle class="ring__track" cx="60" cy="60" r="52"></circle>
+                <circle class="ring__bar ring__bar--a" cx="60" cy="60" r="52" stroke-dasharray="327" stroke-dashoffset="327" data-ring="92"></circle>
+              </svg>
+              <span class="ring__val">0%</span>
+              <span class="ring__cap">前端完成度</span>
+            </div>
+            <div class="ring">
+              <svg class="ring__svg" viewBox="0 0 120 120" role="img" aria-label="界面响应力 88%">
+                <circle class="ring__track" cx="60" cy="60" r="52"></circle>
+                <circle class="ring__bar ring__bar--b" cx="60" cy="60" r="52" stroke-dasharray="327" stroke-dashoffset="327" data-ring="88"></circle>
+              </svg>
+              <span class="ring__val">0%</span>
+              <span class="ring__cap">界面响应力</span>
+            </div>
+            <div class="ring">
+              <svg class="ring__svg" viewBox="0 0 120 120" role="img" aria-label="视觉设计感 85%">
+                <circle class="ring__track" cx="60" cy="60" r="52"></circle>
+                <circle class="ring__bar ring__bar--c" cx="60" cy="60" r="52" stroke-dasharray="327" stroke-dashoffset="327" data-ring="85"></circle>
+              </svg>
+              <span class="ring__val">0%</span>
+              <span class="ring__cap">视觉设计感</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 技能数据条：滚动进入视口后由 JS 触发宽度动画 -->
+      <div class="bars" aria-label="技能数据条">
+        <h2 class="bars__title">MODULE.POWER // 能力数据条</h2>
+        <div class="stack">
+          <div class="skill" data-reveal>
+            <span class="skill__icon" aria-hidden="true">⬢</span>
+            <span class="skill__name">HTML / CSS 布局</span>
+            <div class="track" data-fill="94"><div class="track__fill"></div><span class="track__num">94%</span></div>
+          </div>
+          <div class="skill" data-reveal>
+            <span class="skill__icon" aria-hidden="true">⬢</span>
+            <span class="skill__name">原生 JavaScript</span>
+            <div class="track" data-fill="88"><div class="track__fill"></div><span class="track__num">88%</span></div>
+          </div>
+          <div class="skill" data-reveal>
+            <span class="skill__icon" aria-hidden="true">⬢</span>
+            <span class="skill__name">Vue / 组件化</span>
+            <div class="track" data-fill="80"><div class="track__fill"></div><span class="track__num">80%</span></div>
+          </div>
+          <div class="skill" data-reveal>
+            <span class="skill__icon" aria-hidden="true">⬢</span>
+            <span class="skill__name">数据可视化</span>
+            <div class="track" data-fill="72"><div class="track__fill"></div><span class="track__num">72%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span class="ticker__item">HUD ONLINE</span><span class="ticker__item">长沙 · 湖南</span><span class="ticker__item">六边形网格已校准</span><span class="ticker__item">RING GAUGE ×3 正常</span><span class="ticker__item">NO EXTERNAL DEPENDENCY</span>
+      <span class="ticker__item">HUD ONLINE</span><span class="ticker__item">长沙 · 湖南</span><span class="ticker__item">六边形网格已校准</span><span class="ticker__item">RING GAUGE ×3 正常</span><span class="ticker__item">NO EXTERNAL DEPENDENCY</span>
+    </div>
+  </div>
+
+  <!-- ===== 区块 02：能力矩阵 ===== -->
+  <section class="sec" id="capabilities">
+    <div class="wrap">
+      <p class="sec__hint">MOD.SCAN // 能力矩阵</p>
+      <div class="sec__head">
+        <h2 class="sec__title">能力矩阵</h2>
+        <p class="sec__desc">四块模块各管一段链路，从结构到动效独立可替换。</p>
+      </div>
+      <ul class="hexrow">
+        <li class="hex" data-reveal>
+          <span class="hex__glyph" aria-hidden="true">⬡</span>
+          <h3 class="hex__title">结构层</h3>
+          <p class="hex__desc">语义化 HTML、无障碍标签与清晰的信息层级。</p>
+        </li>
+        <li class="hex" data-reveal>
+          <span class="hex__glyph" aria-hidden="true">⬡</span>
+          <h3 class="hex__title">样式层</h3>
+          <p class="hex__desc">CSS 变量集中管理配色与间距，一套变量换肤。</p>
+        </li>
+        <li class="hex" data-reveal>
+          <span class="hex__glyph" aria-hidden="true">⬡</span>
+          <h3 class="hex__title">交互层</h3>
+          <p class="hex__desc">原生 JS 处理时钟、滚动动画与筛选逻辑。</p>
+        </li>
+        <li class="hex" data-reveal>
+          <span class="hex__glyph" aria-hidden="true">⬡</span>
+          <h3 class="hex__title">数据层</h3>
+          <p class="hex__desc">环形仪表与数据条，把状态量化后可视化。</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== 区块 03：作品档案（由 script.js 渲染 + 分类筛选） ===== -->
+  <section class="sec" id="archive">
+    <div class="wrap">
+      <p class="sec__hint">ARCHIVE // 作品档案库</p>
+      <div class="sec__head">
+        <h2 class="sec__title">作品档案</h2>
+        <p class="sec__desc">六个已归档模块，切换下方分类可快速过滤。</p>
+      </div>
+      <div class="filter" id="filter" role="group" aria-label="作品分类筛选">
+        <button class="filter__btn is-active" type="button" data-filter="all">全部</button>
+        <button class="filter__btn" type="button" data-filter="web">网页</button>
+        <button class="filter__btn" type="button" data-filter="tool">工具</button>
+        <button class="filter__btn" type="button" data-filter="visual">可视化</button>
+      </div>
+      <div class="cards" id="projectGrid" aria-live="polite"></div>
+      <p class="archive__stat" id="archiveStat">已加载 0 / 0 个模块</p>
+    </div>
+  </section>
+
+  <!-- ===== 区块 04：联系与个人数据（链接均为可点击真实地址） ===== -->
+  <section class="sec" id="link">
+    <div class="wrap">
+      <p class="sec__hint">LINK // 建立连接</p>
+      <div class="sec__head">
+        <h2 class="sec__title">建立连接</h2>
+        <p class="sec__desc">任选一条通道，通常当日回复。</p>
+      </div>
+      <ul class="idcard">
+        <li class="idcard__item idcard__item--wide">
+          <span class="idcard__label">GitHub</span>
+          <a class="idcard__value" href="https://github.com/ok-lzr" target="_blank" rel="noopener">github.com/ok-lzr ↗</a>
+        </li>
+        <li class="idcard__item">
+          <span class="idcard__label">QQ</span>
+          <a class="idcard__value" href="https://wpa.qq.com/msgrd?v=3&amp;uin=386477796&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener">386477796 ↗</a>
+        </li>
+        <li class="idcard__item">
+          <span class="idcard__label">邮箱 · 常用</span>
+          <a class="idcard__value" href="mailto:csgdnrxg@163.com">csgdnrxg@163.com ✉</a>
+        </li>
+        <li class="idcard__item">
+          <span class="idcard__label">邮箱 · 备用</span>
+          <a class="idcard__value" href="mailto:3866477796@qq.com">3866477796@qq.com ✉</a>
+        </li>
+        <li class="idcard__item">
+          <span class="idcard__label">地点</span>
+          <span class="idcard__value">湖南省长沙市 ⌖</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== 区块 05：时间序列（实时时钟 + 参考基线 + 数字滚动统计） ===== -->
+  <section class="sec" id="timeline">
+    <div class="wrap">
+      <p class="sec__hint">TIME.SYNC // 时钟同步</p>
+      <div class="sec__head">
+        <h2 class="sec__title">时间序列</h2>
+        <p class="sec__desc">本机实时时钟以中国标准时间（UTC+8）显示，每秒刷新。</p>
+      </div>
+
+      <div class="timeline">
+        <div class="panel clock" data-reveal>
+          <div class="panel__corner" aria-hidden="true"></div>
+          <h3 class="panel__title">长沙时间 · 实时</h3>
+          <p class="clock__date" id="clockDate">正在同步…</p>
+          <p class="clock__time" id="clockTime">--:--:--</p>
+          <p class="clock__week"><span class="clock__weekchip" id="clockWeek">星期—</span> <span class="clock__zone">UTC+8</span></p>
+          <p class="clock__meta">数据源：本机系统时间 <span class="caret" aria-hidden="true"></span></p>
+        </div>
+
+        <div class="panel baseline" data-reveal>
+          <div class="panel__corner" aria-hidden="true"></div>
+          <h3 class="panel__title">参考基线 · 2026-09-14</h3>
+          <p class="baseline__date">2026 年 9 月 14 日 星期一</p>
+          <p class="baseline__time">22:07 <span class="baseline__zone">UTC+8</span></p>
+          <p class="baseline__meta">该时刻用于判断夜 / 昼主题，时钟本身仍取本机实时时间。</p>
+          <div class="phase">
+            <span class="phase__label">当前判定</span>
+            <span class="phase__badge" id="phaseBadge">夜间模式</span>
+            <div class="phase__day" aria-hidden="true">
+              <span class="phase__seg phase__seg--night" id="segNight">夜</span>
+              <span class="phase__seg phase__seg--day" id="segDay">昼</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 数字滚动统计：进入视口后从 0 计数 -->
+      <ul class="stats">
+        <li class="stat" data-reveal>
+          <span class="stat__num" data-count="6" data-suffix="">0</span>
+          <span class="stat__label">归档项目</span>
+        </li>
+        <li class="stat" data-reveal>
+          <span class="stat__num" data-count="4" data-suffix="年">0</span>
+          <span class="stat__label">写码时长</span>
+        </li>
+        <li class="stat" data-reveal>
+          <span class="stat__num" data-count="3" data-suffix="个">0</span>
+          <span class="stat__label">常用技术栈</span>
+        </li>
+        <li class="stat" data-reveal>
+          <span class="stat__num" data-count="100" data-suffix="%">0</span>
+          <span class="stat__label">原生实现</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="hud-foot">
+  <div class="wrap hud-foot__inner">
+    <p class="hud-foot__main">© 2026 ok-lzr · 湖南省长沙市</p>
+    <p class="hud-foot__meta">未来科幻 HUD · 纯原生 HTML / CSS / JavaScript · 无外部依赖</p>
+    <p class="hud-foot__meta">SIGNAL <span class="hud-foot__ok" aria-hidden="true">■■■■■■■■■□</span> 稳定</p>
+  </div>
+</footer>
+
+<noscript>
+  <p class="wrap noscript">当前浏览器未启用 JavaScript：实时时钟、作品列表与滚动动画将不可用，联系信息仍可正常使用。</p>
+</noscript>
+</body>
+</html>
